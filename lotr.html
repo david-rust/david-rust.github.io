@@ -1,0 +1,2350 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Kentucky Cancer Registry — A Chronicle of the Third Age of Data</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&amp;family=Cinzel+Decorative:wght@400;700&amp;family=IM+Fell+English:ital@0;1&amp;display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 16px; scroll-behavior: smooth; }
+
+        /* ══════════════════════════════════════════════════
+           ⚔️  THE LORD OF THE RINGS THEME — ONE-OFF SCROLL ⚔️
+           "Not all who wander are lost, but this data is found."
+           ══════════════════════════════════════════════════ */
+        :root {
+            /* The Palantir Palette */
+            --parchment:    #f5ead0;   /* aged parchment */
+            --parchment-dk: #e8d5a8;
+            --parchment-dkr:#d4b87a;
+            --vellum:       #faf3e0;
+            --ink-lotr:     #1a0e05;   /* dark brown ink */
+            --ink-2:        #2d1c0a;
+            --ink-3:        #4a2f12;
+            --leather:      #5c3316;   /* worn leather */
+            --leather-lt:   #8b5a2b;
+            --mithril:      #9ab8c8;   /* mithril silver-blue */
+            --mithril-lt:   #c8dde8;
+            --mithril-dk:   #5a8298;
+            --gold:         #c8961e;   /* elvish gold */
+            --gold-lt:      #e8b830;
+            --gold-dk:      #8c6410;
+            --ember:        #8b1a1a;   /* Mordor ember red */
+            --ember-lt:     #c02020;
+            --shadow:       #0d0a06;   /* deep shadow */
+            --shadow-2:     #1a1408;
+            --shadow-3:     #261e0c;
+            --shire-green:  #4a6b2a;   /* Shire green */
+            --shire-lt:     #6a9b3a;
+            --elven:        #2a4a3a;   /* Rivendell forest */
+            --white:        #ffffff;
+
+            /* Remap to functional vars */
+            --serif:  'Cinzel', 'Palatino Linotype', serif;
+            --display:'Cinzel Decorative', 'Palatino Linotype', serif;
+            --body:   'IM Fell English', 'Palatino Linotype', Georgia, serif;
+            --r:      2px;
+        }
+
+        /* ── THE ONE CURSOR — ring shape ── */
+        * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='8' fill='none' stroke='%23c8961e' stroke-width='3'/%3E%3Ccircle cx='12' cy='12' r='3' fill='%23c8961e'/%3E%3C/svg%3E") 12 12, default; }
+
+        /* ── ANIMATIONS ── */
+        @keyframes flameFlicker {
+            0%,100% { opacity:1; transform:scaleY(1) translateY(0); }
+            25%      { opacity:.8; transform:scaleY(1.05) translateY(-1px); }
+            50%      { opacity:.9; transform:scaleY(.97) translateY(1px); }
+            75%      { opacity:.85; transform:scaleY(1.03) translateY(-1px); }
+        }
+        @keyframes ringGlow {
+            0%,100% { box-shadow: 0 0 12px rgba(200,150,30,0.4), 0 0 30px rgba(200,150,30,0.15); }
+            50%     { box-shadow: 0 0 24px rgba(200,150,30,0.7), 0 0 60px rgba(200,150,30,0.3); }
+        }
+        @keyframes runeShimmer {
+            0%,100% { opacity: 0.15; letter-spacing: 0.3em; }
+            50%      { opacity: 0.4;  letter-spacing: 0.35em; }
+        }
+        @keyframes emberRise {
+            0%   { opacity:1; transform:translateY(0) scale(1); }
+            100% { opacity:0; transform:translateY(-80px) scale(0.3); }
+        }
+        @keyframes scrollUnroll {
+            from { opacity:0; transform:translateY(32px) scaleY(0.95); }
+            to   { opacity:1; transform:translateY(0) scaleY(1); }
+        }
+        @keyframes torchFlicker {
+            0%,100% { filter: drop-shadow(0 0 6px rgba(255,140,30,0.8)); }
+            33%      { filter: drop-shadow(0 0 12px rgba(255,160,40,1)); }
+            66%      { filter: drop-shadow(0 0 4px rgba(220,100,20,0.6)); }
+        }
+        @keyframes mapGlow {
+            0%,100% { box-shadow: inset 0 0 60px rgba(200,150,30,0.05); }
+            50%      { box-shadow: inset 0 0 80px rgba(200,150,30,0.12); }
+        }
+        @keyframes nazgulSweep {
+            0%   { transform: translateX(-120vw) rotate(-5deg); opacity: 0; }
+            10%  { opacity: 0.15; }
+            50%  { opacity: 0.12; }
+            90%  { opacity: 0.1; }
+            100% { transform: translateX(120vw) rotate(-5deg); opacity: 0; }
+        }
+        @keyframes riseIn {
+            from { opacity:0; transform:translateY(28px); }
+            to   { opacity:1; transform:translateY(0); }
+        }
+        @keyframes coinPop {
+            0%   { opacity:1; transform:translateY(0) scale(1); }
+            100% { opacity:0; transform:translateY(-80px) scale(0.4) rotate(180deg); }
+        }
+
+        /* ── GLOBAL ── */
+        body {
+            font-family: var(--body);
+            background: var(--parchment);
+            color: var(--ink-lotr);
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; }
+
+        /* Parchment texture via pseudo */
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            pointer-events: none; z-index: 0;
+            background:
+                    repeating-linear-gradient(
+                            105deg,
+                            transparent 0px, transparent 80px,
+                            rgba(139,90,43,0.02) 80px, rgba(139,90,43,0.02) 81px
+                    ),
+                    radial-gradient(ellipse 120% 80% at 30% 20%, rgba(245,234,208,0.6) 0%, transparent 60%),
+                    radial-gradient(ellipse 80% 60% at 80% 80%, rgba(212,184,122,0.3) 0%, transparent 50%);
+        }
+
+        /* ── RUNIC EYEBROW ── */
+        .eyebrow {
+            font-family: var(--serif);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        /* ══════════════════════════════
+           TOP BAR — The Prancing Pony Notice Board
+           ══════════════════════════════ */
+        .topbar {
+            background: var(--shadow);
+            height: 40px;
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+            border-bottom: 2px solid var(--gold-dk);
+            position: relative;
+            z-index: 100;
+            /* subtle rune border */
+        }
+        .topbar::after {
+            content: '᚛᚜  ✦  ᚛᚜  ✦  ᚛᚜  ✦  ᚛᚜  ✦  ᚛᚜  ✦  ᚛᚜  ✦  ᚛᚜  ✦  ᚛᚜';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            font-size: 6px;
+            color: rgba(200,150,30,0.2);
+            letter-spacing: 0.8em;
+            text-align: center;
+            pointer-events: none;
+        }
+        .topbar-left {
+            font-family: var(--serif);
+            font-size: 9px;
+            letter-spacing: 0.2em;
+            color: rgba(200,150,30,0.5);
+            text-transform: uppercase;
+        }
+        .topbar-sep { flex: 1; }
+        .topbar-right { display: flex; gap: 24px; }
+        .topbar-right a {
+            font-family: var(--serif);
+            font-size: 9px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(200,150,30,0.55);
+            transition: color 0.2s;
+        }
+        .topbar-right a:hover { color: var(--gold-lt); }
+
+        /* ══════════════════════════════
+           MASTHEAD — The Hall of Records at Minas Tirith
+           ══════════════════════════════ */
+        .masthead {
+            background: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            min-height: calc(100vh - 40px);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        /* Stone wall texture */
+        .masthead-bg {
+            position: absolute; inset: 0; pointer-events: none;
+            background:
+                /* torch glow left */
+                    radial-gradient(ellipse 40% 60% at 5% 40%, rgba(200,120,20,0.12) 0%, transparent 60%),
+                        /* torch glow right */
+                    radial-gradient(ellipse 40% 60% at 95% 40%, rgba(200,120,20,0.08) 0%, transparent 60%),
+                        /* deep shadow center */
+                    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(0,0,0,0.5) 0%, transparent 60%),
+                        /* elvish light from top */
+                    radial-gradient(ellipse 60% 40% at 30% 0%, rgba(154,184,200,0.06) 0%, transparent 50%),
+                        /* stone blocks */
+                    repeating-linear-gradient(0deg, transparent 0 48px, rgba(0,0,0,0.08) 48px 50px),
+                    repeating-linear-gradient(90deg, transparent 0 64px, rgba(0,0,0,0.05) 64px 66px);
+            z-index: 1;
+        }
+
+        /* Runic runes across the bottom edge */
+        .masthead::after {
+            content: 'ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ   ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ';
+            position: absolute;
+            bottom: 8px; left: 0; right: 0;
+            font-size: 14px;
+            color: rgba(200,150,30,0.12);
+            letter-spacing: 0.5em;
+            text-align: center;
+            pointer-events: none;
+            z-index: 2;
+            animation: runeShimmer 4s ease-in-out infinite;
+        }
+
+        /* The vertical divider — a carved stone pillar with fire */
+        .masthead-rule {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0; bottom: 0;
+            width: 2px;
+            z-index: 3;
+            background: linear-gradient(to bottom,
+            transparent 0%,
+            rgba(200,150,30,0.6) 20%,
+            rgba(200,150,30,0.8) 50%,
+            rgba(200,150,30,0.6) 80%,
+            transparent 100%
+            );
+            box-shadow: 0 0 20px rgba(200,150,30,0.3);
+        }
+        .masthead-rule::before, .masthead-rule::after {
+            content: '🔥';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+            animation: torchFlicker 1.5s ease-in-out infinite;
+        }
+        .masthead-rule::before { top: 15%; }
+        .masthead-rule::after  { bottom: 15%; }
+
+        /* ── LEFT COLUMN ── */
+        .masthead-left {
+            padding: 64px 80px 64px 52px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            z-index: 4;
+        }
+
+        .masthead-logo-area {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 40px;
+        }
+        .logo-mark {
+            width: 52px; height: 52px;
+            border: 2px solid var(--gold-dk);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            flex-shrink: 0;
+            animation: ringGlow 3s ease-in-out infinite;
+            position: relative;
+        }
+        .logo-mark::before {
+            content: '';
+            position: absolute; inset: 3px;
+            border: 1px solid rgba(200,150,30,0.3);
+            pointer-events: none;
+        }
+        .logo-mark svg { display: none; }
+        .logo-mark::after { content: '💍'; font-size: 24px; }
+
+        .logo-text {
+            font-family: var(--serif);
+            font-size: 9px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(200,150,30,0.55);
+            line-height: 1.8;
+        }
+        .logo-text strong {
+            display: block;
+            color: rgba(200,150,30,0.9);
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .masthead-title {
+            font-family: var(--display);
+            font-size: clamp(28px, 3.2vw, 52px);
+            font-weight: 700;
+            line-height: 1.25;
+            color: var(--gold-lt);
+            letter-spacing: 0.05em;
+            text-shadow:
+                    0 0 40px rgba(200,150,30,0.5),
+                    0 2px 4px rgba(0,0,0,0.8);
+        }
+        .masthead-title em {
+            display: block;
+            font-family: var(--body);
+            font-style: italic;
+            font-size: 0.65em;
+            color: rgba(200,150,30,0.6);
+            letter-spacing: 0.08em;
+            margin-top: 10px;
+        }
+
+        .masthead-sub {
+            margin-top: 28px;
+            font-family: var(--body);
+            font-size: 15px;
+            line-height: 1.85;
+            color: rgba(200,150,30,0.65);
+            font-style: italic;
+            max-width: 400px;
+            border-left: 2px solid rgba(200,150,30,0.25);
+            padding-left: 20px;
+        }
+
+        .masthead-ctas { display: flex; gap: 14px; margin-top: 40px; flex-wrap: wrap; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: linear-gradient(135deg, var(--gold-dk) 0%, var(--gold) 50%, var(--gold-dk) 100%);
+            color: var(--shadow);
+            padding: 13px 28px;
+            font-family: var(--serif);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            border: 1px solid var(--gold-lt);
+            transition: all 0.2s;
+            box-shadow: 0 0 20px rgba(200,150,30,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-lt) 50%, var(--gold) 100%);
+            box-shadow: 0 0 35px rgba(200,150,30,0.6);
+            transform: translateY(-2px);
+        }
+        .btn-ghost {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: transparent;
+            color: rgba(200,150,30,0.7);
+            border: 1px solid rgba(200,150,30,0.35);
+            padding: 13px 28px;
+            font-family: var(--serif);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+        .btn-ghost:hover {
+            border-color: var(--gold);
+            color: var(--gold-lt);
+            background: rgba(200,150,30,0.08);
+        }
+
+        /* Stat stones */
+        .masthead-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: rgba(200,150,30,0.15);
+            border: 1px solid rgba(200,150,30,0.2);
+            margin-top: 48px;
+        }
+        .mstat {
+            padding: 20px 14px 20px 18px;
+            background: rgba(10,8,4,0.6);
+            position: relative;
+        }
+        .mstat::after {
+            content: '✦';
+            position: absolute;
+            top: 8px; right: 10px;
+            font-size: 8px;
+            color: rgba(200,150,30,0.2);
+        }
+        .mstat-num {
+            font-family: var(--serif);
+            font-size: 32px;
+            color: var(--gold-lt);
+            line-height: 1;
+            text-shadow: 0 0 20px rgba(200,150,30,0.4);
+        }
+        .mstat-num span { color: var(--ember-lt); }
+        .mstat-label {
+            font-family: var(--serif);
+            font-size: 8px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(200,150,30,0.4);
+            margin-top: 6px;
+        }
+
+        /* ── RIGHT COLUMN — MAP ── */
+        .masthead-right {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 4;
+        }
+
+        .mast-choro-wrap {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            background: #0d0a06;
+            min-height: 0;
+            cursor: crosshair;
+            border-left: 1px solid rgba(200,150,30,0.2);
+            animation: mapGlow 4s ease-in-out infinite;
+        }
+
+        #mastChoroSvg {
+            width: 100%; height: 100%;
+            display: block;
+            position: absolute; inset: 0;
+        }
+
+        /* Map title overlay */
+        .map-top-header {
+            position: absolute;
+            top: 0; left: 0; width: 100%;
+            padding: 20px 24px 28px;
+            background: linear-gradient(to bottom,
+            rgba(10,8,4,0.97) 0%,
+            rgba(10,8,4,0.88) 65%,
+            rgba(10,8,4,0.0) 100%
+            );
+            color: white;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .map-eyebrow {
+            font-family: var(--serif);
+            font-size: 8px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold-dk);
+            margin-bottom: 10px;
+        }
+        .map-main-title {
+            font-family: var(--display);
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.6;
+            letter-spacing: 0.05em;
+            color: var(--gold-lt);
+            text-shadow: 0 0 20px rgba(200,150,30,0.4);
+        }
+        .map-sub-line    { margin-top: 6px; font-family: var(--serif); font-size: 8px; letter-spacing: 0.15em; color: rgba(200,150,30,0.5); text-transform: uppercase; }
+        .map-method-line { margin-top: 3px; font-family: var(--body); font-style: italic; font-size: 10px; color: rgba(200,150,30,0.35); }
+        .map-ky-rate {
+            margin-top: 12px;
+            font-family: var(--serif);
+            font-size: 8px;
+            letter-spacing: 0.12em;
+            color: rgba(200,150,30,0.5);
+            text-transform: uppercase;
+        }
+        .map-ky-rate strong {
+            color: var(--gold-lt);
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0;
+            text-shadow: 0 0 15px rgba(200,150,30,0.5);
+        }
+
+        /* Legend */
+        .mast-choro-legend-box {
+            position: absolute;
+            left: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            z-index: 11;
+            pointer-events: none;
+            background: rgba(8,6,2,0.75);
+            border: 1px solid rgba(200,150,30,0.2);
+            padding: 10px 12px;
+        }
+        .mast-choro-legend-box .legend-title {
+            font-family: var(--serif);
+            font-size: 7px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(200,150,30,0.4);
+            margin-bottom: 6px;
+        }
+        .mast-choro-legend-box .legend-row {
+            display: flex; align-items: center; gap: 7px;
+        }
+        .mast-choro-legend-box .legend-swatch {
+            width: 12px; height: 12px; flex-shrink: 0;
+        }
+        .mast-choro-legend-box .legend-row-label {
+            font-family: var(--serif);
+            font-size: 7px;
+            color: rgba(200,150,30,0.5);
+        }
+
+        /* Data note */
+        .map-data-note-bar {
+            position: absolute;
+            bottom: 58px; left: 0; right: 0;
+            text-align: center;
+            font-family: var(--body);
+            font-style: italic;
+            font-size: 10px;
+            color: rgba(200,150,30,0.6);
+            z-index: 11;
+            pointer-events: none;
+            padding: 6px 0;
+            background: rgba(8,6,2,0.6);
+        }
+
+        /* Bottom overlay */
+        .map-overlay-bar {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 14px 20px;
+            background: linear-gradient(to top, rgba(8,6,2,0.97) 0%, transparent 100%);
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .map-overlay-bar a { pointer-events: all; }
+        .map-caption {
+            font-family: var(--body);
+            font-style: italic;
+            font-size: 10px;
+            color: rgba(200,150,30,0.5);
+            line-height: 1.8;
+        }
+        .map-caption strong {
+            display: block;
+            font-family: var(--serif);
+            font-style: normal;
+            font-size: 11px;
+            color: rgba(200,150,30,0.8);
+            margin-bottom: 2px;
+            letter-spacing: 0.08em;
+        }
+        .mast-choro-link {
+            font-family: var(--serif);
+            font-size: 9px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            border: 1px solid rgba(200,150,30,0.35);
+            padding: 7px 14px;
+            background: rgba(200,150,30,0.08);
+            transition: all 0.2s;
+        }
+        .mast-choro-link:hover {
+            background: rgba(200,150,30,0.15);
+            border-color: var(--gold);
+            box-shadow: 0 0 15px rgba(200,150,30,0.2);
+        }
+
+        /* Stats bar below map */
+        .mast-stats-bar {
+            display: grid;
+            grid-template-columns: 1.8fr 1fr 1fr 1fr;
+            background: var(--shadow-2);
+            border-top: 1px solid rgba(200,150,30,0.25);
+            flex-shrink: 0;
+        }
+        .mast-stat-cell {
+            padding: 16px 18px;
+            border-right: 1px solid rgba(200,150,30,0.1);
+        }
+        .mast-stat-cell:last-child { border-right: none; }
+        .mast-panel-eyebrow {
+            font-family: var(--serif);
+            font-size: 7px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(200,150,30,0.3);
+            margin-bottom: 5px;
+        }
+        .mast-panel-name {
+            font-family: var(--serif);
+            font-size: 13px;
+            color: var(--gold-lt);
+            line-height: 1.3;
+            min-height: 18px;
+            letter-spacing: 0.05em;
+        }
+        .mast-panel-label {
+            font-family: var(--serif);
+            font-size: 7px;
+            color: rgba(200,150,30,0.35);
+            margin-bottom: 4px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+        .mast-panel-val {
+            font-family: var(--serif);
+            font-size: 20px;
+            color: var(--gold-lt);
+            line-height: 1;
+            text-shadow: 0 0 12px rgba(200,150,30,0.35);
+        }
+        .mast-panel-val.above { color: #e86464; }
+        .mast-panel-val.below { color: #7ac97a; }
+        .mast-panel-sub {
+            font-family: var(--body);
+            font-style: italic;
+            font-size: 9px;
+            color: rgba(200,150,30,0.2);
+            margin-top: 3px;
+        }
+
+        /* ══════════════════════════════
+           NAV — The Halls of Moria
+           ══════════════════════════════ */
+        nav {
+            background: var(--shadow);
+            border-bottom: 1px solid rgba(200,150,30,0.25);
+            position: sticky;
+            top: 0;
+            z-index: 200;
+        }
+        nav::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(200,150,30,0.5) 20%,
+            rgba(200,150,30,0.8) 50%,
+            rgba(200,150,30,0.5) 80%,
+            transparent 100%
+            );
+        }
+        .nav-inner {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            align-items: stretch;
+        }
+        .nav-link {
+            display: flex; align-items: center;
+            padding: 0 20px;
+            height: 52px;
+            font-family: var(--serif);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(200,150,30,0.5);
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .nav-link:hover { color: var(--gold-lt); }
+        .nav-link.active {
+            color: var(--gold-lt);
+            border-bottom-color: var(--gold);
+            text-shadow: 0 0 10px rgba(200,150,30,0.4);
+        }
+        .nav-spacer { flex: 1; }
+        .nav-search-form { display: flex; align-items: center; padding: 9px 0; }
+        .nav-search-form input {
+            border: 1px solid rgba(200,150,30,0.25);
+            border-right: none;
+            background: rgba(200,150,30,0.06);
+            padding: 7px 14px;
+            font-family: var(--body);
+            font-style: italic;
+            font-size: 13px;
+            color: var(--gold-lt);
+            outline: none;
+            width: 160px;
+            transition: all 0.2s;
+        }
+        .nav-search-form input::placeholder { color: rgba(200,150,30,0.3); }
+        .nav-search-form input:focus {
+            border-color: var(--gold);
+            background: rgba(200,150,30,0.1);
+            width: 210px;
+        }
+        .nav-search-form button {
+            background: rgba(200,150,30,0.15);
+            color: var(--gold);
+            border: 1px solid rgba(200,150,30,0.35);
+            padding: 7px 14px;
+            font-family: var(--serif);
+            font-size: 9px;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+        .nav-search-form button:hover {
+            background: rgba(200,150,30,0.25);
+            border-color: var(--gold);
+        }
+
+        /* ══════════════════════════════
+           RIBBON — The White Council Alliance Seal
+           ══════════════════════════════ */
+        .ribbon {
+            background: var(--ink-2);
+            border-bottom: 1px solid rgba(200,150,30,0.15);
+            position: relative;
+            z-index: 10;
+        }
+        .ribbon-inner {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            height: 64px;
+            gap: 28px;
+        }
+        .ribbon-label {
+            font-family: var(--serif);
+            font-size: 8px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(200,150,30,0.3);
+            white-space: nowrap;
+        }
+        .ribbon-divider { width: 1px; height: 24px; background: rgba(200,150,30,0.15); }
+        .ribbon-logos { display: flex; gap: 36px; align-items: center; }
+        .ribbon-logos a {
+            filter: brightness(0) sepia(1) saturate(0.5) brightness(0.5);
+            opacity: 0.5;
+            transition: all 0.25s;
+        }
+        .ribbon-logos a:hover { filter: sepia(1) saturate(1.5) hue-rotate(-20deg); opacity: 0.9; }
+        .ribbon-logos img { height: 28px; max-width: 110px; object-fit: contain; }
+
+        /* ══════════════════════════════
+           PAGE WRAP & LAYOUT
+           ══════════════════════════════ */
+        .page-wrap {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 72px 40px 80px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+            position: relative;
+            z-index: 1;
+        }
+        @media (min-width: 992px) {
+            .page-wrap {
+                grid-template-columns: 1fr 320px;
+                grid-template-areas: "main aside";
+                gap: 64px;
+                align-items: start;
+            }
+            main { grid-area: main; }
+            aside { grid-area: aside; }
+        }
+
+        /* Decorative quill divider between sections */
+        .section-divider {
+            display: flex; align-items: center; gap: 16px;
+            margin: 56px 0 40px;
+            color: rgba(139,90,43,0.3);
+        }
+        .section-divider::before, .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(200,150,30,0.35), transparent);
+        }
+        .section-divider span {
+            font-family: var(--serif);
+            font-size: 12px;
+            color: rgba(200,150,30,0.4);
+            letter-spacing: 0.3em;
+        }
+
+        /* ── SECTION HEADERS ── */
+        .section-header {
+            display: flex; align-items: flex-end; justify-content: space-between;
+            margin-bottom: 24px; padding-bottom: 16px;
+            border-bottom: 1px solid rgba(139,90,43,0.2);
+            position: relative;
+        }
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; left: 0;
+            width: 60px; height: 2px;
+            background: var(--gold);
+        }
+        .section-heading {
+            font-family: var(--display);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--ink-lotr);
+            letter-spacing: 0.04em;
+            line-height: 1.15;
+            margin-top: 8px;
+        }
+        .section-link {
+            font-family: var(--serif);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold-dk);
+            display: flex; align-items: center; gap: 6px;
+            transition: gap 0.2s, color 0.2s;
+        }
+        .section-link:hover { gap: 10px; color: var(--gold); }
+
+        /* ── INTRO BLOCK — The Prologue Scroll ── */
+        .intro-block {
+            display: grid;
+            grid-template-columns: 3px 1fr;
+            gap: 32px;
+            margin-bottom: 64px;
+            padding: 40px;
+            padding-left: 48px;
+            background: linear-gradient(135deg, var(--vellum) 0%, var(--parchment) 100%);
+            border: 1px solid var(--parchment-dkr);
+            border-left: none;
+            box-shadow: 4px 4px 24px rgba(139,90,43,0.1), inset 0 0 60px rgba(245,234,208,0.5);
+            position: relative;
+        }
+        /* Illuminated capital drop cap effect */
+        .intro-block::before {
+            content: '✦';
+            position: absolute;
+            top: 20px; right: 24px;
+            font-family: var(--serif);
+            font-size: 28px;
+            color: rgba(200,150,30,0.12);
+        }
+        .intro-accent {
+            background: linear-gradient(to bottom, var(--gold), var(--gold-dk), transparent);
+            border-radius: 1px;
+        }
+        .intro-heading {
+            font-family: var(--display);
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--ink-lotr);
+            letter-spacing: 0.03em;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .intro-body {
+            font-family: var(--body);
+            font-size: 16px;
+            line-height: 1.9;
+            color: var(--ink-3);
+            font-style: italic;
+        }
+        .intro-body + .intro-body { margin-top: 16px; }
+
+        /* ── MAPS SECTION ── */
+        .maps-section { margin-bottom: 64px; }
+        .map-viewer {
+            border: 1px solid rgba(139,90,43,0.25);
+            overflow: hidden;
+            background: var(--shadow-2);
+            box-shadow: 4px 4px 40px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(200,150,30,0.06);
+        }
+        .choro-body { display: grid; grid-template-columns: 1fr 220px; min-height: 440px; }
+        .choro-map-wrap { position: relative; background: var(--shadow-2); border-right: 1px solid rgba(200,150,30,0.12); }
+        #choroSvg { width: 100%; height: 100%; display: block; min-height: 440px; }
+
+        .choro-map-header {
+            padding: 16px 20px 14px;
+            background: rgba(8,6,2,0.85);
+            border-bottom: 1px solid rgba(200,150,30,0.15);
+        }
+        .choro-map-header h1 {
+            font-family: var(--display);
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--gold-lt);
+            line-height: 1.6;
+            letter-spacing: 0.06em;
+        }
+        .choro-map-header .subtitle,
+        .choro-map-header .meta {
+            font-family: var(--body);
+            font-style: italic;
+            font-size: 10px;
+            color: rgba(200,150,30,0.4);
+            margin-top: 4px;
+        }
+        .choro-map-header .stat {
+            font-family: var(--serif);
+            font-size: 9px;
+            color: var(--gold);
+            margin-top: 8px;
+            letter-spacing: 0.12em;
+        }
+        .choro-map-header .stat strong { font-size: 13px; }
+
+        .choro-legend {
+            position: absolute;
+            bottom: 14px; left: 14px;
+            background: rgba(8,6,2,0.85);
+            border: 1px solid rgba(200,150,30,0.2);
+            padding: 10px 14px;
+        }
+        .choro-legend .legend-title {
+            font-family: var(--serif);
+            font-size: 7px;
+            color: rgba(200,150,30,0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 8px;
+        }
+        .choro-legend .legend-swatches { display: flex; gap: 2px; }
+        .choro-legend .legend-swatch { width: 22px; height: 10px; }
+        .choro-legend .legend-labels {
+            display: flex; justify-content: space-between; margin-top: 4px;
+            font-family: var(--serif); font-size: 7px; color: rgba(200,150,30,0.45);
+        }
+
+        .choro-panel {
+            background: var(--shadow-3);
+            padding: 22px 18px;
+            display: flex; flex-direction: column; gap: 16px;
+            border-left: 1px solid rgba(200,150,30,0.12);
+        }
+        .choro-panel-head {}
+        .choro-panel-name {
+            font-family: var(--serif);
+            font-size: 13px;
+            color: var(--gold-lt);
+            margin-top: 8px;
+            line-height: 1.4;
+            letter-spacing: 0.06em;
+        }
+        .choro-panel-stat {}
+        .choro-panel-label {
+            font-family: var(--serif);
+            font-size: 7px;
+            color: rgba(200,150,30,0.35);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+        .choro-panel-val {
+            font-family: var(--serif);
+            font-size: 20px;
+            color: var(--gold-lt);
+            text-shadow: 0 0 10px rgba(200,150,30,0.3);
+        }
+        .choro-panel-val.above { color: #e86464; }
+        .choro-panel-val.below { color: #7ac97a; }
+        .choro-panel-sub {
+            font-family: var(--body);
+            font-style: italic;
+            font-size: 9px;
+            color: rgba(200,150,30,0.25);
+            margin-top: 3px;
+        }
+        .choro-source {
+            font-family: var(--body);
+            font-style: italic;
+            font-size: 9px;
+            color: rgba(200,150,30,0.22);
+            line-height: 1.8;
+            margin-top: auto;
+        }
+
+        /* County path styling — map of Middle-earth vibes */
+        .county-path {
+            stroke: rgba(200,150,30,0.15);
+            stroke-width: 0.4px;
+            cursor: pointer;
+            transition: stroke 0.12s, stroke-width 0.12s, filter 0.12s;
+        }
+        .county-path:hover {
+            stroke: rgba(200,150,30,0.85);
+            stroke-width: 1.5px;
+            filter: brightness(1.2);
+        }
+        .county-path.active {
+            stroke: var(--gold-lt);
+            stroke-width: 2px;
+        }
+
+        /* Tooltip — parchment card */
+        .choro-tooltip {
+            position: absolute;
+            pointer-events: none;
+            background: linear-gradient(135deg, var(--vellum) 0%, var(--parchment) 100%);
+            border: 1px solid var(--gold-dk);
+            box-shadow: 4px 4px 20px rgba(0,0,0,0.4), 0 0 0 1px rgba(200,150,30,0.1);
+            padding: 0;
+            opacity: 0;
+            transition: opacity 0.15s;
+            z-index: 20;
+            min-width: 200px;
+        }
+        .tip-county-name {
+            display: block;
+            font-family: var(--display);
+            font-size: 11px;
+            color: var(--ink-lotr);
+            padding: 10px 14px 8px;
+            border-bottom: 1px solid rgba(139,90,43,0.3);
+            letter-spacing: 0.05em;
+        }
+        .tip-rows { padding: 6px 0 10px; }
+        .tip-row {
+            display: flex; justify-content: space-between; align-items: baseline;
+            gap: 16px; padding: 3px 14px;
+        }
+        .tip-label {
+            font-family: var(--serif);
+            font-size: 7px;
+            color: rgba(92,51,22,0.55);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+        .tip-val {
+            font-family: var(--serif);
+            font-size: 10px;
+            color: var(--ink-2);
+        }
+        .tip-val.highlight {
+            color: var(--gold-dk);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* ── DIRECTOR BLOCK — The Loremaster's Testimony ── */
+        .director-block {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 40px;
+            align-items: start;
+            background: linear-gradient(135deg, var(--vellum) 0%, var(--parchment) 100%);
+            border: 1px solid var(--parchment-dkr);
+            padding: 40px;
+            margin-bottom: 64px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 4px 4px 24px rgba(139,90,43,0.08);
+        }
+        /* Large decorative quote mark */
+        .director-block::before {
+            content: '\201C';
+            position: absolute;
+            top: -20px; right: 32px;
+            font-family: var(--display);
+            font-size: 180px;
+            color: rgba(139,90,43,0.07);
+            line-height: 1;
+            pointer-events: none;
+        }
+        .director-photo img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            object-position: center 15%;
+            border: 2px solid var(--parchment-dkr);
+            filter: sepia(20%) contrast(105%);
+        }
+        .director-photo-name {
+            margin-top: 12px;
+            text-align: center;
+            padding: 12px 8px;
+            background: var(--ink-2);
+            border: 1px solid rgba(200,150,30,0.2);
+        }
+        .director-photo-name strong {
+            display: block;
+            font-family: var(--display);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--gold-lt);
+            letter-spacing: 0.05em;
+        }
+        .director-photo-name span {
+            display: block;
+            font-family: var(--serif);
+            font-size: 8px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(200,150,30,0.5);
+            margin-top: 5px;
+        }
+        .director-disclaimer {
+            font-family: var(--serif);
+            font-size: 8px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(92,51,22,0.4);
+            margin-bottom: 20px;
+            display: flex; align-items: center; gap: 10px;
+            padding: 8px 12px;
+            background: rgba(139,90,43,0.06);
+            border-left: 2px solid rgba(200,150,30,0.3);
+        }
+        .director-text {
+            font-family: var(--body);
+            font-size: 16px;
+            line-height: 1.9;
+            color: var(--ink-3);
+            font-style: italic;
+            margin-bottom: 16px;
+        }
+        .director-source {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(139,90,43,0.15);
+            font-family: var(--serif);
+            font-size: 9px;
+            color: rgba(92,51,22,0.45);
+            display: flex; align-items: center; gap: 8px;
+            letter-spacing: 0.1em;
+        }
+        .director-source a {
+            color: var(--gold-dk);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: color 0.2s;
+        }
+        .director-source a:hover { color: var(--gold); }
+
+        /* ── FEATURE CARDS — The Fellowship's Artefacts ── */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .fcard {
+            display: flex; flex-direction: column;
+            background: linear-gradient(135deg, var(--vellum) 0%, var(--parchment) 100%);
+            border: 1px solid var(--parchment-dkr);
+            padding: 24px;
+            transition: all 0.25s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 2px 2px 12px rgba(139,90,43,0.06);
+        }
+        .fcard::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 2px;
+            background: linear-gradient(90deg, var(--gold-dk), var(--gold), var(--gold-dk));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        .fcard:hover { transform: translateY(-3px); box-shadow: 4px 8px 30px rgba(139,90,43,0.15); }
+        .fcard:hover::after { transform: scaleX(1); }
+        .fcard-icon {
+            width: 42px; height: 42px;
+            border: 1px solid rgba(200,150,30,0.3);
+            background: rgba(200,150,30,0.06);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 14px;
+            font-size: 20px;
+        }
+        .fcard-icon svg { display: none; }
+        .fcard-tag {
+            font-family: var(--serif);
+            font-size: 8px;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        .fcard h3 {
+            font-family: var(--display);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--ink-lotr);
+            line-height: 1.25;
+            letter-spacing: 0.02em;
+            margin-bottom: 12px;
+        }
+        .fcard p {
+            font-family: var(--body);
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--ink-3);
+            font-style: italic;
+            flex: 1;
+        }
+        .fcard-arrow {
+            font-family: var(--serif);
+            font-size: 9px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold-dk);
+            display: flex; align-items: center; gap: 6px;
+            margin-top: 18px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(139,90,43,0.15);
+            transition: gap 0.2s, color 0.2s;
+        }
+        .fcard:hover .fcard-arrow { gap: 10px; color: var(--gold); }
+
+        /* ── SIDEBAR CARDS ── */
+        .side-card {
+            background: linear-gradient(135deg, var(--vellum) 0%, var(--parchment-dk) 100%);
+            border: 1px solid var(--parchment-dkr);
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 3px 3px 16px rgba(139,90,43,0.08);
+        }
+        .side-card-head {
+            background: var(--shadow);
+            padding: 14px 20px;
+            display: flex; align-items: center; gap: 10px;
+            border-bottom: 1px solid rgba(200,150,30,0.2);
+        }
+        .side-card-head svg path, .side-card-head svg rect,
+        .side-card-head svg circle { stroke: rgba(200,150,30,0.6) !important; }
+        .side-card-head-text {
+            font-family: var(--serif);
+            font-size: 9px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(200,150,30,0.6);
+        }
+        .side-card-head-text span { color: var(--gold-lt); }
+
+        .side-nav { padding: 6px 0; }
+        .side-nav-link {
+            display: flex; align-items: center; gap: 10px;
+            padding: 9px 20px;
+            font-family: var(--body);
+            font-size: 13.5px;
+            font-style: italic;
+            color: var(--ink-3);
+            border-left: 2px solid transparent;
+            transition: all 0.15s;
+        }
+        .side-nav-link:hover {
+            color: var(--ink-lotr);
+            background: rgba(200,150,30,0.06);
+            border-left-color: var(--gold);
+        }
+        .side-nav-link.indent {
+            padding-left: 36px;
+            font-size: 12.5px;
+            color: var(--leather-lt);
+        }
+        .side-nav-sep { border: none; border-top: 1px solid rgba(139,90,43,0.15); margin: 4px 0; }
+        .ico path, .ico rect, .ico circle { stroke: rgba(139,90,43,0.4) !important; }
+        .side-nav-link:hover .ico path,
+        .side-nav-link:hover .ico rect,
+        .side-nav-link:hover .ico circle { stroke: var(--gold-dk) !important; }
+
+        .mu-card {
+            background: var(--shadow-2);
+            border: 1px solid rgba(200,150,30,0.2);
+            padding: 24px;
+            margin-bottom: 20px;
+            position: relative; overflow: hidden;
+        }
+        .mu-card::before {
+            content: '✦';
+            position: absolute;
+            top: 10px; right: 16px;
+            font-size: 18px;
+            color: rgba(200,150,30,0.12);
+        }
+        .mu-card-tag {
+            font-family: var(--serif);
+            font-size: 8px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        .mu-card h3 {
+            font-family: var(--display);
+            font-size: 15px;
+            color: var(--gold-lt);
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 10px;
+            letter-spacing: 0.03em;
+        }
+        .mu-card p {
+            font-family: var(--body);
+            font-style: italic;
+            font-size: 12.5px;
+            color: rgba(200,150,30,0.4);
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+        .mu-links { display: flex; flex-direction: column; gap: 8px; }
+        .mu-link {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 11px 16px;
+            background: rgba(200,150,30,0.06);
+            border: 1px solid rgba(200,150,30,0.18);
+            font-family: var(--serif);
+            font-size: 9px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(200,150,30,0.65);
+            transition: all 0.2s;
+        }
+        .mu-link:hover {
+            background: rgba(200,150,30,0.12);
+            border-color: rgba(200,150,30,0.4);
+            color: var(--gold-lt);
+        }
+        .mu-link svg path { stroke: rgba(200,150,30,0.6) !important; }
+
+        .app-card {
+            background: linear-gradient(135deg, var(--parchment-dk) 0%, var(--parchment) 100%);
+            border: 1px solid var(--parchment-dkr);
+            padding: 24px;
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+            box-shadow: 3px 3px 16px rgba(139,90,43,0.08);
+        }
+        .app-card-icon {
+            width: 60px; height: 60px;
+            background: var(--shadow);
+            border: 1px solid rgba(200,150,30,0.25);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 14px;
+            font-size: 28px;
+            box-shadow: 0 0 20px rgba(200,150,30,0.15);
+        }
+        .app-card-icon::after { content: '🗡️'; font-size: 26px; }
+        .app-card-icon svg { display: none; }
+        .app-card h3 {
+            font-family: var(--display);
+            font-size: 15px;
+            color: var(--ink-lotr);
+            margin-bottom: 8px;
+            letter-spacing: 0.03em;
+        }
+        .app-card p {
+            font-family: var(--body);
+            font-style: italic;
+            font-size: 12.5px;
+            color: var(--ink-3);
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+        .app-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--shadow);
+            color: var(--gold-lt);
+            border: 1px solid rgba(200,150,30,0.3);
+            padding: 11px 20px;
+            font-family: var(--serif);
+            font-size: 9px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 600;
+            width: 100%;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .app-btn:hover {
+            background: rgba(200,150,30,0.1);
+            border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(200,150,30,0.15);
+        }
+
+        /* ══════════════════════════════
+           FOOTER — The Grey Havens
+           ══════════════════════════════ */
+        footer {
+            background: var(--shadow);
+            color: rgba(200,150,30,0.3);
+            border-top: 1px solid rgba(200,150,30,0.2);
+            position: relative;
+        }
+        footer::before {
+            content: 'ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ   ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            font-size: 10px;
+            color: rgba(200,150,30,0.08);
+            letter-spacing: 0.5em;
+            text-align: center;
+            padding: 6px 0;
+            pointer-events: none;
+        }
+        .footer-upper {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 52px 40px 36px;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1fr;
+            gap: 48px;
+            border-bottom: 1px solid rgba(200,150,30,0.08);
+        }
+        .footer-wordmark {
+            font-family: var(--display);
+            font-size: 18px;
+            color: rgba(200,150,30,0.7);
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            line-height: 1.3;
+            margin-bottom: 14px;
+        }
+        .footer-wordmark span { color: var(--gold-lt); }
+        .footer-desc {
+            font-family: var(--body);
+            font-style: italic;
+            font-size: 13px;
+            line-height: 1.8;
+            color: rgba(200,150,30,0.25);
+        }
+        .footer-col-title {
+            font-family: var(--serif);
+            font-size: 8px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(200,150,30,0.35);
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+        .footer-links { display: flex; flex-direction: column; gap: 10px; }
+        .footer-link {
+            font-family: var(--body);
+            font-style: italic;
+            font-size: 13px;
+            color: rgba(200,150,30,0.3);
+            transition: color 0.2s;
+        }
+        .footer-link:hover { color: var(--gold); }
+        .footer-lower {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 12px;
+            font-family: var(--serif);
+            font-size: 8.5px;
+            letter-spacing: 0.12em;
+            color: rgba(200,150,30,0.2);
+        }
+        .footer-lower a { color: rgba(200,150,30,0.22); transition: color 0.2s; }
+        .footer-lower a:hover { color: var(--gold); }
+
+        /* ── RISE ANIMATIONS ── */
+        .rise { opacity: 0; animation: riseIn 0.7s ease forwards; }
+        .rise-1 { animation-delay: 0.05s; } .rise-2 { animation-delay: 0.15s; }
+        .rise-3 { animation-delay: 0.25s; } .rise-4 { animation-delay: 0.35s; }
+        .rise-5 { animation-delay: 0.45s; }
+
+        /* ── FLOATING RING decoration ── */
+        .page-wrap::after {
+            content: '💍';
+            position: fixed;
+            bottom: 72px; right: 28px;
+            font-size: 28px;
+            filter: drop-shadow(0 0 12px rgba(200,150,30,0.6)) drop-shadow(0 0 30px rgba(200,150,30,0.3));
+            z-index: 999;
+            pointer-events: none;
+            animation: ringGlow 3s ease-in-out infinite;
+        }
+
+        /* Masthead responsive fixes */
+        .masthead-rule {
+            display: none;
+        }
+        @media (min-width: 992px) {
+            .masthead-rule { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="topbar-left">University of Kentucky · Markey Cancer Centre · Est. 1990 of the Third Age</div>
+    <div class="topbar-sep"></div>
+    <div class="topbar-right">
+        <a href="/staff">⚔ Fellowship</a>
+        <a href="/contact.html">📜 Send Word</a>
+        <a href="https://kcr-confluence.atlassian.net/wiki/spaces/kentuckyregistrarswiki/overview" target="_blank">📖 The Tome</a>
+    </div>
+</div>
+
+<div class="masthead">
+    <div class="masthead-bg"></div>
+    <div class="masthead-rule"></div>
+
+    <!-- LEFT COLUMN -->
+    <div class="masthead-left">
+
+        <div class="masthead-logo-area rise rise-1">
+            <div class="logo-mark">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"></svg>
+            </div>
+            <div class="logo-text">
+                <strong>Kentucky Cancer Registry</strong>
+                <span>The Annals of the Commonwealth · Since the Year 1990</span>
+            </div>
+        </div>
+
+        <h1 class="masthead-title rise rise-2">
+            Chronicle of the<br>Afflictions of<br>the Commonwealth
+            <em>"Not all who are stricken are lost, yet all must be counted."</em>
+        </h1>
+
+        <p class="masthead-sub rise rise-3">
+            Herein lies the great Registry — keeper of the tallies of the sick and the slain by sickness, across all one hundred and twenty fiefs of the Commonwealth of Kentucky, from the Year of Foundation unto the present Age.
+        </p>
+
+        <div class="masthead-ctas rise rise-4">
+            <a href="https://www.cancer-rates.info/ky/" target="_blank" class="btn-primary">
+                ✦ Consult the Palantír
+            </a>
+            <a href="/research/" class="btn-ghost">
+                📜 Present Your Petition
+            </a>
+        </div>
+
+        <div class="masthead-stats rise rise-5">
+            <div class="mstat">
+                <div class="mstat-num">120</div>
+                <div class="mstat-label">Fiefs Recorded</div>
+            </div>
+            <div class="mstat">
+                <div class="mstat-num">35<span>+</span></div>
+                <div class="mstat-label">Ages of Lore</div>
+            </div>
+            <div class="mstat">
+                <div class="mstat-num">Gold</div>
+                <div class="mstat-label">NAACCR Seal</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN — map fills, stats bar underneath -->
+    <div class="masthead-right">
+
+        <div class="mast-choro-wrap" id="mapStage">
+            <svg id="mastChoroSvg"></svg>
+
+            <div class="map-top-header" id="mastMapHeader">
+                <div class="map-eyebrow">The Great Survey · KCR · Third Age 2019–2023</div>
+                <div class="map-main-title">The Cartography of Affliction<br>Across the Kingdom of Kentucky</div>
+                <div class="map-sub-line">All Maladies · By County Seat</div>
+                <div class="map-method-line">Reckoned by the Standard of the Year 2000 of the Common Era</div>
+                <div class="map-ky-rate">The Kingdom's Rate: <strong>524.6</strong> per hundred thousand souls</div>
+            </div>
+
+            <div class="mast-choro-legend-box" id="mastChoroLegend"></div>
+            <div class="choro-tooltip" id="mastChoroTip"></div>
+
+            <div class="map-overlay-bar">
+                <div class="map-caption">
+                    <strong>All Afflictions — Incidence Reckoning</strong>
+                    <span>Age-Adjusted · By County Seat · Years 2019–2023</span>
+                </div>
+                <a href="https://www.cancer-rates.info/ky/" target="_blank" class="mast-choro-link">
+                    Open the Palantír →
+                </a>
+            </div>
+
+            <div class="map-data-note-bar">
+                All rates per hundred thousand souls · Records sealed in the month of November, 2025 · Retrieved the 24th of February, 2026
+            </div>
+        </div>
+
+        <div class="mast-stats-bar" id="mastPanel">
+            <div class="mast-stat-cell">
+                <div class="mast-panel-eyebrow">Cast your gaze upon a county</div>
+                <div class="mast-panel-name" id="mastPanelName">—</div>
+            </div>
+            <div class="mast-stat-cell">
+                <div class="mast-panel-label">Age-Adjusted Rate</div>
+                <div class="mast-panel-val" id="mastPanelRate">—</div>
+                <div class="mast-panel-sub">per hundred thousand</div>
+            </div>
+            <div class="mast-stat-cell">
+                <div class="mast-panel-label">Vs. Kingdom Average</div>
+                <div class="mast-panel-val" id="mastPanelVsState">—</div>
+                <div class="mast-panel-sub">kingdom rate: 524.6</div>
+            </div>
+            <div class="mast-stat-cell">
+                <div class="mast-panel-label">Rank in the Realm</div>
+                <div class="mast-panel-val" id="mastPanelRank">—</div>
+                <div class="mast-panel-sub">of 120 fiefs</div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<nav>
+    <div class="nav-inner">
+        <a href="/" class="nav-link active">The Halls</a>
+        <a href="/about.html" class="nav-link">Our Chronicle</a>
+        <a href="https://www.cancer-rates.info/ky/" target="_blank" class="nav-link">The Palantír</a>
+        <a href="/research/" class="nav-link">Lore &amp; Research</a>
+        <a href="/resources/" class="nav-link">The Armoury</a>
+        <a href="https://www.kcr.uky.edu/childhood-report" target="_blank" class="nav-link">The Scrolls</a>
+        <div class="nav-spacer"></div>
+        <form class="nav-search-form" action="https://www.google.com/cse" method="get">
+            <input type="hidden" name="cx" value="009441292369788699417:9icjohttrvo">
+            <input type="hidden" name="ie" value="UTF-8">
+            <input type="text" name="q" placeholder="Seek within the Registry…">
+            <button type="submit">Seek</button>
+        </form>
+    </div>
+</nav>
+
+<div class="ribbon">
+    <div class="ribbon-inner">
+        <span class="ribbon-label">Bound in fellowship with</span>
+        <div class="ribbon-divider"></div>
+        <div class="ribbon-logos">
+            <a href="http://seer.cancer.gov" target="_blank"><img src="/images/seer.png" alt="NCI SEER"></a>
+            <a href="http://www.cdc.gov/cancer/npcr/" target="_blank"><img src="/images/NPCR_logo.png" alt="CDC NPCR"></a>
+            <a href="http://www.naaccr.org/" target="_blank"><img src="/images/naaccr2.png" alt="NAACCR"></a>
+        </div>
+    </div>
+</div>
+
+<div class="page-wrap">
+    <main>
+
+        <div class="intro-block rise rise-1">
+            <div class="intro-accent"></div>
+            <div>
+                <div class="eyebrow" style="margin-bottom:12px;">✦ The Founding of the Great Registry ✦</div>
+                <h2 class="intro-heading">Hail, Wanderer,<br>and Welcome to the Registry</h2>
+                <p class="intro-body">In the nine hundred and ninetieth year since the founding of the Republic, the General Assembly of the Commonwealth did pass into law the great ordinance formally establishing the Kentucky Cancer Registry — henceforth to serve as the keeper of all records pertaining to the dread affliction of cancer, across all one hundred and twenty counties of the realm.</p>
+                <p class="intro-body">The Registry is bound in fellowship with the National Cancer Institute's own Surveillance, Epidemiology, and End Results programme, and likewise with the CDC's National Programme of Cancer Registries. As an honoured member of the NAACCR, the KCR renders faithful service to healers, scholars, stewards of public health, and the great councils of policy — ensuring that no county of the Commonwealth shall be left uncharted in the great reckoning.</p>
+            </div>
+        </div>
+
+        <div class="maps-section rise rise-2">
+            <div class="section-header">
+                <div>
+                    <div class="eyebrow">✦ The Cartographic Arts ✦</div>
+                    <h2 class="section-heading">The Maps of Affliction</h2>
+                </div>
+                <a href="https://www.cancer-rates.info/ky/" target="_blank" class="section-link">
+                    Enter the Palantír
+                    <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </a>
+            </div>
+            <div class="map-viewer choro-viewer">
+                <div class="choro-body">
+                    <div class="choro-map-wrap">
+                        <div class="choro-map-header">
+                            <h1>A Survey of Invasive Maladies Throughout the Kingdom of Kentucky</h1>
+                            <p class="subtitle">In the Years 2019 through 2023, by County Seat</p>
+                            <p class="meta">All Afflictions Considered</p>
+                            <p class="meta">Reckoned by the Standard of the Year 2000 of the Common Era</p>
+                            <p class="stat">The Kingdom's Rate: <strong>524.6</strong> per hundred thousand souls</p>
+                        </div>
+                        <svg id="choroSvg"></svg>
+                        <div class="choro-tooltip" id="choroTip"></div>
+                        <div class="choro-legend" id="choroLegend"></div>
+                    </div>
+                    <div class="choro-panel" id="choroPanel">
+                        <div class="choro-panel-head">
+                            <div class="eyebrow" style="font-size:7px;color:rgba(200,150,30,0.3);">Cast gaze upon county</div>
+                            <div class="choro-panel-name" id="choroPanelName">—</div>
+                        </div>
+                        <div class="choro-panel-stat">
+                            <div class="choro-panel-label">Age-Adjusted Rate</div>
+                            <div class="choro-panel-val" id="choroPanelRate">—</div>
+                            <div class="choro-panel-sub">per hundred thousand souls</div>
+                        </div>
+                        <div class="choro-panel-stat">
+                            <div class="choro-panel-label">Vs. Kingdom Average</div>
+                            <div class="choro-panel-val" id="choroPanelVsState">—</div>
+                            <div class="choro-panel-sub" id="choroPanelVsSub">kingdom rate: 524.6</div>
+                        </div>
+                        <div class="choro-panel-stat">
+                            <div class="choro-panel-label">Rank in the Realm</div>
+                            <div class="choro-panel-val" id="choroPanelRank">—</div>
+                            <div class="choro-panel-sub">of 120 fiefs</div>
+                        </div>
+                        <div class="choro-source">
+                            All Afflictions · Age-Adjusted Incidence<br>
+                            KCR via the Palantír · Years 2019–2023
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="rise rise-3">
+            <div class="section-header">
+                <div>
+                    <div class="eyebrow">✦ From the Loremaster's Lips ✦</div>
+                    <h2 class="section-heading">The Loremaster Speaks</h2>
+                </div>
+            </div>
+            <div class="director-block">
+                <div class="director-photo">
+                    <img src="/staff/images/ericd.jpg" alt="Eric Durbin, Director of Cancer Informatics">
+                    <div class="director-photo-name">
+                        <strong>Eric Durbin</strong>
+                        <span>Loremaster of Cancer Informatics</span>
+                    </div>
+                </div>
+                <div class="director-content">
+                    <div class="director-disclaimer">✦ Transcribed and rendered into the common tongue from a proclamation of the Year 2016</div>
+                    <p class="director-text">Registries of affliction are the unseen pillars upon which the great work of healing is raised. Without faithful, population-based records, no healer, no scholar, no steward of public health may rightly know where the sickness is gathered most thickly — nor allocate their remedies wisely, nor measure whether their preventive labours have borne any fruit. The Kentucky Cancer Registry exists to be the vigilant eye of that great public effort, watching over all one hundred and twenty fiefs of the Commonwealth.</p>
+                    <p class="director-text">Since the Registry entered into the fellowship of the NCI's SEER programme in the year 2000 — one of a mere seventeen such orders across the whole of the nation — we have pressed ever onward beyond what any had thought a registry capable of. By the arts of Natural Language Processing, we now receive the tidings of the healers — their pathology reports — in near-real time from every corner of the realm. We learn of a cancer's arrival almost as swiftly as the treating physician himself. And this swiftness is no mere vanity: in late-stage affliction of the lung, the patient is granted but nine months upon middle-earth. To reach them soon enough to offer enrolment in a healing trial may mean the difference between shadow and light.</p>
+                    <p class="director-text">And beyond the welfare of individual souls, the Registry serves as a great virtual storehouse — a tissue repository in all but name — tracing the whereabouts of samples taken at surgery or biopsy across the length of the realm. Because this record-keeping encompasses the full population, the wisdom drawn from any single enquiry may be extended to the whole of Kentucky, raising the quality of the science immeasurably. That is what separates a true registry from a mere ledger of names: the power to bind the data back to the living people and the communities from which it sprang.</p>
+                    <div class="director-source">
+                        <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><rect x="2" y="1" width="10" height="14" rx="1.5" stroke="currentColor" stroke-width="1.4"></rect><path d="M5 5h4M5 8h4M5 11h2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path></svg>
+                        The original proclamation may be read in full at
+                        <a href="https://medicine.uky.edu/news/kentucky-cancer-registry-uses-power-data-fight-2016-09-28t01-05-42" target="_blank">the Halls of the UK College of Medicine →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="rise rise-4">
+            <div class="section-header">
+                <div>
+                    <div class="eyebrow">✦ Artefacts &amp; Instruments of Power ✦</div>
+                    <h2 class="section-heading">The Registry's Artefacts</h2>
+                </div>
+            </div>
+            <div class="feature-grid">
+                <a href="https://www.kcr.uky.edu/childhood-report" class="fcard" target="_blank">
+                    <div class="fcard-icon">📜</div>
+                    <div class="fcard-tag">✦ The Scroll of the Young · 2014–2023</div>
+                    <h3>The Chronicle of Childhood Affliction in Kentucky</h3>
+                    <p>A thorough reckoning of cancers befalling the young throughout the Commonwealth — their incidence, their outcomes, and the patterns writ across a decade of sorrows.</p>
+                    <div class="fcard-arrow">Read the Scroll <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+                </a>
+                <a href="https://www.cancer-rates.info/ky/" class="fcard" target="_blank">
+                    <div class="fcard-icon">🔮</div>
+                    <div class="fcard-tag">✦ The Palantír of Rates</div>
+                    <h3>The Seeing-Stone of cancer-rates.info</h3>
+                    <p>Gaze into the Palantír and behold the cancer rates of every county in the realm, rendered in vivid cartographic form. The truth of the land lies within — if you have the wisdom to bear it.</p>
+                    <div class="fcard-arrow">Gaze Into the Stone <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+                </a>
+                <a href="/research/" class="fcard">
+                    <div class="fcard-icon">⚔️</div>
+                    <div class="fcard-tag">✦ Petition the Council</div>
+                    <h3>Research &amp; Data Petitions</h3>
+                    <p>Present your petition before the Council of the Registry to obtain population-based records for approved scholarly enquiry. Only those with righteous purpose shall be granted passage.</p>
+                    <div class="fcard-arrow">Present Your Petition <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+                </a>
+                <a href="/resources" class="fcard">
+                    <div class="fcard-icon">🛡️</div>
+                    <div class="fcard-tag">✦ The Armoury of Craft</div>
+                    <h3>Technical Arts &amp; Resources</h3>
+                    <p>Here are kept the tools of the scribes: software downloads, the great KCR manuals, training parchments, and technical support for all who report unto the Registry. Come, equip thyself.</p>
+                    <div class="fcard-arrow">Enter the Armoury <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <aside class="sidebar">
+        <div class="side-card rise rise-2">
+            <div class="side-card-head">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="rgba(255,255,255,0.5)" stroke-width="1.4"></rect><path d="M5 8h6M8 5v6" stroke="rgba(255,255,255,0.5)" stroke-width="1.4" stroke-linecap="round"></path></svg>
+                <span class="side-card-head-text">The <span>Way-finder</span></span>
+            </div>
+            <div class="side-nav">
+                <a href="/about.html" class="side-nav-link"><svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4"></circle><path d="M8 7v4M8 5.5v.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path></svg>About the Registry</a>
+                <a href="/research/" class="side-nav-link"><svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h8M2 12h5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path></svg>Lore &amp; Research</a>
+                <a href="https://www.kcr.uky.edu/childhood-report" class="side-nav-link" target="_blank"><svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="2" y="1" width="10" height="14" rx="1.5" stroke="currentColor" stroke-width="1.4"></rect><path d="M5 5h4M5 8h4M5 11h2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path></svg>The Scroll of Youth</a>
+                <hr class="side-nav-sep">
+                <a href="http://cancer-rates.info/ky" class="side-nav-link" target="_blank"><svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4"></circle><path d="M2 8h12M8 2c-1.5 2-2 4-2 6s.5 4 2 6" stroke="currentColor" stroke-width="1.4"></path></svg>The Palantír</a>
+                <a href="http://cancer-rates.info/ky" class="side-nav-link indent" target="_blank">→ Incidence Rates</a>
+                <a href="http://cancer-rates.info/ky/?datasource=mort" class="side-nav-link indent" target="_blank">→ Mortality Rates</a>
+                <hr class="side-nav-sep">
+                <a href="/tech.html" class="side-nav-link"><svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"></rect><path d="M5 9l2-2 2 2 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>The Armoury</a>
+                <a href="/software" class="side-nav-link indent">→ Software</a>
+                <a href="/manuals" class="side-nav-link indent">→ KCR Manuals</a>
+                <a href="/training" class="side-nav-link indent">→ Training</a>
+                <a href="/intheabstract" class="side-nav-link indent">→ In the Abstract</a>
+                <a href="/resources" class="side-nav-link indent">→ Technical Support</a>
+                <hr class="side-nav-sep">
+                <a href="/statutes.html" class="side-nav-link"><svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 2h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.4"></path><path d="M5 6h6M5 9h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path></svg>Laws of the Realm</a>
+                <a href="/contact.html" class="side-nav-link"><svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"></rect><path d="M1 5l7 5 7-5" stroke="currentColor" stroke-width="1.4"></path></svg>Send Raven</a>
+            </div>
+        </div>
+
+        <div class="mu-card rise rise-3">
+            <div class="mu-card-tag">✦ For Healers &amp; Physicians</div>
+            <h3>The Rites of Meaningful Reporting</h3>
+            <p>Sacred obligations of electronic reporting, both of the Second Stage and the Third, that all healers in good standing must fulfil before the Registry.</p>
+            <div class="mu-links">
+                <a href="/mu.html" class="mu-link"><span>Second Stage — Physicians</span><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+                <a href="/mu3.html" class="mu-link"><span>Third Stage — Eligible Providers</span><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+            </div>
+        </div>
+
+        <div class="app-card rise rise-4">
+            <div class="app-card-icon">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none"></svg>
+            </div>
+            <h3>The Portable Seeing-Stone</h3>
+            <p>Bear the wisdom of the Registry in the palm of your hand upon your iPhone. County-level tidings of incidence and mortality, ever at the ready — for the ranger who never rests.</p>
+            <a href="https://itunes.apple.com/us/app/cancer-rates/id1049312556?mt=8" target="_blank" class="app-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:rgba(200,150,30,0.7)"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"></path></svg>
+                Claim from the App Store
+            </a>
+        </div>
+    </aside>
+</div>
+
+<footer>
+    <div class="footer-upper">
+        <div>
+            <div class="footer-wordmark">Kentucky <span>Cancer Registry</span></div>
+            <p class="footer-desc">The official population-based central registry of afflictions for the Commonwealth of Kentucky. Faithful keeper of the tally since the Year of Foundation, 1990 of the Common Era. May the data illuminate the darkness, and no county be forgotten.</p>
+        </div>
+        <div>
+            <div class="footer-col-title">The Registry</div>
+            <div class="footer-links">
+                <a href="/about.html" class="footer-link">About the KCR</a>
+                <a href="/research/" class="footer-link">Lore &amp; Research</a>
+                <a href="/staff" class="footer-link">The Fellowship</a>
+                <a href="/contact.html" class="footer-link">Send Raven</a>
+                <a href="/statutes.html" class="footer-link">Laws of the Realm</a>
+            </div>
+        </div>
+        <div>
+            <div class="footer-col-title">Instruments of Power</div>
+            <div class="footer-links">
+                <a href="http://cancer-rates.info/ky" target="_blank" class="footer-link">cancer-rates.info</a>
+                <a href="http://cancer-rates.info/ky" target="_blank" class="footer-link">Incidence Rates</a>
+                <a href="http://cancer-rates.info/ky/?datasource=mort" target="_blank" class="footer-link">Mortality Rates</a>
+                <a href="https://www.kcr.uky.edu/childhood-report" target="_blank" class="footer-link">The Scroll of Youth</a>
+            </div>
+        </div>
+        <div>
+            <div class="footer-col-title">The Armoury</div>
+            <div class="footer-links">
+                <a href="/software" class="footer-link">Software</a>
+                <a href="/manuals" class="footer-link">KCR Manuals</a>
+                <a href="/training" class="footer-link">Training</a>
+                <a href="/resources" class="footer-link">Technical Support</a>
+                <a href="https://kcr-confluence.atlassian.net/wiki/spaces/kentuckyregistrarswiki/overview" target="_blank" class="footer-link">The Registrars' Tome</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-lower">
+        <span>Last updated: The fourth day of September, 2025  ·  <a href="/cdn-cgi/l/email-protection#0a6169784a7f6173246f6e7f"><span class="__cf_email__" data-cfemail="ef848c9daf9a8496c18a8b9a">[email&nbsp;protected]</span></a></span>
+        <div style="display:flex;gap:24px;">
+            <a href="https://www.uky.edu" class="footer-link">University of Kentucky</a>
+            <a href="https://ukhealthcare.uky.edu/Markey/" class="footer-link">Markey Cancer Centre</a>
+            <a href="https://www.kycancerc.org/" class="footer-link">KY Cancer Consortium</a>
+            <a href="https://www.kcp.uky.edu/" class="footer-link">KY Cancer Programme</a>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/d3.min.js"></script>
+<script src="/js/topojson.min.js"></script>
+<script>
+    (function() {
+
+        var COUNTY_DATA = {
+            "21001":{"name":"Adair",       "pop":18732,  "cases":295,  "crude":443.2, "rate":560.1},
+            "21003":{"name":"Allen",       "pop":21069,  "cases":270,  "crude":359.2, "rate":480.9},
+            "21005":{"name":"Anderson",    "pop":22570,  "cases":325,  "crude":440.2, "rate":540.0},
+            "21007":{"name":"Ballard",     "pop":7880,   "cases":109,  "crude":382.0, "rate":521.5},
+            "21009":{"name":"Barren",      "pop":44911,  "cases":590,  "crude":393.5, "rate":494.6},
+            "21011":{"name":"Bath",        "pop":12510,  "cases":187,  "crude":418.1, "rate":563.1},
+            "21013":{"name":"Bell",        "pop":26404,  "cases":364,  "crude":388.0, "rate":518.9},
+            "21015":{"name":"Boone",       "pop":136207, "cases":1744, "crude":377.4, "rate":507.4},
+            "21017":{"name":"Bourbon",     "pop":19788,  "cases":295,  "crude":424.5, "rate":566.5},
+            "21019":{"name":"Boyd",        "pop":46328,  "cases":688,  "crude":418.5, "rate":559.8},
+            "21021":{"name":"Boyle",       "pop":30159,  "cases":431,  "crude":415.4, "rate":537.4},
+            "21023":{"name":"Bracken",     "pop":8303,   "cases":136,  "crude":438.3, "rate":614.5},
+            "21025":{"name":"Breathitt",   "pop":12630,  "cases":162,  "crude":360.3, "rate":480.0},
+            "21027":{"name":"Breckinridge","pop":20688,  "cases":278,  "crude":379.0, "rate":506.0},
+            "21029":{"name":"Bullitt",     "pop":81542,  "cases":1153, "crude":412.3, "rate":538.4},
+            "21031":{"name":"Butler",      "pop":12905,  "cases":176,  "crude":380.5, "rate":512.4},
+            "21033":{"name":"Caldwell",    "pop":12651,  "cases":160,  "crude":356.3, "rate":476.9},
+            "21035":{"name":"Calloway",    "pop":38617,  "cases":568,  "crude":412.1, "rate":553.1},
+            "21037":{"name":"Campbell",    "pop":94083,  "cases":1303, "crude":388.9, "rate":519.9},
+            "21039":{"name":"Carlisle",    "pop":4789,   "cases":73,   "crude":424.2, "rate":575.6},
+            "21041":{"name":"Carroll",     "pop":10666,  "cases":149,  "crude":393.0, "rate":524.7},
+            "21043":{"name":"Carter",      "pop":27015,  "cases":430,  "crude":435.1, "rate":597.0},
+            "21045":{"name":"Casey",       "pop":16054,  "cases":220,  "crude":385.6, "rate":515.9},
+            "21047":{"name":"Christian",   "pop":70121,  "cases":963,  "crude":376.4, "rate":519.2},
+            "21049":{"name":"Clark",       "pop":36289,  "cases":510,  "crude":404.0, "rate":526.8},
+            "21051":{"name":"Clay",        "pop":19403,  "cases":307,  "crude":420.2, "rate":596.4},
+            "21053":{"name":"Clinton",     "pop":9862,   "cases":141,  "crude":399.2, "rate":538.9},
+            "21055":{"name":"Crittenden",  "pop":8932,   "cases":103,  "crude":324.5, "rate":433.1},
+            "21057":{"name":"Cumberland",  "pop":6614,   "cases":109,  "crude":440.8, "rate":618.7},
+            "21059":{"name":"Daviess",     "pop":101132, "cases":1400, "crude":385.6, "rate":522.9},
+            "21061":{"name":"Edmonson",    "pop":12285,  "cases":157,  "crude":356.6, "rate":480.9},
+            "21063":{"name":"Elliott",     "pop":7487,   "cases":87,   "crude":318.6, "rate":438.7},
+            "21065":{"name":"Estill",      "pop":14239,  "cases":229,  "crude":441.1, "rate":603.0},
+            "21067":{"name":"Fayette",     "pop":323152, "cases":4270, "crude":371.7, "rate":496.1},
+            "21069":{"name":"Fleming",     "pop":14560,  "cases":208,  "crude":400.8, "rate":536.9},
+            "21071":{"name":"Floyd",       "pop":35471,  "cases":529,  "crude":418.3, "rate":562.5},
+            "21073":{"name":"Franklin",    "pop":50648,  "cases":744,  "crude":410.7, "rate":553.3},
+            "21075":{"name":"Fulton",      "pop":5851,   "cases":84,   "crude":391.4, "rate":529.8},
+            "21077":{"name":"Gallatin",    "pop":8700,   "cases":120,  "crude":386.1, "rate":525.7},
+            "21079":{"name":"Garrard",     "pop":17186,  "cases":265,  "crude":431.4, "rate":590.2},
+            "21081":{"name":"Grant",       "pop":25268,  "cases":363,  "crude":401.8, "rate":545.9},
+            "21083":{"name":"Graves",      "pop":37028,  "cases":497,  "crude":375.4, "rate":507.2},
+            "21085":{"name":"Grayson",     "pop":26319,  "cases":383,  "crude":406.0, "rate":545.4},
+            "21087":{"name":"Green",       "pop":11024,  "cases":157,  "crude":394.9, "rate":534.4},
+            "21089":{"name":"Greenup",     "pop":35212,  "cases":536,  "crude":426.0, "rate":571.7},
+            "21091":{"name":"Hancock",     "pop":8881,   "cases":123,  "crude":383.0, "rate":524.0},
+            "21093":{"name":"Hardin",      "pop":110958, "cases":1515, "crude":380.5, "rate":514.4},
+            "21095":{"name":"Harlan",      "pop":26010,  "cases":373,  "crude":396.9, "rate":533.0},
+            "21097":{"name":"Harrison",    "pop":18764,  "cases":277,  "crude":413.8, "rate":557.8},
+            "21099":{"name":"Hart",        "pop":18609,  "cases":253,  "crude":379.2, "rate":512.6},
+            "21101":{"name":"Henderson",   "pop":46004,  "cases":591,  "crude":358.8, "rate":483.3},
+            "21103":{"name":"Henry",       "pop":15720,  "cases":227,  "crude":406.0, "rate":545.3},
+            "21105":{"name":"Hickman",     "pop":4369,   "cases":58,   "crude":366.7, "rate":498.1},
+            "21107":{"name":"Hopkins",     "pop":45041,  "cases":596,  "crude":369.0, "rate":498.5},
+            "21109":{"name":"Jackson",     "pop":13160,  "cases":166,  "crude":349.6, "rate":476.1},
+            "21111":{"name":"Jefferson",   "pop":779265, "cases":10734,"crude":381.5, "rate":516.3},
+            "21113":{"name":"Jessamine",   "pop":53128,  "cases":739,  "crude":385.8, "rate":521.5},
+            "21115":{"name":"Johnson",     "pop":22188,  "cases":288,  "crude":360.3, "rate":487.7},
+            "21117":{"name":"Kenton",      "pop":170614, "cases":2401, "crude":391.0, "rate":529.6},
+            "21119":{"name":"Knott",       "pop":15130,  "cases":209,  "crude":381.2, "rate":518.6},
+            "21121":{"name":"Knox",        "pop":31285,  "cases":494,  "crude":437.4, "rate":593.3},
+            "21123":{"name":"Larue",       "pop":14060,  "cases":190,  "crude":373.1, "rate":508.7},
+            "21125":{"name":"Laurel",      "pop":62016,  "cases":856,  "crude":382.7, "rate":518.3},
+            "21127":{"name":"Lawrence",    "pop":15607,  "cases":231,  "crude":410.6, "rate":555.6},
+            "21129":{"name":"Lee",         "pop":7218,   "cases":97,   "crude":370.4, "rate":506.1},
+            "21131":{"name":"Leslie",      "pop":9877,   "cases":136,  "crude":378.9, "rate":520.6},
+            "21133":{"name":"Letcher",     "pop":22073,  "cases":312,  "crude":390.8, "rate":532.9},
+            "21135":{"name":"Lewis",       "pop":13285,  "cases":176,  "crude":363.0, "rate":497.7},
+            "21137":{"name":"Lincoln",     "pop":24284,  "cases":390,  "crude":450.8, "rate":604.4},
+            "21139":{"name":"Livingston",  "pop":9004,   "cases":147,  "crude":453.7, "rate":614.3},
+            "21141":{"name":"Logan",       "pop":27063,  "cases":360,  "crude":370.9, "rate":500.0},
+            "21143":{"name":"Lyon",        "pop":8327,   "cases":108,  "crude":358.8, "rate":486.8},
+            "21145":{"name":"McCracken",   "pop":65903,  "cases":943,  "crude":396.5, "rate":539.2},
+            "21147":{"name":"McCreary",    "pop":17306,  "cases":251,  "crude":400.7, "rate":545.5},
+            "21149":{"name":"McLean",      "pop":9207,   "cases":134,  "crude":403.6, "rate":547.4},
+            "21151":{"name":"Madison",     "pop":92987,  "cases":1307, "crude":389.0, "rate":528.0},
+            "21153":{"name":"Magoffin",    "pop":12309,  "cases":178,  "crude":398.2, "rate":545.3},
+            "21155":{"name":"Marion",      "pop":19751,  "cases":283,  "crude":397.9, "rate":539.6},
+            "21157":{"name":"Marshall",    "pop":35073,  "cases":499,  "crude":395.3, "rate":536.3},
+            "21159":{"name":"Martin",      "pop":11219,  "cases":139,  "crude":333.8, "rate":464.8},
+            "21161":{"name":"Mason",       "pop":17052,  "cases":241,  "crude":391.6, "rate":533.3},
+            "21163":{"name":"Meade",       "pop":28576,  "cases":420,  "crude":412.4, "rate":552.5},
+            "21165":{"name":"Menifee",     "pop":6405,   "cases":88,   "crude":371.6, "rate":515.9},
+            "21167":{"name":"Mercer",      "pop":21370,  "cases":315,  "crude":408.9, "rate":555.4},
+            "21169":{"name":"Metcalfe",    "pop":10007,  "cases":140,  "crude":389.1, "rate":525.7},
+            "21171":{"name":"Monroe",      "pop":10380,  "cases":148,  "crude":394.6, "rate":538.8},
+            "21173":{"name":"Montgomery",  "pop":27974,  "cases":426,  "crude":427.7, "rate":572.0},
+            "21175":{"name":"Morgan",      "pop":13133,  "cases":164,  "crude":343.1, "rate":468.9},
+            "21177":{"name":"Muhlenberg",  "pop":29972,  "cases":403,  "crude":373.2, "rate":506.2},
+            "21179":{"name":"Nelson",      "pop":46388,  "cases":707,  "crude":425.2, "rate":575.3},
+            "21181":{"name":"Nicholas",    "pop":7090,   "cases":89,   "crude":349.4, "rate":471.9},
+            "21183":{"name":"Ohio",        "pop":24143,  "cases":341,  "crude":390.9, "rate":533.5},
+            "21185":{"name":"Oldham",      "pop":67674,  "cases":963,  "crude":387.5, "rate":534.6},
+            "21187":{"name":"Owen",        "pop":10901,  "cases":151,  "crude":387.8, "rate":521.0},
+            "21189":{"name":"Owsley",      "pop":4322,   "cases":69,   "crude":440.8, "rate":600.3},
+            "21191":{"name":"Pendleton",   "pop":14499,  "cases":207,  "crude":397.3, "rate":537.4},
+            "21193":{"name":"Perry",       "pop":25929,  "cases":389,  "crude":418.3, "rate":563.9},
+            "21195":{"name":"Pike",        "pop":57015,  "cases":826,  "crude":406.0, "rate":544.2},
+            "21197":{"name":"Powell",      "pop":12219,  "cases":203,  "crude":461.7, "rate":623.0},
+            "21199":{"name":"Pulaski",     "pop":64079,  "cases":950,  "crude":413.7, "rate":556.0},
+            "21201":{"name":"Robertson",   "pop":2166,   "cases":30,   "crude":386.9, "rate":525.4},
+            "21203":{"name":"Rockcastle",  "pop":16847,  "cases":264,  "crude":436.3, "rate":591.5},
+            "21205":{"name":"Rowan",       "pop":24516,  "cases":320,  "crude":361.4, "rate":490.0},
+            "21207":{"name":"Russell",     "pop":18268,  "cases":259,  "crude":392.2, "rate":533.4},
+            "21209":{"name":"Scott",       "pop":57155,  "cases":748,  "crude":367.8, "rate":491.0},
+            "21211":{"name":"Shelby",      "pop":48322,  "cases":612,  "crude":354.7, "rate":476.6},
+            "21213":{"name":"Simpson",     "pop":18111,  "cases":242,  "crude":370.0, "rate":501.3},
+            "21215":{"name":"Spencer",     "pop":20021,  "cases":292,  "crude":404.0, "rate":549.6},
+            "21217":{"name":"Taylor",      "pop":25383,  "cases":371,  "crude":408.7, "rate":548.7},
+            "21219":{"name":"Todd",        "pop":12044,  "cases":153,  "crude":353.2, "rate":476.7},
+            "21221":{"name":"Trigg",       "pop":14588,  "cases":199,  "crude":378.8, "rate":511.6},
+            "21223":{"name":"Trimble",     "pop":8577,   "cases":130,  "crude":420.5, "rate":572.8},
+            "21225":{"name":"Union",       "pop":14489,  "cases":189,  "crude":358.5, "rate":489.4},
+            "21227":{"name":"Warren",      "pop":139725, "cases":1756, "crude":349.7, "rate":472.2},
+            "21229":{"name":"Washington",  "pop":12036,  "cases":176,  "crude":403.3, "rate":552.5},
+            "21231":{"name":"Wayne",       "pop":19765,  "cases":284,  "crude":399.0, "rate":539.8},
+            "21233":{"name":"Webster",     "pop":12828,  "cases":163,  "crude":349.4, "rate":476.1},
+            "21235":{"name":"Whitley",     "pop":36800,  "cases":563,  "crude":430.0, "rate":575.1},
+            "21237":{"name":"Wolfe",       "pop":7027,   "cases":126,  "crude":493.2, "rate":676.2},
+            "21239":{"name":"Woodford",    "pop":27267,  "cases":394,  "crude":400.1, "rate":544.1}
+        };
+
+        var STATE_AVG  = 524.6;
+        var TOPO_URL   = '/js/counties-10m.json';
+        // Warm parchment-to-ember color scale (low=light parchment, high=deep ember)
+        var COLORS     = ['#f5ead0','#e8c87a','#d4a040','#b87820','#8c5010','#642808','#3c1404','#1e0802'];
+
+        var ranked = Object.keys(COUNTY_DATA).sort(function(a,b){
+            return COUNTY_DATA[b].rate - COUNTY_DATA[a].rate;
+        });
+        function getRank(fips){ return ranked.indexOf(fips) + 1; }
+
+        var rates      = Object.values(COUNTY_DATA).map(function(d){ return d.rate; });
+        var colorScale = d3.scaleQuantile().domain(rates).range(COLORS);
+
+        function buildLegend(container, vertical) {
+            var q         = colorScale.quantiles();
+            var allBreaks = [d3.min(rates)].concat(q).concat([d3.max(rates)]);
+
+            if (vertical) {
+                var html = '<div class="legend-title">Rate / 100k</div>';
+                for (var i = COLORS.length - 1; i >= 0; i--) {
+                    var lo    = Math.round(allBreaks[i]);
+                    var hi    = Math.round(allBreaks[i + 1]);
+                    var label = (i === COLORS.length - 1) ? hi + '+' : lo + ' – ' + hi;
+                    html += '<div class="legend-row">'
+                        + '<div class="legend-swatch" style="background:' + COLORS[i] + ';border:1px solid rgba(200,150,30,0.2)"></div>'
+                        + '<span class="legend-row-label">' + label + '</span>'
+                        + '</div>';
+                }
+                container.innerHTML = html;
+            } else {
+                var minR = Math.round(d3.min(rates));
+                var maxR = Math.round(d3.max(rates));
+                var midR = Math.round(q[Math.floor(q.length / 2)]);
+                var html = '<div class="legend-title">Rate / 100k</div>';
+                html += '<div class="legend-swatches">';
+                COLORS.forEach(function(c){ html += '<div class="legend-swatch" style="background:'+c+'"></div>'; });
+                html += '</div><div class="legend-labels"><span>'+minR+'</span><span>'+midR+'</span><span>'+maxR+'</span></div>';
+                container.innerHTML = html;
+            }
+        }
+
+        function updatePanel(fips, ids) {
+            var d = COUNTY_DATA[fips];
+            if (!d) return;
+            document.getElementById(ids.name).textContent = d.name + ' County';
+            document.getElementById(ids.rate).textContent = d.rate.toFixed(1);
+            document.getElementById(ids.rate).className   = (ids.valClass || 'choro-panel-val');
+            var diff  = d.rate - STATE_AVG;
+            var vsEl  = document.getElementById(ids.vs);
+            vsEl.textContent = (diff > 0 ? '+' : '') + diff.toFixed(1);
+            vsEl.className   = (ids.valClass || 'choro-panel-val') + (diff > 0 ? ' above' : ' below');
+            document.getElementById(ids.rank).textContent = '#' + getRank(fips);
+        }
+
+        function tipRow(label, val, highlight, color) {
+            var valStyle = color ? 'style="color:' + color + '"' : '';
+            var cls = highlight ? 'tip-val highlight' : 'tip-val';
+            return '<div class="tip-row">'
+                + '<span class="tip-label">' + label + '</span>'
+                + '<span class="' + cls + '" ' + valStyle + '>' + val + '</span>'
+                + '</div>';
+        }
+
+        function drawChoro(svgEl, tipEl, legendEl, kyFeatures, opts) {
+            opts = opts || {};
+            var wrap = svgEl.parentElement;
+            var W = wrap.clientWidth  || 600;
+            var H = wrap.clientHeight || 440;
+
+            var svg = d3.select(svgEl).attr('width', W).attr('height', H);
+            svg.selectAll('*').remove();
+
+            var proj = d3.geoAlbers()
+                .rotate([87.5, 0])
+                .center([0, 37.5])
+                .parallels([36.0, 38.5])
+                .fitSize([W - (opts.pad || 10), H - (opts.pad || 10)],
+                    { type:'FeatureCollection', features: kyFeatures });
+
+            var path = d3.geoPath().projection(proj);
+            var g    = svg.append('g').attr('transform', 'translate('+(opts.pad/2||5)+','+(opts.pad/2||5)+')');
+
+            g.selectAll('.county-path')
+                .data(kyFeatures)
+                .enter().append('path')
+                .attr('class', 'county-path')
+                .attr('d', path)
+                .attr('fill', function(f){
+                    var fips = String(f.id).padStart(5, '0');
+                    var d    = COUNTY_DATA[fips];
+                    return d ? colorScale(d.rate) : '#1e1408';
+                })
+                .on('mousemove', function(event, f){
+                    var fips = String(f.id).padStart(5, '0');
+                    var d    = COUNTY_DATA[fips];
+                    if (!d) return;
+
+                    var svgRect = svgEl.getBoundingClientRect();
+                    var x = event.clientX - svgRect.left + 14;
+                    var y = event.clientY - svgRect.top  - 80;
+                    if (x + 220 > svgRect.width) x = event.clientX - svgRect.left - 230;
+                    if (y < 8) y = 8;
+
+                    if (tipEl) {
+                        var diff   = d.rate - STATE_AVG;
+                        var vsStr  = (diff > 0 ? '+' : '') + diff.toFixed(1);
+                        var vsColor = diff > 0 ? '#c05040' : '#4a8c4a';
+                        tipEl.style.opacity = '1';
+                        tipEl.style.left    = x + 'px';
+                        tipEl.style.top     = y + 'px';
+                        tipEl.innerHTML =
+                            '<span class="tip-county-name">' + d.name + ' County</span>'
+                            + '<div class="tip-rows">'
+                            + tipRow('Souls at Risk',          d.pop.toLocaleString(), false)
+                            + tipRow('Cases (2019–2023)',       d.cases.toLocaleString(), false)
+                            + tipRow('Crude Rate',             d.crude.toFixed(1), false)
+                            + tipRow('Age-Adjusted Rate',      d.rate.toFixed(1), true)
+                            + tipRow('Vs. Kingdom (524.6)',    vsStr, false, vsColor)
+                            + tipRow('Rank in the Realm',      '#' + getRank(fips) + ' of 120', false)
+                            + '</div>';
+                    }
+
+                    if (opts.panelIds) updatePanel(fips, opts.panelIds);
+
+                    g.selectAll('.county-path').classed('active', function(ff){
+                        return String(ff.id).padStart(5, '0') === fips;
+                    });
+                })
+                .on('mouseleave', function(){
+                    if (tipEl) tipEl.style.opacity = '0';
+                });
+
+            if (legendEl) buildLegend(legendEl, opts.verticalLegend);
+        }
+
+        function positionLegend() {
+            var header = document.getElementById('mastMapHeader');
+            var legend = document.getElementById('mastChoroLegend');
+            if (!header || !legend) return;
+            legend.style.top = Math.round(header.offsetHeight * 0.75) + 'px';
+        }
+
+        var TOPO_CACHE = null;
+
+        function initMaps(kyFeatures) {
+            var mastSvg    = document.getElementById('mastChoroSvg');
+            var mastTip    = document.getElementById('mastChoroTip');
+            var mastLegend = document.getElementById('mastChoroLegend');
+            if (mastSvg) {
+                drawChoro(mastSvg, mastTip, mastLegend, kyFeatures, {
+                    pad: 20,
+                    verticalLegend: true,
+                    panelIds: {
+                        name: 'mastPanelName', rate: 'mastPanelRate',
+                        vs:   'mastPanelVsState', rank: 'mastPanelRank',
+                        valClass: 'mast-panel-val'
+                    }
+                });
+                requestAnimationFrame(positionLegend);
+            }
+
+            var bodySvg    = document.getElementById('choroSvg');
+            var bodyTip    = document.getElementById('choroTip');
+            var bodyLegend = document.getElementById('choroLegend');
+            if (bodySvg) {
+                drawChoro(bodySvg, bodyTip, bodyLegend, kyFeatures, {
+                    pad: 10,
+                    panelIds: {
+                        name: 'choroPanelName', rate: 'choroPanelRate',
+                        vs:   'choroPanelVsState', rank: 'choroPanelRank',
+                        valClass: 'choro-panel-val'
+                    }
+                });
+            }
+
+            var resizeTimer;
+            window.addEventListener('resize', function(){
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function(){ initMaps(kyFeatures); positionLegend(); }, 200);
+            });
+        }
+
+        fetch(TOPO_URL)
+            .then(function(r){ return r.json(); })
+            .then(function(us){
+                TOPO_CACHE = topojson.feature(us, us.objects.counties).features
+                    .filter(function(f){ return String(f.id).padStart(5,'0').startsWith('21'); });
+                initMaps(TOPO_CACHE);
+            })
+            .catch(function(e){ console.warn('KCR choropleth: TopoJSON failed to load', e); });
+
+    })();
+
+    /* ══════════════════════════════════════════════════════
+       ⚔️  LORD OF THE RINGS EASTER EGGS ⚔️
+       ══════════════════════════════════════════════════════ */
+
+    // On every click — a glowing ember/ring rises from where you clicked
+    document.addEventListener('click', function(e) {
+        var ember = document.createElement('div');
+        ember.textContent = '💍';
+        ember.style.cssText = [
+            'position:fixed',
+            'left:' + (e.clientX - 14) + 'px',
+            'top:'  + (e.clientY - 14) + 'px',
+            'font-size:20px',
+            'pointer-events:none',
+            'z-index:9999',
+            'filter:drop-shadow(0 0 8px rgba(200,150,30,0.9)) drop-shadow(0 0 20px rgba(200,150,30,0.6))',
+            'animation:emberRise 0.9s ease-out forwards'
+        ].join(';');
+        document.body.appendChild(ember);
+        setTimeout(function(){ ember.remove(); }, 950);
+
+        // The One Ring chime — a low resonant bell tone in the key of doom
+        try {
+            var ctx = new (window.AudioContext || window.webkitAudioContext)();
+
+            // Bell body: high sine burst
+            var osc1 = ctx.createOscillator();
+            var g1   = ctx.createGain();
+            osc1.type = 'sine';
+            osc1.frequency.setValueAtTime(880, ctx.currentTime);
+            osc1.frequency.exponentialRampToValueAtTime(440, ctx.currentTime + 0.5);
+            g1.gain.setValueAtTime(0.18, ctx.currentTime);
+            g1.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.2);
+            osc1.connect(g1); g1.connect(ctx.destination);
+            osc1.start(ctx.currentTime); osc1.stop(ctx.currentTime + 1.2);
+
+            // Bell shimmer: slightly detuned overtone
+            var osc2 = ctx.createOscillator();
+            var g2   = ctx.createGain();
+            osc2.type = 'triangle';
+            osc2.frequency.setValueAtTime(1318, ctx.currentTime);
+            osc2.frequency.exponentialRampToValueAtTime(660, ctx.currentTime + 0.6);
+            g2.gain.setValueAtTime(0.07, ctx.currentTime);
+            g2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.8);
+            osc2.connect(g2); g2.connect(ctx.destination);
+            osc2.start(ctx.currentTime); osc2.stop(ctx.currentTime + 0.8);
+
+            // Low rumble of Mordor beneath it all
+            var osc3 = ctx.createOscillator();
+            var g3   = ctx.createGain();
+            osc3.type = 'sawtooth';
+            osc3.frequency.setValueAtTime(55, ctx.currentTime);
+            g3.gain.setValueAtTime(0.04, ctx.currentTime);
+            g3.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+            osc3.connect(g3); g3.connect(ctx.destination);
+            osc3.start(ctx.currentTime); osc3.stop(ctx.currentTime + 0.4);
+        } catch(err) {}
+    });
+
+    // ── THE ONE RING SECRET ──
+    // Type "shire" anywhere to summon the Fellowship quote overlay
+    var _typed = '';
+    document.addEventListener('keydown', function(e) {
+        _typed += e.key.toLowerCase();
+        if (_typed.length > 10) _typed = _typed.slice(-10);
+
+        if (_typed.includes('shire')) {
+            _typed = '';
+            var overlay = document.createElement('div');
+            overlay.style.cssText = [
+                'position:fixed','inset:0',
+                'background:rgba(13,10,6,0.97)',
+                'z-index:99999',
+                'display:flex','align-items:center','justify-content:center',
+                'flex-direction:column','gap:32px',
+                'cursor:pointer',
+                'animation:scrollUnroll 0.5s ease'
+            ].join(';');
+
+            // The One Ring inscription in tengwar-ish
+            overlay.innerHTML = [
+                '<div style="font-family:Cinzel,serif;font-size:13px;letter-spacing:0.4em;color:rgba(200,150,30,0.35);text-align:center;text-transform:uppercase;">᚛ᚢᚦᚨᚱ · ᚠᚱᚩᛞᚩ᚜</div>',
+
+                '<div style="font-family:\'Cinzel Decorative\',Cinzel,serif;font-size:clamp(22px,4vw,48px);font-weight:700;color:#e8b830;text-align:center;line-height:1.4;text-shadow:0 0 40px rgba(200,150,30,0.6),0 0 80px rgba(200,150,30,0.2);max-width:700px;padding:0 40px;">' +
+                'Not all who wander are lost,<br>' +
+                '<span style="font-size:0.7em;color:rgba(200,150,30,0.65)">but all who suffer shall be counted.</span>' +
+                '</div>',
+
+                '<div style="font-family:\'IM Fell English\',Georgia,serif;font-style:italic;font-size:18px;color:rgba(200,150,30,0.5);text-align:center;max-width:560px;padding:0 40px;line-height:1.8;">' +
+                '"The Kentucky Cancer Registry — one registry to find them,<br>one registry to count them all,<br>and in the data, bind them."' +
+                '</div>',
+
+                '<div style="border:1px solid rgba(200,150,30,0.25);padding:12px 28px;font-family:Cinzel,serif;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(200,150,30,0.4);">Click or press any key to return to the Shire</div>'
+            ].join('');
+
+            var dismiss = function() {
+                overlay.style.transition = 'opacity 0.3s';
+                overlay.style.opacity = '0';
+                setTimeout(function(){ overlay.remove(); }, 320);
+            };
+            overlay.addEventListener('click', dismiss);
+            overlay.addEventListener('keydown', dismiss);
+            document.body.appendChild(overlay);
+            overlay.focus();
+        }
+
+        // ── NAZGÛL SWEEP ──
+        // Type "mordor" to send a Nazgûl shriek across the screen
+        if (_typed.includes('mordor')) {
+            _typed = '';
+
+            // Nazgûl emoji sweeping across
+            var nazgul = document.createElement('div');
+            nazgul.textContent = '🦅';
+            nazgul.style.cssText = [
+                'position:fixed',
+                'top:15%',
+                'left:0',
+                'font-size:64px',
+                'pointer-events:none',
+                'z-index:9998',
+                'animation:nazgulSweep 2.5s ease-in-out forwards',
+                'filter:invert(1) sepia(1) saturate(5) hue-rotate(300deg) brightness(0.4)'
+            ].join(';');
+            document.body.appendChild(nazgul);
+            setTimeout(function(){ nazgul.remove(); }, 2600);
+
+            // Nazgûl shriek sound
+            try {
+                var ctx2 = new (window.AudioContext || window.webkitAudioContext)();
+                var osc  = ctx2.createOscillator();
+                var gain = ctx2.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(200, ctx2.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(1200, ctx2.currentTime + 0.3);
+                osc.frequency.exponentialRampToValueAtTime(300, ctx2.currentTime + 1.2);
+                osc.frequency.exponentialRampToValueAtTime(80, ctx2.currentTime + 2.0);
+                gain.gain.setValueAtTime(0.12, ctx2.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx2.currentTime + 2.0);
+                osc.connect(gain); gain.connect(ctx2.destination);
+                osc.start(ctx2.currentTime); osc.stop(ctx2.currentTime + 2.0);
+            } catch(err) {}
+        }
+    });
+</script>
+
+
+</body></html>

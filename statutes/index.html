@@ -1,0 +1,1486 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statutes � Kentucky Cancer Registry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&amp;display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #0e1419;
+      --ink-2:     #1b2530;
+      --ink-3:     #243040;
+      --steel:     #3d5166;
+      --mist:      #8da3b8;
+      --fog:       #c4d0dc;
+      --paper:     #f2ede6;
+      --paper-2:   #e8e2d9;
+      --paper-3:   #ddd6cb;
+      --amber:     #c87a2f;
+      --amber-lt:  #e09040;
+      --amber-dim: #8a5420;
+      --white:     #ffffff;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+      --r: 6px;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--steel);
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    a { text-decoration: none; }
+
+    /* -- TOPBAR -- */
+    .topbar {
+      background: var(--ink);
+      height: 36px;
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.3);
+      justify-content: space-between;
+    }
+    .topbar a { color: rgba(255,255,255,0.35); transition: color 0.15s; }
+    .topbar a:hover { color: var(--amber-lt); }
+    .topbar-links { display: flex; gap: 24px; align-items: center; }
+
+    /* -- MASTHEAD -- */
+    .masthead {
+      background: var(--ink);
+      padding: 40px 40px 44px;
+    }
+    .masthead-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 40px;
+    }
+    .masthead-wordmark {
+      font-family: var(--serif);
+      font-size: 26px;
+      color: rgba(255,255,255,0.85);
+      font-weight: 400;
+      line-height: 1.1;
+    }
+    .masthead-wordmark span { color: var(--amber); }
+    .masthead-sub {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-top: 4px;
+    }
+    .masthead-badge {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+      text-align: right;
+      line-height: 1.6;
+    }
+    .masthead-badge strong {
+      display: block;
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0;
+    }
+
+    /* -- NAV -- */
+    nav {
+      background: var(--paper);
+      border-bottom: 1px solid var(--paper-3);
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
+    .nav-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      height: 48px;
+      gap: 2px;
+    }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      padding: 0 18px;
+      height: 48px;
+      font-family: var(--sans);
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--steel);
+      border-bottom: 2px solid transparent;
+      transition: all 0.15s;
+    }
+    .nav-link:hover { color: var(--ink); }
+    .nav-link.active { color: var(--ink); border-bottom-color: var(--amber); }
+
+    /* -- PARTNER RIBBON -- */
+    .ribbon { background: var(--ink-2); }
+    .ribbon-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      height: 64px;
+      gap: 16px;
+    }
+    .ribbon-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      white-space: nowrap;
+      margin-right: 8px;
+    }
+    .ribbon-logos {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .ribbon-logos a {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.22);
+      transition: color 0.2s;
+    }
+    .ribbon-logos a:hover { color: rgba(255,255,255,0.55); }
+
+    /* -- PAGE HERO -- */
+    .page-hero {
+      background: var(--ink);
+      padding: 56px 40px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(200,122,47,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .page-hero-rule {
+      width: 1px;
+      height: 100%;
+      background: rgba(255,255,255,0.07);
+    }
+    .hero-eyebrow {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 14px;
+    }
+    .page-hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(38px, 4.5vw, 62px);
+      font-weight: 400;
+      color: white;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      font-style: italic;
+    }
+    .page-hero-desc {
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.75;
+      margin-top: 20px;
+      max-width: 480px;
+    }
+    .hero-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .hero-stat {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .hero-stat:last-child { border-bottom: none; padding-bottom: 0; }
+    .hero-stat-num {
+      font-family: var(--serif);
+      font-size: 36px;
+      font-weight: 400;
+      color: var(--amber);
+      line-height: 1;
+      min-width: 60px;
+    }
+    .hero-stat-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.4;
+    }
+    .hero-stat-label span {
+      display: block;
+      font-family: var(--sans);
+      font-size: 11.5px;
+      font-weight: 300;
+      letter-spacing: 0;
+      text-transform: none;
+      color: rgba(255,255,255,0.28);
+      margin-top: 4px;
+    }
+
+    /* -- PAGE BODY -- */
+    .page-wrap {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 72px 40px 80px;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 72px;
+    }
+
+    /* -- EYEBROW + HEADING -- */
+    .eyebrow {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 10px;
+    }
+    .section-heading {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      line-height: 1;
+      margin-top: 6px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--paper-3);
+    }
+    .section-link {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: gap 0.15s;
+    }
+    .section-link:hover { gap: 9px; }
+
+    /* -- INTRO BLOCK -- */
+    .intro-block {
+      background: white;
+      border-radius: var(--r);
+      border: 1px solid var(--paper-3);
+      padding: 32px 36px;
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .intro-block::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--amber);
+    }
+    .intro-block p {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--steel);
+      line-height: 1.85;
+    }
+    .intro-block p + p { margin-top: 16px; }
+
+    /* -- STATUTE CARD -- */
+    .statute-card {
+      background: white;
+      border-radius: var(--r);
+      border: 1px solid var(--paper-3);
+      margin-bottom: 16px;
+      overflow: hidden;
+      transition: all 0.2s;
+      position: relative;
+    }
+    .statute-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--amber);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .statute-card:hover {
+      box-shadow: 0 8px 32px rgba(14,20,25,0.09);
+      border-color: var(--fog);
+    }
+    .statute-card:hover::after { transform: scaleX(1); }
+
+    .statute-header {
+      display: flex;
+      align-items: stretch;
+      cursor: pointer;
+      user-select: none;
+    }
+    .statute-badge {
+      background: var(--ink-2);
+      min-width: 88px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 16px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .statute-badge-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 4px;
+    }
+    .statute-badge-num {
+      font-family: var(--serif);
+      font-size: 18px;
+      color: var(--amber);
+      line-height: 1;
+    }
+    .statute-info {
+      flex: 1;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .statute-title {
+      flex: 1;
+    }
+    .statute-tag {
+      display: inline-block;
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 5px;
+    }
+    .statute-name {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+    .statute-chapter {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--mist);
+      margin-top: 4px;
+    }
+    .statute-toggle {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--mist);
+      transition: all 0.2s;
+    }
+    .statute-card.open .statute-toggle {
+      transform: rotate(180deg);
+      color: var(--amber);
+    }
+
+    .statute-body {
+      display: none;
+      padding: 0 24px 28px 112px;
+      border-top: 1px solid var(--paper-2);
+    }
+    .statute-card.open .statute-body { display: block; }
+    .statute-body-intro {
+      font-size: 14.5px;
+      font-weight: 300;
+      color: var(--steel);
+      line-height: 1.8;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    .statute-sections {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .statute-section-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--paper-2);
+    }
+    .statute-section-item:last-child { border-bottom: none; }
+    .statute-section-code {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--amber);
+      text-transform: uppercase;
+      min-width: 80px;
+      margin-top: 2px;
+    }
+    .statute-section-text {
+      flex: 1;
+    }
+    .statute-section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 2px;
+      font-family: var(--sans);
+    }
+    .statute-section-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--mist);
+      line-height: 1.6;
+    }
+    .statute-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--paper-2);
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--amber);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 3px;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--amber-lt); transform: translateY(-1px); }
+    .btn-ghost-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--steel);
+      border: 1px solid var(--paper-3);
+      padding: 10px 20px;
+      border-radius: 3px;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: all 0.15s;
+    }
+    .btn-ghost-sm:hover { border-color: var(--fog); color: var(--ink); }
+
+    /* -- REGULATION SECTION -- */
+    .regs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .reg-card {
+      background: white;
+      border-radius: var(--r);
+      padding: 24px;
+      border: 1px solid var(--paper-3);
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .reg-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--amber);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .reg-card:hover {
+      box-shadow: 0 8px 28px rgba(14,20,25,0.09);
+      transform: translateY(-3px);
+      border-color: var(--fog);
+    }
+    .reg-card:hover::after { transform: scaleX(1); }
+    .reg-card-tag {
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 8px;
+    }
+    .reg-card h3 {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+    .reg-card p {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--mist);
+      line-height: 1.7;
+    }
+    .reg-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-top: 14px;
+      transition: gap 0.15s;
+    }
+    .reg-card-link:hover { gap: 9px; }
+
+    /* -- NOTICE BLOCK -- */
+    .notice-block {
+      background: var(--ink-2);
+      border-radius: var(--r);
+      padding: 28px 32px;
+      margin-top: 32px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .notice-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(200,122,47,0.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .notice-icon svg { color: var(--amber); }
+    .notice-content {}
+    .notice-title {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 8px;
+    }
+    .notice-text {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.75;
+    }
+    .notice-text a { color: rgba(255,255,255,0.6); text-decoration: underline; transition: color 0.15s; }
+    .notice-text a:hover { color: var(--amber-lt); }
+
+    /* -- SIDEBAR -- */
+    .sidebar {}
+    .side-card {
+      background: white;
+      border-radius: var(--r);
+      border: 1px solid var(--paper-3);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .side-card-head {
+      background: var(--ink);
+      padding: 14px 22px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+    .side-card-head span { color: var(--amber); }
+
+    .side-nav-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 22px;
+      font-size: 13.5px;
+      color: var(--steel);
+      border-left: 2px solid transparent;
+      transition: all 0.15s;
+    }
+    .side-nav-link:hover {
+      color: var(--ink);
+      background: var(--paper);
+      border-left-color: var(--amber);
+    }
+    .side-nav-link.active {
+      color: var(--ink);
+      background: var(--paper);
+      border-left-color: var(--amber);
+      font-weight: 500;
+    }
+    .side-nav-link.indent {
+      padding-left: 40px;
+      font-size: 13px;
+      color: var(--mist);
+    }
+    .side-nav-link.indent:hover { color: var(--steel); }
+    .side-nav-divider {
+      height: 1px;
+      background: var(--paper-2);
+      margin: 4px 0;
+    }
+
+    .side-info-block {
+      padding: 20px 22px;
+    }
+    .side-info-block + .side-info-block {
+      border-top: 1px solid var(--paper-2);
+    }
+    .side-info-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mist);
+      margin-bottom: 6px;
+    }
+    .side-info-val {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+    .side-info-val a { color: var(--amber); }
+    .side-info-val a:hover { color: var(--amber-lt); }
+
+    /* Dark sidebar card */
+    .dark-card {
+      background: var(--ink-2);
+      border-radius: var(--r);
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .dark-card-tag {
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 10px;
+    }
+    .dark-card h3 {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.82);
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .dark-card p {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.38);
+      line-height: 1.75;
+      margin-bottom: 18px;
+    }
+    .dark-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      transition: color 0.15s, gap 0.15s;
+    }
+    .dark-card-link:hover { color: var(--amber-lt); gap: 10px; }
+
+    /* Update list in sidebar */
+    .update-list { list-style: none; }
+    .update-item {
+      padding: 14px 22px;
+      border-top: 1px solid var(--paper-2);
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .update-dot {
+      width: 7px; height: 7px;
+      background: var(--amber);
+      border-radius: 50%;
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+    .update-text {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--steel);
+      line-height: 1.6;
+    }
+    .update-date {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--mist);
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    /* -- FOOTER -- */
+    footer { background: var(--ink); margin-top: 0; }
+    .footer-upper {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 64px 40px 48px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-wordmark {
+      font-family: var(--serif);
+      font-size: 22px;
+      color: rgba(255,255,255,0.75);
+      font-weight: 400;
+      margin-bottom: 14px;
+    }
+    .footer-wordmark span { color: var(--amber); }
+    .footer-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.3);
+      line-height: 1.75;
+    }
+    .footer-col-title {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-link { font-size: 13px; color: rgba(255,255,255,0.35); transition: color 0.15s; display: block; }
+    .footer-link:hover { color: var(--amber-lt); }
+    .footer-lower {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.28);
+    }
+
+    /* -- ANIMATIONS -- */
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .rise          { opacity: 0; animation: riseIn 0.7s ease forwards; }
+    .rise-1        { animation-delay: 0.05s; }
+    .rise-2        { animation-delay: 0.15s; }
+    .rise-3        { animation-delay: 0.25s; }
+    .rise-4        { animation-delay: 0.35s; }
+    .rise-5        { animation-delay: 0.45s; }
+
+    /* -- RESPONSIVE -- */
+    @media (max-width: 960px) {
+      .page-hero-inner { grid-template-columns: 1fr; }
+      .page-hero-rule, .hero-stats { display: none; }
+      .page-wrap { grid-template-columns: 1fr; }
+      .footer-upper { grid-template-columns: 1fr 1fr; }
+      .regs-grid { grid-template-columns: 1fr; }
+      .statute-body { padding-left: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <span>University of Kentucky � Markey Cancer Center</span>
+    <div class="topbar-links">
+      <a href="#">SEER Reporting</a>
+      <a href="#">Site Map</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="masthead-inner">
+      <div>
+        <div class="masthead-wordmark"><span>Kentucky</span> Cancer Registry</div>
+        <div class="masthead-sub">Statewide Cancer Surveillance Program</div>
+      </div>
+      <div class="masthead-badge">
+        Established by Statute<br>
+        <strong>KRS Chapter 214</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/about/" class="nav-link">About</a>
+      <a href="reports" class="nav-link">Reports</a>
+      <a href="data-requests.html" class="nav-link">Data Requests</a>
+      <a href="statutes/" class="nav-link active">Statutes</a>
+      <a href="technical.html" class="nav-link">Technical Resources</a>
+      <a href="contact/" class="nav-link">Contact</a>
+    </div>
+  </nav>
+
+  <!-- PARTNER RIBBON -->
+  <div class="ribbon">
+    <div class="ribbon-inner">
+      <span class="ribbon-label">Partners &amp; Affiliates</span>
+      <div class="ribbon-logos">
+        <a href="#">NAACCR</a>
+        <a href="#">CDC NPCR</a>
+        <a href="#">NCI SEER</a>
+        <a href="#">CSTE</a>
+        <a href="#">UK Markey</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="rise rise-1">
+        <div class="hero-eyebrow">Legal Framework</div>
+        <h1>Statutes &amp;<br>Regulations</h1>
+        <p class="page-hero-desc">The Kentucky Cancer Registry operates under the authority of state law. This page documents the enabling statutes, administrative regulations, and related legal authorities that govern cancer reporting and data use in the Commonwealth.</p>
+      </div>
+      <div class="page-hero-rule rise rise-2"></div>
+      <div class="hero-stats rise rise-3">
+        <div class="hero-stat">
+          <div class="hero-stat-num">1990</div>
+          <div class="hero-stat-label">
+            Year Established
+            <span>KCR formally authorized by the Kentucky General Assembly</span>
+          </div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">12</div>
+          <div class="hero-stat-label">
+            Reporting Sections
+            <span>Statutes governing mandatory cancer reporting</span>
+          </div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">900+</div>
+          <div class="hero-stat-label">
+            Reporting Facilities
+            <span>Hospitals, labs &amp; clinicians required to report</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE BODY -->
+  <div class="page-wrap">
+    <!-- MAIN CONTENT -->
+    <main>
+
+      <!-- INTRO -->
+      <div class="rise rise-1">
+        <div class="intro-block">
+          <p>The Kentucky Cancer Registry (KCR) is a population-based cancer surveillance program established and maintained pursuant to the Kentucky Revised Statutes (KRS). All persons, facilities, and organizations required to report under these statutes must comply with reporting requirements outlined therein and in the Kentucky Administrative Regulations (KAR).</p>
+          <p>Failure to report in accordance with these statutes may result in civil penalties. The information reported to KCR is confidential and protected by state law; access is governed by the provisions below and applicable regulations.</p>
+        </div>
+      </div>
+
+      <!-- ENABLING STATUTES -->
+      <section class="rise rise-2">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Primary Authority</div>
+            <h2 class="section-heading">Enabling Statutes</h2>
+          </div>
+          <a href="#" class="section-link">
+            KRS Online
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+          </a>
+        </div>
+
+        <!-- KRS 214.556 -->
+        <div class="statute-card open" onclick="toggleStatute(this)">
+          <div class="statute-header">
+            <div class="statute-badge">
+              <div class="statute-badge-label">KRS</div>
+              <div class="statute-badge-num">214.556</div>
+            </div>
+            <div class="statute-info">
+              <div class="statute-title">
+                <div class="statute-tag">Primary Statute</div>
+                <div class="statute-name">Kentucky Cancer Registry � Establishment &amp; Purpose</div>
+                <div class="statute-chapter">Cancer Reporting � Chapter 214, Public Health</div>
+              </div>
+              <div class="statute-toggle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
+              </div>
+            </div>
+          </div>
+          <div class="statute-body">
+            <p class="statute-body-intro">This is the foundational statute authorizing the Kentucky Cancer Registry as a statewide cancer surveillance program. It establishes the Cabinet for Health and Family Services' authority to collect, analyze, and disseminate cancer incidence data throughout the Commonwealth.</p>
+            <div class="statute-sections">
+              <div class="statute-section-item">
+                <div class="statute-section-code">� (1)</div>
+                <div class="statute-section-text">
+                  <div class="statute-section-title">Establishment of Registry</div>
+                  <div class="statute-section-desc">Directs the Cabinet for Health and Family Services to establish and maintain a statewide cancer registry to collect data on the occurrence of cancer in Kentucky.</div>
+                </div>
+              </div>
+              <div class="statute-section-item">
+                <div class="statute-section-code">� (2)</div>
+                <div class="statute-section-text">
+                  <div class="statute-section-title">Mandatory Reporting Entities</div>
+                  <div class="statute-section-desc">Specifies that hospitals, physicians, laboratories, and other health care providers are required to report cancer diagnoses to KCR as prescribed by administrative regulation.</div>
+                </div>
+              </div>
+              <div class="statute-section-item">
+                <div class="statute-section-code">� (3)</div>
+                <div class="statute-section-text">
+                  <div class="statute-section-title">Confidentiality Protections</div>
+                  <div class="statute-section-desc">Establishes that individual-level cancer data collected by the registry is confidential and not subject to inspection except as authorized by statute or regulation.</div>
+                </div>
+              </div>
+              <div class="statute-section-item">
+                <div class="statute-section-code">� (4)</div>
+                <div class="statute-section-text">
+                  <div class="statute-section-title">Data Use &amp; Research Authorization</div>
+                  <div class="statute-section-desc">Permits use of registry data for statistical analysis, cancer control research, and public health planning under protocols approved by the Cabinet.</div>
+                </div>
+              </div>
+            </div>
+            <div class="statute-actions">
+              <a href="#" class="btn-primary">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+                View Full Text
+              </a>
+              <a href="#" class="btn-ghost-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg>
+                Download PDF
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- KRS 214.558 -->
+        <div class="statute-card" onclick="toggleStatute(this)">
+          <div class="statute-header">
+            <div class="statute-badge">
+              <div class="statute-badge-label">KRS</div>
+              <div class="statute-badge-num">214.558</div>
+            </div>
+            <div class="statute-info">
+              <div class="statute-title">
+                <div class="statute-tag">Reporting Requirements</div>
+                <div class="statute-name">Cancer Reports � Required Submission &amp; Penalties</div>
+                <div class="statute-chapter">Cancer Reporting � Chapter 214, Public Health</div>
+              </div>
+              <div class="statute-toggle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
+              </div>
+            </div>
+          </div>
+          <div class="statute-body">
+            <p class="statute-body-intro">Establishes the specific obligations for reporting entities and provides civil penalty authority for noncompliance. All covered health care facilities must comply within the timeframes established by administrative regulation.</p>
+            <div class="statute-sections">
+              <div class="statute-section-item">
+                <div class="statute-section-code">� (1)</div>
+                <div class="statute-section-text">
+                  <div class="statute-section-title">Reporting Obligation</div>
+                  <div class="statute-section-desc">Any hospital, physician, dentist, osteopath, or other health care provider who diagnoses or treats a reportable cancer shall report that case to the Kentucky Cancer Registry.</div>
+                </div>
+              </div>
+              <div class="statute-section-item">
+                <div class="statute-section-code">� (2)</div>
+                <div class="statute-section-text">
+                  <div class="statute-section-title">Penalty for Noncompliance</div>
+                  <div class="statute-section-desc">Any person or entity that knowingly fails to report as required shall be subject to a civil penalty of not more than $500 per unreported case, as determined by the Cabinet.</div>
+                </div>
+              </div>
+              <div class="statute-section-item">
+                <div class="statute-section-code">� (3)</div>
+                <div class="statute-section-text">
+                  <div class="statute-section-title">Immunity from Liability</div>
+                  <div class="statute-section-desc">Persons who report in good faith to KCR pursuant to this statute shall be immune from civil or criminal liability arising from disclosure of the information.</div>
+                </div>
+              </div>
+            </div>
+            <div class="statute-actions">
+              <a href="#" class="btn-primary">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+                View Full Text
+              </a>
+              <a href="#" class="btn-ghost-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg>
+                Download PDF
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- KRS 214.560 -->
+        <div class="statute-card" onclick="toggleStatute(this)">
+          <div class="statute-header">
+            <div class="statute-badge">
+              <div class="statute-badge-label">KRS</div>
+              <div class="statute-badge-num">214.560</div>
+            </div>
+            <div class="statute-info">
+              <div class="statute-title">
+                <div class="statute-tag">Data Access</div>
+                <div class="statute-name">Registry Data � Confidentiality &amp; Authorized Disclosure</div>
+                <div class="statute-chapter">Cancer Reporting � Chapter 214, Public Health</div>
+              </div>
+              <div class="statute-toggle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
+              </div>
+            </div>
+          </div>
+          <div class="statute-body">
+            <p class="statute-body-intro">Governs the confidentiality of registry data and specifies the limited circumstances under which identifiable cancer data may be disclosed. Research data requests must comply with both this statute and the governing administrative regulations.</p>
+            <div class="statute-sections">
+              <div class="statute-section-item">
+                <div class="statute-section-code">� (1)</div>
+                <div class="statute-section-text">
+                  <div class="statute-section-title">Confidentiality Declaration</div>
+                  <div class="statute-section-desc">All individually identifiable data in the Kentucky Cancer Registry is confidential and exempt from the Open Records Act.</div>
+                </div>
+              </div>
+              <div class="statute-section-item">
+                <div class="statute-section-code">� (2)</div>
+                <div class="statute-section-text">
+                  <div class="statute-section-title">Authorized Disclosures</div>
+                  <div class="statute-section-desc">Data may be disclosed for cancer research purposes approved by an IRB, for public health surveillance activities, and to federal cancer surveillance programs.</div>
+                </div>
+              </div>
+              <div class="statute-section-item">
+                <div class="statute-section-code">� (3)</div>
+                <div class="statute-section-text">
+                  <div class="statute-section-title">Prohibition on Re-disclosure</div>
+                  <div class="statute-section-desc">Recipients of individually identifiable data shall not re-disclose such data except as specifically authorized by the Cabinet and as stipulated in an executed data use agreement.</div>
+                </div>
+              </div>
+            </div>
+            <div class="statute-actions">
+              <a href="#" class="btn-primary">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+                View Full Text
+              </a>
+              <a href="#" class="btn-ghost-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg>
+                Download PDF
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- KRS 214.562 -->
+        <div class="statute-card" onclick="toggleStatute(this)">
+          <div class="statute-header">
+            <div class="statute-badge">
+              <div class="statute-badge-label">KRS</div>
+              <div class="statute-badge-num">214.562</div>
+            </div>
+            <div class="statute-info">
+              <div class="statute-title">
+                <div class="statute-tag">Administration</div>
+                <div class="statute-name">Cabinet Authority � Rules &amp; Regulations</div>
+                <div class="statute-chapter">Cancer Reporting � Chapter 214, Public Health</div>
+              </div>
+              <div class="statute-toggle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
+              </div>
+            </div>
+          </div>
+          <div class="statute-body">
+            <p class="statute-body-intro">Delegates rulemaking authority to the Cabinet for Health and Family Services to promulgate administrative regulations necessary to implement the cancer reporting program, including specific case definitions, reporting timelines, and data content.</p>
+            <div class="statute-sections">
+              <div class="statute-section-item">
+                <div class="statute-section-code">� (1)</div>
+                <div class="statute-section-text">
+                  <div class="statute-section-title">Rulemaking Authority</div>
+                  <div class="statute-section-desc">The Cabinet shall promulgate administrative regulations necessary for implementation of KRS 214.556 to 214.560, including case definitions and reporting procedures.</div>
+                </div>
+              </div>
+              <div class="statute-section-item">
+                <div class="statute-section-code">� (2)</div>
+                <div class="statute-section-text">
+                  <div class="statute-section-title">Reportable Conditions List</div>
+                  <div class="statute-section-desc">The Cabinet shall maintain and update by regulation a list of reportable neoplasms consistent with national standards for cancer surveillance.</div>
+                </div>
+              </div>
+            </div>
+            <div class="statute-actions">
+              <a href="#" class="btn-primary">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+                View Full Text
+              </a>
+              <a href="#" class="btn-ghost-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg>
+                Download PDF
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ADMINISTRATIVE REGULATIONS -->
+      <section class="rise rise-3" style="margin-top: 56px;">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Kentucky Administrative Regulations</div>
+            <h2 class="section-heading">Implementing Regulations</h2>
+          </div>
+          <a href="#" class="section-link">
+            LRC Online
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+          </a>
+        </div>
+
+        <div class="regs-grid">
+          <div class="reg-card">
+            <div class="reg-card-tag">902 KAR 8:010</div>
+            <h3>Cancer Reporting � Definitions and Scope</h3>
+            <p>Defines terms used throughout the cancer reporting regulations and establishes the scope of the Kentucky Cancer Registry program, including covered neoplasms and excluded conditions.</p>
+            <a href="#" class="reg-card-link">
+              View Regulation
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+            </a>
+          </div>
+          <div class="reg-card">
+            <div class="reg-card-tag">902 KAR 8:020</div>
+            <h3>Reporting Procedures &amp; Timelines</h3>
+            <p>Specifies what information must be included in a cancer report, the format for submission, and the deadlines by which covered entities must submit cases to KCR.</p>
+            <a href="#" class="reg-card-link">
+              View Regulation
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+            </a>
+          </div>
+          <div class="reg-card">
+            <div class="reg-card-tag">902 KAR 8:030</div>
+            <h3>Data Release &amp; Research Access</h3>
+            <p>Establishes procedures for requesting access to KCR data for research purposes, including required application materials, IRB documentation, and data use agreement terms.</p>
+            <a href="#" class="reg-card-link">
+              View Regulation
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+            </a>
+          </div>
+          <div class="reg-card">
+            <div class="reg-card-tag">902 KAR 8:040</div>
+            <h3>Electronic Reporting Standards</h3>
+            <p>Governs electronic data submission, including HL7, XML, and flat file formats; required transmission security protocols; and testing requirements for new submitters.</p>
+            <a href="#" class="reg-card-link">
+              View Regulation
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="notice-block">
+          <div class="notice-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4M12 16h.01"></path></svg>
+          </div>
+          <div class="notice-content">
+            <div class="notice-title">Administrative Regulation Updates</div>
+            <p class="notice-text">Kentucky Administrative Regulations are updated periodically. For the most current text of any regulation, visit the <a href="#">Kentucky Legislative Research Commission (LRC) online database</a>. The KCR also maintains a <a href="#">subscriber list</a> for notification of regulatory changes affecting cancer reporting requirements.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- RELATED STATUTES -->
+      <section class="rise rise-4" style="margin-top: 56px;">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Related Legal Authority</div>
+            <h2 class="section-heading">Additional Statutes</h2>
+          </div>
+        </div>
+
+        <div class="statute-card" onclick="toggleStatute(this)">
+          <div class="statute-header">
+            <div class="statute-badge">
+              <div class="statute-badge-label">KRS</div>
+              <div class="statute-badge-num">214.420</div>
+            </div>
+            <div class="statute-info">
+              <div class="statute-title">
+                <div class="statute-tag">Disease Surveillance</div>
+                <div class="statute-name">Reportable Disease Surveillance � General Authority</div>
+                <div class="statute-chapter">Public Health � Chapter 214</div>
+              </div>
+              <div class="statute-toggle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
+              </div>
+            </div>
+          </div>
+          <div class="statute-body">
+            <p class="statute-body-intro">The general disease surveillance statute under which KCR operates in conjunction with the cancer-specific statutes. Establishes broad public health surveillance authority for the Cabinet.</p>
+            <div class="statute-sections">
+              <div class="statute-section-item">
+                <div class="statute-section-code">� (1)</div>
+                <div class="statute-section-text">
+                  <div class="statute-section-title">Surveillance Authority</div>
+                  <div class="statute-section-desc">Authorizes the Cabinet to maintain surveillance of communicable and chronic diseases, including cancer, for the protection of the public health.</div>
+                </div>
+              </div>
+            </div>
+            <div class="statute-actions">
+              <a href="#" class="btn-primary">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+                View Full Text
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="statute-card" onclick="toggleStatute(this)">
+          <div class="statute-header">
+            <div class="statute-badge">
+              <div class="statute-badge-label">KRS</div>
+              <div class="statute-badge-num">61.878</div>
+            </div>
+            <div class="statute-info">
+              <div class="statute-title">
+                <div class="statute-tag">Open Records</div>
+                <div class="statute-name">Open Records Act � Exemptions</div>
+                <div class="statute-chapter">Public Records � Chapter 61</div>
+              </div>
+              <div class="statute-toggle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
+              </div>
+            </div>
+          </div>
+          <div class="statute-body">
+            <p class="statute-body-intro">KRS 61.878(1)(a) exempts from the Open Records Act any record the disclosure of which would constitute a clearly unwarranted invasion of personal privacy. Cancer registry data is specifically protected under the cancer registry statutes and this general privacy exemption.</p>
+            <div class="statute-actions">
+              <a href="#" class="btn-primary">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+                View Full Text
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <!-- ON THIS PAGE NAV -->
+      <div class="side-card rise rise-2">
+        <div class="side-card-head"><span>On</span> This Page</div>
+        <a href="#" class="side-nav-link active">Enabling Statutes</a>
+        <a href="#" class="side-nav-link indent">KRS 214.556 � Establishment</a>
+        <a href="#" class="side-nav-link indent">KRS 214.558 � Reporting</a>
+        <a href="#" class="side-nav-link indent">KRS 214.560 � Confidentiality</a>
+        <a href="#" class="side-nav-link indent">KRS 214.562 � Cabinet Rules</a>
+        <div class="side-nav-divider"></div>
+        <a href="#" class="side-nav-link">Implementing Regulations</a>
+        <a href="#" class="side-nav-link indent">902 KAR 8:010�8:040</a>
+        <div class="side-nav-divider"></div>
+        <a href="#" class="side-nav-link">Additional Statutes</a>
+      </div>
+
+      <!-- QUICK FACTS -->
+      <div class="side-card rise rise-3">
+        <div class="side-card-head">Statute <span>Reference</span></div>
+        <div class="side-info-block">
+          <div class="side-info-label">Governing Chapter</div>
+          <div class="side-info-val">KRS Chapter 214 � Public Health</div>
+        </div>
+        <div class="side-info-block">
+          <div class="side-info-label">Administrative Code</div>
+          <div class="side-info-val">902 KAR 8:010 through 8:040</div>
+        </div>
+        <div class="side-info-block">
+          <div class="side-info-label">Responsible Agency</div>
+          <div class="side-info-val">Cabinet for Health and Family Services � Department for Public Health</div>
+        </div>
+        <div class="side-info-block">
+          <div class="side-info-label">Statute Last Amended</div>
+          <div class="side-info-val">2022 Regular Session</div>
+        </div>
+        <div class="side-info-block">
+          <div class="side-info-label">LRC Reference</div>
+          <div class="side-info-val"><a href="#">apps.legislature.ky.gov</a></div>
+        </div>
+      </div>
+
+      <!-- DATA REQUEST CTA -->
+      <div class="dark-card rise rise-4">
+        <div class="dark-card-tag">Data Access</div>
+        <h3>Research Data Request Process</h3>
+        <p>Researchers seeking access to KCR data must submit a formal data request. All requests are reviewed for compliance with applicable statutes and regulations.</p>
+        <a href="data-requests.html" class="dark-card-link">
+          Start a Request
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+        </a>
+      </div>
+
+      <!-- RECENT UPDATES -->
+      <div class="side-card rise rise-5">
+        <div class="side-card-head">Recent <span>Updates</span></div>
+        <ul class="update-list">
+          <li class="update-item">
+            <div class="update-dot"></div>
+            <div>
+              <div class="update-text">902 KAR 8:030 amended � updated data use agreement requirements for research access</div>
+              <div class="update-date">Oct 2024</div>
+            </div>
+          </li>
+          <li class="update-item">
+            <div class="update-dot"></div>
+            <div>
+              <div class="update-text">KRS 214.558 updated to clarify electronic reporting mandate for facilities with EHR systems</div>
+              <div class="update-date">Apr 2022</div>
+            </div>
+          </li>
+          <li class="update-item">
+            <div class="update-dot"></div>
+            <div>
+              <div class="update-text">902 KAR 8:040 revised to align with NAACCR HL7 2.5.1 submission standards</div>
+              <div class="update-date">Jan 2022</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-upper">
+      <div>
+        <div class="footer-wordmark"><span>Kentucky</span> Cancer Registry</div>
+        <p class="footer-desc">A statewide, population-based cancer surveillance program serving the Commonwealth of Kentucky since 1990. Affiliated with the University of Kentucky Markey Cancer Center.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Resources</div>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">Annual Reports</a></li>
+          <li><a href="#" class="footer-link">Data Requests</a></li>
+          <li><a href="#" class="footer-link">Technical Resources</a></li>
+          <li><a href="#" class="footer-link">Meaningful Use</a></li>
+          <li><a href="#" class="footer-link">Childhood Cancer</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">About</div>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">About KCR</a></li>
+          <li><a href="#" class="footer-link">Staff Directory</a></li>
+          <li><a href="#" class="footer-link">Statutes</a></li>
+          <li><a href="#" class="footer-link">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Partners</div>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">NAACCR</a></li>
+          <li><a href="#" class="footer-link">CDC / NPCR</a></li>
+          <li><a href="#" class="footer-link">NCI SEER Program</a></li>
+          <li><a href="#" class="footer-link">UK Markey Cancer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-lower">
+      <span>� 2025 University of Kentucky � Kentucky Cancer Registry. All rights reserved.</span>
+      <span>Cabinet for Health and Family Services, Commonwealth of Kentucky</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleStatute(card) {
+      // Don't toggle when clicking links inside
+      if (event.target.closest('a, button')) return;
+      card.classList.toggle('open');
+    }
+  </script>
+
+
+
+</body></html>

@@ -1,0 +1,951 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Training — Kentucky Cancer Registry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&amp;display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink:#0e1419; --ink-2:#1b2530; --ink-3:#243040;
+      --steel:#3d5166; --mist:#8da3b8; --fog:#c4d0dc;
+      --paper:#f2ede6; --paper-2:#e8e2d9; --paper-3:#ddd6cb;
+      --amber:#c87a2f; --amber-lt:#e09040; --amber-dim:#8a5420;
+      --white:#ffffff;
+      --serif:'DM Serif Display',Georgia,serif;
+      --sans:'DM Sans',system-ui,sans-serif;
+      --r:6px;
+    }
+    body { font-family:var(--sans); background:var(--paper); color:var(--steel); font-weight:300; font-size:16px; line-height:1.8; }
+    a { text-decoration:none; }
+
+    /* ── CHROME ── */
+    .topbar { background:var(--ink); height:36px; display:flex; align-items:center; padding:0 40px; font-size:11px; letter-spacing:.06em; color:rgba(255,255,255,.3); justify-content:space-between; }
+    .topbar a { color:rgba(255,255,255,.35); transition:color .15s; }
+    .topbar a:hover { color:var(--amber-lt); }
+    .topbar-links { display:flex; gap:24px; }
+    .masthead { background:var(--ink); padding:40px 40px 44px; }
+    .masthead-inner { max-width:1320px; margin:0 auto; display:grid; grid-template-columns:1fr auto; align-items:center; gap:40px; }
+    .masthead-wordmark { font-family:var(--serif); font-size:26px; color:rgba(255,255,255,.85); font-weight:400; line-height:1.1; }
+    .masthead-wordmark span { color:var(--amber); }
+    .masthead-sub { font-size:11px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.3); margin-top:4px; }
+    .masthead-badge { font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.28); text-align:right; line-height:1.6; }
+    .masthead-badge strong { display:block; font-family:var(--serif); font-size:16px; font-weight:400; color:rgba(255,255,255,.55); letter-spacing:0; }
+    nav { background:var(--paper); border-bottom:1px solid var(--paper-3); position:sticky; top:0; z-index:200; }
+    .nav-inner { max-width:1320px; margin:0 auto; padding:0 40px; display:flex; align-items:center; height:48px; gap:2px; }
+    .nav-link { display:flex; align-items:center; padding:0 18px; height:48px; font-size:12.5px; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--steel); border-bottom:2px solid transparent; transition:all .15s; }
+    .nav-link:hover { color:var(--ink); }
+    .nav-link.active { color:var(--ink); border-bottom-color:var(--amber); }
+    .ribbon { background:var(--ink-2); }
+    .ribbon-inner { max-width:1320px; margin:0 auto; padding:0 40px; display:flex; align-items:center; height:64px; gap:16px; }
+    .ribbon-label { font-size:10px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.25); white-space:nowrap; margin-right:8px; }
+    .ribbon-logos { display:flex; align-items:center; gap:32px; }
+    .ribbon-logos a { font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.22); transition:color .2s; }
+    .ribbon-logos a:hover { color:rgba(255,255,255,.55); }
+
+    /* ── HERO ── */
+    .page-hero { background:var(--ink); padding:56px 40px 60px; position:relative; overflow:hidden; }
+    .page-hero::before { content:''; position:absolute; top:-60px; right:-60px; width:500px; height:500px; background:radial-gradient(circle,rgba(200,122,47,.07) 0%,transparent 65%); pointer-events:none; }
+    .page-hero-inner { max-width:1320px; margin:0 auto; display:grid; grid-template-columns:1fr 1px 1fr; gap:64px; align-items:center; }
+    .page-hero-rule { width:1px; height:100%; background:rgba(255,255,255,.07); }
+    .hero-eyebrow { font-size:10.5px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--amber); margin-bottom:14px; }
+    .page-hero h1 { font-family:var(--serif); font-size:clamp(38px,4.5vw,62px); font-weight:400; color:white; line-height:.95; letter-spacing:-.02em; font-style:italic; }
+    .page-hero-desc { font-size:15px; font-weight:300; color:rgba(255,255,255,.42); line-height:1.8; margin-top:20px; }
+    .hero-stats { display:flex; flex-direction:column; }
+    .hero-stat { display:flex; align-items:center; gap:20px; padding:18px 0; border-bottom:1px solid rgba(255,255,255,.06); }
+    .hero-stat:last-child { border-bottom:none; }
+    .hero-stat-num { font-family:var(--serif); font-size:32px; font-weight:400; color:var(--amber); line-height:1; min-width:60px; text-align:right; }
+    .hero-stat-label { font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.5); line-height:1.4; }
+    .hero-stat-label span { display:block; font-size:11.5px; font-weight:300; letter-spacing:0; text-transform:none; color:rgba(255,255,255,.28); margin-top:3px; }
+
+    /* ── PAGE BODY ── */
+    .page-wrap { max-width:1320px; margin:0 auto; padding:72px 40px 80px; display:grid; grid-template-columns:1fr 340px; gap:72px; }
+    .eyebrow { font-size:10.5px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--amber); margin-bottom:10px; }
+    .section-heading { font-family:var(--serif); font-size:26px; font-weight:400; color:var(--ink); letter-spacing:-.01em; line-height:1; margin-top:6px; }
+    .section-header { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:24px; padding-bottom:14px; border-bottom:1px solid var(--paper-3); }
+
+    /* ── TRAINING SESSION CARD ── */
+    .session-block { margin-bottom:12px; }
+    .session-card { background:white; border-radius:var(--r); border:1px solid var(--paper-3); overflow:hidden; transition:all .2s; position:relative; }
+    .session-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:var(--amber); transform:scaleX(0); transform-origin:left; transition:transform .3s; }
+    .session-card:hover { box-shadow:0 8px 28px rgba(14,20,25,.08); border-color:var(--fog); }
+    .session-card:hover::after { transform:scaleX(1); }
+
+    .session-header { display:flex; align-items:stretch; cursor:pointer; user-select:none; }
+    .session-badge { background:var(--ink-2); min-width:80px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:16px 12px; text-align:center; flex-shrink:0; }
+    .session-badge-season { font-size:9px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.3); margin-bottom:4px; }
+    .session-badge-year { font-family:var(--serif); font-size:20px; color:var(--amber); line-height:1; }
+    .session-info { flex:1; padding:16px 22px; display:flex; align-items:center; gap:12px; }
+    .session-title-wrap { flex:1; }
+    .session-tag { font-size:9.5px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--amber); margin-bottom:3px; }
+    .session-name { font-family:var(--serif); font-size:16px; font-weight:400; color:var(--ink); letter-spacing:-.01em; line-height:1.2; }
+    .session-toggle { width:32px; height:32px; display:flex; align-items:center; justify-content:center; color:var(--mist); transition:all .2s; flex-shrink:0; }
+    .session-card.open .session-toggle { transform:rotate(180deg); color:var(--amber); }
+
+    .session-body { display:none; padding:16px 22px 22px 114px; border-top:1px solid var(--paper-2); }
+    .session-card.open .session-body { display:block; }
+    .session-files { display:flex; flex-direction:column; gap:0; }
+    .session-file { display:flex; align-items:center; gap:12px; padding:9px 0; border-bottom:1px solid var(--paper-2); }
+    .session-file:last-child { border-bottom:none; }
+    .sf-icon { width:30px; height:30px; flex-shrink:0; border-radius:5px; display:flex; align-items:center; justify-content:center; }
+    .sf-icon.vid { background:rgba(200,122,47,.1); color:var(--amber); }
+    .sf-icon.pdf { background:rgba(200,122,47,.1); color:var(--amber); }
+    .sf-icon.ppt { background:rgba(42,86,153,.1); color:#3a60a0; }
+    .sf-icon.zip { background:rgba(61,81,102,.1); color:var(--steel); }
+    .sf-icon.doc { background:rgba(42,86,153,.1); color:#3a60a0; }
+    .sf-name { flex:1; font-size:13.5px; font-weight:400; color:var(--ink); line-height:1.3; }
+    .sf-name span { display:block; font-size:11px; font-weight:300; color:var(--mist); margin-top:1px; }
+    .sf-dl { font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--amber); display:flex; align-items:center; gap:4px; flex-shrink:0; transition:gap .12s; }
+    .sf-dl:hover { gap:7px; }
+
+    /* contact notice for locked sessions */
+    .session-contact-notice { padding:14px 16px; background:var(--paper); border-radius:4px; font-size:13px; font-weight:300; color:var(--steel); line-height:1.65; }
+    .session-contact-notice a { color:var(--amber); }
+
+    /* ── SPECIAL CARDS (New Hire, COVID, Shorts) ── */
+    .special-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:8px; }
+    .special-card { background:white; border-radius:var(--r); border:1px solid var(--paper-3); padding:24px 26px; position:relative; overflow:hidden; transition:all .2s; }
+    .special-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:var(--amber); transform:scaleX(0); transform-origin:left; transition:transform .3s; }
+    .special-card:hover { box-shadow:0 8px 28px rgba(14,20,25,.09); transform:translateY(-3px); border-color:var(--fog); }
+    .special-card:hover::after { transform:scaleX(1); }
+    .sc2-tag { font-size:9.5px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--amber); margin-bottom:6px; }
+    .sc2-title { font-family:var(--serif); font-size:16px; font-weight:400; color:var(--ink); letter-spacing:-.01em; margin-bottom:14px; }
+    .sc2-files { display:flex; flex-direction:column; gap:7px; }
+    .sc2-file { display:flex; align-items:center; gap:9px; font-size:13px; font-weight:400; color:var(--ink); transition:color .15s; }
+    .sc2-file:hover { color:var(--amber); }
+    .sc2-file svg { color:var(--mist); flex-shrink:0; }
+    .sc2-sub { font-size:11px; font-weight:300; color:var(--mist); margin-top:1px; }
+
+    /* ── NAACCR WEBINAR TABLE ── */
+    .naaccr-year-block { margin-bottom:8px; }
+    .naaccr-year-block.hidden { display:none; }
+    .nyr-header { display:flex; align-items:center; gap:16px; padding:12px 0 10px; cursor:pointer; user-select:none; border-bottom:1px solid var(--paper-3); }
+    .nyr-header:hover .nyr-label { color:var(--ink); }
+    .nyr-num { font-family:var(--serif); font-size:24px; font-weight:400; color:var(--amber); line-height:1; min-width:52px; }
+    .nyr-label { font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--mist); transition:color .15s; }
+    .nyr-count { margin-left:auto; font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--mist); }
+    .nyr-toggle { color:var(--mist); transition:transform .2s; }
+    .naaccr-year-block.open .nyr-toggle { transform:rotate(180deg); }
+    .nyr-table { display:none; margin-bottom:8px; }
+    .naaccr-year-block.open .nyr-table { display:block; }
+    .nyr-row { display:flex; align-items:center; gap:12px; padding:9px 0; border-bottom:1px solid var(--paper-2); }
+    .nyr-row:last-child { border-bottom:none; }
+    .nyr-date { font-size:11.5px; font-weight:600; color:var(--mist); letter-spacing:.04em; min-width:110px; flex-shrink:0; }
+    .nyr-topic { flex:1; font-size:14px; font-weight:400; color:var(--ink); }
+    .nyr-dl { font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--amber); display:flex; align-items:center; gap:4px; flex-shrink:0; transition:gap .12s; }
+    .nyr-dl:hover { gap:7px; }
+
+    /* year filter */
+    .year-filter { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:24px; }
+    .year-tab { padding:5px 14px; border-radius:3px; cursor:pointer; font-size:11.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; transition:all .15s; border:1px solid var(--paper-3); background:white; color:var(--steel); user-select:none; }
+    .year-tab:hover { border-color:var(--fog); color:var(--ink); }
+    .year-tab.active { background:var(--amber); border-color:var(--amber); color:white; }
+    .year-divider { height:1px; background:var(--paper-3); margin:2px 0; }
+
+    /* ── SIDEBAR ── */
+    .side-card { background:white; border-radius:var(--r); border:1px solid var(--paper-3); overflow:hidden; margin-bottom:20px; }
+    .side-card-head { background:var(--ink); padding:14px 22px; font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.55); }
+    .side-card-head span { color:var(--amber); }
+    .side-nav-link { display:flex; align-items:center; gap:10px; padding:10px 22px; font-size:13.5px; color:var(--steel); border-left:2px solid transparent; transition:all .15s; }
+    .side-nav-link:hover { color:var(--ink); background:var(--paper); border-left-color:var(--amber); }
+    .side-nav-link.active { color:var(--ink); background:var(--paper); border-left-color:var(--amber); font-weight:500; }
+    .side-nav-link.indent { padding-left:40px; font-size:13px; color:var(--mist); }
+    .side-nav-link.indent:hover { color:var(--steel); }
+    .side-nav-divider { height:1px; background:var(--paper-2); margin:4px 0; }
+    .side-info-block { padding:18px 22px; }
+    .side-info-block + .side-info-block { border-top:1px solid var(--paper-2); }
+    .side-info-label { font-size:10px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--mist); margin-bottom:5px; }
+    .side-info-val { font-size:13.5px; font-weight:300; color:var(--steel); line-height:1.6; }
+    .side-info-val a { color:var(--amber); }
+    .side-info-val a:hover { color:var(--amber-lt); }
+    .dark-card { background:var(--ink-2); border-radius:var(--r); padding:24px; margin-bottom:20px; }
+    .dark-card-tag { font-size:9.5px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--amber); margin-bottom:10px; }
+    .dark-card h3 { font-family:var(--serif); font-size:18px; font-weight:400; color:rgba(255,255,255,.82); letter-spacing:-.01em; line-height:1.25; margin-bottom:12px; }
+    .dark-card p { font-size:13px; font-weight:300; color:rgba(255,255,255,.38); line-height:1.75; margin-bottom:18px; }
+    .dark-card-link { display:inline-flex; align-items:center; gap:6px; font-size:11.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.55); transition:color .15s,gap .15s; }
+    .dark-card-link:hover { color:var(--amber-lt); gap:10px; }
+
+    /* toc list in sidebar */
+    .toc-list { list-style:none; }
+    .toc-item { padding:10px 22px; border-top:1px solid var(--paper-2); display:flex; align-items:center; gap:10px; }
+    .toc-item:first-child { border-top:none; }
+    .toc-dot { width:6px; height:6px; border-radius:50%; background:var(--amber); flex-shrink:0; }
+    .toc-link { font-size:13px; font-weight:300; color:var(--steel); transition:color .15s; }
+    .toc-link:hover { color:var(--amber); }
+
+    footer { background:var(--ink); }
+    .footer-upper { max-width:1320px; margin:0 auto; padding:64px 40px 48px; display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:48px; border-bottom:1px solid rgba(255,255,255,.06); }
+    .footer-wordmark { font-family:var(--serif); font-size:22px; color:rgba(255,255,255,.75); font-weight:400; margin-bottom:14px; }
+    .footer-wordmark span { color:var(--amber); }
+    .footer-desc { font-size:13px; font-weight:300; color:rgba(255,255,255,.3); line-height:1.75; }
+    .footer-col-title { font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.3); font-weight:600; margin-bottom:16px; }
+    .footer-links { list-style:none; display:flex; flex-direction:column; gap:10px; }
+    .footer-link { font-size:13px; color:rgba(255,255,255,.35); transition:color .15s; display:block; }
+    .footer-link:hover { color:var(--amber-lt); }
+    .footer-lower { max-width:1320px; margin:0 auto; padding:20px 40px; display:flex; align-items:center; justify-content:space-between; font-size:11.5px; color:rgba(255,255,255,.28); }
+
+    @keyframes riseIn { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+    .rise{opacity:0;animation:riseIn .7s ease forwards}
+    .rise-1{animation-delay:.05s} .rise-2{animation-delay:.15s} .rise-3{animation-delay:.25s} .rise-4{animation-delay:.35s} .rise-5{animation-delay:.45s}
+
+    @media(max-width:960px){
+      .page-hero-inner{grid-template-columns:1fr}
+      .page-hero-rule,.hero-stats{display:none}
+      .page-wrap,.footer-upper,.special-grid{grid-template-columns:1fr}
+      .session-body{padding-left:22px}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <span>University of Kentucky • Markey Cancer Center</span>
+    <div class="topbar-links"><a href="#">SEER Reporting</a><a href="#">Site Map</a><a href="contact/">Contact</a></div>
+  </div>
+
+  <div class="masthead">
+    <div class="masthead-inner">
+      <div>
+        <div class="masthead-wordmark"><span>Kentucky</span> Cancer Registry</div>
+        <div class="masthead-sub">Statewide Cancer Surveillance Program</div>
+      </div>
+      <div class="masthead-badge">Technical Resources<br><strong>Training &amp; Education</strong></div>
+    </div>
+  </div>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="https://redfield-dr.kcr.uky.edu/index.html" class="nav-link">Home</a>
+      <a href="/about/" class="nav-link">About</a>
+      <a href="reports" class="nav-link">Reports</a>
+      <a href="data-requests.html" class="nav-link">Data Requests</a>
+      <a href="statutes/" class="nav-link">Statutes</a>
+      <a href="technical.html" class="nav-link active">Technical Resources</a>
+      <a href="contact/" class="nav-link">Contact</a>
+    </div>
+  </nav>
+
+  <div class="ribbon">
+    <div class="ribbon-inner">
+      <span class="ribbon-label">Partners &amp; Affiliates</span>
+      <div class="ribbon-logos"><a href="#">NAACCR</a><a href="#">CDC NPCR</a><a href="#">NCI SEER</a><a href="#">CSTE</a><a href="#">UK Markey</a></div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="rise rise-1">
+        <div class="hero-eyebrow">Technical Resources</div>
+        <h1>Training &amp;<br>Education</h1>
+        <p class="page-hero-desc">KCR's training library for cancer registrars and abstractors across Kentucky — seasonal workshops, specialty coding videos, CPDMS.net tutorials, and over a decade of archived NAACCR webinars.</p>
+      </div>
+      <div class="page-hero-rule rise rise-2"></div>
+      <div class="hero-stats rise rise-3">
+        <div class="hero-stat">
+          <div class="hero-stat-num">2×</div>
+          <div class="hero-stat-label">Annual KCR Workshops<span>Spring and Fall sessions each year</span></div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">100+</div>
+          <div class="hero-stat-label">NAACCR Webinars<span>Archived from 2014 to present</span></div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">12+</div>
+          <div class="hero-stat-label">Specialty Topics<span>Site-specific, staging, coding, software</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-wrap">
+    <main>
+
+      <!-- ══ KCR WORKSHOPS ══ -->
+      <section class="rise rise-1">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">KCR Seasonal Workshops</div>
+            <h2 class="section-heading">Spring &amp; Fall Training</h2>
+          </div>
+        </div>
+
+        <!-- CPDMS v10 -->
+        <div class="session-block">
+          <div class="session-card open">
+            <div class="session-header" onclick="toggleSession(this.parentElement)">
+              <div class="session-badge"><div class="session-badge-season">Software</div><div class="session-badge-year">v10</div></div>
+              <div class="session-info">
+                <div class="session-title-wrap"><div class="session-tag">Software Update</div><div class="session-name">CPDMS.NET v10.0 Training</div></div>
+                <div class="session-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+              </div>
+            </div>
+            <div class="session-body">
+              <div class="session-files">
+                <div class="session-file"><div class="sf-icon ppt"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></div><div class="sf-name">Training Slides<span>CPDMS v22 Update rev2 · PowerPoint</span></div><a href="cpdms10/CPDMS v22 Update rev2.pptx" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+                <div class="session-file"><div class="sf-icon vid"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div><div class="sf-name">Training Video<span>CPDMS.NET v10.0 full walkthrough · MP4</span></div><a href="cpdms10/CPDMS.NET v10.0 Training.mp4" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spring 2025 -->
+        <div class="session-block">
+          <div class="session-card open">
+            <div class="session-header" onclick="toggleSession(this.parentElement)">
+              <div class="session-badge"><div class="session-badge-season">Spring</div><div class="session-badge-year">2025</div></div>
+              <div class="session-info">
+                <div class="session-title-wrap"><div class="session-tag">KCR Workshop</div><div class="session-name">Spring Training 2025</div></div>
+                <div class="session-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+              </div>
+            </div>
+            <div class="session-body">
+              <div class="session-files">
+                <div class="session-file"><div class="sf-icon zip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></div><div class="sf-name">April's Presentation<span>Spring Training April's Presentation · ZIP</span></div><a href="spring25/Spring Training April's Presentation.zip" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+                <div class="session-file"><div class="sf-icon zip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></div><div class="sf-name">Tracy's Presentation<span>Spring Training Tracy's Presentation · ZIP</span></div><a href="spring25/Spring Training Tracys Presentation.zip" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fall 2024 — contact-gated -->
+        <div class="session-block">
+          <div class="session-card open">
+            <div class="session-header" onclick="toggleSession(this.parentElement)">
+              <div class="session-badge"><div class="session-badge-season">Fall</div><div class="session-badge-year">2024</div></div>
+              <div class="session-info">
+                <div class="session-title-wrap"><div class="session-tag">KCR Workshop</div><div class="session-name">Fall Workshop 2024</div></div>
+                <div class="session-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+              </div>
+            </div>
+            <div class="session-body">
+              <div class="session-contact-notice">
+                Presentations and video for the Fall Workshop 2024 are available on request. Contact <a href="mailto:tracy.sumler@uky.edu">Tracy Sumler</a> for access.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spring 2024 -->
+        <div class="session-block">
+          <div class="session-card">
+            <div class="session-header" onclick="toggleSession(this.parentElement)">
+              <div class="session-badge"><div class="session-badge-season">Spring</div><div class="session-badge-year">2024</div></div>
+              <div class="session-info">
+                <div class="session-title-wrap"><div class="session-tag">KCR Workshop</div><div class="session-name">Spring Training 2024</div></div>
+                <div class="session-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+              </div>
+            </div>
+            <div class="session-body">
+              <div class="session-files">
+                <div class="session-file"><div class="sf-icon zip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></div><div class="sf-name">Handouts / Training Documents<span>Spring 2024 packet · ZIP</span></div><a href="spring24/Spring2024.zip" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+                <div class="session-file"><div class="sf-icon vid"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div><div class="sf-name">V24 Updates<span>MP4 video</span></div><a href="spring24/V24 Updates.mp4" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+                <div class="session-file"><div class="sf-icon vid"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div><div class="sf-name">Coding Grade for Benign Brain Tumors<span>MP4 video</span></div><a href="spring24/Coding Grade for Benign Brain Tumors.mp4" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+                <div class="session-file"><div class="sf-icon vid"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div><div class="sf-name">Bladder Cancer<span>MP4 video</span></div><a href="spring24/Bladder Cancer.mp4" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fall 2023 -->
+        <div class="session-block">
+          <div class="session-card">
+            <div class="session-header" onclick="toggleSession(this.parentElement)">
+              <div class="session-badge"><div class="session-badge-season">Fall</div><div class="session-badge-year">2023</div></div>
+              <div class="session-info">
+                <div class="session-title-wrap"><div class="session-tag">KCR Workshop — 3 Days</div><div class="session-name">Fall Workshop 2023</div></div>
+                <div class="session-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+              </div>
+            </div>
+            <div class="session-body">
+              <div class="session-files">
+                <div class="session-file"><div class="sf-icon vid"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div><div class="sf-name">Fall Workshop 2023 — Day 1<span>MP4 video</span></div><a href="fall23/2023 Fall Workshop Day 1.mp4" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+                <div class="session-file"><div class="sf-icon vid"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div><div class="sf-name">Fall Workshop 2023 — Day 2<span>MP4 video</span></div><a href="fall23/2023 Fall Workshop Day 2.mp4" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+                <div class="session-file"><div class="sf-icon vid"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div><div class="sf-name">Fall Workshop 2023 — Day 3<span>MP4 video</span></div><a href="fall23/2023 Fall Workshop Day 3 .mp4" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spring 2023 -->
+        <div class="session-block">
+          <div class="session-card">
+            <div class="session-header" onclick="toggleSession(this.parentElement)">
+              <div class="session-badge"><div class="session-badge-season">Spring</div><div class="session-badge-year">2023</div></div>
+              <div class="session-info">
+                <div class="session-title-wrap"><div class="session-tag">KCR Workshop</div><div class="session-name">Spring Training 2023</div></div>
+                <div class="session-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+              </div>
+            </div>
+            <div class="session-body">
+              <div class="session-files">
+                <div class="session-file"><div class="sf-icon pdf"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="sf-name">Handouts / Training Documents<span>Spring 2023 packet · PDF</span></div><a href="spring23/Spring training 2023 Packet - Final.pdf" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+                <div class="session-file"><div class="sf-icon vid"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div><div class="sf-name">Spring Training 2023 Video<span>MP4</span></div><a href="spring23/Spring Training 2023.mp4" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fall 2022 -->
+        <div class="session-block">
+          <div class="session-card">
+            <div class="session-header" onclick="toggleSession(this.parentElement)">
+              <div class="session-badge"><div class="session-badge-season">Fall</div><div class="session-badge-year">2022</div></div>
+              <div class="session-info">
+                <div class="session-title-wrap"><div class="session-tag">KCR Workshop — 3 Days</div><div class="session-name">Fall Workshop 2022</div></div>
+                <div class="session-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+              </div>
+            </div>
+            <div class="session-body">
+              <div class="session-files">
+                <div class="session-file"><div class="sf-icon zip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></div><div class="sf-name">Handouts / Training Documents<span>ZIP archive</span></div><a href="fall22/Fall Workshop 2022 Handouts.zip" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+                <div class="session-file"><div class="sf-icon vid"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div><div class="sf-name">Day 1 Recording<span>MP4</span></div><a href="fall22/Fall Workshop 2022 - Day 1 Recording.mp4" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+                <div class="session-file"><div class="sf-icon vid"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div><div class="sf-name">Day 2 Recording<span>MP4</span></div><a href="fall22/Fall Workshop 2022 - Day 2 Recording.mp4" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+                <div class="session-file"><div class="sf-icon vid"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div><div class="sf-name">Day 3 Recording<span>MP4</span></div><a href="fall22/Fall Workshop 2022 - Day 3 Recording.mp4" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spring 2022 -->
+        <div class="session-block">
+          <div class="session-card">
+            <div class="session-header" onclick="toggleSession(this.parentElement)">
+              <div class="session-badge"><div class="session-badge-season">Spring</div><div class="session-badge-year">2022</div></div>
+              <div class="session-info">
+                <div class="session-title-wrap"><div class="session-tag">KCR Workshop</div><div class="session-name">Spring Training 2022</div></div>
+                <div class="session-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+              </div>
+            </div>
+            <div class="session-body">
+              <div class="session-files">
+                <div class="session-file"><div class="sf-icon ppt"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect></svg></div><div class="sf-name">2022 Updates<span>PowerPoint presentation</span></div><a href="spring22/2022 Updates.pptx" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+                <div class="session-file"><div class="sf-icon ppt"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect></svg></div><div class="sf-name">ICD-O 3.2 Updates to Histology Codes and Behavior<span>PowerPoint presentation</span></div><a href="spring22/Spring Training ICD-o-3.2.pptx" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fall 2021 -->
+        <div class="session-block">
+          <div class="session-card">
+            <div class="session-header" onclick="toggleSession(this.parentElement)">
+              <div class="session-badge"><div class="session-badge-season">Fall</div><div class="session-badge-year">2021</div></div>
+              <div class="session-info">
+                <div class="session-title-wrap"><div class="session-tag">KCR Workshop — Webinar Format</div><div class="session-name">Fall Workshop 2021</div></div>
+                <div class="session-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+              </div>
+            </div>
+            <div class="session-body">
+              <div class="session-files">
+                <div class="session-file"><div class="sf-icon zip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></div><div class="sf-name">Slides<span>ZIP archive</span></div><a href="fall21/Fall Workshop 2021 Slides.zip" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+                <div class="session-file"><div class="sf-icon zip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></div><div class="sf-name">Webinar 1 — Nov 17, 2021 (4 recordings)<span>ZIP archive</span></div><a href="fall21/Webinar 1 (4 Recordings)(11-17-2021).zip" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+                <div class="session-file"><div class="sf-icon zip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></div><div class="sf-name">Webinar 2 — Nov 18, 2021 (2 recordings)<span>ZIP archive</span></div><a href="fall21/Webinar 2 (2 Recordings) (11-18-2021).zip" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+                <div class="session-file"><div class="sf-icon zip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></div><div class="sf-name">Webinar 3 — Nov 19, 2021 (2 recordings)<span>ZIP archive</span></div><a href="fall21/Webinar 3 (2 Recordings) (11-19-2021).zip" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spring 2021 + Fall 2020 — compact -->
+        <div class="session-block">
+          <div class="session-card">
+            <div class="session-header" onclick="toggleSession(this.parentElement)">
+              <div class="session-badge"><div class="session-badge-season">Spring</div><div class="session-badge-year">2021</div></div>
+              <div class="session-info">
+                <div class="session-title-wrap"><div class="session-tag">KCR Workshop</div><div class="session-name">Spring Training 2021</div></div>
+                <div class="session-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+              </div>
+            </div>
+            <div class="session-body">
+              <div class="session-files">
+                <div class="session-file"><div class="sf-icon zip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></div><div class="sf-name">Spring Training 2021 Materials<span>ZIP archive</span></div><a href="spring21/Spring Training 2021.zip" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fall 2020 — expanded with all the detail files -->
+        <div class="session-block">
+          <div class="session-card">
+            <div class="session-header" onclick="toggleSession(this.parentElement)">
+              <div class="session-badge"><div class="session-badge-season">Fall</div><div class="session-badge-year">2020</div></div>
+              <div class="session-info">
+                <div class="session-title-wrap"><div class="session-tag">KCR Workshop — Webinar Format</div><div class="session-name">Fall Workshop 2020</div></div>
+                <div class="session-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+              </div>
+            </div>
+            <div class="session-body">
+              <div class="session-files">
+                <div class="session-file"><div class="sf-icon vid"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div><div class="sf-name">Webinar Part 1<span>MP4</span></div><a href="fall20/Fall Workshop 2020 Webinar 1.mp4" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+                <div class="session-file"><div class="sf-icon vid"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div><div class="sf-name">Webinar Part 2<span>MP4</span></div><a href="fall20/Fall Workshop 2020 Webinar 2.mp4" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+                <div class="session-file"><div class="sf-icon vid"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div><div class="sf-name">Webinar Part 3 &amp; 4<span>MP4</span></div><a href="fall20/Fall Workshop 2020 Webinar 3.mp4" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+                <div class="session-file"><div class="sf-icon pdf"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="sf-name">Grade Coding Reference<span>PDF</span></div><a href="fall20/Grade.pdf" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+                <div class="session-file"><div class="sf-icon pdf"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="sf-name">Histology Coding Changes 2021<span>PDF</span></div><a href="fall20/Histology Coding Changes 2021.pdf" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+                <div class="session-file"><div class="sf-icon pdf"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="sf-name">AJCC 2021 Updates<span>PDF</span></div><a href="fall20/AJCC 2021.pdf" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+                <div class="session-file"><div class="sf-icon pdf"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="sf-name">EOD &amp; SS2018<span>PDF — Extent of Disease &amp; Summary Stage 2018</span></div><a href="fall20/Fall Presentation EOD and SS2018.pdf" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+                <div class="session-file"><div class="sf-icon pdf"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="sf-name">Solid Tumor Rules 2021 Updates<span>PDF</span></div><a href="fall20/Fall Workshop Solid Tumor Rules.pdf" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spring 2020 -->
+        <div class="session-block">
+          <div class="session-card">
+            <div class="session-header" onclick="toggleSession(this.parentElement)">
+              <div class="session-badge"><div class="session-badge-season">Spring</div><div class="session-badge-year">2020</div></div>
+              <div class="session-info">
+                <div class="session-title-wrap"><div class="session-tag">KCR Workshop</div><div class="session-name">Spring Training 2020</div></div>
+                <div class="session-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+              </div>
+            </div>
+            <div class="session-body">
+              <div class="session-files">
+                <div class="session-file"><div class="sf-icon vid"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div><div class="sf-name">Spring Training 2020 Video<span>MP4</span></div><a href="spring20/Spring Training 2020.mp4" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+                <div class="session-file"><div class="sf-icon pdf"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="sf-name">Spring Training 2020 Slides<span>PDF</span></div><a href="spring20/Spring Training 2020 Presentation.pdf" class="sf-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ SPECIAL RESOURCES ══ -->
+      <section class="rise rise-2" style="margin-top:56px;">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">On-Demand Resources</div>
+            <h2 class="section-heading">New Hire, Short Topics &amp; Guidance</h2>
+          </div>
+        </div>
+        <div class="special-grid">
+
+          <!-- New Abstractor Training -->
+          <div class="special-card">
+            <div class="sc2-tag">New Abstractors</div>
+            <div class="sc2-title">New Abstractor Training</div>
+            <div class="sc2-files">
+              <a href="newabstractortraining/Abstractor Training Slides.zip" class="sc2-file">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                <div>Training Slides Package<div class="sc2-sub">ZIP archive</div></div>
+              </a>
+            </div>
+          </div>
+
+          <!-- CPDMS for New Hires -->
+          <div class="special-card">
+            <div class="sc2-tag">New Hires</div>
+            <div class="sc2-title">CPDMS.net for New Hires</div>
+            <div class="sc2-files">
+              <a href="cpdms_for_new_users.mp4" class="sc2-file">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+                <div>Video — Recorded by Frances Ross<div class="sc2-sub">MP4 full walkthrough</div></div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Abstracting Shorts -->
+          <div class="special-card">
+            <div class="sc2-tag">Abstracting Shorts</div>
+            <div class="sc2-title">Diagnostic Confirmation Code</div>
+            <div class="sc2-files">
+              <a href="shorts/Diagnostic Confirmation Code Presentation.mp4" class="sc2-file">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+                <div>Presentation Video<div class="sc2-sub">MP4</div></div>
+              </a>
+              <a href="shorts/Diagnostic Confirmation Code - Flow Sheets.pdf" class="sc2-file">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                <div>Flow Sheets<div class="sc2-sub">PDF reference</div></div>
+              </a>
+              <a href="shorts/Diagnostic Confirmation Code Presentation.pdf" class="sc2-file">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                <div>Slides<div class="sc2-sub">PDF</div></div>
+              </a>
+            </div>
+          </div>
+
+          <!-- COVID-19 Guidance -->
+          <div class="special-card">
+            <div class="sc2-tag">COVID-19 Guidance</div>
+            <div class="sc2-title">COVID-19 Abstraction Guidance</div>
+            <div class="sc2-files">
+              <a href="covid/COVID19 Abstraction Guidance Webinar.mp4" class="sc2-file">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+                <div>Guidance Webinar<div class="sc2-sub">MP4</div></div>
+              </a>
+              <a href="covid/COVID-19 Coding Guidelines Slides.pptx" class="sc2-file">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect></svg>
+                <div>Coding Guidelines Slides<div class="sc2-sub">PowerPoint</div></div>
+              </a>
+              <a href="covid/Q&amp;A COVID 19 6-29-2020 .docx" class="sc2-file">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                <div>Q&amp;A Document<div class="sc2-sub">Word — June 29, 2020</div></div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ══ NAACCR WEBINARS ══ -->
+      <section class="rise rise-3" style="margin-top:56px;">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">2014–2025 NAACCR Webinar Archive</div>
+            <h2 class="section-heading">NAACCR Webinars</h2>
+          </div>
+        </div>
+
+        <p style="font-size:14px;font-weight:300;color:var(--mist);margin-bottom:6px;line-height:1.75;">Monthly webinars covering site-specific coding, SEER standards, staging, and registry operations. Contact <a href="mailto:webmaster@kcr.uky.edu" style="color:var(--amber)">KCR Tech Support</a> if you have trouble accessing any file.</p>
+
+        <div class="year-filter" id="naaccrFilter">
+          <div class="year-tab active" data-year="all" onclick="filterNaaccr(this,'all')">All Years</div>
+          <div class="year-tab" data-year="2025" onclick="filterNaaccr(this,'2025')">2025</div>
+          <div class="year-tab" data-year="2024" onclick="filterNaaccr(this,'2024')">2024</div>
+          <div class="year-tab" data-year="2023" onclick="filterNaaccr(this,'2023')">2023</div>
+          <div class="year-tab" data-year="2022" onclick="filterNaaccr(this,'2022')">2022</div>
+          <div class="year-tab" data-year="2021" onclick="filterNaaccr(this,'2021')">2021</div>
+          <div class="year-tab" data-year="2020" onclick="filterNaaccr(this,'2020')">2020</div>
+          <div class="year-tab" data-year="2019" onclick="filterNaaccr(this,'2019')">2019</div>
+          <div class="year-tab" data-year="2018" onclick="filterNaaccr(this,'2018')">2018</div>
+          <div class="year-tab" data-year="2017" onclick="filterNaaccr(this,'2017')">2017</div>
+          <div class="year-tab" data-year="2016" onclick="filterNaaccr(this,'2016')">2016</div>
+          <div class="year-tab" data-year="2015" onclick="filterNaaccr(this,'2015')">2015</div>
+          <div class="year-tab" data-year="2014" onclick="filterNaaccr(this,'2014')">2014</div>
+        </div>
+
+        <div id="naaccrList">
+          <!-- Helper macro: each year block -->
+
+          <!-- 2025 -->
+          <div class="naaccr-year-block open" data-year="2025">
+            <div class="nyr-header" onclick="toggleNaaccr(this.parentElement)">
+              <div class="nyr-num">2025</div>
+              <div class="nyr-label">9 Webinars</div>
+              <div class="nyr-count"></div>
+              <div class="nyr-toggle"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="nyr-table">
+              <div class="nyr-row"><div class="nyr-date">Sep 2025</div><div class="nyr-topic">Coding Pitfalls 2025</div><a href="files/september_2025.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Aug 2025</div><div class="nyr-topic">Solid Tumor Rules 2025</div><a href="files/august_2025.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Jul 2025</div><div class="nyr-topic">Leveraging Technology to Improve Efficiency in Hospital Based Cancer Registries</div><a href="files/July 2025 - Leveraging Technology to Improve Efficiency in Hospital Based Cancer Registries.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Jun 2025</div><div class="nyr-topic">Uterus</div><a href="files/June 2025 - Uterus 2025.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">May 2025</div><div class="nyr-topic">Prostate</div><a href="files/Prostate May 2025.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Apr 2025</div><div class="nyr-topic">Treatment</div><a href="files/April 2025 Treatment.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Mar 2025</div><div class="nyr-topic">Boot Camp 2025</div><a href="files/March 2025 - Boot Camp 2025.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Feb 2025</div><div class="nyr-topic">Hematopoietic Part 2</div><a href="files/February 2025 - Hematopoietic 2024_2025 Part 2.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Jan 2025</div><div class="nyr-topic">Hematopoietic Part 1</div><a href="files/January 2025 - Hematopoietic 2024_2025 Part 1.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2024 -->
+          <div class="naaccr-year-block" data-year="2024">
+            <div class="nyr-header" onclick="toggleNaaccr(this.parentElement)">
+              <div class="nyr-num">2024</div><div class="nyr-label">12 Webinars</div><div class="nyr-count"></div>
+              <div class="nyr-toggle"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="nyr-table">
+              <div class="nyr-row"><div class="nyr-date">Dec 2024</div><div class="nyr-topic">Unusual Sites</div><a href="files/December 2024 - Unusual Sites.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Nov 2024</div><div class="nyr-topic">Bladder</div><a href="files/November 2024 - Bladder 2024.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Oct 2024</div><div class="nyr-topic">Larynx &amp; Base of Tongue</div><a href="files/October 2024 - Larynx &amp; Base of Tongue.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Sep 2024</div><div class="nyr-topic">Coding Pitfalls 2024</div><a href="files/September 2024 - Coding Pitfalls 2024.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Aug 2024</div><div class="nyr-topic">CNS</div><a href="files/August 2024 -CNS 2024.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Jul 2024</div><div class="nyr-topic">Life in a CoC Accredited Facility</div><a href="files/July 2024 - Life in a CoC Accredited Facility.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Jun 2024</div><div class="nyr-topic">Thyroid</div><a href="files/June 2024 - Thyroid 2024.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">May 2024</div><div class="nyr-topic">Ovary</div><a href="files/NAACCR Webinar - Ovary 2024.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Apr 2024</div><div class="nyr-topic">Boot Camp 2</div><a href="files/NAACCR Webinar - Boot Camp 2 - April 2024.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Mar 2024</div><div class="nyr-topic">Boot Camp 1</div><a href="files/NAACCR Webinar - Boot Camp 1 - March 2024.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Feb 2024</div><div class="nyr-topic">Pancreas</div><a href="files/NAACCR Webinar - Pancreas - February 2024.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Jan 2024</div><div class="nyr-topic">Liver and Bile Duct</div><a href="files/NAACCR Webinar - Liver and Bile Duct - January 2024.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2023 -->
+          <div class="naaccr-year-block" data-year="2023">
+            <div class="nyr-header" onclick="toggleNaaccr(this.parentElement)">
+              <div class="nyr-num">2023</div><div class="nyr-label">12 Webinars</div><div class="nyr-count"></div>
+              <div class="nyr-toggle"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="nyr-table">
+              <div class="nyr-row"><div class="nyr-date">Dec 2023</div><div class="nyr-topic">Radiology and Radiation</div><a href="files/NAACCR Webinar - Radiology and Radiation - December 2023.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Nov 2023</div><div class="nyr-topic">Lung Part 2</div><a href="files/NAACCR Webinar - Lung Part 2 - November 2023.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Oct 2023</div><div class="nyr-topic">Lung Part 1</div><a href="files/NAACCR Webinar - Lung Part 1 - October 2023.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Sep 2023</div><div class="nyr-topic">Pitfalls</div><a href="files/NAACCR Webinar - September 2023 - Pitfalls.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Aug 2023</div><div class="nyr-topic">Melanoma</div><a href="files/NAACCR Webinar - August 2023 - Melanoma.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Jul 2023</div><div class="nyr-topic">IT for Cancer Registries</div><a href="files/NAACCR Webinar - July 2023 - IT for Cancer Registies.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Jun 2023</div><div class="nyr-topic">Lower GI Part 2</div><a href="files/NAACCR Webinar - June 2023 - Lower GI Part 2.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2HTML&lt;/svg&gt;&lt;/a&gt;&lt;/div&gt;
+              &lt;div class=" nyr-row"=""></path></svg><div class="nyr-date">May 2023</div><div class="nyr-topic">Lower GI Part 1</div></a><a href="files/NAACCR Webinar - May 2023 - Lower GI Part 1.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Apr 2023</div><div class="nyr-topic">Prostate</div><a href="files/NAACCR Webinar - April 2023 - Prostate.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Mar 2023</div><div class="nyr-topic">Boot Camp</div><a href="files/NAACCR Webinar - March 2023 - Boot Camp.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Feb 2023</div><div class="nyr-topic">Data Item Relationship</div><a href="files/NAACCR Webinar - February 2023 - Data Item Relationship.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Jan 2023</div><div class="nyr-topic">Head and Neck</div><a href="files/NAACCR Webinar - January 2023 - Head and Neck.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2022 -->
+          <div class="naaccr-year-block" data-year="2022">
+            <div class="nyr-header" onclick="toggleNaaccr(this.parentElement)">
+              <div class="nyr-num">2022</div><div class="nyr-label">11 Webinars</div><div class="nyr-count"></div>
+              <div class="nyr-toggle"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="nyr-table">
+              <div class="nyr-row"><div class="nyr-date">Dec 2022</div><div class="nyr-topic">Esophagus</div><a href="files/NAACCR Webinar - December 2022 - Esophagus.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Nov 2022</div><div class="nyr-topic">Breast Part 2</div><a href="files/NAACCR Webinar - November 2022 - Breast Part 2.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Oct 2022</div><div class="nyr-topic">Breast Part 1</div><a href="files/NAACCR Webinar - October 2022 - Breast Part 1.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Sep 2022</div><div class="nyr-topic">Coding Pitfalls</div><a href="files/NAACCR Webinar - September 2022 - Coding Pitfalls.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Jul 2022</div><div class="nyr-topic">Back to the Future CoC</div><a href="files/NAACCR Webinar - Back to the Future CoC July 2022.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Jun 2022</div><div class="nyr-topic">CNS</div><a href="files/NAACCR Webinar - CNS June 2022.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">May 2022</div><div class="nyr-topic">Colon</div><a href="files/NAACCR Webinar - Colon May 2022.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Apr 2022</div><div class="nyr-topic">Hematopoietic and Lymphocytic Neoplasms</div><a href="files/NAACCR Webinar - Hematopoietic and Lymphocytic Neoplasms April 2022.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Mar 2022</div><div class="nyr-topic">Boot Camp</div><a href="files/NAACCR Webinar - Boot Camp March 2022.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Feb 2022</div><div class="nyr-topic">Data Item Relationships</div><a href="files/NAACCR Webinar - Data Item Relationships February 2022.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Jan 2022</div><div class="nyr-topic">Lung</div><a href="files/NAACCR Webinar - Lung Janurary 2022.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2021 -->
+          <div class="naaccr-year-block" data-year="2021">
+            <div class="nyr-header" onclick="toggleNaaccr(this.parentElement)">
+              <div class="nyr-num">2021</div><div class="nyr-label">12 Webinars</div><div class="nyr-count"></div>
+              <div class="nyr-toggle"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="nyr-table">
+              <div class="nyr-row"><div class="nyr-date">Dec 2021</div><div class="nyr-topic">Treatment</div><a href="files/NAACCR Webinar - Treatment December 2021.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Nov 2021</div><div class="nyr-topic">Bladder</div><a href="files/NAACCR Webinar - Bladder November 2021.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Oct 2021</div><div class="nyr-topic">Uterus</div><a href="files/NAACCR Webinar - Uterus October 2021.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Sep 2021</div><div class="nyr-topic">Coding Pitfalls</div><a href="files/NAACCR Webinar - Coding Pitfalls September 2021.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Aug 2021</div><div class="nyr-topic">Breast</div><a href="files/NAACCR Webinar - Breast August 2021.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Jul 2021</div><div class="nyr-topic">CoC Accreditation</div><a href="files/NAACCR Webinar - CoC Accreditation July 2021.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Jun 2021</div><div class="nyr-topic">Kidney</div><a href="files/NAACCR Webinar - Kidney June 2021.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">May 2021</div><div class="nyr-topic">Pancreas</div><a href="files/NAACCR Webinar - Pancreas May 2021.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Apr 2021</div><div class="nyr-topic">Larynx</div><a href="files/NAACCR Webinar - Larynx April 2021.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Mar 2021</div><div class="nyr-topic">Boot Camp</div><a href="files/NAACCR Webinar - Boot Camp March 2021.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Feb 2021</div><div class="nyr-topic">Lymphoma</div><a href="files/NAACCR Webinar - Lymphoma February 2021.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Jan 2021</div><div class="nyr-topic">Treatment</div><a href="files/NAACCR Webinar - Treatment January 2021.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2020 -->
+          <div class="naaccr-year-block" data-year="2020">
+            <div class="nyr-header" onclick="toggleNaaccr(this.parentElement)">
+              <div class="nyr-num">2020</div><div class="nyr-label">12 Webinars</div><div class="nyr-count"></div>
+              <div class="nyr-toggle"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="nyr-table">
+              <div class="nyr-row"><div class="nyr-date">Dec 2020</div><div class="nyr-topic">Thyroid</div><a href="files/NAACCR Webinar - Thyroid December 2020.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Nov 2020</div><div class="nyr-topic">Lung</div><a href="files/NAACCR Webinar - Lung November 2020.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Oct 2020</div><div class="nyr-topic">Prostate</div><a href="files/NAACCR Webinar - Prostate October 2020.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Sep 2020</div><div class="nyr-topic">Coding Pitfalls</div><a href="files/NAACCR Webinar - Coding Pitfalls September 2020.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Aug 2020</div><div class="nyr-topic">Corpus Uteri</div><a href="files/NAACCR Webinar - Corpus Uteri August 2020.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Jul 2020</div><div class="nyr-topic">Navigating the 2020 SAR</div><a href="files/NAACCR Webinar - Navigating the 2020 SAR July 2020.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Jun 2020</div><div class="nyr-topic">Esophagus</div><a href="files/NAACCR Webinar - Esophagus June 2020.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">May 2020</div><div class="nyr-topic">CNS</div><a href="files/NAACCR Webinar - CNS May 2020.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Apr 2020</div><div class="nyr-topic">Melanoma</div><a href="files/NAACCR Webinar - Melanoma April 2020.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Mar 2020</div><div class="nyr-topic">Boot Camp</div><a href="files/NAACCR Webinar - Boot Camp March 2020.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Feb 2020</div><div class="nyr-topic">SSDIs 2020</div><a href="files/NAACCR Webinar - SSDI's 2020.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Jan 2020</div><div class="nyr-topic">Prostate</div><a href="files/NAACCR Webinar Prostate 2020.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2019 -->
+          <div class="naaccr-year-block" data-year="2019">
+            <div class="nyr-header" onclick="toggleNaaccr(this.parentElement)">
+              <div class="nyr-num">2019</div><div class="nyr-label">7 Webinars</div><div class="nyr-count"></div>
+              <div class="nyr-toggle"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="nyr-table">
+              <div class="nyr-row"><div class="nyr-date">Dec 2019</div><div class="nyr-topic">Bladder</div><a href="files/NAACCR Bladder 2019.7z" class="nyr-dl">7z <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Oct 2019</div><div class="nyr-topic">Breast</div><a href="files/NAACCR Breast Webinar.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Sep 2019</div><div class="nyr-topic">Coding Pitfalls</div><a href="files/Coding Pitfalls 2019.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Jul 2019</div><div class="nyr-topic">Ovary</div><a href="files/Ovary2.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">May 2019</div><div class="nyr-topic">Neuroendocrine Tumors</div><a href="files/Neuroendocrine Tumors.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Mar 2019</div><div class="nyr-topic">Boot Camp</div><a href="files/Boot Camp6.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Feb 2019</div><div class="nyr-topic">Colon</div><a href="files/Colon.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2018 -->
+          <div class="naaccr-year-block" data-year="2018">
+            <div class="nyr-header" onclick="toggleNaaccr(this.parentElement)">
+              <div class="nyr-num">2018</div><div class="nyr-label">6 Webinars</div><div class="nyr-count"></div>
+              <div class="nyr-toggle"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="nyr-table">
+              <div class="nyr-row"><div class="nyr-date">Dec 2018</div><div class="nyr-topic">Breast</div><a href="files/Breast.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Oct 2018</div><div class="nyr-topic">Lung</div><a href="files/Lung2018.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Aug 2018</div><div class="nyr-topic">Managing Change with Tracking Tools</div><a href="files/Managing Change with Tracking Tools.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">May 2018</div><div class="nyr-topic">Directly Coded Stage</div><a href="files/DirectlyCodedStage.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Mar 2018</div><div class="nyr-topic">Boot Camp</div><a href="files/Boot Camp5.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Feb 2018</div><div class="nyr-topic">Stomach and Esophagus</div><a href="files/Stomach and Esophagus.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2017 -->
+          <div class="naaccr-year-block" data-year="2017">
+            <div class="nyr-header" onclick="toggleNaaccr(this.parentElement)">
+              <div class="nyr-num">2017</div><div class="nyr-label">5 Webinars</div><div class="nyr-count"></div>
+              <div class="nyr-toggle"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="nyr-table">
+              <div class="nyr-row"><div class="nyr-date">Dec 2017</div><div class="nyr-topic">Uterus</div><a href="files/Uterus.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Sep 2017</div><div class="nyr-topic">Coding Pitfalls 2017</div><a href="files/Coding Pitfalls 2017.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Jun 2017</div><div class="nyr-topic">Liver and Bile Ducts</div><a href="files/Liver BD.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Mar 2017</div><div class="nyr-topic">Boot Camp</div><a href="files/Boot Camp4.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Jan 2017</div><div class="nyr-topic">AJCC Staging</div><a href="files/AJCC Staging.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2016 -->
+          <div class="naaccr-year-block" data-year="2016">
+            <div class="nyr-header" onclick="toggleNaaccr(this.parentElement)">
+              <div class="nyr-num">2016</div><div class="nyr-label">4 Webinars</div><div class="nyr-count"></div>
+              <div class="nyr-toggle"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="nyr-table">
+              <div class="nyr-row"><div class="nyr-date">Sep 2016</div><div class="nyr-topic">Coding Pitfalls</div><a href="files/Coding Pitfalls.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">May 2016</div><div class="nyr-topic">Collecting Cancer Data: Kidney</div><a href="files/Kidney.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Apr 2016</div><div class="nyr-topic">Collecting Cancer Data: Ovary</div><a href="files/Ovary.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Mar 2016</div><div class="nyr-topic">Abstracting and Coding Boot Camp</div><a href="files/Boot Camp3.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2015 -->
+          <div class="naaccr-year-block" data-year="2015">
+            <div class="nyr-header" onclick="toggleNaaccr(this.parentElement)">
+              <div class="nyr-num">2015</div><div class="nyr-label">2 Webinars</div><div class="nyr-count"></div>
+              <div class="nyr-toggle"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="nyr-table">
+              <div class="nyr-row"><div class="nyr-date">Dec 2015</div><div class="nyr-topic">Directly Coded Cancer Stage 2015</div><a href="files/DirectlyCoded.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Mar 2015</div><div class="nyr-topic">Abstracting and Coding Boot Camp</div><a href="files/Boot Camp2.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2014 -->
+          <div class="naaccr-year-block" data-year="2014">
+            <div class="nyr-header" onclick="toggleNaaccr(this.parentElement)">
+              <div class="nyr-num">2014</div><div class="nyr-label">6 Webinars</div><div class="nyr-count"></div>
+              <div class="nyr-toggle"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="nyr-table">
+              <div class="nyr-row"><div class="nyr-date">Nov 2014</div><div class="nyr-topic">Hematopoietic and Lymphoid Neoplasms</div><a href="files/Heme.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Oct 2014</div><div class="nyr-topic">Staging</div><a href="files/Staging.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Aug 2014</div><div class="nyr-topic">Lung</div><a href="files/Lung.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Apr 2014</div><div class="nyr-topic">Melanoma</div><a href="files/Melanoma.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Mar 2014</div><div class="nyr-topic">Boot Camp</div><a href="files/Boot Camp.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="nyr-row"><div class="nyr-date">Feb 2014</div><div class="nyr-topic">Treatment</div><a href="files/Treatment.zip" class="nyr-dl">ZIP <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <aside>
+      <div class="side-card rise rise-2">
+        <div class="side-card-head"><span>On</span> This Page</div>
+        <ul class="toc-list">
+          <li class="toc-item"><div class="toc-dot"></div><a href="#" class="toc-link">KCR Seasonal Workshops</a></li>
+          <li class="toc-item"><div class="toc-dot"></div><a href="#" class="toc-link">New Hire &amp; Special Resources</a></li>
+          <li class="toc-item"><div class="toc-dot"></div><a href="#" class="toc-link">NAACCR Webinar Archive</a></li>
+        </ul>
+      </div>
+
+      <div class="side-card rise rise-3">
+        <div class="side-card-head">Technical <span>Resources</span></div>
+        <a href="technical.html" class="side-nav-link">Overview</a>
+        <div class="side-nav-divider"></div>
+        <a href="software.html" class="side-nav-link">Software</a>
+        <a href="intheabstract.html" class="side-nav-link">In the Abstract</a>
+        <a href="manuals.html" class="side-nav-link">KCR Manuals Online</a>
+        <a href="support.html" class="side-nav-link">Tech Support / Updates</a>
+        <a href="training.html" class="side-nav-link active">Training</a>
+        <div class="side-nav-divider"></div>
+        <a href="mu.html" class="side-nav-link">Meaningful Use Stage 2</a>
+        <a href="mu3.html" class="side-nav-link">Meaningful Use Stage 3</a>
+      </div>
+
+      <div class="dark-card rise rise-4">
+        <div class="dark-card-tag">Access Questions</div>
+        <h3>Trouble Accessing a File?</h3>
+        <p>Contact KCR Tech Support if you are having problems downloading or opening any training file or NAACCR webinar recording.</p>
+        <a href="mailto:webmaster@kcr.uky.edu" class="dark-card-link">
+          Email Support
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+        </a>
+      </div>
+
+      <div class="side-card rise rise-5">
+        <div class="side-card-head">Training <span>Stats</span></div>
+        <div class="side-info-block">
+          <div class="side-info-label">KCR Workshops</div>
+          <div class="side-info-val">Spring &amp; Fall each year, 2020–present</div>
+        </div>
+        <div class="side-info-block">
+          <div class="side-info-label">NAACCR Webinars</div>
+          <div class="side-info-val">Monthly, archived 2014–present</div>
+        </div>
+        <div class="side-info-block">
+          <div class="side-info-label">File Formats</div>
+          <div class="side-info-val">MP4 video, PDF, PowerPoint, ZIP archives</div>
+        </div>
+        <div class="side-info-block">
+          <div class="side-info-label">Fall 2024 Workshop</div>
+          <div class="side-info-val">Contact <a href="mailto:tracy.sumler@uky.edu">Tracy Sumler</a> for access</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    <div class="footer-upper">
+      <div>
+        <div class="footer-wordmark"><span>Kentucky</span> Cancer Registry</div>
+        <p class="footer-desc">A statewide, population-based cancer surveillance program serving the Commonwealth of Kentucky since 1990. Affiliated with the University of Kentucky Markey Cancer Center.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Resources</div>
+        <ul class="footer-links"><li><a href="#" class="footer-link">Annual Reports</a></li><li><a href="#" class="footer-link">Data Requests</a></li><li><a href="#" class="footer-link">Technical Resources</a></li><li><a href="#" class="footer-link">Meaningful Use</a></li></ul>
+      </div>
+      <div>
+        <div class="footer-col-title">About</div>
+        <ul class="footer-links"><li><a href="#" class="footer-link">About KCR</a></li><li><a href="#" class="footer-link">Staff Directory</a></li><li><a href="#" class="footer-link">Statutes</a></li><li><a href="#" class="footer-link">Contact</a></li></ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Partners</div>
+        <ul class="footer-links"><li><a href="#" class="footer-link">NAACCR</a></li><li><a href="#" class="footer-link">CDC / NPCR</a></li><li><a href="#" class="footer-link">NCI SEER</a></li><li><a href="#" class="footer-link">UK Markey</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-lower">
+      <span>© 2025 University of Kentucky — Kentucky Cancer Registry. All rights reserved.</span>
+      <span>Last updated: September 4, 2025</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleSession(card) {
+      if (event.target.closest('a')) return;
+      card.classList.toggle('open');
+    }
+    function toggleNaaccr(block) {
+      block.classList.toggle('open');
+    }
+    function filterNaaccr(tab, year) {
+      document.querySelectorAll('#naaccrFilter .year-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelectorAll('#naaccrList .naaccr-year-block').forEach(block => {
+        const show = year === 'all' || block.dataset.year === year;
+        block.classList.toggle('hidden', !show);
+        if (show && year !== 'all') block.classList.add('open');
+      });
+      document.querySelectorAll('#naaccrList .year-divider').forEach(div => {
+        const prev = div.previousElementSibling;
+        div.style.display = prev && prev.classList.contains('hidden') ? 'none' : '';
+      });
+    }
+  </script>
+
+
+
+</body></html>

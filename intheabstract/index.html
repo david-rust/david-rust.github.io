@@ -1,0 +1,1210 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>In the Abstract — Kentucky Cancer Registry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&amp;display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #0e1419;
+      --ink-2:     #1b2530;
+      --ink-3:     #243040;
+      --steel:     #3d5166;
+      --mist:      #8da3b8;
+      --fog:       #c4d0dc;
+      --paper:     #f2ede6;
+      --paper-2:   #e8e2d9;
+      --paper-3:   #ddd6cb;
+      --amber:     #c87a2f;
+      --amber-lt:  #e09040;
+      --amber-dim: #8a5420;
+      --white:     #ffffff;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+      --r: 6px;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--steel);
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+    a { text-decoration: none; }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background: var(--ink); height: 36px;
+      display: flex; align-items: center; padding: 0 40px;
+      font-size: 11px; letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.3); justify-content: space-between;
+    }
+    .topbar a { color: rgba(255,255,255,0.35); transition: color 0.15s; }
+    .topbar a:hover { color: var(--amber-lt); }
+    .topbar-links { display: flex; gap: 24px; }
+
+    /* ── MASTHEAD ── */
+    .masthead { background: var(--ink); padding: 40px 40px 44px; }
+    .masthead-inner {
+      max-width: 1320px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr auto;
+      align-items: center; gap: 40px;
+    }
+    .masthead-wordmark {
+      font-family: var(--serif); font-size: 26px;
+      color: rgba(255,255,255,0.85); font-weight: 400; line-height: 1.1;
+    }
+    .masthead-wordmark span { color: var(--amber); }
+    .masthead-sub {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: rgba(255,255,255,0.3); margin-top: 4px;
+    }
+    .masthead-badge {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.28);
+      text-align: right; line-height: 1.6;
+    }
+    .masthead-badge strong {
+      display: block; font-family: var(--serif); font-size: 16px; font-weight: 400;
+      color: rgba(255,255,255,0.55); letter-spacing: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--paper); border-bottom: 1px solid var(--paper-3);
+      position: sticky; top: 0; z-index: 200;
+    }
+    .nav-inner {
+      max-width: 1320px; margin: 0 auto; padding: 0 40px;
+      display: flex; align-items: center; height: 48px; gap: 2px;
+    }
+    .nav-link {
+      display: flex; align-items: center; padding: 0 18px; height: 48px;
+      font-size: 12.5px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--steel); border-bottom: 2px solid transparent; transition: all 0.15s;
+    }
+    .nav-link:hover { color: var(--ink); }
+    .nav-link.active { color: var(--ink); border-bottom-color: var(--amber); }
+
+    /* ── RIBBON ── */
+    .ribbon { background: var(--ink-2); }
+    .ribbon-inner {
+      max-width: 1320px; margin: 0 auto; padding: 0 40px;
+      display: flex; align-items: center; height: 64px; gap: 16px;
+    }
+    .ribbon-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.22em;
+      text-transform: uppercase; color: rgba(255,255,255,0.25); white-space: nowrap; margin-right: 8px;
+    }
+    .ribbon-logos { display: flex; align-items: center; gap: 32px; }
+    .ribbon-logos a {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.22); transition: color 0.2s;
+    }
+    .ribbon-logos a:hover { color: rgba(255,255,255,0.55); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      background: var(--ink); padding: 56px 40px 60px;
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; top: -60px; right: -60px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(200,122,47,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    /* Decorative large ampersand */
+    .page-hero::after {
+      content: '"';
+      font-family: var(--serif); font-size: 320px; font-style: italic;
+      color: rgba(255,255,255,0.025);
+      position: absolute; right: 80px; top: -40px;
+      line-height: 1; pointer-events: none; user-select: none;
+    }
+    .page-hero-inner {
+      max-width: 1320px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1px 1fr;
+      gap: 64px; align-items: center;
+    }
+    .page-hero-rule { width: 1px; height: 100%; background: rgba(255,255,255,0.07); }
+    .hero-eyebrow {
+      font-size: 10.5px; font-weight: 600; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--amber); margin-bottom: 14px;
+    }
+    .page-hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(38px, 4.5vw, 62px);
+      font-weight: 400; color: white;
+      line-height: 0.95; letter-spacing: -0.02em; font-style: italic;
+    }
+    .page-hero-desc {
+      font-size: 15px; font-weight: 300;
+      color: rgba(255,255,255,0.42); line-height: 1.8; margin-top: 20px;
+    }
+    .hero-stats { display: flex; flex-direction: column; gap: 0; }
+    .hero-stat {
+      display: flex; align-items: center; gap: 20px;
+      padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .hero-stat:last-child { border-bottom: none; }
+    .hero-stat-num {
+      font-family: var(--serif); font-size: 34px; font-weight: 400;
+      color: var(--amber); line-height: 1; min-width: 64px; text-align: right;
+    }
+    .hero-stat-label {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.5); line-height: 1.4;
+    }
+    .hero-stat-label span {
+      display: block; font-size: 11.5px; font-weight: 300;
+      letter-spacing: 0; text-transform: none;
+      color: rgba(255,255,255,0.28); margin-top: 3px;
+    }
+
+    /* ── PAGE BODY ── */
+    .page-wrap {
+      max-width: 1320px; margin: 0 auto;
+      padding: 72px 40px 80px;
+      display: grid; grid-template-columns: 1fr 340px; gap: 72px;
+    }
+
+    /* ── SHARED TYPOGRAPHY ── */
+    .eyebrow {
+      font-size: 10.5px; font-weight: 600; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--amber); margin-bottom: 10px;
+    }
+    .section-heading {
+      font-family: var(--serif); font-size: 26px; font-weight: 400;
+      color: var(--ink); letter-spacing: -0.01em; line-height: 1; margin-top: 6px;
+    }
+    .section-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--paper-3);
+    }
+
+    /* ── CURRENT ISSUE — BIG FEATURED CARD ── */
+    .current-issue-card {
+      background: var(--ink-2); border-radius: var(--r);
+      display: grid; grid-template-columns: 200px 1fr;
+      overflow: hidden; margin-bottom: 8px;
+      transition: all 0.2s;
+    }
+    .current-issue-card:hover { background: var(--ink-3); }
+
+    /* Faux magazine cover panel */
+    .issue-cover {
+      background: var(--ink);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 32px 20px;
+      position: relative; overflow: hidden;
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+    .issue-cover::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        rgba(200,122,47,0.03) 0px,
+        rgba(200,122,47,0.03) 1px,
+        transparent 1px,
+        transparent 12px
+      );
+    }
+    .cover-label {
+      font-size: 9px; font-weight: 600; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--amber);
+      margin-bottom: 14px; text-align: center; position: relative;
+    }
+    .cover-title {
+      font-family: var(--serif); font-size: 15px; font-style: italic;
+      color: rgba(255,255,255,0.75); text-align: center;
+      line-height: 1.25; position: relative;
+    }
+    .cover-issue-num {
+      font-family: var(--serif); font-size: 42px; font-weight: 400;
+      color: var(--amber); line-height: 1; margin: 10px 0 4px;
+      position: relative;
+    }
+    .cover-year {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: rgba(255,255,255,0.3);
+      position: relative;
+    }
+    .cover-kcr-mark {
+      position: absolute; bottom: 14px; left: 0; right: 0;
+      text-align: center; font-size: 9px; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.15);
+    }
+
+    .issue-body {
+      padding: 32px 36px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .issue-body-tag {
+      font-size: 9.5px; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--amber); margin-bottom: 8px;
+    }
+    .issue-body-title {
+      font-family: var(--serif); font-size: 24px; font-weight: 400;
+      color: rgba(255,255,255,0.88); letter-spacing: -0.01em;
+      line-height: 1.2; margin-bottom: 10px;
+    }
+    .issue-body-desc {
+      font-size: 13.5px; font-weight: 300;
+      color: rgba(255,255,255,0.42); line-height: 1.75; margin-bottom: 22px;
+    }
+    .issue-meta {
+      display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 22px;
+    }
+    .issue-meta-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.3);
+    }
+    .issue-meta-item svg { color: rgba(255,255,255,0.2); }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--amber); color: white; padding: 11px 22px;
+      border-radius: 3px; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--amber-lt); transform: translateY(-1px); }
+
+    /* ── RECENT ISSUES MINI-GRID ── */
+    .recent-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+      margin-top: 16px;
+    }
+    .recent-card {
+      background: white; border-radius: var(--r);
+      border: 1px solid var(--paper-3);
+      padding: 20px 22px;
+      display: flex; flex-direction: column;
+      transition: all 0.2s; position: relative; overflow: hidden;
+    }
+    .recent-card::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 0; height: 2px;
+      background: var(--amber); transform: scaleX(0);
+      transform-origin: left; transition: transform 0.3s ease;
+    }
+    .recent-card:hover {
+      box-shadow: 0 8px 28px rgba(14,20,25,0.09);
+      transform: translateY(-3px); border-color: var(--fog);
+    }
+    .recent-card:hover::after { transform: scaleX(1); }
+    .recent-card-label {
+      font-size: 9.5px; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--amber); margin-bottom: 5px;
+    }
+    .recent-card-date {
+      font-family: var(--serif); font-size: 17px; font-weight: 400;
+      color: var(--ink); letter-spacing: -0.01em; line-height: 1.2;
+      flex: 1; margin-bottom: 14px;
+    }
+    .recent-card-link {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--amber); transition: gap 0.15s;
+    }
+    .recent-card-link:hover { gap: 9px; }
+
+    /* ── YEAR FILTER TABS ── */
+    .year-filter {
+      display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px;
+    }
+    .year-tab {
+      padding: 5px 14px; border-radius: 3px; cursor: pointer;
+      font-size: 11.5px; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; transition: all 0.15s;
+      border: 1px solid var(--paper-3); background: white; color: var(--steel);
+      user-select: none;
+    }
+    .year-tab:hover { border-color: var(--fog); color: var(--ink); }
+    .year-tab.active {
+      background: var(--amber); border-color: var(--amber); color: white;
+    }
+
+    /* ── ARCHIVE YEAR GROUPS ── */
+    .archive-year-block { margin-bottom: 8px; }
+    .archive-year-block.hidden { display: none; }
+
+    .year-group-header {
+      display: flex; align-items: center; gap: 16px;
+      padding: 12px 0 10px; cursor: pointer; user-select: none;
+    }
+    .year-group-header:hover .year-group-label { color: var(--ink); }
+
+    .year-group-num {
+      font-family: var(--serif); font-size: 26px; font-weight: 400;
+      color: var(--amber); line-height: 1; min-width: 52px;
+    }
+    .year-group-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--mist); transition: color 0.15s;
+    }
+    .year-group-count {
+      margin-left: auto;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--mist);
+    }
+    .year-group-toggle {
+      color: var(--mist); transition: transform 0.2s;
+    }
+    .archive-year-block.open .year-group-toggle { transform: rotate(180deg); }
+
+    .year-group-issues {
+      display: none;
+      border-top: 1px solid var(--paper-3);
+      padding: 8px 0 16px;
+    }
+    .archive-year-block.open .year-group-issues { display: block; }
+
+    .issue-row {
+      display: flex; align-items: center; gap: 14px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--paper-2);
+      transition: background 0.12s;
+    }
+    .issue-row:last-child { border-bottom: none; }
+
+    .issue-row-icon {
+      width: 30px; height: 30px; flex-shrink: 0;
+      background: rgba(200,122,47,0.1); border-radius: 5px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--amber);
+    }
+    .issue-row-date {
+      flex: 1;
+      font-size: 14px; font-weight: 400; color: var(--ink);
+    }
+    .issue-row-date span {
+      display: block; font-size: 11.5px; font-weight: 300;
+      color: var(--mist); margin-top: 1px;
+    }
+    .issue-row-dl {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--amber);
+      transition: gap 0.12s; flex-shrink: 0;
+    }
+    .issue-row-dl:hover { gap: 8px; }
+
+    /* divider between year blocks */
+    .year-divider {
+      height: 1px; background: var(--paper-3); margin: 2px 0;
+    }
+
+    /* ── SIDEBAR ── */
+    .side-card {
+      background: white; border-radius: var(--r);
+      border: 1px solid var(--paper-3); overflow: hidden; margin-bottom: 20px;
+    }
+    .side-card-head {
+      background: var(--ink); padding: 14px 22px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: rgba(255,255,255,0.55);
+    }
+    .side-card-head span { color: var(--amber); }
+    .side-nav-link {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 22px; font-size: 13.5px; color: var(--steel);
+      border-left: 2px solid transparent; transition: all 0.15s;
+    }
+    .side-nav-link:hover { color: var(--ink); background: var(--paper); border-left-color: var(--amber); }
+    .side-nav-link.active { color: var(--ink); background: var(--paper); border-left-color: var(--amber); font-weight: 500; }
+    .side-nav-link.indent { padding-left: 40px; font-size: 13px; color: var(--mist); }
+    .side-nav-link.indent:hover { color: var(--steel); }
+    .side-nav-divider { height: 1px; background: var(--paper-2); margin: 4px 0; }
+
+    .side-info-block { padding: 18px 22px; }
+    .side-info-block + .side-info-block { border-top: 1px solid var(--paper-2); }
+    .side-info-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--mist); margin-bottom: 5px;
+    }
+    .side-info-val {
+      font-size: 13.5px; font-weight: 300; color: var(--steel); line-height: 1.6;
+    }
+    .side-info-val a { color: var(--amber); }
+    .side-info-val a:hover { color: var(--amber-lt); }
+    .side-info-val strong { font-weight: 500; color: var(--ink); }
+
+    .dark-card {
+      background: var(--ink-2); border-radius: var(--r); padding: 24px; margin-bottom: 20px;
+    }
+    .dark-card-tag {
+      font-size: 9.5px; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--amber); margin-bottom: 10px;
+    }
+    .dark-card h3 {
+      font-family: var(--serif); font-size: 18px; font-weight: 400;
+      color: rgba(255,255,255,0.82); letter-spacing: -0.01em; line-height: 1.25; margin-bottom: 12px;
+    }
+    .dark-card p {
+      font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.38);
+      line-height: 1.75; margin-bottom: 18px;
+    }
+    .dark-card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11.5px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: rgba(255,255,255,0.55); transition: color 0.15s, gap 0.15s;
+    }
+    .dark-card-link:hover { color: var(--amber-lt); gap: 10px; }
+
+    /* Issue count summary in sidebar */
+    .issue-count-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+    .issue-count-cell {
+      padding: 14px 22px; text-align: center;
+      border-right: 1px solid var(--paper-2);
+      border-bottom: 1px solid var(--paper-2);
+    }
+    .issue-count-cell:nth-child(2n) { border-right: none; }
+    .issue-count-cell:nth-last-child(-n+2) { border-bottom: none; }
+    .icc-num {
+      font-family: var(--serif); font-size: 28px; font-weight: 400;
+      color: var(--amber); line-height: 1;
+    }
+    .icc-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--mist); margin-top: 4px;
+    }
+
+    /* ── FOOTER ── */
+    footer { background: var(--ink); }
+    .footer-upper {
+      max-width: 1320px; margin: 0 auto; padding: 64px 40px 48px;
+      display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 48px; border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-wordmark {
+      font-family: var(--serif); font-size: 22px; color: rgba(255,255,255,0.75); font-weight: 400; margin-bottom: 14px;
+    }
+    .footer-wordmark span { color: var(--amber); }
+    .footer-desc { font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.3); line-height: 1.75; }
+    .footer-col-title {
+      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(255,255,255,0.3); font-weight: 600; margin-bottom: 16px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-link { font-size: 13px; color: rgba(255,255,255,0.35); transition: color 0.15s; display: block; }
+    .footer-link:hover { color: var(--amber-lt); }
+    .footer-lower {
+      max-width: 1320px; margin: 0 auto; padding: 20px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 11.5px; color: rgba(255,255,255,0.28);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .rise          { opacity: 0; animation: riseIn 0.7s ease forwards; }
+    .rise-1        { animation-delay: 0.05s; }
+    .rise-2        { animation-delay: 0.15s; }
+    .rise-3        { animation-delay: 0.25s; }
+    .rise-4        { animation-delay: 0.35s; }
+    .rise-5        { animation-delay: 0.45s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .page-hero-inner { grid-template-columns: 1fr; }
+      .page-hero-rule, .hero-stats { display: none; }
+      .current-issue-card { grid-template-columns: 1fr; }
+      .issue-cover { display: none; }
+      .page-wrap { grid-template-columns: 1fr; }
+      .recent-grid { grid-template-columns: 1fr 1fr; }
+      .footer-upper { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <span>University of Kentucky • Markey Cancer Center</span>
+    <div class="topbar-links">
+      <a href="#">SEER Reporting</a>
+      <a href="#">Site Map</a>
+      <a href="contact/">Contact</a>
+    </div>
+  </div>
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="masthead-inner">
+      <div>
+        <div class="masthead-wordmark"><span>Kentucky</span> Cancer Registry</div>
+        <div class="masthead-sub">Statewide Cancer Surveillance Program</div>
+      </div>
+      <div class="masthead-badge">
+        Technical Resources<br>
+        <strong>Quarterly Newsletter</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/about/" class="nav-link">About</a>
+      <a href="/reports" class="nav-link">Reports</a>
+      <a href="/data-requests.html" class="nav-link">Data Requests</a>
+      <a href="/statutes/" class="nav-link">Statutes</a>
+      <a href="/technical.html" class="nav-link active">Technical Resources</a>
+      <a href="/contact/" class="nav-link">Contact</a>
+    </div>
+  </nav>
+
+  <!-- RIBBON -->
+  <div class="ribbon">
+    <div class="ribbon-inner">
+      <span class="ribbon-label">Partners &amp; Affiliates</span>
+      <div class="ribbon-logos">
+        <a href="#">NAACCR</a>
+        <a href="#">CDC NPCR</a>
+        <a href="#">NCI SEER</a>
+        <a href="#">CSTE</a>
+        <a href="#">UK Markey</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="rise rise-1">
+        <div class="hero-eyebrow">KCR Quarterly Newsletter</div>
+        <h1>In the<br>Abstract</h1>
+        <p class="page-hero-desc">KCR's newsletter for cancer registrars, abstractors, and data professionals across Kentucky. Covering coding updates, software releases, training announcements, and registry news since 2005.</p>
+      </div>
+      <div class="page-hero-rule rise rise-2"></div>
+      <div class="hero-stats rise rise-3">
+        <div class="hero-stat">
+          <div class="hero-stat-num">52</div>
+          <div class="hero-stat-label">
+            Issues Published
+            <span>A full archive of every edition since 2005</span>
+          </div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">20</div>
+          <div class="hero-stat-label">
+            Years of Coverage
+            <span>Continuous publication from 2005 to present</span>
+          </div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">Aug</div>
+          <div class="hero-stat-label">
+            Most Recent Issue
+            <span>August 2024 — current edition</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE BODY -->
+  <div class="page-wrap">
+    <main>
+
+      <!-- CURRENT ISSUE -->
+      <section class="rise rise-1">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Latest Edition</div>
+            <h2 class="section-heading">Current Issue</h2>
+          </div>
+        </div>
+
+        <a href="2024.August.pdf" class="current-issue-card">
+          <div class="issue-cover">
+            <div class="cover-label">KCR Newsletter</div>
+            <div class="cover-title">In the<br>Abstract</div>
+            <div class="cover-issue-num">Aug</div>
+            <div class="cover-year">2024</div>
+            <div class="cover-kcr-mark">Kentucky Cancer Registry</div>
+          </div>
+          <div class="issue-body">
+            <div class="issue-body-tag">Current Issue · PDF Download</div>
+            <div class="issue-body-title">In the Abstract — August 2024</div>
+            <div class="issue-body-desc">The latest edition of KCR's quarterly newsletter for cancer registrars and abstractors across Kentucky. Includes coding guidance, software updates, and registry program news relevant to the current reporting year.</div>
+            <div class="issue-meta">
+              <div class="issue-meta-item">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                August 2024
+              </div>
+              <div class="issue-meta-item">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path></svg>
+                PDF Format
+              </div>
+            </div>
+            <div>
+              <span class="btn-primary">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg>
+                Download Issue
+              </span>
+            </div>
+          </div>
+        </a>
+      </section>
+
+      <!-- RECENT ISSUES (2024 Jul + Jun + 2021) -->
+      <section class="rise rise-2" style="margin-top: 40px;">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Also Recent</div>
+            <h2 class="section-heading">Recent Issues</h2>
+          </div>
+        </div>
+        <div class="recent-grid">
+          <a href="2024.July.pdf" class="recent-card">
+            <div class="recent-card-label">Newsletter</div>
+            <div class="recent-card-date">July 2024</div>
+            <span class="recent-card-link">
+              Download
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg>
+            </span>
+          </a>
+          <a href="2024.June.pdf" class="recent-card">
+            <div class="recent-card-label">Newsletter</div>
+            <div class="recent-card-date">June 2024</div>
+            <span class="recent-card-link">
+              Download
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg>
+            </span>
+          </a>
+          <a href="KCR Newsletter Spring 2021.pdf" class="recent-card">
+            <div class="recent-card-label">Newsletter</div>
+            <div class="recent-card-date">Spring 2021</div>
+            <span class="recent-card-link">
+              Download
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg>
+            </span>
+          </a>
+        </div>
+      </section>
+
+      <!-- ARCHIVE -->
+      <section class="rise rise-3" style="margin-top: 56px;">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Complete Archive — 2005 to Present</div>
+            <h2 class="section-heading">All Back Issues</h2>
+          </div>
+        </div>
+
+        <!-- Year filter tabs -->
+        <div class="year-filter" id="yearFilter">
+          <div class="year-tab active" data-year="all" onclick="filterYear(this,'all')">All Years</div>
+          <div class="year-tab" data-year="2024" onclick="filterYear(this,'2024')">2024</div>
+          <div class="year-tab" data-year="2021" onclick="filterYear(this,'2021')">2021</div>
+          <div class="year-tab" data-year="2020" onclick="filterYear(this,'2020')">2020</div>
+          <div class="year-tab" data-year="2019" onclick="filterYear(this,'2019')">2019</div>
+          <div class="year-tab" data-year="2018" onclick="filterYear(this,'2018')">2018</div>
+          <div class="year-tab" data-year="2017" onclick="filterYear(this,'2017')">2017</div>
+          <div class="year-tab" data-year="2016" onclick="filterYear(this,'2016')">2016</div>
+          <div class="year-tab" data-year="2015" onclick="filterYear(this,'2015')">2015</div>
+          <div class="year-tab" data-year="2014" onclick="filterYear(this,'2014')">2014</div>
+          <div class="year-tab" data-year="2013" onclick="filterYear(this,'2013')">2013</div>
+          <div class="year-tab" data-year="2012" onclick="filterYear(this,'2012')">2012</div>
+          <div class="year-tab" data-year="2011" onclick="filterYear(this,'2011')">2011</div>
+          <div class="year-tab" data-year="2010" onclick="filterYear(this,'2010')">2010</div>
+          <div class="year-tab" data-year="2009" onclick="filterYear(this,'2009')">2009</div>
+          <div class="year-tab" data-year="2008" onclick="filterYear(this,'2008')">2008</div>
+          <div class="year-tab" data-year="2007" onclick="filterYear(this,'2007')">2007</div>
+          <div class="year-tab" data-year="2006" onclick="filterYear(this,'2006')">2006</div>
+          <div class="year-tab" data-year="2005" onclick="filterYear(this,'2005')">2005</div>
+        </div>
+
+        <div id="archiveList">
+
+          <!-- 2024 -->
+          <div class="archive-year-block open" data-year="2024">
+            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+              <div class="year-group-num">2024</div>
+              <div class="year-group-label">3 Issues</div>
+              <div class="year-group-count"></div>
+              <div class="year-group-toggle">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
+              </div>
+            </div>
+            <div class="year-group-issues">
+              <div class="issue-row">
+                <div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div>
+                <div class="issue-row-date">August 2024 <span>Current issue</span></div>
+                <a href="2024.August.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a>
+              </div>
+              <div class="issue-row">
+                <div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div>
+                <div class="issue-row-date">July 2024</div>
+                <a href="2024.July.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a>
+              </div>
+              <div class="issue-row">
+                <div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div>
+                <div class="issue-row-date">June 2024</div>
+                <a href="2024.June.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a>
+              </div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2021 -->
+          <div class="archive-year-block" data-year="2021">
+            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+              <div class="year-group-num">2021</div>
+              <div class="year-group-label">2 Issues</div>
+              <div class="year-group-count"></div>
+              <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="year-group-issues">
+              <div class="issue-row">
+                <div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div>
+                <div class="issue-row-date">Spring 2021</div>
+                <a href="KCR Newsletter Spring 2021.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a>
+              </div>
+              <div class="issue-row">
+                <div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div>
+                <div class="issue-row-date">Winter 2021</div>
+                <a href="KCR Newsletter Winter 2021.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a>
+              </div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2020 -->
+          <div class="archive-year-block" data-year="2020">
+            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+              <div class="year-group-num">2020</div>
+              <div class="year-group-label">3 Issues</div>
+              <div class="year-group-count"></div>
+              <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="year-group-issues">
+              <div class="issue-row">
+                <div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div>
+                <div class="issue-row-date">July 2020</div>
+                <a href="KCR Newsletter Summer 2020.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a>
+              </div>
+              <div class="issue-row">
+                <div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div>
+                <div class="issue-row-date">March 2020</div>
+                <a href="KCR Newsletter March 2020.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a>
+              </div>
+              <div class="issue-row">
+                <div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div>
+                <div class="issue-row-date">January 2020</div>
+                <a href="KCR Newsletter December 2019.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a>
+              </div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2019 -->
+          <div class="archive-year-block" data-year="2019">
+            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+              <div class="year-group-num">2019</div>
+              <div class="year-group-label">4 Issues</div>
+              <div class="year-group-count"></div>
+              <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="year-group-issues">
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">September 2019</div><a href="KCR Newsletter September 2019.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">June 2019</div><a href="KCR Newsletter June 2019.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">March 2019</div><a href="KCR Newsletter March 2019.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2018 -->
+          <div class="archive-year-block" data-year="2018">
+            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+              <div class="year-group-num">2018</div>
+              <div class="year-group-label">3 Issues</div>
+              <div class="year-group-count"></div>
+              <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="year-group-issues">
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">November 2018</div><a href="KCR newsletter November 2018.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">July 2018</div><a href="July 2018 newsletter.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">March 2018</div><a href="KCR March 2018 Newsletter.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2017 -->
+          <div class="archive-year-block" data-year="2017">
+            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+              <div class="year-group-num">2017</div>
+              <div class="year-group-label">2 Issues</div>
+              <div class="year-group-count"></div>
+              <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="year-group-issues">
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">December 2017</div><a href="In The Abstract Dec 2017.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">July 2017</div><a href="KCR Newsletter July 2017.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2016 -->
+          <div class="archive-year-block" data-year="2016">
+            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+              <div class="year-group-num">2016</div>
+              <div class="year-group-label">3 Issues</div>
+              <div class="year-group-count"></div>
+              <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="year-group-issues">
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">December 2016</div><a href="Newsletter.Dec2016.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">July 2016</div><a href="July 2016.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">January 2016</div><a href="Jan 2016.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2015 -->
+          <div class="archive-year-block" data-year="2015">
+            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+              <div class="year-group-num">2015</div>
+              <div class="year-group-label">3 Issues</div>
+              <div class="year-group-count"></div>
+              <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="year-group-issues">
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">October 2015</div><a href="Oct 2015.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">April 2015</div><a href="April 2015.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">January 2015</div><a href="Jan 2015.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2014 -->
+          <div class="archive-year-block" data-year="2014">
+            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+              <div class="year-group-num">2014</div>
+              <div class="year-group-label">3 Issues</div>
+              <div class="year-group-count"></div>
+              <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="year-group-issues">
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">October 2014</div><a href="Oct 2014.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">March 2014</div><a href="Mar 14 lg.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2013 -->
+          <div class="archive-year-block" data-year="2013">
+            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+              <div class="year-group-num">2013</div>
+              <div class="year-group-label">1 Issue</div>
+              <div class="year-group-count"></div>
+              <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="year-group-issues">
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">October 2013</div><a href="Oct 2013.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2012 -->
+          <div class="archive-year-block" data-year="2012">
+            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+              <div class="year-group-num">2012</div>
+              <div class="year-group-label">1 Issue</div>
+              <div class="year-group-count"></div>
+              <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="year-group-issues">
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">October 2012</div><a href="Oct2012.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2011 -->
+          <div class="archive-year-block" data-year="2011">
+            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+              <div class="year-group-num">2011</div>
+              <div class="year-group-label">4 Issues</div>
+              <div class="year-group-count"></div>
+              <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="year-group-issues">
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">November 2011</div><a href="Nov 11.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">August 2011</div><a href="Aug 11.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">May 2011</div><a href="May11.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">January 2011</div><a href="Jan 11.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2010 -->
+          <div class="archive-year-block" data-year="2010">
+            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+              <div class="year-group-num">2010</div>
+              <div class="year-group-label">3 Issues</div>
+              <div class="year-group-count"></div>
+              <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="year-group-issues">
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">September 2010</div><a href="Sep10.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">June 2010</div><a href="Jun10.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">February 2010</div><a href="Feb10.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2009 -->
+          <div class="archive-year-block" data-year="2009">
+            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+              <div class="year-group-num">2009</div>
+              <div class="year-group-label">4 Issues</div>
+              <div class="year-group-count"></div>
+              <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="year-group-issues">
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">November 2009</div><a href="Nov09.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">August 2009</div><a href="Aug09.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">May 2009</div><a href="May09.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">February 2009</div><a href="Feb09.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2008 -->
+          <div class="archive-year-block" data-year="2008">
+            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+              <div class="year-group-num">2008</div>
+              <div class="year-group-label">4 Issues</div>
+              <div class="year-group-count"></div>
+              <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="year-group-issues">
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">November 2008</div><a href="Nov08.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">August 2008</div><a href="Aug08.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">May 2008</div><a href="May08.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">January 2008</div><a href="Jan08.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2007 -->
+          <div class="archive-year-block" data-year="2007">
+            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+              <div class="year-group-num">2007</div>
+              <div class="year-group-label">4 Issues</div>
+              <div class="year-group-count"></div>
+              <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="year-group-issues">
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">November 2007</div><a href="Nov07.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">August 2007</div><a href="Aug07.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">May 2007</div><a href="May07.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">January 2007</div><a href="Jan07.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2006 -->
+          <div class="archive-year-block" data-year="2006">
+            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+              <div class="year-group-num">2006</div>
+              <div class="year-group-label">4 Issues</div>
+              <div class="year-group-count"></div>
+              <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="year-group-issues">
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">October 2006</div><a href="Oct06.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">July 2006</div><a href="july06.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">April 2006</div><a href="apr06.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">January 2006</div><a href="jan06.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div><div class="year-divider"></div>
+
+          <!-- 2005 -->
+          <div class="archive-year-block" data-year="2005">
+            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+              <div class="year-group-num">2005</div>
+              <div class="year-group-label">4 Issues</div>
+              <div class="year-group-count"></div>
+              <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <div class="year-group-issues">
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">October 2005</div><a href="oct05.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">August 2005</div><a href="aug05.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">May 2005</div><a href="may05lg.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+              <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">January 2005 <span>First archived issue</span></div><a href="Jan05lg.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
+            </div>
+          </div>
+
+        </div><!-- /archiveList -->
+      </section>
+
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside>
+
+      <!-- ON THIS PAGE -->
+      <div class="side-card rise rise-2">
+        <div class="side-card-head"><span>On</span> This Page</div>
+        <a href="#" class="side-nav-link active">Current Issue</a>
+        <a href="#" class="side-nav-link">Recent Issues</a>
+        <a href="#" class="side-nav-link">Complete Archive</a>
+        <a href="#" class="side-nav-link indent">2024 (3 issues)</a>
+        <a href="#" class="side-nav-link indent">2021–2020 (5 issues)</a>
+        <a href="#" class="side-nav-link indent">2019–2015 (16 issues)</a>
+        <a href="#" class="side-nav-link indent">2014–2005 (28 issues)</a>
+      </div>
+
+      <!-- ISSUE COUNT STATS -->
+      <div class="side-card rise rise-3">
+        <div class="side-card-head">Archive <span>Stats</span></div>
+        <div class="issue-count-grid">
+          <div class="issue-count-cell">
+            <div class="icc-num">52</div>
+            <div class="icc-label">Total Issues</div>
+          </div>
+          <div class="issue-count-cell">
+            <div class="icc-num">20</div>
+            <div class="icc-label">Years</div>
+          </div>
+          <div class="issue-count-cell">
+            <div class="icc-num">2005</div>
+            <div class="icc-label">First Issue</div>
+          </div>
+          <div class="issue-count-cell">
+            <div class="icc-num">2024</div>
+            <div class="icc-label">Latest</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TECHNICAL RESOURCES NAV -->
+      <div class="side-card rise rise-4">
+        <div class="side-card-head">Technical <span>Resources</span></div>
+        <a href="technical.html" class="side-nav-link">Overview</a>
+        <div class="side-nav-divider"></div>
+        <a href="software.html" class="side-nav-link">Software</a>
+        <a href="intheabstract.html" class="side-nav-link active">In the Abstract</a>
+        <a href="manuals.html" class="side-nav-link">KCR Manuals Online</a>
+        <a href="support.html" class="side-nav-link">Tech Support / Updates</a>
+        <a href="training.html" class="side-nav-link">Training</a>
+        <div class="side-nav-divider"></div>
+        <a href="mu.html" class="side-nav-link">Meaningful Use Stage 2</a>
+        <a href="mu3.html" class="side-nav-link">Meaningful Use Stage 3</a>
+      </div>
+
+      <!-- SUBSCRIBE CTA -->
+      <div class="dark-card rise rise-5">
+        <div class="dark-card-tag">Stay Updated</div>
+        <h3>Get New Issues by Email</h3>
+        <p>Contact the KCR to be added to the newsletter distribution list and receive new issues of <em style="font-style:italic;color:rgba(255,255,255,0.5)">In the Abstract</em> when they are published.</p>
+        <a href="contact/" class="dark-card-link">
+          Contact KCR
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+        </a>
+      </div>
+
+      <!-- QUICK INFO -->
+      <div class="side-card rise rise-5">
+        <div class="side-card-head">About <span>the Newsletter</span></div>
+        <div class="side-info-block">
+          <div class="side-info-label">Publication Frequency</div>
+          <div class="side-info-val">Quarterly (approximately 3–4 issues per year)</div>
+        </div>
+        <div class="side-info-block">
+          <div class="side-info-label">Audience</div>
+          <div class="side-info-val">Cancer registrars, abstractors, and data analysts reporting to KCR</div>
+        </div>
+        <div class="side-info-block">
+          <div class="side-info-label">Topics Covered</div>
+          <div class="side-info-val">Coding updates, CPDMS.net releases, training announcements, NAACCR/SEER standards changes, registry news</div>
+        </div>
+        <div class="side-info-block">
+          <div class="side-info-label">Format</div>
+          <div class="side-info-val">PDF — all issues free to download</div>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-upper">
+      <div>
+        <div class="footer-wordmark"><span>Kentucky</span> Cancer Registry</div>
+        <p class="footer-desc">A statewide, population-based cancer surveillance program serving the Commonwealth of Kentucky since 1990. Affiliated with the University of Kentucky Markey Cancer Center.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Resources</div>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">Annual Reports</a></li>
+          <li><a href="#" class="footer-link">Data Requests</a></li>
+          <li><a href="#" class="footer-link">Technical Resources</a></li>
+          <li><a href="#" class="footer-link">Meaningful Use</a></li>
+          <li><a href="#" class="footer-link">Childhood Cancer</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">About</div>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">About KCR</a></li>
+          <li><a href="#" class="footer-link">Staff Directory</a></li>
+          <li><a href="#" class="footer-link">Statutes</a></li>
+          <li><a href="#" class="footer-link">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Partners</div>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">NAACCR</a></li>
+          <li><a href="#" class="footer-link">CDC / NPCR</a></li>
+          <li><a href="#" class="footer-link">NCI SEER Program</a></li>
+          <li><a href="#" class="footer-link">UK Markey Cancer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-lower">
+      <span>© 2025 University of Kentucky — Kentucky Cancer Registry. All rights reserved.</span>
+      <span>Last updated: September 4, 2025</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleYear(block) {
+      block.classList.toggle('open');
+    }
+
+    function filterYear(tab, year) {
+      // Update tab states
+      document.querySelectorAll('.year-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      // Show/hide year blocks and their dividers
+      const blocks = document.querySelectorAll('.archive-year-block');
+      const dividers = document.querySelectorAll('.year-divider');
+
+      blocks.forEach((block, i) => {
+        const blockYear = block.dataset.year;
+        const show = year === 'all' || blockYear === year;
+        block.classList.toggle('hidden', !show);
+        // Open single-year filter automatically
+        if (show && year !== 'all') {
+          block.classList.add('open');
+        }
+      });
+
+      // Hide dividers that sit between hidden blocks
+      dividers.forEach(div => {
+        const prev = div.previousElementSibling;
+        const next = div.nextElementSibling;
+        const prevHidden = prev && prev.classList.contains('hidden');
+        const nextHidden = next && (next.classList.contains('hidden') || next.classList.contains('year-divider'));
+        div.style.display = (prevHidden || !prev) ? 'none' : '';
+      });
+    }
+  </script>
+
+
+
+</body></html>

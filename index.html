@@ -1,0 +1,1230 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kentucky Cancer Registry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&amp;display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    :root {
+      --ink:       #0e1419;
+      --ink-2:     #1b2530;
+      --ink-3:     #243040;
+      --steel:     #3d5166;
+      --mist:      #8da3b8;
+      --fog:       #c4d0dc;
+      --paper:     #f2ede6;
+      --paper-2:   #e8e2d9;
+      --paper-3:   #ddd6cb;
+      --amber:     #c87a2f;
+      --amber-lt:  #e09040;
+      --amber-dim: #8a5420;
+      --white:     #ffffff;
+      --serif:     'DM Serif Display', Georgia, serif;
+      --sans:      'DM Sans', system-ui, sans-serif;
+      --r:         6px;
+    }
+
+    body { font-family: var(--sans); background: var(--paper); color: var(--ink); overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .eyebrow { font-size: 10.5px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); }
+
+    /* TOPBAR */
+    .topbar { background: var(--ink); height: 36px; display: flex; align-items: center; padding: 0 40px; }
+    .topbar-left { font-size: 11px; letter-spacing: 0.06em; color: rgba(255,255,255,0.3); }
+    .topbar-sep { flex: 1; }
+    .topbar-right { display: flex; gap: 20px; font-size: 11px; letter-spacing: 0.06em; }
+    .topbar-right a { color: rgba(255,255,255,0.35); transition: color 0.15s; }
+    .topbar-right a:hover { color: var(--amber-lt); }
+
+    /* MASTHEAD */
+    .masthead { background: var(--ink); position: relative; overflow: hidden; min-height: calc(100vh - 36px); display: grid; grid-template-columns: 1fr 1fr; }
+    .masthead-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 70% 100% at 100% 50%, rgba(200,122,47,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 20% 0%, rgba(61,81,102,0.5) 0%, transparent 70%);
+    }
+    .masthead-rule { position: absolute; left: 50%; top: 40px; bottom: 40px; width: 1px; background: linear-gradient(to bottom, transparent, rgba(200,122,47,0.3) 30%, rgba(200,122,47,0.3) 70%, transparent); }
+
+    .masthead-left { padding: 64px 56px 64px 40px; display: flex; flex-direction: column; justify-content: space-between; position: relative; z-index: 1; }
+    .masthead-logo-area { display: flex; align-items: center; gap: 14px; margin-bottom: 48px; }
+    .logo-mark { width: 42px; height: 42px; border: 1.5px solid rgba(200,122,47,0.5); border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .logo-text { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); line-height: 1.5; }
+    .logo-text strong { display: block; color: rgba(255,255,255,0.8); font-weight: 500; }
+
+    .masthead-title { font-family: var(--serif); font-size: clamp(44px, 5.5vw, 76px); font-weight: 400; line-height: 0.95; color: var(--white); letter-spacing: -0.02em; }
+    .masthead-title em { display: block; color: var(--amber-lt); font-style: italic; }
+    .masthead-sub { margin-top: 28px; font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.45); font-weight: 300; max-width: 400px; }
+
+    .masthead-ctas { display: flex; gap: 12px; margin-top: 40px; flex-wrap: wrap; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--amber); color: white; padding: 12px 24px; border-radius: 3px; font-size: 13px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; transition: background 0.2s, transform 0.15s; }
+    .btn-primary:hover { background: var(--amber-lt); transform: translateY(-1px); }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.18); padding: 12px 24px; border-radius: 3px; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; transition: all 0.2s; }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.4); color: white; }
+
+    .masthead-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border-top: 1px solid rgba(255,255,255,0.06); margin-top: 56px; }
+    .mstat { padding: 20px 0 20px 16px; }
+    .mstat-num { font-family: var(--serif); font-size: 34px; color: var(--white); line-height: 1; }
+    .mstat-num span { color: var(--amber); }
+    .mstat-label { font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-top: 5px; }
+
+    /* MASTHEAD RIGHT — flex column: map fills, stats bar below */
+    .masthead-right {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mast-choro-wrap {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      background: #0d1821; /* deeper than --ink-2, feels like a continuation of the masthead */
+      min-height: 0;
+      cursor: default;
+    }
+
+    #mastChoroSvg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: absolute;
+      inset: 0;
+    }
+
+    /* Title overlay — full width gradient across the entire map */
+    .map-top-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 22px 24px 28px;
+      background: linear-gradient(to bottom,
+      rgba(14,20,25,0.96) 0%,
+      rgba(14,20,25,0.88) 75%,
+      rgba(14,20,25,0.0) 100%);
+      color: #f5f7fa;
+      z-index: 10;
+      pointer-events: none;
+    }
+    /* Amber eyebrow above the title */
+    .map-eyebrow {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 7px;
+    }
+    .map-main-title  {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: rgba(255,255,255,0.9);
+    }
+    .map-sub-line    { margin-top: 5px; font-size: 0.75rem; color: rgba(255,255,255,0.45); font-weight: 300; letter-spacing: 0.04em; }
+    .map-method-line { margin-top: 2px; font-size: 0.7rem; color: rgba(255,255,255,0.3); font-weight: 300; letter-spacing: 0.04em; }
+    .map-ky-rate     {
+      margin-top: 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+    }
+    .map-ky-rate strong { color: var(--amber-lt); font-family: var(--serif); font-size: 1rem; font-weight: 400; letter-spacing: 0; text-transform: none; }
+
+    /* Legend — absolutely positioned, JS will set top to match gradient bottom */
+    .mast-choro-legend-box {
+      position: absolute;
+      left: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      z-index: 11;
+      pointer-events: none;
+      /* top set dynamically by positionLegend() */
+    }
+    .mast-choro-legend-box .legend-title {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+      margin-bottom: 5px;
+    }
+    .mast-choro-legend-box .legend-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mast-choro-legend-box .legend-swatch {
+      width: 13px;
+      height: 13px;
+      border-radius: 2px;
+      flex-shrink: 0;
+      opacity: 0.88;
+    }
+    .mast-choro-legend-box .legend-row-label {
+      font-size: 10px;
+      color: rgba(255,255,255,0.55);
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+
+    /* Data note strip below stats bar */
+    .mast-data-note {
+      background: var(--ink-2);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 7px 16px;
+      font-size: 9.5px;
+      color: rgba(255,255,255,0.28);
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+    }
+
+    /* Tooltip — vertical card */
+    .choro-tooltip {
+      position: absolute;
+      pointer-events: none;
+      background: rgba(10,16,20,0.96);
+      border: 1px solid rgba(200,122,47,0.45);
+      border-radius: 5px;
+      padding: 0;
+      font-size: 12px;
+      color: rgba(255,255,255,0.85);
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.1s;
+      z-index: 20;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.5);
+      min-width: 190px;
+    }
+    .tip-county-name {
+      display: block;
+      font-family: var(--serif);
+      font-size: 14px;
+      color: white;
+      padding: 10px 13px 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .tip-rows { padding: 7px 0 8px; }
+    .tip-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      padding: 3px 13px;
+    }
+    .tip-label {
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+    .tip-val {
+      font-size: 12px;
+      color: rgba(255,255,255,0.85);
+      font-weight: 500;
+    }
+    .tip-val.highlight { color: var(--amber-lt); font-family: var(--serif); font-size: 13px; }
+
+    /* Bottom bar — link to full explorer */
+    .map-overlay-bar {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 16px 22px;
+      background: linear-gradient(to top, rgba(14,20,25,0.88) 0%, transparent 100%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .map-overlay-bar a { pointer-events: all; }
+    /* Data note — centered strip just above the bottom caption bar */
+    .map-data-note-bar {
+      position: absolute;
+      bottom: 58px;
+      left: 0; right: 0;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.75);
+      z-index: 11;
+      pointer-events: none;
+      padding: 7px 0;
+      background: rgba(14,20,25,0.55);
+    }
+    .map-caption { font-size: 11px; color: rgba(255,255,255,0.45); letter-spacing: 0.05em; }
+    .map-caption strong { display: block; color: rgba(255,255,255,0.8); font-size: 13px; font-weight: 500; letter-spacing: 0; margin-bottom: 2px; }
+    .mast-choro-link { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); transition: color 0.15s; }
+    .mast-choro-link:hover { color: var(--amber-lt); }
+
+    /* Horizontal stats bar below the map */
+    .mast-stats-bar {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr 1fr;
+      background: var(--ink);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      flex-shrink: 0;
+    }
+    .mast-stat-cell {
+      padding: 18px 16px;
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+    .mast-stat-cell:last-child { border-right: none; }
+    .mast-panel-eyebrow {
+      font-size: 8.5px; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+      margin-bottom: 4px;
+    }
+    .mast-panel-name {
+      font-family: var(--serif);
+      font-size: 14px;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.2;
+      min-height: 18px;
+    }
+    .mast-panel-label {
+      font-size: 8.5px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+      margin-bottom: 3px;
+    }
+    .mast-panel-val {
+      font-family: var(--serif);
+      font-size: 20px;
+      color: var(--amber-lt);
+      line-height: 1;
+    }
+    .mast-panel-val.above { color: #e86464; }
+    .mast-panel-val.below { color: #6ec97a; }
+    .mast-panel-sub {
+      font-size: 8.5px;
+      color: rgba(255,255,255,0.2);
+      margin-top: 2px;
+    }
+
+    /* NAV */
+    nav { background: var(--paper); border-bottom: 1px solid var(--paper-3); position: sticky; top: 0; z-index: 200; }
+    .nav-inner { max-width: 1320px; margin: 0 auto; padding: 0 40px; display: flex; align-items: stretch; }
+    .nav-link { display: flex; align-items: center; padding: 0 18px; height: 48px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--steel); border-bottom: 2px solid transparent; transition: all 0.15s; }
+    .nav-link:hover { color: var(--ink); }
+    .nav-link.active { color: var(--ink); border-bottom-color: var(--amber); }
+    .nav-spacer { flex: 1; }
+    .nav-search-form { display: flex; align-items: center; padding: 9px 0; }
+    .nav-search-form input { border: 1px solid var(--paper-3); border-right: none; background: var(--paper-2); padding: 7px 14px; font-size: 12.5px; font-family: var(--sans); color: var(--ink); border-radius: 3px 0 0 3px; outline: none; width: 150px; transition: all 0.2s; }
+    .nav-search-form input:focus { border-color: var(--amber); background: white; width: 200px; }
+    .nav-search-form button { background: var(--ink); color: white; border: 1px solid var(--ink); padding: 7px 14px; font-size: 12px; font-weight: 600; cursor: pointer; border-radius: 0 3px 3px 0; letter-spacing: 0.05em; font-family: var(--sans); transition: background 0.2s; }
+    .nav-search-form button:hover { background: var(--amber); border-color: var(--amber); }
+
+    /* RIBBON */
+    .ribbon { background: var(--ink-2); overflow: hidden; }
+    .ribbon-inner { max-width: 1320px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; height: 64px; gap: 32px; }
+    .ribbon-label { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.25); white-space: nowrap; flex-shrink: 0; }
+    .ribbon-divider { width: 1px; height: 28px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
+    .ribbon-logos { display: flex; gap: 36px; align-items: center; }
+    .ribbon-logos a { filter: brightness(0) invert(1); opacity: 0.22; transition: opacity 0.2s; }
+    .ribbon-logos a:hover { opacity: 0.55; }
+    .ribbon-logos img { height: 28px; max-width: 110px; object-fit: contain; }
+
+    /* PAGE GRID */
+    .page-wrap { max-width: 1320px; margin: 0 auto; padding: 72px 40px 80px; display: grid; grid-template-columns: 1fr 340px; gap: 72px; }
+
+    /* INTRO */
+    .intro-block { display: grid; grid-template-columns: 3px 1fr; gap: 28px; margin-bottom: 56px; }
+    .intro-accent { width: 3px; background: linear-gradient(to bottom, var(--amber), transparent); border-radius: 2px; margin-top: 4px; }
+    .intro-heading { font-family: var(--serif); font-size: 36px; font-weight: 400; color: var(--ink); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 18px; margin-top: 10px; }
+    .intro-body { font-size: 16px; line-height: 1.8; color: var(--steel); font-weight: 300; }
+    .intro-body + .intro-body { margin-top: 14px; }
+
+    /* SECTION HEADER */
+    .section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--paper-3); }
+    .section-heading { font-family: var(--serif); font-size: 26px; font-weight: 400; color: var(--ink); letter-spacing: -0.01em; line-height: 1; margin-top: 6px; }
+    .section-link { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); display: flex; align-items: center; gap: 5px; transition: gap 0.15s; }
+    .section-link:hover { gap: 9px; }
+
+    /* MAP SECTION */
+    .maps-section { margin-bottom: 64px; }
+    .map-viewer { border-radius: var(--r); overflow: hidden; background: var(--ink-2); box-shadow: 0 4px 40px rgba(14,20,25,0.12), 0 1px 4px rgba(14,20,25,0.08); }
+
+    /* BODY CHOROPLETH */
+    .choro-viewer { overflow: hidden; }
+    .choro-body { display: grid; grid-template-columns: 1fr 200px; min-height: 440px; }
+    .choro-map-wrap { position: relative; background: var(--ink-2); border-right: 1px solid rgba(255,255,255,0.06); }
+    #choroSvg { width: 100%; height: 100%; display: block; min-height: 440px; }
+
+    /* Masthead map styling - enhanced with dark borders and pop effect */
+    #mastChoroSvg .county-path { stroke: rgba(14, 20, 25, 0.5); stroke-width: 1.2; cursor: pointer; transition: stroke 0.15s, stroke-width 0.15s, filter 0.15s; }
+    #mastChoroSvg .county-path:hover { stroke: rgba(255,255,255,0.9); stroke-width: 2px; filter: brightness(1.15); }
+    #mastChoroSvg .county-path.active { stroke: white; stroke-width: 2px; }
+
+    /* Body map styling - original subtle styling */
+    #choroSvg .county-path { stroke: rgba(255,255,255,0.18); stroke-width: 0.4px; cursor: pointer; transition: stroke 0.1s, stroke-width 0.1s, filter 0.1s; }
+    #choroSvg .county-path:hover { stroke: rgba(255,255,255,0.9); stroke-width: 1.5px; filter: brightness(1.15); }
+    #choroSvg .county-path.active { stroke: white; stroke-width: 2px; }
+
+    .choro-legend { position: absolute; bottom: 14px; left: 14px; background: rgba(10,16,20,0.88); border-radius: 4px; padding: 10px 12px; font-size: 10px; color: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.07); }
+    .legend-title { font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 7px; color: rgba(255,255,255,0.55); font-size: 9.5px; }
+    .legend-swatches { display: flex; gap: 2px; }
+    .legend-swatch { width: 24px; height: 10px; border-radius: 1px; }
+    .legend-labels { display: flex; justify-content: space-between; margin-top: 4px; }
+    .choro-panel { background: var(--ink); padding: 20px 16px; display: flex; flex-direction: column; gap: 0; }
+    .choro-panel-head { margin-bottom: 16px; }
+    .choro-panel-name { font-family: var(--serif); font-size: 20px; color: rgba(255,255,255,0.9); line-height: 1.2; margin-top: 6px; min-height: 28px; }
+    .choro-panel-stat { padding: 12px 0; border-top: 1px solid rgba(255,255,255,0.06); }
+    .choro-panel-label { font-size: 9.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 4px; }
+    .choro-panel-val { font-family: var(--serif); font-size: 28px; color: var(--amber-lt); line-height: 1; }
+    .choro-panel-val.above { color: #e86464; }
+    .choro-panel-val.below { color: #6ec97a; }
+    .choro-panel-sub { font-size: 10px; color: rgba(255,255,255,0.28); margin-top: 3px; }
+    .choro-source { margin-top: auto; padding-top: 16px; font-size: 10px; color: rgba(255,255,255,0.18); line-height: 1.7; }
+    .choro-map-header { position: absolute; top: 20px; left: 20px; pointer-events: none; color: rgba(255,255,255,0.9); z-index: 10; }
+    .choro-map-header h1 { margin: 0; font-size: 1.4rem; font-weight: 600; letter-spacing: -0.01em; color: #ffffff; }
+    .choro-map-header .subtitle { margin: 4px 0 8px 0; font-size: 1.1rem; color: rgba(255,255,255,0.7); }
+    .choro-map-header .meta { margin: 0; font-size: 0.60rem; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(255,255,255,0.5); line-height: 1.4; }
+    .choro-map-header .stat { margin-top: 15px; padding-top: 0; position: relative; font-size: 0.95rem; }
+    .choro-map-header .stat::before { content: ""; position: absolute; top: -8px; left: 0; width: 300px; height: 1px; background-color: rgba(255,255,255,0.3); }
+
+    /* FEATURE CARDS */
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .fcard { background: white; border-radius: var(--r); padding: 28px 28px 24px; border: 1px solid var(--paper-3); display: flex; flex-direction: column; gap: 12px; transition: all 0.2s; position: relative; overflow: hidden; }
+    .fcard::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--amber); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
+    .fcard:hover { box-shadow: 0 12px 40px rgba(14,20,25,0.10); transform: translateY(-3px); border-color: var(--fog); }
+    .fcard:hover::after { transform: scaleX(1); }
+    .fcard-icon { width: 40px; height: 40px; border-radius: 8px; background: var(--paper); display: flex; align-items: center; justify-content: center; color: var(--amber); }
+    .fcard-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); }
+    .fcard h3 { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--ink); line-height: 1.2; letter-spacing: -0.01em; }
+    .fcard p { font-size: 13.5px; line-height: 1.65; color: var(--steel); font-weight: 300; flex: 1; }
+    .fcard-arrow { font-size: 13px; color: var(--amber); font-weight: 600; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px; margin-top: 4px; transition: gap 0.15s; }
+    .fcard:hover .fcard-arrow { gap: 10px; }
+
+    /* SIDEBAR */
+    .side-card { background: white; border-radius: var(--r); border: 1px solid var(--paper-3); overflow: hidden; margin-bottom: 20px; }
+    .side-card-head { background: var(--ink); padding: 16px 22px; display: flex; align-items: center; gap: 10px; }
+    .side-card-head-text { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+    .side-card-head-text span { color: var(--amber); }
+    .side-nav { padding: 8px 0; }
+    .side-nav-link { display: flex; align-items: center; gap: 10px; padding: 9px 22px; font-size: 13.5px; color: var(--steel); border-left: 2px solid transparent; transition: all 0.15s; font-weight: 400; }
+    .side-nav-link:hover { color: var(--ink); background: var(--paper); border-left-color: var(--amber); }
+    .side-nav-link .ico { color: var(--fog); flex-shrink: 0; transition: color 0.15s; }
+    .side-nav-link:hover .ico { color: var(--amber); }
+    .side-nav-link.indent { padding-left: 40px; font-size: 13px; color: var(--mist); }
+    .side-nav-link.indent:hover { color: var(--steel); }
+    .side-nav-sep { border: none; border-top: 1px solid var(--paper-2); margin: 6px 0; }
+
+    .mu-card { background: var(--ink-2); border-radius: var(--r); padding: 24px; margin-bottom: 20px; position: relative; overflow: hidden; }
+    .mu-card::before { content: ''; position: absolute; top: -30px; right: -30px; width: 100px; height: 100px; background: var(--amber); border-radius: 50%; opacity: 0.06; }
+    .mu-card-tag { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); font-weight: 600; margin-bottom: 8px; }
+    .mu-card h3 { font-family: var(--serif); font-size: 17px; color: rgba(255,255,255,0.85); font-weight: 400; line-height: 1.3; margin-bottom: 10px; }
+    .mu-card p { font-size: 12.5px; color: rgba(255,255,255,0.38); line-height: 1.6; margin-bottom: 16px; }
+    .mu-links { display: flex; flex-direction: column; gap: 8px; }
+    .mu-link { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.07); border-radius: 4px; font-size: 12.5px; color: rgba(255,255,255,0.55); transition: all 0.15s; }
+    .mu-link:hover { background: rgba(200,122,47,0.1); border-color: rgba(200,122,47,0.25); color: var(--amber-lt); }
+
+    .app-card { background: var(--paper-2); border-radius: var(--r); border: 1px solid var(--paper-3); padding: 24px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .app-card-icon { width: 60px; height: 60px; background: var(--ink); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; box-shadow: 0 4px 16px rgba(14,20,25,0.15); }
+    .app-card h3 { font-family: var(--serif); font-size: 18px; color: var(--ink); margin-bottom: 6px; }
+    .app-card p { font-size: 12.5px; color: var(--steel); line-height: 1.6; margin-bottom: 16px; }
+    .app-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--ink); color: white; padding: 10px 20px; border-radius: 4px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.04em; transition: background 0.2s; width: 100%; justify-content: center; }
+    .app-btn:hover { background: var(--amber); }
+
+    /* DIRECTOR STATEMENT */
+    .director-block { display: grid; grid-template-columns: 200px 1fr; gap: 40px; align-items: start; background: white; border: 1px solid var(--paper-3); border-radius: var(--r); padding: 36px; margin-bottom: 64px; position: relative; overflow: hidden; }
+    .director-block::before { content: '\201C'; position: absolute; top: -10px; right: 28px; font-family: var(--serif); font-size: 140px; color: var(--paper-2); line-height: 1; pointer-events: none; }
+    .director-photo img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center 15%; border-radius: 4px; display: block; }
+    .director-photo-name { margin-top: 12px; text-align: center; }
+    .director-photo-name strong { display: block; font-family: var(--serif); font-size: 15px; font-weight: 400; color: var(--ink); }
+    .director-photo-name span { font-size: 10.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber); }
+    .director-disclaimer { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mist); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .director-disclaimer::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--fog); }
+    .director-text { font-size: 16px; line-height: 1.85; color: var(--steel); font-weight: 300; margin-bottom: 14px; }
+    .director-source { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--paper-3); font-size: 12px; color: var(--mist); display: flex; align-items: center; gap: 8px; }
+    .director-source a { color: var(--amber); font-weight: 600; letter-spacing: 0.04em; transition: color 0.15s; }
+    .director-source a:hover { color: var(--amber-lt); }
+
+    /* FOOTER */
+    footer { background: var(--ink); color: rgba(255,255,255,0.28); }
+    .footer-upper { max-width: 1320px; margin: 0 auto; padding: 48px 40px; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .footer-wordmark { font-family: var(--serif); font-size: 22px; color: rgba(255,255,255,0.75); font-weight: 400; line-height: 1.2; margin-bottom: 12px; }
+    .footer-wordmark span { color: var(--amber); }
+    .footer-desc { font-size: 12.5px; line-height: 1.7; color: rgba(255,255,255,0.28); font-weight: 300; }
+    .footer-col-title { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.3); font-weight: 600; margin-bottom: 16px; }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-link { font-size: 13px; color: rgba(255,255,255,0.35); transition: color 0.15s; }
+    .footer-link:hover { color: var(--amber-lt); }
+    .footer-lower { max-width: 1320px; margin: 0 auto; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; font-size: 11.5px; letter-spacing: 0.04em; }
+    .footer-lower a { color: rgba(255,255,255,0.25); transition: color 0.15s; }
+    .footer-lower a:hover { color: var(--amber); }
+
+    /* ANIMATIONS */
+    @keyframes riseIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .rise { opacity: 0; animation: riseIn 0.7s ease forwards; }
+    .rise-1 { animation-delay: 0.05s; } .rise-2 { animation-delay: 0.15s; } .rise-3 { animation-delay: 0.25s; }
+    .rise-4 { animation-delay: 0.35s; } .rise-5 { animation-delay: 0.45s; }
+
+    @media (max-width: 960px) {
+      .masthead { grid-template-columns: 1fr; }
+      .masthead-right, .masthead-rule { display: none; }
+      .page-wrap { grid-template-columns: 1fr; }
+      .footer-upper { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-left">University of Kentucky  •  Markey Cancer Center  •  Est. 1990</div>
+  <div class="topbar-sep"></div>
+  <div class="topbar-right">
+    <a href="/staff">Staff Directory</a>
+    <a href="/contact.html">Contact</a>
+    <a href="https://kcr-confluence.atlassian.net/wiki/spaces/kentuckyregistrarswiki/overview" target="_blank">Registrars Wiki</a>
+  </div>
+</div>
+
+<div class="masthead">
+  <div class="masthead-bg"></div>
+  <div class="masthead-rule"></div>
+
+  <!-- LEFT COLUMN -->
+  <div class="masthead-left">
+
+    <div class="masthead-logo-area rise rise-1">
+      <div class="logo-mark">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="9" stroke="var(--amber)" stroke-width="1.5"></circle>
+          <path d="M12 7v5l3 3" stroke="var(--amber)" stroke-width="1.5" stroke-linecap="round"></path>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <strong>Kentucky Cancer Registry</strong>
+        <span>Commonwealth of Kentucky • Since 1990</span>
+      </div>
+    </div>
+
+    <h1 class="masthead-title rise rise-2">
+      Tracking Cancer<br><em>Across Kentucky.</em>
+    </h1>
+
+    <p class="masthead-sub rise rise-3">
+      The population-based central cancer registry for the Commonwealth,
+      providing surveillance data that guides research, policy, and patient care
+      across all 120 counties.
+    </p>
+
+    <div class="masthead-ctas rise rise-4">
+      <a href="https://www.cancer-rates.info/ky/" target="_blank" class="btn-primary">
+        Explore Rate Data
+      </a>
+      <a href="/research/" class="btn-ghost">
+        Submit a Data Request
+      </a>
+    </div>
+
+    <div class="masthead-stats rise rise-5">
+      <div class="mstat">
+        <div class="mstat-num">120</div>
+        <div class="mstat-label">Counties Tracked</div>
+      </div>
+      <div class="mstat">
+        <div class="mstat-num">35<span>+</span></div>
+        <div class="mstat-label">Years of Data</div>
+      </div>
+      <div class="mstat">
+        <div class="mstat-num">Gold</div>
+        <div class="mstat-label">NAACCR Certified</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT COLUMN — map fills, stats bar underneath -->
+  <div class="masthead-right">
+
+    <!-- Map canvas -->
+    <div class="mast-choro-wrap" id="mapStage">
+      <svg id="mastChoroSvg"></svg>
+
+      <!-- Title overlay — full width gradient, text only -->
+      <div class="map-top-header" id="mastMapHeader">
+        <div class="map-eyebrow">Cancer Surveillance · KCR 2019–2023</div>
+        <div class="map-main-title">Invasive Cancer Incidence Rates<br>in Kentucky</div>
+        <div class="map-sub-line">All Sites · By County</div>
+        <div class="map-method-line">Age-Adjusted to 2000 U.S. Standard Population</div>
+        <div class="map-ky-rate">Kentucky Rate: <strong>524.6</strong> per 100,000</div>
+      </div>
+
+      <!-- Legend — positioned by JS to sit just below the gradient fade -->
+      <div class="mast-choro-legend-box" id="mastChoroLegend"></div>
+
+      <!-- Tooltip -->
+      <div class="choro-tooltip" id="mastChoroTip"></div>
+
+      <!-- Bottom bar -->
+      <div class="map-overlay-bar">
+        <div class="map-caption">
+          <strong>All Cancer — Incidence Rate</strong>
+          <span>Age-Adjusted • County-Level • 2019–2023</span>
+        </div>
+        <a href="https://www.cancer-rates.info/ky/" target="_blank" class="mast-choro-link">
+          Full Explorer →
+        </a>
+      </div>
+
+      <!-- Data note: centered, just above the bottom bar -->
+      <div class="map-data-note-bar">
+        All rates per 100,000 · Data released Nov 2025 · Retrieved Feb 24, 2026
+      </div>
+    </div>
+
+    <!-- Stats bar below map -->
+    <div class="mast-stats-bar" id="mastPanel">
+      <div class="mast-stat-cell">
+        <div class="mast-panel-eyebrow">Hover a county</div>
+        <div class="mast-panel-name" id="mastPanelName">—</div>
+      </div>
+      <div class="mast-stat-cell">
+        <div class="mast-panel-label">Age-Adj. Rate</div>
+        <div class="mast-panel-val" id="mastPanelRate">—</div>
+        <div class="mast-panel-sub">per 100,000</div>
+      </div>
+      <div class="mast-stat-cell">
+        <div class="mast-panel-label">vs. KY Average</div>
+        <div class="mast-panel-val" id="mastPanelVsState">—</div>
+        <div class="mast-panel-sub">statewide: 524.6</div>
+      </div>
+      <div class="mast-stat-cell">
+        <div class="mast-panel-label">State Rank</div>
+        <div class="mast-panel-val" id="mastPanelRank">—</div>
+        <div class="mast-panel-sub">of 120 counties</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-link active">Home</a>
+    <a href="/about.html" class="nav-link">About</a>
+    <a href="https://www.cancer-rates.info/ky/" target="_blank" class="nav-link">Data &amp; Maps</a>
+    <a href="/research/" class="nav-link">Research</a>
+    <a href="/resources/" class="nav-link">Technical</a>
+    <a href="https://www.kcr.uky.edu/childhood-report" target="_blank" class="nav-link">Reports</a>
+    <div class="nav-spacer"></div>
+    <form class="nav-search-form" action="https://www.google.com/cse" method="get">
+      <input type="hidden" name="cx" value="009441292369788699417:9icjohttrvo">
+      <input type="hidden" name="ie" value="UTF-8">
+      <input type="text" name="q" placeholder="Search the Registry…">
+      <button type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+<div class="ribbon">
+  <div class="ribbon-inner">
+    <span class="ribbon-label">In partnership with</span>
+    <div class="ribbon-divider"></div>
+    <div class="ribbon-logos">
+      <a href="http://seer.cancer.gov" target="_blank"><img src="/images/seer.png" alt="NCI SEER"></a>
+      <a href="http://www.cdc.gov/cancer/npcr/" target="_blank"><img src="/images/NPCR_logo.png" alt="CDC NPCR"></a>
+      <a href="http://www.naaccr.org/" target="_blank"><img src="/images/naaccr2.png" alt="NAACCR"></a>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <main>
+
+    <div class="intro-block rise rise-1">
+      <div class="intro-accent"></div>
+      <div>
+        <div class="eyebrow" style="margin-bottom:10px;">Population-Based Cancer Surveillance</div>
+        <h2 class="intro-heading">Welcome to the<br>Kentucky Cancer Registry</h2>
+        <p class="intro-body">In 1990, the State General Assembly passed legislation formally establishing the Kentucky Cancer Registry (KCR) as the official population-based central cancer registry for the Commonwealth. KCR is part of both the National Cancer Institute's Surveillance, Epidemiology, and End Results (SEER) program and the CDC's National Program of Cancer Registries (NPCR).</p>
+        <p class="intro-body">As an active NAACCR participant, KCR serves clinicians, researchers, public health officials, and policymakers with comprehensive, high-quality cancer data across Kentucky's 120 counties.</p>
+      </div>
+    </div>
+
+    <div class="maps-section rise rise-2">
+      <div class="section-header">
+        <div>
+          <div class="eyebrow">Interactive Data Visualization</div>
+          <h2 class="section-heading">Cancer Rate Maps</h2>
+        </div>
+        <a href="https://www.cancer-rates.info/ky/" target="_blank" class="section-link">
+          Open Full Explorer
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </a>
+      </div>
+      <div class="map-viewer choro-viewer">
+        <div class="choro-body">
+          <div class="choro-map-wrap">
+            <div class="choro-map-header">
+              <h1>Invasive Cancer Incidence Rates in Kentucky</h1>
+              <p class="subtitle">2019 – 2023, By County</p>
+              <p class="meta">All Sites</p>
+              <p class="meta">Age-Adjusted to 2000 U.S. Standard Population</p>
+              <p class="stat">Kentucky Rate: <strong>524.6</strong> / per 100,000</p>
+            </div>
+            <svg id="choroSvg"></svg>
+            <div class="choro-tooltip" id="choroTip"></div>
+            <div class="choro-legend" id="choroLegend"></div>
+          </div>
+          <div class="choro-panel" id="choroPanel">
+            <div class="choro-panel-head">
+              <div class="eyebrow" style="color:rgba(255,255,255,0.4);font-size:10px;letter-spacing:.14em;">Hover a county</div>
+              <div class="choro-panel-name" id="choroPanelName">—</div>
+            </div>
+            <div class="choro-panel-stat">
+              <div class="choro-panel-label">Age-Adj. Rate</div>
+              <div class="choro-panel-val" id="choroPanelRate">—</div>
+              <div class="choro-panel-sub">per 100,000</div>
+            </div>
+            <div class="choro-panel-stat">
+              <div class="choro-panel-label">vs. KY State Avg</div>
+              <div class="choro-panel-val" id="choroPanelVsState">—</div>
+              <div class="choro-panel-sub" id="choroPanelVsSub">statewide: 524.6</div>
+            </div>
+            <div class="choro-panel-stat">
+              <div class="choro-panel-label">State Rank</div>
+              <div class="choro-panel-val" id="choroPanelRank">—</div>
+              <div class="choro-panel-sub">of 120 counties</div>
+            </div>
+            <div class="choro-source">
+              All Sites • Age-Adjusted Incidence<br>
+              KCR via cancer-rates.info • 2019–2023
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rise rise-3">
+      <div class="section-header">
+        <div>
+          <div class="eyebrow">From the Director</div>
+          <h2 class="section-heading">The Registry's Mission</h2>
+        </div>
+      </div>
+      <div class="director-block">
+        <div class="director-photo">
+          <img src="/staff/images/ericd.jpg" alt="Eric Durbin, Director of Cancer Informatics">
+          <div class="director-photo-name">
+            <strong>Eric Durbin</strong>
+            <span>Director, Cancer Informatics</span>
+          </div>
+        </div>
+        <div class="director-content">
+          <div class="director-disclaimer">Paraphrased from a 2016 feature article</div>
+          <p class="director-text">Cancer registries are the unseen backbone of progress in the fight against cancer. Without reliable, population-based data, clinicians and researchers cannot identify where disease is concentrated, allocate resources effectively, or measure whether prevention efforts are actually working. The Kentucky Cancer Registry exists to be the eyes of that public health effort across all 120 counties of the Commonwealth.</p>
+          <p class="director-text">Since joining the NCI's SEER program in 2000 — one of only seventeen such registries in the nation — KCR has pushed the boundaries of what a registry can do. Using Natural Language Processing, the registry now receives pathology reports in real time from labs across the state, meaning we often learn of a cancer diagnosis almost simultaneously with the treating physician. That capability is critical: in late-stage lung cancer, median survival is under nine months. Reaching patients quickly enough to offer clinical trial enrollment can make a meaningful difference in their lives.</p>
+          <p class="director-text">Beyond individual patients, KCR functions as a virtual population-based tissue repository — tracking the location of tissue samples taken at surgery or biopsy across the state. Because this data is truly population-based, findings from individual studies can be generalized to the broader Kentucky population, dramatically elevating the science. That is what distinguishes a registry from a simple database: the ability to connect data back to the people and communities it represents.</p>
+          <div class="director-source">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><rect x="2" y="1" width="10" height="14" rx="1.5" stroke="currentColor" stroke-width="1.4"></rect><path d="M5 5h4M5 8h4M5 11h2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path></svg>
+            Read the full original article at
+            <a href="https://medicine.uky.edu/news/kentucky-cancer-registry-uses-power-data-fight-2016-09-28t01-05-42" target="_blank">UK College of Medicine News →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rise rise-4">
+      <div class="section-header">
+        <div>
+          <div class="eyebrow">Resources &amp; Programs</div>
+          <h2 class="section-heading">Key Resources</h2>
+        </div>
+      </div>
+      <div class="feature-grid">
+        <a href="https://www.kcr.uky.edu/childhood-report" class="fcard" target="_blank">
+          <div class="fcard-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"></rect><path d="M7 8h10M7 12h10M7 16h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div>
+          <div class="fcard-tag">Report • 2014–2023</div>
+          <h3>Childhood Cancer in Kentucky</h3>
+          <p>Comprehensive analysis of pediatric cancer incidence and outcomes throughout the Commonwealth.</p>
+          <div class="fcard-arrow">View Report <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+        </a>
+        <a href="https://www.cancer-rates.info/ky/" class="fcard" target="_blank">
+          <div class="fcard-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"></circle><path d="M3 12h18M12 3c-2 3-3 6-3 9s1 6 3 9" stroke="currentColor" stroke-width="1.5"></path></svg></div>
+          <div class="fcard-tag">Interactive Tool</div>
+          <h3>cancer-rates.info</h3>
+          <p>Explore Kentucky's county-level cancer rates through an interactive web mapping application.</p>
+          <div class="fcard-arrow">Open Tool <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+        </a>
+        <a href="/research/" class="fcard">
+          <div class="fcard-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"></rect></svg></div>
+          <div class="fcard-tag">Data Access</div>
+          <h3>Research &amp; Data Requests</h3>
+          <p>Submit a formal data request for population-based cancer statistics for approved research projects.</p>
+          <div class="fcard-arrow">Request Data <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+        </a>
+        <a href="/resources" class="fcard">
+          <div class="fcard-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 17l4-4-4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 19h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div>
+          <div class="fcard-tag">For Reporters</div>
+          <h3>Technical Resources</h3>
+          <p>Software downloads, KCR manuals, training materials, and technical support for data reporters.</p>
+          <div class="fcard-arrow">Access Resources <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <aside class="sidebar">
+    <div class="side-card rise rise-2">
+      <div class="side-card-head">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="rgba(255,255,255,0.5)" stroke-width="1.4"></rect><path d="M5 8h6M8 5v6" stroke="rgba(255,255,255,0.5)" stroke-width="1.4" stroke-linecap="round"></path></svg>
+        <span class="side-card-head-text">Site <span>Navigation</span></span>
+      </div>
+      <div class="side-nav">
+        <a href="/about.html" class="side-nav-link"><svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4"></circle><path d="M8 7v4M8 5.5v.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path></svg>About the KCR</a>
+        <a href="/research/" class="side-nav-link"><svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h8M2 12h5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path></svg>Research</a>
+        <a href="https://www.kcr.uky.edu/childhood-report" class="side-nav-link" target="_blank"><svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="2" y="1" width="10" height="14" rx="1.5" stroke="currentColor" stroke-width="1.4"></rect><path d="M5 5h4M5 8h4M5 11h2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path></svg>Childhood Cancer Report</a>
+        <hr class="side-nav-sep">
+        <a href="http://cancer-rates.info/ky" class="side-nav-link" target="_blank"><svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4"></circle><path d="M2 8h12M8 2c-1.5 2-2 4-2 6s.5 4 2 6" stroke="currentColor" stroke-width="1.4"></path></svg>cancer-rates.info</a>
+        <a href="http://cancer-rates.info/ky" class="side-nav-link indent" target="_blank">→ Incidence Rates</a>
+        <a href="http://cancer-rates.info/ky/?datasource=mort" class="side-nav-link indent" target="_blank">→ Mortality Rates</a>
+        <hr class="side-nav-sep">
+        <a href="/tech.html" class="side-nav-link"><svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"></rect><path d="M5 9l2-2 2 2 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>Technical Resources</a>
+        <a href="/software" class="side-nav-link indent">→ Software</a>
+        <a href="/manuals" class="side-nav-link indent">→ KCR Manuals</a>
+        <a href="/training" class="side-nav-link indent">→ Training</a>
+        <a href="/intheabstract" class="side-nav-link indent">→ In the Abstract</a>
+        <a href="/resources" class="side-nav-link indent">→ Technical Support</a>
+        <hr class="side-nav-sep">
+        <a href="/statutes.html" class="side-nav-link"><svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 2h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.4"></path><path d="M5 6h6M5 9h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path></svg>KY Privacy Statutes</a>
+        <a href="/contact.html" class="side-nav-link"><svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"></rect><path d="M1 5l7 5 7-5" stroke="currentColor" stroke-width="1.4"></path></svg>Contact Us</a>
+      </div>
+    </div>
+
+    <div class="mu-card rise rise-3">
+      <div class="mu-card-tag">For Physicians &amp; Providers</div>
+      <h3>Meaningful Use Reporting</h3>
+      <p>Electronic reporting resources for Stage 2 and Stage 3 compliance with the Kentucky Cancer Registry.</p>
+      <div class="mu-links">
+        <a href="/mu.html" class="mu-link"><span>Stage 2 — Physicians</span><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+        <a href="/mu3.html" class="mu-link"><span>Stage 3 — Eligible Providers</span><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+      </div>
+    </div>
+
+    <div class="app-card rise rise-4">
+      <div class="app-card-icon">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+          <path d="M6 26C6 27.1 6.9 28 8 28h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2H8C6.9 6 6 6.9 6 8v18z" stroke="rgba(200,122,47,0.8)" stroke-width="1.5"></path>
+          <path d="M12 14l3 3 5-5" stroke="rgba(200,122,47,0.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M10 20h12" stroke="rgba(200,122,47,0.5)" stroke-width="1.5" stroke-linecap="round"></path>
+        </svg>
+      </div>
+      <h3>Cancer Rates App</h3>
+      <p>Browse Kentucky cancer statistics on your iPhone. County-level incidence and mortality data, always at hand.</p>
+      <a href="https://itunes.apple.com/us/app/cancer-rates/id1049312556?mt=8" target="_blank" class="app-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"></path></svg>
+        Download on App Store
+      </a>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <div class="footer-upper">
+    <div>
+      <div class="footer-wordmark">Kentucky <span>Cancer Registry</span></div>
+      <p class="footer-desc">The official population-based central cancer registry for the Commonwealth of Kentucky, serving researchers, clinicians, and public health officials since 1990.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Registry</div>
+      <div class="footer-links">
+        <a href="/about.html" class="footer-link">About KCR</a>
+        <a href="/research/" class="footer-link">Research</a>
+        <a href="/staff" class="footer-link">Staff Directory</a>
+        <a href="/contact.html" class="footer-link">Contact Us</a>
+        <a href="/statutes.html" class="footer-link">Privacy Statutes</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Data &amp; Tools</div>
+      <div class="footer-links">
+        <a href="http://cancer-rates.info/ky" target="_blank" class="footer-link">cancer-rates.info</a>
+        <a href="http://cancer-rates.info/ky" target="_blank" class="footer-link">Incidence Rates</a>
+        <a href="http://cancer-rates.info/ky/?datasource=mort" target="_blank" class="footer-link">Mortality Rates</a>
+        <a href="https://www.kcr.uky.edu/childhood-report" target="_blank" class="footer-link">Childhood Cancer Report</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Technical</div>
+      <div class="footer-links">
+        <a href="/software" class="footer-link">Software</a>
+        <a href="/manuals" class="footer-link">KCR Manuals</a>
+        <a href="/training" class="footer-link">Training</a>
+        <a href="/resources" class="footer-link">Technical Support</a>
+        <a href="https://kcr-confluence.atlassian.net/wiki/spaces/kentuckyregistrarswiki/overview" target="_blank" class="footer-link">Registrars Wiki</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-lower">
+    <span>Last updated: September 4, 2025  •  <a href="/cdn-cgi/l/email-protection#0a6169784a7f6173246f6e7f"><span class="__cf_email__" data-cfemail="ef848c9daf9a8496c18a8b9a">[email&nbsp;protected]</span></a></span>
+    <div style="display:flex;gap:24px;">
+      <a href="https://www.uky.edu" class="footer-link">University of Kentucky</a>
+      <a href="https://ukhealthcare.uky.edu/Markey/" class="footer-link">Markey Cancer Center</a>
+      <a href="https://www.kycancerc.org/" class="footer-link">KY Cancer Consortium</a>
+      <a href="https://www.kcp.uky.edu/" class="footer-link">KY Cancer Program</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/d3.min.js"></script>
+<script src="/js/topojson.min.js"></script>
+<script>
+  (function() {
+
+    var COUNTY_DATA = {
+      "21001":{"name":"Adair",      "pop":18732, "cases":295, "crude":443.2, "rate":560.1},
+      "21003":{"name":"Allen",      "pop":21069, "cases":270, "crude":359.2, "rate":480.9},
+      "21005":{"name":"Anderson",   "pop":22570, "cases":325, "crude":440.2, "rate":540.0},
+      "21007":{"name":"Ballard",    "pop":7880,  "cases":109, "crude":382.0, "rate":521.5},
+      "21009":{"name":"Barren",     "pop":44911, "cases":590, "crude":393.5, "rate":494.6},
+      "21011":{"name":"Bath",       "pop":12510, "cases":187, "crude":418.1, "rate":563.1},
+      "21013":{"name":"Bell",       "pop":26404, "cases":364, "crude":388.0, "rate":518.9},
+      "21015":{"name":"Boone",      "pop":136207,"cases":1744,"crude":377.4, "rate":507.4},
+      "21017":{"name":"Bourbon",    "pop":19788, "cases":295, "crude":424.5, "rate":566.5},
+      "21019":{"name":"Boyd",       "pop":46328, "cases":688, "crude":418.5, "rate":559.8},
+      "21021":{"name":"Boyle",      "pop":30159, "cases":431, "crude":415.4, "rate":537.4},
+      "21023":{"name":"Bracken",    "pop":8303,  "cases":136, "crude":438.3, "rate":614.5},
+      "21025":{"name":"Breathitt",  "pop":12630, "cases":162, "crude":360.3, "rate":480.0},
+      "21027":{"name":"Breckinridge","pop":20688,"cases":278, "crude":379.0, "rate":506.0},
+      "21029":{"name":"Bullitt",    "pop":81542, "cases":1153,"crude":412.3, "rate":538.4},
+      "21031":{"name":"Butler",     "pop":12905, "cases":176, "crude":380.5, "rate":512.4},
+      "21033":{"name":"Caldwell",   "pop":12651, "cases":160, "crude":356.3, "rate":476.9},
+      "21035":{"name":"Calloway",   "pop":38617, "cases":568, "crude":412.1, "rate":553.1},
+      "21037":{"name":"Campbell",   "pop":94083, "cases":1303,"crude":388.9, "rate":519.9},
+      "21039":{"name":"Carlisle",   "pop":4789,  "cases":73,  "crude":424.2, "rate":575.6},
+      "21041":{"name":"Carroll",    "pop":10666, "cases":149, "crude":393.0, "rate":524.7},
+      "21043":{"name":"Carter",     "pop":27015, "cases":430, "crude":435.1, "rate":597.0},
+      "21045":{"name":"Casey",      "pop":16054, "cases":220, "crude":385.6, "rate":515.9},
+      "21047":{"name":"Christian",  "pop":70121, "cases":963, "crude":376.4, "rate":519.2},
+      "21049":{"name":"Clark",      "pop":36289, "cases":510, "crude":404.0, "rate":526.8},
+      "21051":{"name":"Clay",       "pop":19403, "cases":307, "crude":420.2, "rate":596.4},
+      "21053":{"name":"Clinton",    "pop":9862,  "cases":141, "crude":399.2, "rate":538.9},
+      "21055":{"name":"Crittenden", "pop":8932,  "cases":103, "crude":324.5, "rate":433.1},
+      "21057":{"name":"Cumberland", "pop":6614,  "cases":109, "crude":440.8, "rate":618.7},
+      "21059":{"name":"Daviess",    "pop":101132,"cases":1400,"crude":385.6, "rate":522.9},
+      "21061":{"name":"Edmonson",   "pop":12285, "cases":157, "crude":356.6, "rate":480.9},
+      "21063":{"name":"Elliott",    "pop":7487,  "cases":87,  "crude":318.6, "rate":438.7},
+      "21065":{"name":"Estill",     "pop":14239, "cases":229, "crude":441.1, "rate":603.0},
+      "21067":{"name":"Fayette",    "pop":323152,"cases":4270,"crude":371.7, "rate":496.1},
+      "21069":{"name":"Fleming",    "pop":14560, "cases":208, "crude":400.8, "rate":536.9},
+      "21071":{"name":"Floyd",      "pop":35007, "cases":549, "crude":428.0, "rate":588.6},
+      "21073":{"name":"Franklin",   "pop":50648, "cases":700, "crude":386.5, "rate":517.8},
+      "21075":{"name":"Fulton",     "pop":5744,  "cases":90,  "crude":422.3, "rate":588.8},
+      "21077":{"name":"Gallatin",   "pop":8824,  "cases":131, "crude":414.9, "rate":558.5},
+      "21079":{"name":"Garrard",    "pop":17487, "cases":252, "crude":407.0, "rate":544.6},
+      "21081":{"name":"Grant",      "pop":25219, "cases":388, "crude":430.2, "rate":580.4},
+      "21083":{"name":"Graves",     "pop":37266, "cases":499, "crude":376.2, "rate":503.7},
+      "21085":{"name":"Grayson",    "pop":26292, "cases":390, "crude":415.8, "rate":559.4},
+      "21087":{"name":"Green",      "pop":10860, "cases":157, "crude":407.7, "rate":545.3},
+      "21089":{"name":"Greenup",    "pop":35147, "cases":484, "crude":387.5, "rate":515.9},
+      "21091":{"name":"Hancock",    "pop":8870,  "cases":110, "crude":343.6, "rate":467.5},
+      "21093":{"name":"Hardin",     "pop":110958,"cases":1645,"crude":413.8, "rate":558.3},
+      "21095":{"name":"Harlan",     "pop":25560, "cases":352, "crude":382.3, "rate":518.6},
+      "21097":{"name":"Harrison",   "pop":18635, "cases":280, "crude":422.2, "rate":565.3},
+      "21099":{"name":"Hart",       "pop":18609, "cases":253, "crude":379.2, "rate":512.6},
+      "21101":{"name":"Henderson",  "pop":46004, "cases":591, "crude":358.8, "rate":483.3},
+      "21103":{"name":"Henry",      "pop":15720, "cases":227, "crude":406.0, "rate":545.3},
+      "21105":{"name":"Hickman",    "pop":4369,  "cases":58,  "crude":366.7, "rate":498.1},
+      "21107":{"name":"Hopkins",    "pop":45041, "cases":596, "crude":369.0, "rate":498.5},
+      "21109":{"name":"Jackson",    "pop":13160, "cases":166, "crude":349.6, "rate":476.1},
+      "21111":{"name":"Jefferson",  "pop":779265,"cases":10734,"crude":381.5,"rate":516.3},
+      "21113":{"name":"Jessamine",  "pop":53128, "cases":739, "crude":385.8, "rate":521.5},
+      "21115":{"name":"Johnson",    "pop":22188, "cases":288, "crude":360.3, "rate":487.7},
+      "21117":{"name":"Kenton",     "pop":170614,"cases":2401,"crude":391.0, "rate":529.6},
+      "21119":{"name":"Knott",      "pop":15130, "cases":209, "crude":381.2, "rate":518.6},
+      "21121":{"name":"Knox",       "pop":31285, "cases":494, "crude":437.4, "rate":593.3},
+      "21123":{"name":"Larue",      "pop":14060, "cases":190, "crude":373.1, "rate":508.7},
+      "21125":{"name":"Laurel",     "pop":62016, "cases":856, "crude":382.7, "rate":518.3},
+      "21127":{"name":"Lawrence",   "pop":15607, "cases":231, "crude":410.6, "rate":555.6},
+      "21129":{"name":"Lee",        "pop":7218,  "cases":97,  "crude":370.4, "rate":506.1},
+      "21131":{"name":"Leslie",     "pop":9877,  "cases":136, "crude":378.9, "rate":520.6},
+      "21133":{"name":"Letcher",    "pop":22073, "cases":312, "crude":390.8, "rate":532.9},
+      "21135":{"name":"Lewis",      "pop":13285, "cases":176, "crude":363.0, "rate":497.7},
+      "21137":{"name":"Lincoln",    "pop":24284, "cases":390, "crude":450.8, "rate":604.4},
+      "21139":{"name":"Livingston", "pop":9004,  "cases":147, "crude":453.7, "rate":614.3},
+      "21141":{"name":"Logan",      "pop":27063, "cases":360, "crude":370.9, "rate":500.0},
+      "21143":{"name":"Lyon",       "pop":8327,  "cases":108, "crude":358.8, "rate":486.8},
+      "21145":{"name":"McCracken",  "pop":65903, "cases":943, "crude":396.5, "rate":539.2},
+      "21147":{"name":"McCreary",   "pop":17306, "cases":251, "crude":400.7, "rate":545.5},
+      "21149":{"name":"McLean",     "pop":9207,  "cases":134, "crude":403.6, "rate":547.4},
+      "21151":{"name":"Madison",    "pop":92987, "cases":1307,"crude":389.0, "rate":528.0},
+      "21153":{"name":"Magoffin",   "pop":12309, "cases":178, "crude":398.2, "rate":545.3},
+      "21155":{"name":"Marion",     "pop":19751, "cases":283, "crude":397.9, "rate":539.6},
+      "21157":{"name":"Marshall",   "pop":35073, "cases":499, "crude":395.3, "rate":536.3},
+      "21159":{"name":"Martin",     "pop":11219, "cases":139, "crude":333.8, "rate":464.8},
+      "21161":{"name":"Mason",      "pop":17052, "cases":241, "crude":391.6, "rate":533.3},
+      "21163":{"name":"Meade",      "pop":28576, "cases":420, "crude":412.4, "rate":552.5},
+      "21165":{"name":"Menifee",    "pop":6405,  "cases":88,  "crude":371.6, "rate":515.9},
+      "21167":{"name":"Mercer",     "pop":21370, "cases":315, "crude":408.9, "rate":555.4},
+      "21169":{"name":"Metcalfe",   "pop":10007, "cases":140, "crude":389.1, "rate":525.7},
+      "21171":{"name":"Monroe",     "pop":10380, "cases":148, "crude":394.6, "rate":538.8},
+      "21173":{"name":"Montgomery", "pop":27974, "cases":426, "crude":427.7, "rate":572.0},
+      "21175":{"name":"Morgan",     "pop":13133, "cases":164, "crude":343.1, "rate":468.9},
+      "21177":{"name":"Muhlenberg", "pop":29972, "cases":403, "crude":373.2, "rate":506.2},
+      "21179":{"name":"Nelson",     "pop":46388, "cases":707, "crude":425.2, "rate":575.3},
+      "21181":{"name":"Nicholas",   "pop":7090,  "cases":89,  "crude":349.4, "rate":471.9},
+      "21183":{"name":"Ohio",       "pop":24143, "cases":341, "crude":390.9, "rate":533.5},
+      "21185":{"name":"Oldham",     "pop":67674, "cases":963, "crude":387.5, "rate":534.6},
+      "21187":{"name":"Owen",       "pop":10901, "cases":151, "crude":387.8, "rate":521.0},
+      "21189":{"name":"Owsley",     "pop":4322,  "cases":69,  "crude":440.8, "rate":600.3},
+      "21191":{"name":"Pendleton",  "pop":14499, "cases":207, "crude":397.3, "rate":537.4},
+      "21193":{"name":"Perry",      "pop":25929, "cases":389, "crude":418.3, "rate":563.9},
+      "21195":{"name":"Pike",       "pop":57015, "cases":826, "crude":406.0, "rate":544.2},
+      "21197":{"name":"Powell",     "pop":12219, "cases":203, "crude":461.7, "rate":623.0},
+      "21199":{"name":"Pulaski",    "pop":64079, "cases":950, "crude":413.7, "rate":556.0},
+      "21201":{"name":"Robertson",  "pop":2166,  "cases":30,  "crude":386.9, "rate":525.4},
+      "21203":{"name":"Rockcastle", "pop":16847, "cases":264, "crude":436.3, "rate":591.5},
+      "21205":{"name":"Rowan",      "pop":24516, "cases":320, "crude":361.4, "rate":490.0},
+      "21207":{"name":"Russell",    "pop":18268, "cases":259, "crude":392.2, "rate":533.4},
+      "21209":{"name":"Scott",      "pop":57155, "cases":748, "crude":367.8, "rate":491.0},
+      "21211":{"name":"Shelby",     "pop":48322, "cases":612, "crude":354.7, "rate":476.6},
+      "21213":{"name":"Simpson",    "pop":18111, "cases":242, "crude":370.0, "rate":501.3},
+      "21215":{"name":"Spencer",    "pop":20021, "cases":292, "crude":404.0, "rate":549.6},
+      "21217":{"name":"Taylor",     "pop":25383, "cases":371, "crude":408.7, "rate":548.7},
+      "21219":{"name":"Todd",       "pop":12044, "cases":153, "crude":353.2, "rate":476.7},
+      "21221":{"name":"Trigg",      "pop":14588, "cases":199, "crude":378.8, "rate":511.6},
+      "21223":{"name":"Trimble",    "pop":8577,  "cases":130, "crude":420.5, "rate":572.8},
+      "21225":{"name":"Union",      "pop":14489, "cases":189, "crude":358.5, "rate":489.4},
+      "21227":{"name":"Warren",     "pop":139725,"cases":1756,"crude":349.7, "rate":472.2},
+      "21229":{"name":"Washington", "pop":12036, "cases":176, "crude":403.3, "rate":552.5},
+      "21231":{"name":"Wayne",      "pop":19765, "cases":284, "crude":399.0, "rate":539.8},
+      "21233":{"name":"Webster",    "pop":12828, "cases":163, "crude":349.4, "rate":476.1},
+      "21235":{"name":"Whitley",    "pop":36800, "cases":563, "crude":430.0, "rate":575.1},
+      "21237":{"name":"Wolfe",      "pop":7027,  "cases":126, "crude":493.2, "rate":676.2},
+      "21239":{"name":"Woodford",   "pop":27267, "cases":394, "crude":400.1, "rate":544.1}
+    };
+
+    var STATE_AVG = 524.6;
+    var TOPO_URL  = '/js/counties-10m.json';
+    var COLORS    = ['#f5efe6','#f0d9b5','#e8b97a','#d9904a','#c87a2f','#aa5a18','#843a0a','#561e00'];
+
+    var ranked = Object.keys(COUNTY_DATA).sort(function(a,b){
+      return COUNTY_DATA[b].rate - COUNTY_DATA[a].rate;
+    });
+    function getRank(fips){ return ranked.indexOf(fips) + 1; }
+
+    var rates      = Object.values(COUNTY_DATA).map(function(d){ return d.rate; });
+    var colorScale = d3.scaleQuantile().domain(rates).range(COLORS);
+
+    function buildLegend(container, vertical) {
+      var q        = colorScale.quantiles();
+      var allBreaks = [d3.min(rates)].concat(q).concat([d3.max(rates)]);
+
+      if (vertical) {
+        // Vertical legend: one row per color band, label shows range
+        var html = '<div class="legend-title">Rate / 100k</div>';
+        for (var i = COLORS.length - 1; i >= 0; i--) {
+          var lo = Math.round(allBreaks[i]);
+          var hi = Math.round(allBreaks[i + 1]);
+          var label = (i === COLORS.length - 1) ? hi + '+' : lo + ' – ' + hi;
+          html += '<div class="legend-row">'
+                  + '<div class="legend-swatch" style="background:' + COLORS[i] + '"></div>'
+                  + '<span class="legend-row-label">' + label + '</span>'
+                  + '</div>';
+        }
+        container.innerHTML = html;
+      } else {
+        // Horizontal legend for body map
+        var minR = Math.round(d3.min(rates));
+        var maxR = Math.round(d3.max(rates));
+        var midR = Math.round(q[Math.floor(q.length / 2)]);
+        var html = '<div class="legend-title">Rate / 100k</div>';
+        html += '<div class="legend-swatches">';
+        COLORS.forEach(function(c){ html += '<div class="legend-swatch" style="background:'+c+'"></div>'; });
+        html += '</div><div class="legend-labels"><span>'+minR+'</span><span>'+midR+'</span><span>'+maxR+'</span></div>';
+        container.innerHTML = html;
+      }
+    }
+
+    function updatePanel(fips, ids) {
+      var d = COUNTY_DATA[fips];
+      if (!d) return;
+      document.getElementById(ids.name).textContent = d.name + ' County';
+      document.getElementById(ids.rate).textContent = d.rate.toFixed(1);
+      document.getElementById(ids.rate).className   = (ids.valClass || 'choro-panel-val');
+      var diff = d.rate - STATE_AVG;
+      var vsEl = document.getElementById(ids.vs);
+      vsEl.textContent = (diff > 0 ? '+' : '') + diff.toFixed(1);
+      vsEl.className   = (ids.valClass || 'choro-panel-val') + (diff > 0 ? ' above' : ' below');
+      document.getElementById(ids.rank).textContent = '#' + getRank(fips);
+    }
+
+    function tipRow(label, val, highlight, color) {
+      var valStyle = color ? 'style="color:' + color + '"' : '';
+      var cls = highlight ? 'tip-val highlight' : 'tip-val';
+      return '<div class="tip-row">'
+              + '<span class="tip-label">' + label + '</span>'
+              + '<span class="' + cls + '" ' + valStyle + '>' + val + '</span>'
+              + '</div>';
+    }
+
+    function drawChoro(svgEl, tipEl, legendEl, kyFeatures, opts) {
+      opts = opts || {};
+      var wrap = svgEl.parentElement;
+      var W = wrap.clientWidth  || 600;
+      var H = wrap.clientHeight || 440;
+
+      var svg = d3.select(svgEl).attr('width', W).attr('height', H);
+      svg.selectAll('*').remove();
+
+      var proj = d3.geoAlbers()
+              .rotate([87.5, 0])
+              .center([0, 37.5])
+              .parallels([36.0, 38.5])
+              .fitSize([W - (opts.pad || 10), H - (opts.pad || 10)],
+                      { type:'FeatureCollection', features: kyFeatures });
+
+      var path = d3.geoPath().projection(proj);
+      var g    = svg.append('g').attr('transform', 'translate('+(opts.pad/2||5)+','+(opts.pad/2||5)+')');
+
+      g.selectAll('.county-path')
+              .data(kyFeatures)
+              .enter().append('path')
+              .attr('class', 'county-path')
+              .attr('d', path)
+              .attr('fill', function(f){
+                var fips = String(f.id).padStart(5, '0');
+                var d    = COUNTY_DATA[fips];
+                return d ? colorScale(d.rate) : '#1e2a32';
+              })
+              .on('mousemove', function(event, f){
+                var fips = String(f.id).padStart(5, '0');
+                var d    = COUNTY_DATA[fips];
+                if (!d) return;
+
+                var svgRect = svgEl.getBoundingClientRect();
+                var x = event.clientX - svgRect.left + 50;
+                var y = event.clientY - svgRect.top  - 120;
+                if (x + 210 > svgRect.width) x = event.clientX - svgRect.left - 230;
+                if (y < 8) y = 8;
+
+                if (tipEl) {
+                  var diff = d.rate - STATE_AVG;
+                  var vsStr = (diff > 0 ? '+' : '') + diff.toFixed(1);
+                  var vsColor = diff > 0 ? '#e86464' : '#6ec97a';
+                  tipEl.style.opacity = '1';
+                  tipEl.style.left    = x + 'px';
+                  tipEl.style.top     = y + 'px';
+                  tipEl.innerHTML =
+                          '<span class="tip-county-name">' + d.name + ' County</span>'
+                          + '<div class="tip-rows">'
+                          + tipRow('Population at Risk', d.pop.toLocaleString(), false)
+                          + tipRow('Cases (2019–2023)',   d.cases.toLocaleString(), false)
+                          + tipRow('Crude Rate',          d.crude.toFixed(1), false)
+                          + tipRow('Age-Adjusted Rate',   d.rate.toFixed(1), true)
+                          + tipRow('vs. KY Avg (524.6)',  vsStr, false, vsColor)
+                          + tipRow('State Rank',          '#' + getRank(fips) + ' of 120', false)
+                          + '</div>';
+                }
+
+                if (opts.panelIds) updatePanel(fips, opts.panelIds);
+
+                g.selectAll('.county-path').classed('active', function(ff){
+                  return String(ff.id).padStart(5, '0') === fips;
+                });
+              })
+              .on('mouseleave', function(){
+                if (tipEl) tipEl.style.opacity = '0';
+                g.selectAll('.county-path').classed('active', false);
+              });
+
+      if (legendEl) buildLegend(legendEl, opts.verticalLegend);
+    }
+
+    // Position legend immediately below where the header gradient fades out.
+    // The header's offsetHeight is its solid content area. The gradient fades
+    // over the bottom 25% of that height (per the 75% stop), so we subtract
+    // that fade distance to land right at the transparent point.
+    function positionLegend() {
+      var header = document.getElementById('mastMapHeader');
+      var legend = document.getElementById('mastChoroLegend');
+      if (!header || !legend) return;
+      var gradientFadeStart = header.offsetHeight * 0.75; // solid ends at 75%
+      legend.style.top = Math.round(gradientFadeStart) + 'px';
+    }
+
+    var TOPO_CACHE = null;
+
+    function initMaps(kyFeatures) {
+      // MASTHEAD choropleth
+      var mastSvg    = document.getElementById('mastChoroSvg');
+      var mastTip    = document.getElementById('mastChoroTip');
+      var mastLegend = document.getElementById('mastChoroLegend');
+      if (mastSvg) {
+        drawChoro(mastSvg, mastTip, mastLegend, kyFeatures, {
+          pad: 20,
+          verticalLegend: true,
+          panelIds: {
+            name:     'mastPanelName',
+            rate:     'mastPanelRate',
+            vs:       'mastPanelVsState',
+            rank:     'mastPanelRank',
+            valClass: 'mast-panel-val'
+          }
+        });
+        // Wait one frame for legend to render then position it
+        requestAnimationFrame(positionLegend);
+      }
+
+      // BODY choropleth
+      var bodySvg    = document.getElementById('choroSvg');
+      var bodyTip    = document.getElementById('choroTip');
+      var bodyLegend = document.getElementById('choroLegend');
+      if (bodySvg) {
+        drawChoro(bodySvg, bodyTip, bodyLegend, kyFeatures, {
+          pad: 10,
+          panelIds: {
+            name:     'choroPanelName',
+            rate:     'choroPanelRate',
+            vs:       'choroPanelVsState',
+            rank:     'choroPanelRank',
+            valClass: 'choro-panel-val'
+          }
+        });
+      }
+
+      var resizeTimer;
+      window.addEventListener('resize', function(){
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function(){
+          initMaps(kyFeatures);
+          positionLegend();
+        }, 200);
+      });
+    }
+
+    fetch(TOPO_URL)
+            .then(function(r){ return r.json(); })
+            .then(function(us){
+              TOPO_CACHE = topojson.feature(us, us.objects.counties).features
+                      .filter(function(f){ return String(f.id).padStart(5,'0').startsWith('21'); });
+              initMaps(TOPO_CACHE);
+            })
+            .catch(function(e){
+              console.warn('KCR choropleth: TopoJSON failed to load', e);
+            });
+
+  })();
+</script>
+
+
+</body></html>

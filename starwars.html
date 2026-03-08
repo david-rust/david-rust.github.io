@@ -1,0 +1,2215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kentucky Cancer Registry — Galactic Medical Intelligence Division</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 16px; scroll-behavior: smooth; }
+
+        :root {
+            --void:       #02040a;
+            --deep:       #060c18;
+            --hull:       #0a1228;
+            --panel:      #0e1a36;
+            --empire:     #111f42;
+            --steel:      #1a2d5a;
+            --blue-dim:   #1e3a6e;
+            --cyan:       #00c8ff;
+            --cyan-dim:   #0088bb;
+            --cyan-glow:  rgba(0,200,255,0.15);
+            --gold:       #ffd700;
+            --gold-dim:   #b89a00;
+            --gold-pale:  rgba(255,215,0,0.12);
+            --red:        #ff2020;
+            --red-dim:    #991010;
+            --green:      #00ff88;
+            --text:       #c8d8f0;
+            --text-dim:   #6a88b8;
+            --text-muted: #304060;
+            --mono:       'Share Tech Mono', monospace;
+            --display:    'Orbitron', sans-serif;
+            --body:       'Rajdhani', sans-serif;
+            --r:          2px;
+            --glow-cyan:  0 0 20px rgba(0,200,255,0.4), 0 0 60px rgba(0,200,255,0.1);
+            --glow-gold:  0 0 20px rgba(255,215,0,0.4), 0 0 60px rgba(255,215,0,0.1);
+        }
+
+        body {
+            font-family: var(--body);
+            background: var(--void);
+            color: var(--text);
+            overflow-x: hidden;
+            cursor: crosshair;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; }
+
+        /* STARFIELD */
+        #starfield {
+            position: fixed; inset: 0; pointer-events: none; z-index: 0;
+            background: radial-gradient(ellipse at 20% 50%, rgba(10,20,60,0.6) 0%, transparent 60%),
+            radial-gradient(ellipse at 80% 20%, rgba(0,30,80,0.4) 0%, transparent 50%);
+        }
+        #starfield canvas { width: 100%; height: 100%; }
+
+        /* SCANLINE OVERLAY */
+        body::after {
+            content: '';
+            position: fixed; inset: 0;
+            background: repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0,200,255,0.015) 2px,
+                    rgba(0,200,255,0.015) 4px
+            );
+            pointer-events: none; z-index: 9999;
+        }
+
+        .eyebrow {
+            font-family: var(--display);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--cyan);
+        }
+
+        /* TOPBAR */
+        .topbar {
+            background: rgba(2,4,10,0.95);
+            backdrop-filter: blur(10px);
+            height: 36px;
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+            border-bottom: 1px solid rgba(0,200,255,0.15);
+            position: relative; z-index: 100;
+        }
+        .topbar::before {
+            content: '';
+            position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(to right, transparent, var(--cyan), transparent);
+            opacity: 0.4;
+        }
+        .topbar-left { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; color: var(--cyan-dim); }
+        .topbar-left::before { content: '▸ '; color: var(--cyan); }
+        .topbar-sep { flex: 1; }
+        .topbar-right { display: flex; gap: 20px; }
+        .topbar-right a {
+            font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+            color: var(--text-dim); transition: color 0.15s, text-shadow 0.15s;
+        }
+        .topbar-right a:hover { color: var(--cyan); text-shadow: var(--glow-cyan); }
+
+        /* MASTHEAD */
+        .masthead {
+            background: var(--deep);
+            position: relative;
+            overflow: hidden;
+            min-height: calc(100vh - 36px);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            z-index: 1;
+        }
+        .masthead-bg {
+            position: absolute; inset: 0; pointer-events: none;
+            background:
+                    radial-gradient(ellipse 60% 100% at 100% 50%, rgba(0,100,200,0.08) 0%, transparent 60%),
+                    radial-gradient(ellipse 50% 60% at 20% 0%, rgba(0,200,255,0.04) 0%, transparent 70%);
+        }
+        /* Death Star arc */
+        .masthead-bg::before {
+            content: '';
+            position: absolute;
+            right: -20%;
+            top: -80%;
+            width: 160%;
+            height: 160%;
+            border-radius: 50%;
+            border: 1px solid rgba(0,200,255,0.04);
+            box-shadow: inset -4px 0 120px rgba(0,200,255,0.06);
+        }
+        .masthead-rule {
+            position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(0,200,255,0.3) 20%, rgba(0,200,255,0.3) 80%, transparent);
+        }
+        .masthead-rule::after {
+            content: '';
+            position: absolute; left: -2px; top: 50%; width: 5px; height: 5px;
+            border-radius: 50%; background: var(--cyan);
+            box-shadow: var(--glow-cyan);
+        }
+
+        .masthead-left {
+            padding: 64px 56px 64px 40px;
+            display: flex; flex-direction: column; justify-content: space-between;
+            position: relative; z-index: 1;
+        }
+
+        /* IMPERIAL CREST LOGO */
+        .masthead-logo-area { display: flex; align-items: center; gap: 16px; margin-bottom: 48px; }
+        .logo-mark {
+            width: 46px; height: 46px;
+            border: 1px solid var(--cyan-dim);
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+            position: relative;
+            clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+            background: rgba(0,200,255,0.05);
+        }
+        .logo-mark svg { filter: drop-shadow(0 0 4px rgba(0,200,255,0.6)); }
+        .logo-text { font-family: var(--display); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); line-height: 1.8; }
+        .logo-text strong { display: block; color: var(--cyan); font-weight: 700; letter-spacing: 0.25em; font-size: 10px; }
+
+        /* CRAWL TITLE EFFECT */
+        .masthead-title {
+            font-family: var(--display);
+            font-size: clamp(28px, 3.5vw, 52px);
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--gold);
+            letter-spacing: 0.05em;
+            text-shadow: 0 0 40px rgba(255,215,0,0.3), 0 0 80px rgba(255,215,0,0.1);
+            text-transform: uppercase;
+        }
+        .masthead-title em {
+            display: block;
+            color: var(--cyan);
+            font-style: normal;
+            font-size: 0.55em;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-shadow: var(--glow-cyan);
+            margin-bottom: 8px;
+        }
+        .masthead-sub {
+            margin-top: 28px; font-size: 15px; line-height: 1.8;
+            color: var(--text-dim); font-weight: 400; max-width: 440px;
+            font-family: var(--body);
+        }
+
+        /* HOLOGRAM ALERT BAR */
+        .holo-alert {
+            margin-top: 24px;
+            border: 1px solid rgba(255,215,0,0.3);
+            padding: 10px 16px;
+            background: rgba(255,215,0,0.04);
+            display: flex; align-items: center; gap: 10px;
+            max-width: 440px;
+            position: relative;
+            overflow: hidden;
+        }
+        .holo-alert::before {
+            content: '';
+            position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+            background: var(--gold);
+            box-shadow: var(--glow-gold);
+        }
+        .holo-alert-icon { color: var(--gold); font-size: 18px; flex-shrink: 0; }
+        .holo-alert-text { font-family: var(--mono); font-size: 10.5px; color: rgba(255,215,0,0.7); letter-spacing: 0.08em; line-height: 1.5; }
+        .holo-alert-text strong { color: var(--gold); display: block; font-size: 11px; margin-bottom: 2px; }
+
+        /* BUTTONS */
+        .masthead-ctas { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: transparent;
+            color: var(--cyan);
+            padding: 12px 24px;
+            font-family: var(--display); font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+            transition: all 0.2s;
+            border: 1px solid var(--cyan);
+            position: relative;
+            clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+        }
+        .btn-primary::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: rgba(0,200,255,0.08);
+            transition: background 0.2s;
+        }
+        .btn-primary:hover {
+            background: rgba(0,200,255,0.15);
+            box-shadow: var(--glow-cyan);
+            color: white;
+        }
+        .btn-primary:hover::before { background: rgba(0,200,255,0.15); }
+        .btn-ghost {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: transparent;
+            color: var(--text-dim);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 12px 24px;
+            font-family: var(--display); font-size: 10px; font-weight: 600; letter-spacing: 0.15em;
+            transition: all 0.2s;
+            clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+        }
+        .btn-ghost:hover { border-color: rgba(255,255,255,0.4); color: white; }
+
+        /* STATS */
+        .masthead-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(0,200,255,0.08); border-top: 1px solid rgba(0,200,255,0.15); margin-top: 52px; }
+        .mstat { padding: 20px 0 20px 18px; background: var(--deep); position: relative; }
+        .mstat::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(to right, var(--cyan-dim), transparent); }
+        .mstat-num { font-family: var(--display); font-size: 30px; color: var(--gold); line-height: 1; text-shadow: var(--glow-gold); }
+        .mstat-num span { color: var(--cyan); }
+        .mstat-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-top: 6px; }
+
+        /* MASTHEAD RIGHT */
+        .masthead-right { display: flex; flex-direction: column; position: relative; z-index: 1; }
+        .mast-choro-wrap {
+            flex: 1; position: relative; overflow: hidden;
+            background: rgba(6,12,24,0.9);
+            min-height: 0; cursor: crosshair;
+            border-left: 1px solid rgba(0,200,255,0.1);
+        }
+        /* Holographic grid overlay */
+        .mast-choro-wrap::before {
+            content: '';
+            position: absolute; inset: 0; pointer-events: none; z-index: 5;
+            background-image:
+                    linear-gradient(rgba(0,200,255,0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        #mastChoroSvg { width: 100%; height: 100%; display: block; position: absolute; inset: 0; }
+
+        .map-top-header {
+            position: absolute; top: 0; left: 0; width: 100%;
+            padding: 22px 24px 28px;
+            background: linear-gradient(to bottom, rgba(6,12,24,0.97) 0%, rgba(6,12,24,0.9) 60%, rgba(6,12,24,0.0) 100%);
+            z-index: 10; pointer-events: none;
+        }
+        .map-eyebrow { font-family: var(--display); font-size: 8px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--cyan); margin-bottom: 7px; }
+        .map-main-title { font-family: var(--display); font-size: 1rem; font-weight: 700; line-height: 1.3; letter-spacing: 0.08em; color: var(--gold); text-shadow: 0 0 20px rgba(255,215,0,0.3); text-transform: uppercase; }
+        .map-sub-line { margin-top: 5px; font-family: var(--mono); font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.1em; }
+        .map-method-line { margin-top: 2px; font-family: var(--mono); font-size: 0.65rem; color: var(--text-muted); letter-spacing: 0.08em; }
+        .map-ky-rate { margin-top: 10px; font-family: var(--mono); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; color: var(--text-dim); text-transform: uppercase; }
+        .map-ky-rate strong { color: var(--cyan); font-family: var(--display); font-size: 1rem; font-weight: 700; letter-spacing: 0.05em; text-shadow: var(--glow-cyan); }
+
+        /* Legend */
+        .mast-choro-legend-box { position: absolute; left: 24px; display: flex; flex-direction: column; gap: 4px; z-index: 11; pointer-events: none; }
+        .mast-choro-legend-box .legend-title { font-family: var(--mono); font-size: 7.5px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 5px; }
+        .mast-choro-legend-box .legend-row { display: flex; align-items: center; gap: 8px; }
+        .mast-choro-legend-box .legend-swatch { width: 13px; height: 13px; border-radius: 1px; flex-shrink: 0; }
+        .mast-choro-legend-box .legend-row-label { font-family: var(--mono); font-size: 9.5px; color: var(--text-dim); white-space: nowrap; }
+
+        /* Data note */
+        .mast-data-note { background: rgba(2,4,10,0.8); border-top: 1px solid rgba(0,200,255,0.1); padding: 7px 16px; font-family: var(--mono); font-size: 9px; color: var(--text-muted); letter-spacing: 0.08em; flex-shrink: 0; }
+
+        /* Tooltip */
+        .choro-tooltip {
+            position: absolute; pointer-events: none;
+            background: rgba(6,12,24,0.97);
+            border: 1px solid var(--cyan-dim);
+            padding: 0; font-size: 12px; color: var(--text);
+            white-space: nowrap; opacity: 0; transition: opacity 0.1s;
+            z-index: 20; box-shadow: var(--glow-cyan); min-width: 190px;
+        }
+        .tip-county-name { display: block; font-family: var(--display); font-size: 12px; color: var(--gold); padding: 10px 13px 8px; border-bottom: 1px solid rgba(0,200,255,0.15); text-transform: uppercase; letter-spacing: 0.1em; text-shadow: 0 0 10px rgba(255,215,0,0.3); }
+        .tip-rows { padding: 7px 0 8px; }
+        .tip-row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 3px 13px; }
+        .tip-label { font-family: var(--mono); font-size: 8.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+        .tip-val { font-family: var(--mono); font-size: 12px; color: var(--text); font-weight: 500; }
+        .tip-val.highlight { color: var(--cyan); font-size: 13px; text-shadow: var(--glow-cyan); }
+
+        /* Bottom overlay bar */
+        .map-overlay-bar { position: absolute; bottom: 0; left: 0; right: 0; padding: 16px 22px; background: linear-gradient(to top, rgba(2,4,10,0.9) 0%, transparent 100%); display: flex; align-items: flex-end; justify-content: space-between; z-index: 10; pointer-events: none; }
+        .map-overlay-bar a { pointer-events: all; }
+        .map-data-note-bar { position: absolute; bottom: 58px; left: 0; right: 0; text-align: center; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--text-dim); z-index: 11; pointer-events: none; padding: 7px 0; background: rgba(2,4,10,0.6); }
+        .map-caption { font-family: var(--mono); font-size: 10px; color: var(--text-muted); letter-spacing: 0.1em; }
+        .map-caption strong { display: block; font-family: var(--display); color: var(--text); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; margin-bottom: 2px; text-transform: uppercase; }
+        .mast-choro-link { font-family: var(--display); font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); transition: all 0.15s; text-shadow: var(--glow-cyan); }
+        .mast-choro-link:hover { color: white; }
+
+        /* Stats bar */
+        .mast-stats-bar { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; background: rgba(2,4,10,0.95); border-top: 1px solid rgba(0,200,255,0.15); flex-shrink: 0; }
+        .mast-stat-cell { padding: 18px 16px; border-right: 1px solid rgba(0,200,255,0.08); }
+        .mast-stat-cell:last-child { border-right: none; }
+        .mast-panel-eyebrow { font-family: var(--mono); font-size: 8px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+        .mast-panel-name { font-family: var(--display); font-size: 13px; color: var(--text); line-height: 1.2; min-height: 18px; letter-spacing: 0.05em; text-transform: uppercase; }
+        .mast-panel-label { font-family: var(--mono); font-size: 8px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3px; }
+        .mast-panel-val { font-family: var(--display); font-size: 20px; color: var(--cyan); line-height: 1; text-shadow: var(--glow-cyan); }
+        .mast-panel-val.above { color: var(--red); text-shadow: 0 0 20px rgba(255,32,32,0.4); }
+        .mast-panel-val.below { color: var(--green); text-shadow: 0 0 20px rgba(0,255,136,0.4); }
+        .mast-panel-sub { font-family: var(--mono); font-size: 8px; color: var(--text-muted); margin-top: 2px; letter-spacing: 0.1em; }
+
+        /* NAV */
+        nav {
+            background: rgba(2,4,10,0.97);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,200,255,0.2);
+            position: sticky; top: 0; z-index: 200;
+        }
+        nav::after {
+            content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 1px;
+            background: linear-gradient(to right, transparent, var(--cyan), transparent);
+            opacity: 0.3;
+        }
+        .nav-inner { max-width: 1320px; margin: 0 auto; padding: 0 40px; display: flex; align-items: stretch; }
+        .nav-link {
+            display: flex; align-items: center; padding: 0 18px; height: 48px;
+            font-family: var(--display); font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+            color: var(--text-muted); border-bottom: 2px solid transparent; transition: all 0.15s;
+        }
+        .nav-link:hover { color: var(--text); }
+        .nav-link.active { color: var(--cyan); border-bottom-color: var(--cyan); text-shadow: var(--glow-cyan); }
+        .nav-spacer { flex: 1; }
+        .nav-search-form { display: flex; align-items: center; padding: 9px 0; }
+        .nav-search-form input {
+            border: 1px solid rgba(0,200,255,0.2); border-right: none;
+            background: rgba(0,200,255,0.04);
+            padding: 7px 14px; font-family: var(--mono); font-size: 11px;
+            color: var(--text); border-radius: 0; outline: none; width: 160px; transition: all 0.2s;
+        }
+        .nav-search-form input::placeholder { color: var(--text-muted); }
+        .nav-search-form input:focus { border-color: var(--cyan); background: rgba(0,200,255,0.08); width: 210px; box-shadow: var(--glow-cyan); }
+        .nav-search-form button {
+            background: rgba(0,200,255,0.1); color: var(--cyan);
+            border: 1px solid rgba(0,200,255,0.3);
+            padding: 7px 14px; font-family: var(--display); font-size: 8px; font-weight: 700; cursor: pointer;
+            letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.2s;
+        }
+        .nav-search-form button:hover { background: rgba(0,200,255,0.2); box-shadow: var(--glow-cyan); }
+
+        /* RIBBON */
+        .ribbon { background: rgba(6,12,24,0.8); overflow: hidden; border-bottom: 1px solid rgba(0,200,255,0.08); }
+        .ribbon-inner { max-width: 1320px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; height: 64px; gap: 32px; }
+        .ribbon-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; flex-shrink: 0; }
+        .ribbon-divider { width: 1px; height: 28px; background: rgba(0,200,255,0.15); flex-shrink: 0; }
+        .ribbon-logos { display: flex; gap: 36px; align-items: center; }
+        .ribbon-logos a { filter: brightness(0) invert(1); opacity: 0.18; transition: opacity 0.2s; }
+        .ribbon-logos a:hover { opacity: 0.5; }
+        .ribbon-logos img { height: 28px; max-width: 110px; object-fit: contain; }
+
+        /* PAGE GRID */
+        .page-wrap { max-width: 1320px; margin: 0 auto; padding: 72px 40px 80px; display: grid; grid-template-columns: 1fr 340px; gap: 72px; position: relative; z-index: 1; }
+
+        /* INTRO */
+        .intro-block { display: grid; grid-template-columns: 3px 1fr; gap: 28px; margin-bottom: 56px; }
+        .intro-accent { width: 3px; background: linear-gradient(to bottom, var(--cyan), transparent); border-radius: 0; margin-top: 4px; box-shadow: var(--glow-cyan); }
+        .intro-heading { font-family: var(--display); font-size: 28px; font-weight: 800; color: var(--gold); letter-spacing: 0.08em; line-height: 1.2; margin-bottom: 18px; margin-top: 10px; text-transform: uppercase; text-shadow: 0 0 30px rgba(255,215,0,0.2); }
+        .intro-body { font-size: 16px; line-height: 1.8; color: var(--text-dim); font-weight: 400; }
+        .intro-body + .intro-body { margin-top: 14px; }
+
+        /* SECTION HEADER */
+        .section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid rgba(0,200,255,0.15); position: relative; }
+        .section-header::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 80px; height: 1px; background: var(--cyan); box-shadow: var(--glow-cyan); }
+        .section-heading { font-family: var(--display); font-size: 20px; font-weight: 800; color: var(--text); letter-spacing: 0.1em; line-height: 1; margin-top: 6px; text-transform: uppercase; }
+        .section-link { font-family: var(--display); font-size: 8px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); display: flex; align-items: center; gap: 5px; transition: gap 0.15s; text-shadow: var(--glow-cyan); }
+        .section-link:hover { gap: 9px; }
+
+        /* MAP SECTION */
+        .maps-section { margin-bottom: 64px; }
+        .map-viewer { border-radius: 0; overflow: hidden; background: var(--hull); box-shadow: 0 0 40px rgba(0,200,255,0.08), 0 0 1px rgba(0,200,255,0.3); border: 1px solid rgba(0,200,255,0.15); }
+
+        /* BODY CHOROPLETH */
+        .choro-viewer { overflow: hidden; }
+        .choro-body { display: grid; grid-template-columns: 1fr 200px; min-height: 440px; }
+        .choro-map-wrap { position: relative; background: var(--hull); border-right: 1px solid rgba(0,200,255,0.1); }
+        .choro-map-header { position: absolute; top: 0; left: 0; right: 0; padding: 14px 16px; background: linear-gradient(to bottom, rgba(6,12,24,0.95) 0%, rgba(6,12,24,0.0) 100%); z-index: 10; pointer-events: none; }
+        .choro-map-header h1 { font-family: var(--display); font-size: 11px; color: var(--gold); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; text-shadow: 0 0 15px rgba(255,215,0,0.3); }
+        .choro-map-header .subtitle { font-family: var(--mono); font-size: 9px; color: var(--cyan); letter-spacing: 0.1em; }
+        .choro-map-header .meta { font-family: var(--mono); font-size: 9px; color: var(--text-muted); letter-spacing: 0.08em; margin-top: 2px; }
+        .choro-map-header .stat { margin-top: 6px; font-family: var(--mono); font-size: 10px; color: var(--text-dim); letter-spacing: 0.08em; }
+        .choro-map-header .stat strong { color: var(--cyan); text-shadow: var(--glow-cyan); }
+        #choroSvg { width: 100%; height: 100%; display: block; min-height: 440px; }
+        .choro-legend { position: absolute; bottom: 12px; left: 12px; z-index: 10; pointer-events: none; }
+        .legend-title { font-family: var(--mono); font-size: 8px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 5px; }
+        .legend-swatches { display: flex; gap: 0; height: 10px; }
+        .legend-swatch { flex: 1; height: 10px; }
+        .legend-labels { display: flex; justify-content: space-between; margin-top: 4px; }
+        .legend-labels span { font-family: var(--mono); font-size: 8px; color: var(--text-dim); }
+
+        /* Choro panel */
+        .choro-panel { background: var(--hull); display: flex; flex-direction: column; padding: 0; border-left: 1px solid rgba(0,200,255,0.1); }
+        .choro-panel-head { padding: 20px 16px 16px; border-bottom: 1px solid rgba(0,200,255,0.08); }
+        .choro-panel-name { font-family: var(--display); font-size: 14px; color: var(--gold); line-height: 1.2; margin-top: 5px; text-transform: uppercase; letter-spacing: 0.05em; min-height: 18px; text-shadow: 0 0 15px rgba(255,215,0,0.2); }
+        .choro-panel-stat { padding: 14px 16px; border-bottom: 1px solid rgba(0,200,255,0.06); }
+        .choro-panel-label { font-family: var(--mono); font-size: 8px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+        .choro-panel-val { font-family: var(--display); font-size: 22px; color: var(--cyan); line-height: 1; text-shadow: var(--glow-cyan); }
+        .choro-panel-val.above { color: var(--red); text-shadow: 0 0 20px rgba(255,32,32,0.4); }
+        .choro-panel-val.below { color: var(--green); text-shadow: 0 0 20px rgba(0,255,136,0.4); }
+        .choro-panel-sub { font-family: var(--mono); font-size: 8.5px; color: var(--text-muted); margin-top: 3px; letter-spacing: 0.08em; }
+        .choro-source { padding: 16px; margin-top: auto; font-family: var(--mono); font-size: 8.5px; color: var(--text-muted); line-height: 1.6; letter-spacing: 0.06em; border-top: 1px solid rgba(0,200,255,0.06); }
+
+        /* County path styling in D3 */
+        .county-path { stroke: rgba(0,200,255,0.15) !important; stroke-width: 0.5 !important; transition: stroke 0.15s, stroke-width 0.15s; }
+        .county-path.active { stroke: var(--cyan) !important; stroke-width: 1.5 !important; filter: brightness(1.3); }
+
+        /* DIRECTOR */
+        .director-block { display: grid; grid-template-columns: 220px 1fr; gap: 36px; background: var(--hull); border: 1px solid rgba(0,200,255,0.12); padding: 32px; position: relative; overflow: hidden; }
+        .director-block::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(to right, var(--cyan), transparent); }
+        .director-photo { position: relative; }
+        .director-photo img { width: 100%; aspect-ratio: 3/4; object-fit: cover; filter: grayscale(40%) contrast(1.1) brightness(0.85); border: 1px solid rgba(0,200,255,0.2); }
+        .director-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 60%, rgba(6,12,24,0.8)); }
+        .director-photo-name { position: absolute; bottom: 0; left: 0; right: 0; padding: 12px; z-index: 2; }
+        .director-photo-name strong { display: block; font-family: var(--display); font-size: 11px; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; text-shadow: 0 0 10px rgba(255,215,0,0.4); }
+        .director-photo-name span { font-family: var(--mono); font-size: 9px; color: var(--text-dim); letter-spacing: 0.1em; }
+        .director-content { display: flex; flex-direction: column; gap: 14px; }
+        .director-disclaimer { font-family: var(--mono); font-size: 9px; color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 12px; border-left: 2px solid var(--gold-dim); background: var(--gold-pale); }
+        .director-text { font-size: 15px; line-height: 1.85; color: var(--text-dim); }
+        .director-source { font-family: var(--mono); font-size: 10px; color: var(--text-muted); display: flex; align-items: center; gap: 7px; margin-top: 6px; }
+        .director-source a { color: var(--cyan); text-decoration: underline; text-decoration-color: rgba(0,200,255,0.3); }
+        .director-source a:hover { text-shadow: var(--glow-cyan); }
+
+        /* FEATURE CARDS */
+        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: rgba(0,200,255,0.08); }
+        .fcard {
+            background: var(--hull); padding: 28px;
+            transition: background 0.2s, transform 0.2s;
+            display: flex; flex-direction: column; gap: 8px;
+            position: relative; overflow: hidden;
+        }
+        .fcard::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 0;
+            background: var(--cyan); box-shadow: var(--glow-cyan);
+            transition: height 0.3s;
+        }
+        .fcard:hover { background: rgba(0,200,255,0.04); }
+        .fcard:hover::before { height: 100%; }
+        .fcard-icon { color: var(--cyan); margin-bottom: 4px; opacity: 0.7; }
+        .fcard-tag { font-family: var(--mono); font-size: 8.5px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
+        .fcard h3 { font-family: var(--display); font-size: 13px; color: var(--text); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; }
+        .fcard p { font-size: 13.5px; color: var(--text-dim); line-height: 1.7; }
+        .fcard-arrow { font-family: var(--display); font-size: 8px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); margin-top: auto; padding-top: 12px; display: flex; align-items: center; gap: 5px; }
+
+        /* SIDEBAR */
+        .sidebar { display: flex; flex-direction: column; gap: 24px; }
+        .side-card { background: var(--hull); border: 1px solid rgba(0,200,255,0.12); overflow: hidden; }
+        .side-card-head {
+            padding: 12px 16px;
+            background: rgba(0,200,255,0.06);
+            border-bottom: 1px solid rgba(0,200,255,0.12);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .side-card-head-text { font-family: var(--display); font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); }
+        .side-card-head-text span { color: var(--text-muted); }
+        .side-nav { display: flex; flex-direction: column; }
+        .side-nav-link {
+            display: flex; align-items: center; gap: 9px; padding: 9px 16px;
+            font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em;
+            color: var(--text-dim); border-bottom: 1px solid rgba(0,200,255,0.04);
+            transition: all 0.15s;
+        }
+        .side-nav-link:hover { color: var(--cyan); background: rgba(0,200,255,0.04); padding-left: 20px; }
+        .side-nav-link .ico { color: var(--text-muted); flex-shrink: 0; }
+        .side-nav-link.indent { padding-left: 39px; font-size: 10.5px; color: var(--text-muted); }
+        .side-nav-link.indent:hover { color: var(--cyan-dim); }
+        .side-nav-sep { border: none; border-top: 1px solid rgba(0,200,255,0.08); margin: 4px 0; }
+
+        /* MU CARD */
+        .mu-card { background: var(--hull); border: 1px solid rgba(255,215,0,0.15); padding: 24px; position: relative; }
+        .mu-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--gold), transparent); }
+        .mu-card-tag { font-family: var(--mono); font-size: 8.5px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 8px; }
+        .mu-card h3 { font-family: var(--display); font-size: 13px; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; text-shadow: 0 0 15px rgba(255,215,0,0.2); }
+        .mu-card p { font-family: var(--mono); font-size: 11px; color: var(--text-dim); line-height: 1.7; margin-bottom: 14px; letter-spacing: 0.04em; }
+        .mu-links { display: flex; flex-direction: column; gap: 6px; }
+        .mu-link { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border: 1px solid rgba(0,200,255,0.15); font-family: var(--mono); font-size: 10.5px; color: var(--text-dim); transition: all 0.15s; }
+        .mu-link:hover { border-color: var(--cyan); color: var(--cyan); background: rgba(0,200,255,0.05); }
+
+        /* APP CARD */
+        .app-card { background: var(--hull); border: 1px solid rgba(0,200,255,0.12); padding: 24px; text-align: center; }
+        .app-card-icon { margin-bottom: 12px; display: flex; justify-content: center; }
+        .app-card h3 { font-family: var(--display); font-size: 13px; color: var(--text); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
+        .app-card p { font-size: 12.5px; color: var(--text-dim); line-height: 1.7; margin-bottom: 16px; }
+        .app-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(0,200,255,0.1); color: var(--cyan);
+            border: 1px solid rgba(0,200,255,0.3);
+            padding: 10px 20px;
+            font-family: var(--display); font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+            transition: all 0.2s;
+        }
+        .app-btn:hover { background: rgba(0,200,255,0.2); box-shadow: var(--glow-cyan); }
+
+        /* FOOTER */
+        footer { background: var(--void); border-top: 1px solid rgba(0,200,255,0.1); position: relative; z-index: 1; }
+        .footer-upper { max-width: 1320px; margin: 0 auto; padding: 56px 40px 40px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
+        .footer-wordmark { font-family: var(--display); font-size: 16px; font-weight: 800; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 14px; text-shadow: 0 0 20px rgba(255,215,0,0.2); }
+        .footer-wordmark span { color: var(--cyan); text-shadow: var(--glow-cyan); }
+        .footer-desc { font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); line-height: 1.8; letter-spacing: 0.06em; }
+        .footer-col-title { font-family: var(--display); font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); margin-bottom: 16px; }
+        .footer-links { display: flex; flex-direction: column; gap: 10px; }
+        .footer-link { font-family: var(--mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; transition: color 0.15s; }
+        .footer-link:hover { color: var(--cyan); }
+        .footer-lower { max-width: 1320px; margin: 0 auto; padding: 20px 40px 32px; border-top: 1px solid rgba(0,200,255,0.06); display: flex; align-items: center; justify-content: space-between; }
+        .footer-lower span { font-family: var(--mono); font-size: 10px; color: var(--text-muted); letter-spacing: 0.08em; }
+        .footer-lower a { color: var(--text-muted); }
+
+        /* RISE animations */
+        .rise { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .rise.visible { opacity: 1; transform: none; }
+        .rise-1 { transition-delay: 0.05s; }
+        .rise-2 { transition-delay: 0.15s; }
+        .rise-3 { transition-delay: 0.25s; }
+        .rise-4 { transition-delay: 0.35s; }
+        .rise-5 { transition-delay: 0.45s; }
+
+        /* Masthead rise */
+        .masthead .rise { opacity: 0; transform: translateY(20px); }
+        .masthead .rise.visible { opacity: 1; transform: none; }
+
+        /* Blinking cursor on counters */
+        @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+        .cursor { display: inline-block; animation: blink 1s infinite; }
+
+        /* HYPERSPACE FLASH */
+        @keyframes hyperspace {
+            0% { opacity: 0; transform: scaleX(0); }
+            50% { opacity: 1; transform: scaleX(1); }
+            100% { opacity: 0; transform: scaleX(0); }
+        }
+        .masthead-rule::before {
+            content: '';
+            position: absolute; left: 0; top: 0; right: 0; height: 100%;
+            background: linear-gradient(to bottom, transparent, var(--cyan) 50%, transparent);
+            animation: hyperspace 4s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        /* County path override for theme */
+        svg .county-path { stroke: rgba(0,200,255,0.2) !important; stroke-width: 0.5 !important; }
+        svg .county-path.active { stroke: rgba(0,200,255,0.9) !important; stroke-width: 1.5 !important; }
+    </style>
+</head>
+<body>
+
+<!-- Starfield canvas -->
+<div id="starfield"><canvas id="stars"></canvas></div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+    <div class="topbar-left">GALACTIC MEDICAL INTELLIGENCE DIVISION — SECTOR 21 — AUTHORIZED ACCESS</div>
+    <div class="topbar-sep"></div>
+    <div class="topbar-right">
+        <a href="#">Mission Briefing</a>
+        <a href="#">Secure Transmission</a>
+        <a href="/staff">Command Personnel</a>
+    </div>
+</div>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+    <div class="masthead-bg"></div>
+    <div class="masthead-rule"></div>
+
+    <!-- LEFT COLUMN -->
+    <div class="masthead-left">
+
+        <div class="masthead-logo-area rise rise-1">
+            <div class="logo-mark">
+                <!-- Imperial / KCR crest -->
+                <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+                    <circle cx="16" cy="16" r="12" stroke="rgba(0,200,255,0.8)" stroke-width="1"/>
+                    <circle cx="16" cy="16" r="6" stroke="rgba(0,200,255,0.6)" stroke-width="1"/>
+                    <path d="M16 4v24M4 16h24M7.8 7.8l16.4 16.4M24.2 7.8L7.8 24.2" stroke="rgba(0,200,255,0.4)" stroke-width="0.8"/>
+                    <circle cx="16" cy="16" r="2" fill="rgba(0,200,255,0.9)"/>
+                </svg>
+            </div>
+            <div class="logo-text">
+                <strong>K C R</strong>
+                Kentucky Cancer Registry<br>Galactic Health Surveillance
+            </div>
+        </div>
+
+        <div>
+            <div class="masthead-title rise rise-2">
+                <em>Kentucky Cancer Registry</em>
+                Population<br>Intel<br>Command
+            </div>
+            <p class="masthead-sub rise rise-3">
+                The official intelligence division tracking invasive cancer across all 120 sectors of the Kentucky Commonwealth. Serving clinicians, researchers, and the Galactic Republic of public health since 1990.
+            </p>
+
+            <div class="holo-alert rise rise-3">
+                <div class="holo-alert-icon">⚠</div>
+                <div class="holo-alert-text">
+                    <strong>NAACCR GOLD CERTIFICATION — ACTIVE</strong>
+                    Certified population-based surveillance · SEER Program · CDC NPCR
+                </div>
+            </div>
+
+            <div class="masthead-ctas rise rise-4">
+                <a href="https://www.cancer-rates.info/ky/" target="_blank" class="btn-primary">
+                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 2l6 6-6 6M2 8h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    Access Rate Data
+                </a>
+                <a href="/research/" class="btn-ghost">
+                    Submit Data Request
+                </a>
+            </div>
+        </div>
+
+        <div class="masthead-stats rise rise-5">
+            <div class="mstat">
+                <div class="mstat-num">120</div>
+                <div class="mstat-label">Sectors Tracked</div>
+            </div>
+            <div class="mstat">
+                <div class="mstat-num">35<span>+</span></div>
+                <div class="mstat-label">Years of Intel</div>
+            </div>
+            <div class="mstat">
+                <div class="mstat-num" style="font-size:22px;padding-top:4px;">GOLD</div>
+                <div class="mstat-label">NAACCR Certified</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN — map -->
+    <div class="masthead-right">
+        <div class="mast-choro-wrap" id="mapStage">
+            <svg id="mastChoroSvg"></svg>
+
+            <div class="map-top-header" id="mastMapHeader">
+                <div class="map-eyebrow">Cancer Surveillance · KCR 2019–2023</div>
+                <div class="map-main-title">Invasive Cancer Incidence<br>Kentucky Sector Map</div>
+                <div class="map-sub-line">All Sites · By County · Age-Adjusted</div>
+                <div class="map-method-line">2000 U.S. Standard Population Baseline</div>
+                <div class="map-ky-rate">KY Sector Rate: <strong>524.6</strong> / 100k</div>
+            </div>
+
+            <div class="mast-choro-legend-box" id="mastChoroLegend"></div>
+            <div class="choro-tooltip" id="mastChoroTip"></div>
+
+            <div class="map-overlay-bar">
+                <div class="map-caption">
+                    <strong>All Cancer — Incidence Rate</strong>
+                    <span>Age-Adjusted · County-Level · 2019–2023</span>
+                </div>
+                <a href="https://www.cancer-rates.info/ky/" target="_blank" class="mast-choro-link">
+                    Full Intel Explorer →
+                </a>
+            </div>
+
+            <div class="map-data-note-bar">
+                All rates per 100,000 · Data released Nov 2025 · Retrieved Feb 24, 2026
+            </div>
+        </div>
+
+        <div class="mast-stats-bar" id="mastPanel">
+            <div class="mast-stat-cell">
+                <div class="mast-panel-eyebrow">Target Sector</div>
+                <div class="mast-panel-name" id="mastPanelName">— Hover to scan —</div>
+            </div>
+            <div class="mast-stat-cell">
+                <div class="mast-panel-label">Age-Adj. Rate</div>
+                <div class="mast-panel-val" id="mastPanelRate">—</div>
+                <div class="mast-panel-sub">per 100,000</div>
+            </div>
+            <div class="mast-stat-cell">
+                <div class="mast-panel-label">vs. KY Average</div>
+                <div class="mast-panel-val" id="mastPanelVsState">—</div>
+                <div class="mast-panel-sub">statewide: 524.6</div>
+            </div>
+            <div class="mast-stat-cell">
+                <div class="mast-panel-label">Sector Rank</div>
+                <div class="mast-panel-val" id="mastPanelRank">—</div>
+                <div class="mast-panel-sub">of 120 sectors</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-inner">
+        <a href="/" class="nav-link active">Home Base</a>
+        <a href="/about.html" class="nav-link">Mission Dossier</a>
+        <a href="https://www.cancer-rates.info/ky/" target="_blank" class="nav-link">Intel Maps</a>
+        <a href="/research/" class="nav-link">Research Ops</a>
+        <a href="/resources/" class="nav-link">Tech Arsenal</a>
+        <a href="https://www.kcr.uky.edu/childhood-report" target="_blank" class="nav-link">Field Reports</a>
+        <div class="nav-spacer"></div>
+        <form class="nav-search-form" action="https://www.google.com/cse" method="get">
+            <input type="hidden" name="cx" value="009441292369788699417:9icjohttrvo">
+            <input type="hidden" name="ie" value="UTF-8">
+            <input type="text" name="q" placeholder="SCAN DATABASE...">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+
+<!-- PARTNER RIBBON -->
+<div class="ribbon">
+    <div class="ribbon-inner">
+        <span class="ribbon-label">Alliance Intelligence Partners</span>
+        <div class="ribbon-divider"></div>
+        <div class="ribbon-logos">
+            <a href="http://seer.cancer.gov" target="_blank"><img src="/images/seer.png" alt="NCI SEER"></a>
+            <a href="http://www.cdc.gov/cancer/npcr/" target="_blank"><img src="/images/NPCR_logo.png" alt="CDC NPCR"></a>
+            <a href="http://www.naaccr.org/" target="_blank"><img src="/images/naaccr2.png" alt="NAACCR"></a>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE CONTENT -->
+<div class="page-wrap">
+    <main>
+
+        <div class="intro-block rise rise-1">
+            <div class="intro-accent"></div>
+            <div>
+                <div class="eyebrow" style="margin-bottom:10px;">Population-Based Cancer Surveillance</div>
+                <h2 class="intro-heading">Welcome to the<br>Kentucky Cancer Registry</h2>
+                <p class="intro-body">In 1990, the State General Assembly passed legislation formally establishing the Kentucky Cancer Registry (KCR) as the official population-based central cancer registry for the Commonwealth. KCR is part of both the National Cancer Institute's Surveillance, Epidemiology, and End Results (SEER) program and the CDC's National Program of Cancer Registries (NPCR).</p>
+                <p class="intro-body">As an active NAACCR participant, KCR serves clinicians, researchers, public health officials, and policymakers with comprehensive, high-quality cancer data across Kentucky's 120 counties.</p>
+            </div>
+        </div>
+
+        <div class="maps-section rise rise-2">
+            <div class="section-header">
+                <div>
+                    <div class="eyebrow">Interactive Data Visualization</div>
+                    <h2 class="section-heading">Cancer Rate Intel Maps</h2>
+                </div>
+                <a href="https://www.cancer-rates.info/ky/" target="_blank" class="section-link">
+                    Open Full Explorer
+                    <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </a>
+            </div>
+            <div class="map-viewer choro-viewer">
+                <div class="choro-body">
+                    <div class="choro-map-wrap">
+                        <div class="choro-map-header">
+                            <h1>Invasive Cancer Incidence — Kentucky Sector Map</h1>
+                            <p class="subtitle">2019 – 2023 · By County</p>
+                            <p class="meta">All Sites · Age-Adjusted to 2000 U.S. Standard Population</p>
+                            <p class="stat">KY Sector Rate: <strong>524.6</strong> / per 100,000</p>
+                        </div>
+                        <svg id="choroSvg"></svg>
+                        <div class="choro-tooltip" id="choroTip"></div>
+                        <div class="choro-legend" id="choroLegend"></div>
+                    </div>
+                    <div class="choro-panel" id="choroPanel">
+                        <div class="choro-panel-head">
+                            <div class="eyebrow" style="color:var(--text-muted);font-size:8px;letter-spacing:.2em;">Scan a sector</div>
+                            <div class="choro-panel-name" id="choroPanelName">—</div>
+                        </div>
+                        <div class="choro-panel-stat">
+                            <div class="choro-panel-label">Age-Adj. Rate</div>
+                            <div class="choro-panel-val" id="choroPanelRate">—</div>
+                            <div class="choro-panel-sub">per 100,000</div>
+                        </div>
+                        <div class="choro-panel-stat">
+                            <div class="choro-panel-label">vs. KY State Avg</div>
+                            <div class="choro-panel-val" id="choroPanelVsState">—</div>
+                            <div class="choro-panel-sub" id="choroPanelVsSub">statewide: 524.6</div>
+                        </div>
+                        <div class="choro-panel-stat">
+                            <div class="choro-panel-label">Sector Rank</div>
+                            <div class="choro-panel-val" id="choroPanelRank">—</div>
+                            <div class="choro-panel-sub">of 120 sectors</div>
+                        </div>
+                        <div class="choro-source">
+                            All Sites · Age-Adjusted Incidence<br>
+                            KCR via cancer-rates.info · 2019–2023
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="rise rise-3">
+            <div class="section-header">
+                <div>
+                    <div class="eyebrow">From the Director</div>
+                    <h2 class="section-heading">The Registry's Mission</h2>
+                </div>
+            </div>
+            <div class="director-block">
+                <div class="director-photo">
+                    <img src="/staff/images/ericd.jpg" alt="Eric Durbin, Director of Cancer Informatics">
+                    <div class="director-photo-name">
+                        <strong>Eric Durbin</strong>
+                        <span>Director, Cancer Informatics</span>
+                    </div>
+                </div>
+                <div class="director-content">
+                    <div class="director-disclaimer">Transmission: paraphrased from a 2016 field report</div>
+                    <p class="director-text">Cancer registries are the unseen backbone of progress in the fight against cancer. Without reliable, population-based data, clinicians and researchers cannot identify where disease is concentrated, allocate resources effectively, or measure whether prevention efforts are actually working. The Kentucky Cancer Registry exists to be the eyes of that public health effort across all 120 counties of the Commonwealth.</p>
+                    <p class="director-text">Since joining the NCI's SEER program in 2000 — one of only seventeen such registries in the nation — KCR has pushed the boundaries of what a registry can do. Using Natural Language Processing, the registry now receives pathology reports in real time from labs across the state, meaning we often learn of a cancer diagnosis almost simultaneously with the treating physician. That capability is critical: in late-stage lung cancer, median survival is under nine months. Reaching patients quickly enough to offer clinical trial enrollment can make a meaningful difference in their lives.</p>
+                    <p class="director-text">Beyond individual patients, KCR functions as a virtual population-based tissue repository — tracking the location of tissue samples taken at surgery or biopsy across the state. Because this data is truly population-based, findings from individual studies can be generalized to the broader Kentucky population, dramatically elevating the science. That is what distinguishes a registry from a simple database: the ability to connect data back to the people and communities it represents.</p>
+                    <div class="director-source">
+                        <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><rect x="2" y="1" width="10" height="14" rx="1.5" stroke="currentColor" stroke-width="1.4"></rect><path d="M5 5h4M5 8h4M5 11h2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path></svg>
+                        Read full transmission at
+                        <a href="https://medicine.uky.edu/news/kentucky-cancer-registry-uses-power-data-fight-2016-09-28t01-05-42" target="_blank">UK College of Medicine News →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="rise rise-4">
+            <div class="section-header">
+                <div>
+                    <div class="eyebrow">Resources &amp; Programs</div>
+                    <h2 class="section-heading">Tactical Resources</h2>
+                </div>
+            </div>
+            <div class="feature-grid">
+                <a href="https://www.kcr.uky.edu/childhood-report" class="fcard" target="_blank">
+                    <div class="fcard-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"></rect><path d="M7 8h10M7 12h10M7 16h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div>
+                    <div class="fcard-tag">Report · 2014–2023</div>
+                    <h3>Childhood Cancer in Kentucky</h3>
+                    <p>Comprehensive analysis of pediatric cancer incidence and outcomes throughout the Commonwealth.</p>
+                    <div class="fcard-arrow">Access Report <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+                </a>
+                <a href="https://www.cancer-rates.info/ky/" class="fcard" target="_blank">
+                    <div class="fcard-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"></circle><path d="M3 12h18M12 3c-2 3-3 6-3 9s1 6 3 9" stroke="currentColor" stroke-width="1.5"></path></svg></div>
+                    <div class="fcard-tag">Interactive Holonet Tool</div>
+                    <h3>cancer-rates.info</h3>
+                    <p>Explore Kentucky's county-level cancer rates through an interactive web mapping application.</p>
+                    <div class="fcard-arrow">Launch Tool <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+                </a>
+                <a href="/research/" class="fcard">
+                    <div class="fcard-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"></rect></svg></div>
+                    <div class="fcard-tag">Classified Data Access</div>
+                    <h3>Research &amp; Data Requests</h3>
+                    <p>Submit a formal data request for population-based cancer statistics for approved research projects.</p>
+                    <div class="fcard-arrow">Request Clearance <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+                </a>
+                <a href="/resources" class="fcard">
+                    <div class="fcard-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 17l4-4-4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 19h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div>
+                    <div class="fcard-tag">For Reporters</div>
+                    <h3>Technical Arsenal</h3>
+                    <p>Software downloads, KCR manuals, training materials, and technical support for data reporters.</p>
+                    <div class="fcard-arrow">Access Arsenal <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="side-card rise rise-2">
+            <div class="side-card-head">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="rgba(0,200,255,0.7)" stroke-width="1.4"/><path d="M8 5v4l3 1.5" stroke="rgba(0,200,255,0.7)" stroke-width="1.4" stroke-linecap="round"/></svg>
+                <span class="side-card-head-text">Command <span>Navigation</span></span>
+            </div>
+            <div class="side-nav">
+                <a href="/about.html" class="side-nav-link"><svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4"></circle><path d="M8 7v4M8 5.5v.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path></svg>About the KCR</a>
+                <a href="/research/" class="side-nav-link"><svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h8M2 12h5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path></svg>Research Ops</a>
+                <a href="/staff" class="side-nav-link"><svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="3" stroke="currentColor" stroke-width="1.4"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Command Personnel</a>
+                <a href="https://www.kcr.uky.edu/childhood-report" class="side-nav-link" target="_blank"><svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="2" y="1" width="10" height="14" rx="1.5" stroke="currentColor" stroke-width="1.4"></rect><path d="M5 5h4M5 8h4M5 11h2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path></svg>Childhood Cancer Report</a>
+                <hr class="side-nav-sep">
+                <a href="http://cancer-rates.info/ky" class="side-nav-link" target="_blank"><svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4"></circle><path d="M2 8h12M8 2c-1.5 2-2 4-2 6s.5 4 2 6" stroke="currentColor" stroke-width="1.4"></path></svg>cancer-rates.info</a>
+                <a href="http://cancer-rates.info/ky" class="side-nav-link indent" target="_blank">→ Incidence Rates</a>
+                <a href="http://cancer-rates.info/ky/?datasource=mort" class="side-nav-link indent" target="_blank">→ Mortality Rates</a>
+                <hr class="side-nav-sep">
+                <a href="/tech.html" class="side-nav-link"><svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"></rect><path d="M5 9l2-2 2 2 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>Technical Arsenal</a>
+                <a href="/software" class="side-nav-link indent">→ Software</a>
+                <a href="/manuals" class="side-nav-link indent">→ KCR Manuals</a>
+                <a href="/training" class="side-nav-link indent">→ Training</a>
+                <a href="/intheabstract" class="side-nav-link indent">→ In the Abstract</a>
+                <a href="/resources" class="side-nav-link indent">→ Tech Support</a>
+                <hr class="side-nav-sep">
+                <a href="/statutes.html" class="side-nav-link"><svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 2h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.4"></path><path d="M5 6h6M5 9h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path></svg>KY Privacy Statutes</a>
+                <a href="/contact.html" class="side-nav-link"><svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"></rect><path d="M1 5l7 5 7-5" stroke="currentColor" stroke-width="1.4"></path></svg>Open Comms Channel</a>
+            </div>
+        </div>
+
+        <div class="mu-card rise rise-3">
+            <div class="mu-card-tag">For Physicians &amp; Providers</div>
+            <h3>Meaningful Use Reporting</h3>
+            <p>Electronic reporting resources for Stage 2 and Stage 3 compliance with the Kentucky Cancer Registry.</p>
+            <div class="mu-links">
+                <a href="/mu.html" class="mu-link"><span>Stage 2 — Physicians</span><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+                <a href="/mu3.html" class="mu-link"><span>Stage 3 — Eligible Providers</span><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+            </div>
+        </div>
+
+        <div class="app-card rise rise-4">
+            <div class="app-card-icon">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                    <circle cx="16" cy="16" r="13" stroke="rgba(0,200,255,0.5)" stroke-width="1"/>
+                    <path d="M6 26C6 27.1 6.9 28 8 28h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2H8C6.9 6 6 6.9 6 8v18z" stroke="rgba(0,200,255,0.8)" stroke-width="1.5"></path>
+                    <path d="M12 14l3 3 5-5" stroke="rgba(0,200,255,0.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M10 20h12" stroke="rgba(0,200,255,0.5)" stroke-width="1.5" stroke-linecap="round"></path>
+                </svg>
+            </div>
+            <h3>Cancer Rates Datapad</h3>
+            <p>Browse Kentucky cancer statistics on your iPhone. County-level incidence and mortality data, always at hand.</p>
+            <a href="https://itunes.apple.com/us/app/cancer-rates/id1049312556?mt=8" target="_blank" class="app-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"></path></svg>
+                Download Datapad
+            </a>
+        </div>
+    </aside>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-upper">
+        <div>
+            <div class="footer-wordmark">Kentucky <span>Cancer Registry</span></div>
+            <p class="footer-desc">The official population-based central cancer registry for the Commonwealth of Kentucky. Serving researchers, clinicians, and public health officials since 1990. Part of the Galactic Alliance of Public Health Intelligence.</p>
+        </div>
+        <div>
+            <div class="footer-col-title">Registry</div>
+            <div class="footer-links">
+                <a href="/about.html" class="footer-link">About KCR</a>
+                <a href="/research/" class="footer-link">Research</a>
+                <a href="/staff" class="footer-link">Staff Directory</a>
+                <a href="/contact.html" class="footer-link">Contact Us</a>
+                <a href="/statutes.html" class="footer-link">Privacy Statutes</a>
+            </div>
+        </div>
+        <div>
+            <div class="footer-col-title">Data &amp; Tools</div>
+            <div class="footer-links">
+                <a href="http://cancer-rates.info/ky" target="_blank" class="footer-link">cancer-rates.info</a>
+                <a href="http://cancer-rates.info/ky" target="_blank" class="footer-link">Incidence Rates</a>
+                <a href="http://cancer-rates.info/ky/?datasource=mort" target="_blank" class="footer-link">Mortality Rates</a>
+                <a href="https://www.kcr.uky.edu/childhood-report" target="_blank" class="footer-link">Childhood Cancer Report</a>
+            </div>
+        </div>
+        <div>
+            <div class="footer-col-title">Technical</div>
+            <div class="footer-links">
+                <a href="/software" class="footer-link">Software</a>
+                <a href="/manuals" class="footer-link">KCR Manuals</a>
+                <a href="/training" class="footer-link">Training</a>
+                <a href="/resources" class="footer-link">Technical Support</a>
+                <a href="https://kcr-confluence.atlassian.net/wiki/spaces/kentuckyregistrarswiki/overview" target="_blank" class="footer-link">Registrars Wiki</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-lower">
+        <span>Last updated: September 4, 2025 · Transmission secured · <a href="/cdn-cgi/l/email-protection#0a6169784a7f6173246f6e7f"><span class="__cf_email__" data-cfemail="ef848c9daf9a8496c18a8b9a">[email&nbsp;protected]</span></a></span>
+        <div style="display:flex;gap:24px;">
+            <a href="https://www.uky.edu" class="footer-link">University of Kentucky</a>
+            <a href="https://ukhealthcare.uky.edu/Markey/" class="footer-link">Markey Cancer Center</a>
+            <a href="https://www.kycancerc.org/" class="footer-link">KY Cancer Consortium</a>
+            <a href="https://www.kcp.uky.edu/" class="footer-link">KY Cancer Program</a>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/d3.min.js"></script>
+<script src="/js/topojson.min.js"></script>
+<script>
+    /* ======================================================
+       STARFIELD
+    ====================================================== */
+    (function() {
+        var canvas = document.getElementById('stars');
+        var ctx = canvas.getContext('2d');
+        var stars = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        for (var i = 0; i < 300; i++) {
+            stars.push({
+                x: Math.random(),
+                y: Math.random(),
+                r: Math.random() * 1.5,
+                a: Math.random(),
+                speed: 0.0002 + Math.random() * 0.0008
+            });
+        }
+
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            var t = Date.now() / 1000;
+            stars.forEach(function(s) {
+                var twinkle = s.a * (0.5 + 0.5 * Math.sin(t * s.speed * 1000));
+                ctx.beginPath();
+                ctx.arc(s.x * canvas.width, s.y * canvas.height, s.r, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(150, 200, 255, ' + twinkle + ')';
+                ctx.fill();
+            });
+            requestAnimationFrame(drawStars);
+        }
+        drawStars();
+    })();
+
+    /* ======================================================
+       SCROLL RISE
+    ====================================================== */
+    (function() {
+        function checkRise() {
+            document.querySelectorAll('.rise').forEach(function(el) {
+                var rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.92) el.classList.add('visible');
+            });
+        }
+        window.addEventListener('scroll', checkRise, { passive: true });
+        // Trigger masthead rises immediately
+        setTimeout(function() {
+            document.querySelectorAll('.masthead .rise').forEach(function(el) {
+                el.classList.add('visible');
+            });
+            checkRise();
+        }, 100);
+    })();
+
+    /* ======================================================
+       CHOROPLETH DATA
+    ====================================================== */
+    (function() {
+
+        var COUNTY_DATA = {
+            "21001":{"name":"Adair",      "pop":18732, "cases":295, "crude":443.2, "rate":560.1},
+            "21003":{"name":"Allen",      "pop":21069, "cases":270, "crude":359.2, "rate":480.9},
+            "21005":{"name":"Anderson",   "pop":22570, "cases":325, "crude":440.2, "rate":540.0},
+            "21007":{"name":"Ballard",    "pop":7880,  "cases":109, "crude":382.0, "rate":521.5},
+            "21009":{"name":"Barren",     "pop":44911, "cases":590, "crude":393.5, "rate":494.6},
+            "21011":{"name":"Bath",       "pop":12510, "cases":187, "crude":418.1, "rate":563.1},
+            "21013":{"name":"Bell",       "pop":26404, "cases":364, "crude":388.0, "rate":518.9},
+            "21015":{"name":"Boone",      "pop":136207,"cases":1744,"crude":377.4, "rate":507.4},
+            "21017":{"name":"Bourbon",    "pop":19788, "cases":295, "crude":424.5, "rate":566.5},
+            "21019":{"name":"Boyd",       "pop":46328, "cases":688, "crude":418.5, "rate":559.8},
+            "21021":{"name":"Boyle",      "pop":30159, "cases":431, "crude":415.4, "rate":537.4},
+            "21023":{"name":"Bracken",    "pop":8303,  "cases":136, "crude":438.3, "rate":614.5},
+            "21025":{"name":"Breathitt",  "pop":12630, "cases":162, "crude":360.3, "rate":480.0},
+            "21027":{"name":"Breckinridge","pop":20688,"cases":278, "crude":379.0, "rate":506.0},
+            "21029":{"name":"Bullitt",    "pop":81542, "cases":1153,"crude":412.3, "rate":538.4},
+            "21031":{"name":"Butler",     "pop":12905, "cases":176, "crude":380.5, "rate":512.4},
+            "21033":{"name":"Caldwell",   "pop":12651, "cases":160, "crude":356.3, "rate":476.9},
+            "21035":{"name":"Calloway",   "pop":38617, "cases":568, "crude":412.1, "rate":553.1},
+            "21037":{"name":"Campbell",   "pop":94083, "cases":1303,"crude":388.9, "rate":519.9},
+            "21039":{"name":"Carlisle",   "pop":4789,  "cases":73,  "crude":424.2, "rate":575.6},
+            "21041":{"name":"Carroll",    "pop":10666, "cases":149, "crude":393.0, "rate":524.7},
+            "21043":{"name":"Carter",     "pop":27015, "cases":430, "crude":435.1, "rate":597.0},
+            "21045":{"name":"Casey",      "pop":16054, "cases":220, "crude":385.6, "rate":515.9},
+            "21047":{"name":"Christian",  "pop":70121, "cases":963, "crude":376.4, "rate":519.2},
+            "21049":{"name":"Clark",      "pop":36289, "cases":510, "crude":404.0, "rate":526.8},
+            "21051":{"name":"Clay",       "pop":19403, "cases":307, "crude":420.2, "rate":596.4},
+            "21053":{"name":"Clinton",    "pop":9862,  "cases":141, "crude":399.2, "rate":538.9},
+            "21055":{"name":"Crittenden", "pop":8932,  "cases":103, "crude":324.5, "rate":433.1},
+            "21057":{"name":"Cumberland", "pop":6614,  "cases":109, "crude":440.8, "rate":618.7},
+            "21059":{"name":"Daviess",    "pop":101132,"cases":1400,"crude":385.6, "rate":522.9},
+            "21061":{"name":"Edmonson",   "pop":12285, "cases":157, "crude":356.6, "rate":480.9},
+            "21063":{"name":"Elliott",    "pop":7487,  "cases":87,  "crude":318.6, "rate":438.7},
+            "21065":{"name":"Estill",     "pop":14239, "cases":229, "crude":441.1, "rate":603.0},
+            "21067":{"name":"Fayette",    "pop":323152,"cases":4270,"crude":371.7, "rate":496.1},
+            "21069":{"name":"Fleming",    "pop":14560, "cases":208, "crude":400.8, "rate":536.9},
+            "21071":{"name":"Floyd",      "pop":35007, "cases":549, "crude":428.0, "rate":588.6},
+            "21073":{"name":"Franklin",   "pop":50648, "cases":700, "crude":386.5, "rate":517.8},
+            "21075":{"name":"Fulton",     "pop":5744,  "cases":90,  "crude":422.3, "rate":588.8},
+            "21077":{"name":"Gallatin",   "pop":8824,  "cases":131, "crude":414.9, "rate":558.5},
+            "21079":{"name":"Garrard",    "pop":17487, "cases":252, "crude":407.0, "rate":544.6},
+            "21081":{"name":"Grant",      "pop":25219, "cases":388, "crude":430.2, "rate":580.4},
+            "21083":{"name":"Graves",     "pop":37266, "cases":499, "crude":376.2, "rate":503.7},
+            "21085":{"name":"Grayson",    "pop":26292, "cases":390, "crude":415.8, "rate":559.4},
+            "21087":{"name":"Green",      "pop":10860, "cases":157, "crude":407.7, "rate":545.3},
+            "21089":{"name":"Greenup",    "pop":35147, "cases":484, "crude":387.5, "rate":515.9},
+            "21091":{"name":"Hancock",    "pop":8870,  "cases":110, "crude":343.6, "rate":467.5},
+            "21093":{"name":"Hardin",     "pop":110958,"cases":1645,"crude":413.8, "rate":558.3},
+            "21095":{"name":"Harlan",     "pop":25560, "cases":352, "crude":382.3, "rate":518.6},
+            "21097":{"name":"Harrison",   "pop":18635, "cases":280, "crude":422.2, "rate":565.3},
+            "21099":{"name":"Hart",       "pop":18609, "cases":253, "crude":379.2, "rate":512.6},
+            "21101":{"name":"Henderson",  "pop":46004, "cases":591, "crude":358.8, "rate":483.3},
+            "21103":{"name":"Henry",      "pop":15720, "cases":227, "crude":406.0, "rate":545.3},
+            "21105":{"name":"Hickman",    "pop":4369,  "cases":58,  "crude":366.7, "rate":498.1},
+            "21107":{"name":"Hopkins",    "pop":45041, "cases":596, "crude":369.0, "rate":498.5},
+            "21109":{"name":"Jackson",    "pop":13160, "cases":166, "crude":349.6, "rate":476.1},
+            "21111":{"name":"Jefferson",  "pop":779265,"cases":10734,"crude":381.5,"rate":516.3},
+            "21113":{"name":"Jessamine",  "pop":53128, "cases":739, "crude":385.8, "rate":521.5},
+            "21115":{"name":"Johnson",    "pop":22188, "cases":288, "crude":360.3, "rate":487.7},
+            "21117":{"name":"Kenton",     "pop":170614,"cases":2401,"crude":391.0, "rate":529.6},
+            "21119":{"name":"Knott",      "pop":15130, "cases":209, "crude":381.2, "rate":518.6},
+            "21121":{"name":"Knox",       "pop":31285, "cases":494, "crude":437.4, "rate":593.3},
+            "21123":{"name":"Larue",      "pop":14060, "cases":190, "crude":373.1, "rate":508.7},
+            "21125":{"name":"Laurel",     "pop":62016, "cases":856, "crude":382.7, "rate":518.3},
+            "21127":{"name":"Lawrence",   "pop":15607, "cases":231, "crude":410.6, "rate":555.6},
+            "21129":{"name":"Lee",        "pop":7218,  "cases":97,  "crude":370.4, "rate":506.1},
+            "21131":{"name":"Leslie",     "pop":9877,  "cases":136, "crude":378.9, "rate":520.6},
+            "21133":{"name":"Letcher",    "pop":22073, "cases":312, "crude":390.8, "rate":532.9},
+            "21135":{"name":"Lewis",      "pop":13285, "cases":176, "crude":363.0, "rate":497.7},
+            "21137":{"name":"Lincoln",    "pop":24284, "cases":390, "crude":450.8, "rate":604.4},
+            "21139":{"name":"Livingston", "pop":9004,  "cases":147, "crude":453.7, "rate":614.3},
+            "21141":{"name":"Logan",      "pop":27063, "cases":360, "crude":370.9, "rate":500.0},
+            "21143":{"name":"Lyon",       "pop":8327,  "cases":108, "crude":358.8, "rate":486.8},
+            "21145":{"name":"McCracken",  "pop":65903, "cases":943, "crude":396.5, "rate":539.2},
+            "21147":{"name":"McCreary",   "pop":17306, "cases":251, "crude":400.7, "rate":545.5},
+            "21149":{"name":"McLean",     "pop":9207,  "cases":134, "crude":403.6, "rate":547.4},
+            "21151":{"name":"Madison",    "pop":92987, "cases":1307,"crude":389.0, "rate":528.0},
+            "21153":{"name":"Magoffin",   "pop":12309, "cases":178, "crude":398.2, "rate":545.3},
+            "21155":{"name":"Marion",     "pop":19751, "cases":283, "crude":397.9, "rate":539.6},
+            "21157":{"name":"Marshall",   "pop":35073, "cases":499, "crude":395.3, "rate":536.3},
+            "21159":{"name":"Martin",     "pop":11219, "cases":139, "crude":333.8, "rate":464.8},
+            "21161":{"name":"Mason",      "pop":17052, "cases":241, "crude":391.6, "rate":533.3},
+            "21163":{"name":"Meade",      "pop":28576, "cases":420, "crude":412.4, "rate":552.5},
+            "21165":{"name":"Menifee",    "pop":6405,  "cases":88,  "crude":371.6, "rate":515.9},
+            "21167":{"name":"Mercer",     "pop":21370, "cases":315, "crude":408.9, "rate":555.4},
+            "21169":{"name":"Metcalfe",   "pop":10007, "cases":140, "crude":389.1, "rate":525.7},
+            "21171":{"name":"Monroe",     "pop":10380, "cases":148, "crude":394.6, "rate":538.8},
+            "21173":{"name":"Montgomery", "pop":27974, "cases":426, "crude":427.7, "rate":572.0},
+            "21175":{"name":"Morgan",     "pop":13133, "cases":164, "crude":343.1, "rate":468.9},
+            "21177":{"name":"Muhlenberg", "pop":29972, "cases":403, "crude":373.2, "rate":506.2},
+            "21179":{"name":"Nelson",     "pop":46388, "cases":707, "crude":425.2, "rate":575.3},
+            "21181":{"name":"Nicholas",   "pop":7090,  "cases":89,  "crude":349.4, "rate":471.9},
+            "21183":{"name":"Ohio",       "pop":24143, "cases":341, "crude":390.9, "rate":533.5},
+            "21185":{"name":"Oldham",     "pop":67674, "cases":963, "crude":387.5, "rate":534.6},
+            "21187":{"name":"Owen",       "pop":10901, "cases":151, "crude":387.8, "rate":521.0},
+            "21189":{"name":"Owsley",     "pop":4322,  "cases":69,  "crude":440.8, "rate":600.3},
+            "21191":{"name":"Pendleton",  "pop":14499, "cases":207, "crude":397.3, "rate":537.4},
+            "21193":{"name":"Perry",      "pop":25929, "cases":389, "crude":418.3, "rate":563.9},
+            "21195":{"name":"Pike",       "pop":57015, "cases":826, "crude":406.0, "rate":544.2},
+            "21197":{"name":"Powell",     "pop":12219, "cases":203, "crude":461.7, "rate":623.0},
+            "21199":{"name":"Pulaski",    "pop":64079, "cases":950, "crude":413.7, "rate":556.0},
+            "21201":{"name":"Robertson",  "pop":2166,  "cases":30,  "crude":386.9, "rate":525.4},
+            "21203":{"name":"Rockcastle", "pop":16847, "cases":264, "crude":436.3, "rate":591.5},
+            "21205":{"name":"Rowan",      "pop":24516, "cases":320, "crude":361.4, "rate":490.0},
+            "21207":{"name":"Russell",    "pop":18268, "cases":259, "crude":392.2, "rate":533.4},
+            "21209":{"name":"Scott",      "pop":57155, "cases":748, "crude":367.8, "rate":491.0},
+            "21211":{"name":"Shelby",     "pop":48322, "cases":612, "crude":354.7, "rate":476.6},
+            "21213":{"name":"Simpson",    "pop":18111, "cases":242, "crude":370.0, "rate":501.3},
+            "21215":{"name":"Spencer",    "pop":20021, "cases":292, "crude":404.0, "rate":549.6},
+            "21217":{"name":"Taylor",     "pop":25383, "cases":371, "crude":408.7, "rate":548.7},
+            "21219":{"name":"Todd",       "pop":12044, "cases":153, "crude":353.2, "rate":476.7},
+            "21221":{"name":"Trigg",      "pop":14588, "cases":199, "crude":378.8, "rate":511.6},
+            "21223":{"name":"Trimble",    "pop":8577,  "cases":130, "crude":420.5, "rate":572.8},
+            "21225":{"name":"Union",      "pop":14489, "cases":189, "crude":358.5, "rate":489.4},
+            "21227":{"name":"Warren",     "pop":139725,"cases":1756,"crude":349.7, "rate":472.2},
+            "21229":{"name":"Washington", "pop":12036, "cases":176, "crude":403.3, "rate":552.5},
+            "21231":{"name":"Wayne",      "pop":19765, "cases":284, "crude":399.0, "rate":539.8},
+            "21233":{"name":"Webster",    "pop":12828, "cases":163, "crude":349.4, "rate":476.1},
+            "21235":{"name":"Whitley",    "pop":36800, "cases":563, "crude":430.0, "rate":575.1},
+            "21237":{"name":"Wolfe",      "pop":7027,  "cases":126, "crude":493.2, "rate":676.2},
+            "21239":{"name":"Woodford",   "pop":27267, "cases":394, "crude":400.1, "rate":544.1}
+        };
+
+        var STATE_AVG = 524.6;
+        var TOPO_URL  = '/js/counties-10m.json';
+        // Star Wars theme: use cyan/teal/gold color scale
+        var COLORS = ['#0a2040','#0d3060','#104080','#0070a0','#00a0c0','#00c8e0','#00e0a0','#00ff88'];
+
+        var ranked = Object.keys(COUNTY_DATA).sort(function(a,b){
+            return COUNTY_DATA[b].rate - COUNTY_DATA[a].rate;
+        });
+        function getRank(fips){ return ranked.indexOf(fips) + 1; }
+
+        var rates      = Object.values(COUNTY_DATA).map(function(d){ return d.rate; });
+        var colorScale = d3.scaleQuantile().domain(rates).range(COLORS);
+
+        function buildLegend(container, vertical) {
+            var q         = colorScale.quantiles();
+            var allBreaks = [d3.min(rates)].concat(q).concat([d3.max(rates)]);
+
+            if (vertical) {
+                var html = '<div class="legend-title">Rate / 100k</div>';
+                for (var i = COLORS.length - 1; i >= 0; i--) {
+                    var lo    = Math.round(allBreaks[i]);
+                    var hi    = Math.round(allBreaks[i + 1]);
+                    var label = (i === COLORS.length - 1) ? hi + '+' : lo + ' – ' + hi;
+                    html += '<div class="legend-row">'
+                        + '<div class="legend-swatch" style="background:' + COLORS[i] + '"></div>'
+                        + '<span class="legend-row-label">' + label + '</span>'
+                        + '</div>';
+                }
+                container.innerHTML = html;
+            } else {
+                var minR = Math.round(d3.min(rates));
+                var maxR = Math.round(d3.max(rates));
+                var midR = Math.round(q[Math.floor(q.length / 2)]);
+                var html = '<div class="legend-title">Rate / 100k</div>';
+                html += '<div class="legend-swatches">';
+                COLORS.forEach(function(c){ html += '<div class="legend-swatch" style="background:'+c+'"></div>'; });
+                html += '</div><div class="legend-labels"><span>'+minR+'</span><span>'+midR+'</span><span>'+maxR+'</span></div>';
+                container.innerHTML = html;
+            }
+        }
+
+        function updatePanel(fips, ids) {
+            var d = COUNTY_DATA[fips];
+            if (!d) return;
+            document.getElementById(ids.name).textContent = d.name + ' County';
+            document.getElementById(ids.rate).textContent = d.rate.toFixed(1);
+            document.getElementById(ids.rate).className   = (ids.valClass || 'choro-panel-val');
+            var diff = d.rate - STATE_AVG;
+            var vsEl = document.getElementById(ids.vs);
+            vsEl.textContent = (diff > 0 ? '+' : '') + diff.toFixed(1);
+            vsEl.className   = (ids.valClass || 'choro-panel-val') + (diff > 0 ? ' above' : ' below');
+            document.getElementById(ids.rank).textContent = '#' + getRank(fips);
+        }
+
+        function tipRow(label, val, highlight, color) {
+            var valStyle = color ? 'style="color:' + color + '"' : '';
+            var cls = highlight ? 'tip-val highlight' : 'tip-val';
+            return '<div class="tip-row">'
+                + '<span class="tip-label">' + label + '</span>'
+                + '<span class="' + cls + '" ' + valStyle + '>' + val + '</span>'
+                + '</div>';
+        }
+
+        function drawChoro(svgEl, tipEl, legendEl, kyFeatures, opts) {
+            opts = opts || {};
+            var wrap = svgEl.parentElement;
+            var W = wrap.clientWidth  || 600;
+            var H = wrap.clientHeight || 440;
+
+            var svg = d3.select(svgEl).attr('width', W).attr('height', H);
+            svg.selectAll('*').remove();
+
+            var proj = d3.geoAlbers()
+                .rotate([87.5, 0])
+                .center([0, 37.5])
+                .parallels([36.0, 38.5])
+                .fitSize([W - (opts.pad || 10), H - (opts.pad || 10)],
+                    { type:'FeatureCollection', features: kyFeatures });
+
+            var path = d3.geoPath().projection(proj);
+            var g    = svg.append('g').attr('transform', 'translate('+(opts.pad/2||5)+','+(opts.pad/2||5)+')');
+
+            g.selectAll('.county-path')
+                .data(kyFeatures)
+                .enter().append('path')
+                .attr('class', 'county-path')
+                .attr('d', path)
+                .attr('fill', function(f){
+                    var fips = String(f.id).padStart(5, '0');
+                    var d    = COUNTY_DATA[fips];
+                    return d ? colorScale(d.rate) : '#0a1228';
+                })
+                .attr('stroke', 'rgba(0,200,255,0.2)')
+                .attr('stroke-width', '0.5')
+                .on('mousemove', function(event, f){
+                    var fips = String(f.id).padStart(5, '0');
+                    var d    = COUNTY_DATA[fips];
+                    if (!d) return;
+
+                    var svgRect = svgEl.getBoundingClientRect();
+                    var x = event.clientX - svgRect.left + 50;
+                    var y = event.clientY - svgRect.top  - 120;
+                    if (x + 210 > svgRect.width) x = event.clientX - svgRect.left - 230;
+                    if (y < 8) y = 8;
+
+                    if (tipEl) {
+                        var diff   = d.rate - STATE_AVG;
+                        var vsStr  = (diff > 0 ? '+' : '') + diff.toFixed(1);
+                        var vsColor = diff > 0 ? '#ff4040' : '#00ff88';
+                        tipEl.style.opacity = '1';
+                        tipEl.style.left    = x + 'px';
+                        tipEl.style.top     = y + 'px';
+                        tipEl.innerHTML =
+                            '<span class="tip-county-name">' + d.name + ' County</span>'
+                            + '<div class="tip-rows">'
+                            + tipRow('Population at Risk', d.pop.toLocaleString(), false)
+                            + tipRow('Cases (2019–2023)',   d.cases.toLocaleString(), false)
+                            + tipRow('Crude Rate',          d.crude.toFixed(1), false)
+                            + tipRow('Age-Adjusted Rate',   d.rate.toFixed(1), true)
+                            + tipRow('vs. KY Avg (524.6)',  vsStr, false, vsColor)
+                            + tipRow('Sector Rank',          '#' + getRank(fips) + ' of 120', false)
+                            + '</div>';
+                    }
+
+                    if (opts.panelIds) updatePanel(fips, opts.panelIds);
+
+                    g.selectAll('.county-path')
+                        .attr('stroke', function(ff) {
+                            return String(ff.id).padStart(5,'0') === fips ? 'rgba(0,200,255,0.9)' : 'rgba(0,200,255,0.2)';
+                        })
+                        .attr('stroke-width', function(ff) {
+                            return String(ff.id).padStart(5,'0') === fips ? '1.5' : '0.5';
+                        });
+                })
+                .on('mouseleave', function(){
+                    if (tipEl) tipEl.style.opacity = '0';
+                    g.selectAll('.county-path')
+                        .attr('stroke', 'rgba(0,200,255,0.2)')
+                        .attr('stroke-width', '0.5');
+                });
+
+            if (legendEl) buildLegend(legendEl, opts.verticalLegend);
+        }
+
+        function positionLegend() {
+            var header = document.getElementById('mastMapHeader');
+            var legend = document.getElementById('mastChoroLegend');
+            if (!header || !legend) return;
+            var gradientFadeStart = header.offsetHeight * 0.75;
+            legend.style.top = Math.round(gradientFadeStart) + 'px';
+        }
+
+        var TOPO_CACHE = null;
+
+        function initMaps(kyFeatures) {
+            var mastSvg    = document.getElementById('mastChoroSvg');
+            var mastTip    = document.getElementById('mastChoroTip');
+            var mastLegend = document.getElementById('mastChoroLegend');
+            if (mastSvg) {
+                drawChoro(mastSvg, mastTip, mastLegend, kyFeatures, {
+                    pad: 20,
+                    verticalLegend: true,
+                    panelIds: {
+                        name:     'mastPanelName',
+                        rate:     'mastPanelRate',
+                        vs:       'mastPanelVsState',
+                        rank:     'mastPanelRank',
+                        valClass: 'mast-panel-val'
+                    }
+                });
+                requestAnimationFrame(positionLegend);
+            }
+
+            var bodySvg    = document.getElementById('choroSvg');
+            var bodyTip    = document.getElementById('choroTip');
+            var bodyLegend = document.getElementById('choroLegend');
+            if (bodySvg) {
+                drawChoro(bodySvg, bodyTip, bodyLegend, kyFeatures, {
+                    pad: 10,
+                    panelIds: {
+                        name:     'choroPanelName',
+                        rate:     'choroPanelRate',
+                        vs:       'choroPanelVsState',
+                        rank:     'choroPanelRank',
+                        valClass: 'choro-panel-val'
+                    }
+                });
+            }
+
+            var resizeTimer;
+            window.addEventListener('resize', function(){
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function(){
+                    initMaps(kyFeatures);
+                    positionLegend();
+                }, 200);
+            });
+        }
+
+        fetch(TOPO_URL)
+            .then(function(r){ return r.json(); })
+            .then(function(us){
+                TOPO_CACHE = topojson.feature(us, us.objects.counties).features
+                    .filter(function(f){ return String(f.id).padStart(5,'0').startsWith('21'); });
+                initMaps(TOPO_CACHE);
+            })
+            .catch(function(e){
+                console.warn('KCR choropleth: TopoJSON failed to load', e);
+            });
+
+    })();
+</script>
+
+<!-- ============================================================
+     STAR WARS EASTER EGGS
+============================================================ -->
+<style>
+    /* LIGHTSABER CURSOR TRAIL */
+    .saber-dot {
+        position: fixed;
+        pointer-events: none;
+        border-radius: 50%;
+        z-index: 99998;
+        mix-blend-mode: screen;
+        transition: opacity 0.3s;
+    }
+
+    /* HOLOCRON TOAST */
+    #sw-toast {
+        position: fixed;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%) translateY(80px);
+        background: rgba(2,4,10,0.97);
+        border: 1px solid var(--cyan);
+        box-shadow: var(--glow-cyan), inset 0 0 40px rgba(0,200,255,0.04);
+        padding: 16px 28px;
+        font-family: var(--display);
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        color: var(--cyan);
+        text-transform: uppercase;
+        z-index: 99999;
+        transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), opacity 0.4s;
+        opacity: 0;
+        pointer-events: none;
+        white-space: nowrap;
+        clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+    }
+    #sw-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+    #sw-toast .toast-icon { display: inline-block; margin-right: 10px; }
+
+    /* IMPERIAL MARCH MODE overlay */
+    #imperial-overlay {
+        position: fixed; inset: 0;
+        pointer-events: none;
+        z-index: 99990;
+        background: radial-gradient(ellipse at center, transparent 50%, rgba(180,0,0,0.25) 100%);
+        opacity: 0;
+        transition: opacity 1s;
+    }
+    #imperial-overlay.active { opacity: 1; }
+    body.imperial-mode {
+        --cyan: #ff2020;
+        --glow-cyan: 0 0 20px rgba(255,32,32,0.5), 0 0 60px rgba(255,32,32,0.15);
+    }
+    body.imperial-mode nav { border-bottom-color: rgba(255,32,32,0.3); }
+    body.imperial-mode .topbar { border-bottom-color: rgba(255,32,32,0.2); }
+
+    /* CRAWL OVERLAY */
+    #sw-crawl-overlay {
+        position: fixed; inset: 0;
+        background: #000;
+        z-index: 999999;
+        display: none;
+        overflow: hidden;
+        perspective: 300px;
+    }
+    #sw-crawl-overlay.active { display: block; }
+    .crawl-stars {
+        position: absolute; inset: 0;
+        background: radial-gradient(ellipse at center, #111 0%, #000 100%);
+    }
+    .crawl-wrap {
+        position: absolute;
+        bottom: -100%;
+        left: 50%; transform: translateX(-50%) rotateX(25deg);
+        width: 55%;
+        transform-origin: 50% 100%;
+        animation: crawl-anim 55s linear forwards;
+        text-align: center;
+    }
+    @keyframes crawl-anim {
+        from { bottom: -60%; }
+        to   { bottom: 150%; }
+    }
+    .crawl-logo {
+        font-family: 'Orbitron', sans-serif;
+        color: #ffd700;
+        font-size: 13px;
+        letter-spacing: 0.5em;
+        margin-bottom: 40px;
+        text-transform: uppercase;
+    }
+    .crawl-title {
+        font-family: 'Orbitron', sans-serif;
+        color: #ffd700;
+        font-size: 42px;
+        font-weight: 900;
+        line-height: 1.2;
+        margin-bottom: 48px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    .crawl-body {
+        font-family: 'Orbitron', sans-serif;
+        color: #ffd700;
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 1.8;
+        letter-spacing: 0.08em;
+        margin-bottom: 60px;
+    }
+    .crawl-close {
+        position: fixed; top: 30px; right: 40px;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        color: rgba(255,215,0,0.5);
+        cursor: pointer;
+        z-index: 1000000;
+        pointer-events: all;
+        text-transform: uppercase;
+    }
+    .crawl-close:hover { color: #ffd700; }
+
+    /* LIGHTSABER DUEL flash */
+    #saber-flash {
+        position: fixed; inset: 0;
+        pointer-events: none; z-index: 999990;
+        opacity: 0;
+        transition: opacity 0.05s;
+    }
+
+    /* DEATH STAR mode */
+    #deathstar-charge {
+        position: fixed; top: 50%; left: 50%;
+        transform: translate(-50%,-50%) scale(0);
+        width: 300px; height: 300px; border-radius: 50%;
+        background: radial-gradient(circle, rgba(180,220,255,0.95) 0%, rgba(100,180,255,0.7) 40%, transparent 75%);
+        pointer-events: none;
+        z-index: 999995;
+        opacity: 0;
+    }
+
+    /* GROGU mode cursor */
+    body.grogu-mode { cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><text y='28' font-size='28'>🐸</text></svg>") 16 16, auto; }
+
+    /* Secret console badge */
+    #sw-console-badge {
+        position: fixed; bottom: 16px; right: 16px;
+        font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em;
+        color: rgba(0,200,255,0.2); z-index: 99999; pointer-events: none;
+        text-transform: uppercase;
+    }
+</style>
+
+<!-- CRAWL OVERLAY -->
+<div id="sw-crawl-overlay">
+    <div class="crawl-stars"></div>
+    <div class="crawl-close" id="crawl-close">[ ESC ] Close transmission</div>
+    <div class="crawl-wrap">
+        <div class="crawl-logo">Kentucky Cancer Registry</div>
+        <div class="crawl-title">A New Hope<br>for Cancer Data</div>
+        <div class="crawl-body">
+            It is a period of public health surveillance. Rebel epidemiologists, striking from a hidden base in Lexington, have won their first victory against the evil forces of undetected cancer.
+            <br><br>
+            During the battle, Registry spies managed to steal secret plans to the Empire of Disease — an ultimate weapon with enough statistical power to destroy an entire county-level trend.
+            <br><br>
+            Pursued by the Empire's sinister agents, Princess Data races home aboard her starship, custodian of the stolen plans that can save her people and restore freedom to the galaxy of public health...
+            <br><br>
+            The Kentucky Cancer Registry tracks over 35 years of invasion data across all 120 sectors of the Commonwealth. Armed with Natural Language Processing and population-based tissue repositories, the Rebel Alliance of Medicine fights on.
+            <br><br>
+            NAACCR GOLD CERTIFICATION — CONFIRMED.
+            <br><br>
+            May the Data be with you. Always.
+            <br><br><br><br>
+        </div>
+    </div>
+</div>
+
+<!-- TOAST -->
+<div id="sw-toast"><span class="toast-icon">⚡</span><span id="sw-toast-msg">Transmission received</span></div>
+
+<!-- IMPERIAL OVERLAY -->
+<div id="imperial-overlay"></div>
+
+<!-- SABER FLASH -->
+<div id="saber-flash"></div>
+
+<div id="sw-console-badge">Type "HELP" for transmissions</div>
+
+<script>
+    /* ============================================================
+       STAR WARS EASTER EGG ENGINE
+    ============================================================ */
+    (function() {
+        'use strict';
+
+        /* ---- WEB AUDIO SYNTH: all sounds generated, no files needed ---- */
+        var AudioCtx = window.AudioContext || window.webkitAudioContext;
+        var actx = null;
+        function getAudio() {
+            if (!actx) actx = new AudioCtx();
+            if (actx.state === 'suspended') actx.resume();
+            return actx;
+        }
+
+        function playBlaster() {
+            try {
+                var a = getAudio();
+                var osc = a.createOscillator();
+                var gain = a.createGain();
+                var t = a.currentTime;
+                osc.connect(gain); gain.connect(a.destination);
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(1800, t);
+                osc.frequency.exponentialRampToValueAtTime(200, t + 0.18);
+                gain.gain.setValueAtTime(0.4, t);
+                gain.gain.exponentialRampToValueAtTime(0.001, t + 0.22);
+                osc.start(t); osc.stop(t + 0.25);
+            } catch(e) {}
+        }
+
+        function playLightsaber(on) {
+            try {
+                var a = getAudio();
+                var osc = a.createOscillator();
+                var osc2 = a.createOscillator();
+                var gain = a.createGain();
+                var t = a.currentTime;
+                osc.connect(gain); osc2.connect(gain); gain.connect(a.destination);
+                osc.type = 'sine'; osc2.type = 'sine';
+                if (on) {
+                    osc.frequency.setValueAtTime(120, t);
+                    osc.frequency.linearRampToValueAtTime(580, t + 0.4);
+                    osc2.frequency.setValueAtTime(180, t);
+                    osc2.frequency.linearRampToValueAtTime(640, t + 0.4);
+                    gain.gain.setValueAtTime(0.001, t);
+                    gain.gain.linearRampToValueAtTime(0.35, t + 0.12);
+                    gain.gain.setValueAtTime(0.35, t + 0.35);
+                    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.55);
+                    osc.start(t); osc.stop(t + 0.6);
+                    osc2.start(t); osc2.stop(t + 0.6);
+                } else {
+                    osc.frequency.setValueAtTime(580, t);
+                    osc.frequency.exponentialRampToValueAtTime(80, t + 0.45);
+                    osc2.frequency.setValueAtTime(640, t);
+                    osc2.frequency.exponentialRampToValueAtTime(100, t + 0.45);
+                    gain.gain.setValueAtTime(0.3, t);
+                    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.5);
+                    osc.start(t); osc.stop(t + 0.55);
+                    osc2.start(t); osc2.stop(t + 0.55);
+                }
+            } catch(e) {}
+        }
+
+        function playR2D2() {
+            try {
+                var a = getAudio();
+                var t = a.currentTime;
+                [0,1,2,3].forEach(function(i) {
+                    var osc = a.createOscillator();
+                    var gain = a.createGain();
+                    osc.connect(gain); gain.connect(a.destination);
+                    osc.type = 'square';
+                    var base = 800 + Math.random() * 1200;
+                    osc.frequency.setValueAtTime(base, t + i*0.12);
+                    osc.frequency.setValueAtTime(base * 1.4, t + i*0.12 + 0.04);
+                    osc.frequency.setValueAtTime(base * 0.7, t + i*0.12 + 0.08);
+                    gain.gain.setValueAtTime(0.15, t + i*0.12);
+                    gain.gain.exponentialRampToValueAtTime(0.001, t + i*0.12 + 0.1);
+                    osc.start(t + i*0.12);
+                    osc.stop(t + i*0.12 + 0.12);
+                });
+            } catch(e) {}
+        }
+
+        function playImperialMarch() {
+            try {
+                var a = getAudio();
+                var t = a.currentTime;
+                var notes = [
+                    [196,0.4],[196,0.4],[196,0.4],[164.8,0.3],[246.9,0.1],
+                    [196,0.4],[164.8,0.3],[246.9,0.1],[196,0.8]
+                ];
+                var osc = a.createOscillator();
+                var gain = a.createGain();
+                osc.connect(gain); gain.connect(a.destination);
+                osc.type = 'square';
+                gain.gain.setValueAtTime(0.15, t);
+                var at = t;
+                notes.forEach(function(n) {
+                    osc.frequency.setValueAtTime(n[0], at);
+                    gain.gain.setValueAtTime(0.18, at);
+                    gain.gain.setValueAtTime(0.05, at + n[1]*0.7);
+                    at += n[1] + 0.02;
+                });
+                osc.start(t); osc.stop(at + 0.1);
+            } catch(e) {}
+        }
+
+        function playChord(freq, dur) {
+            try {
+                var a = getAudio();
+                var t = a.currentTime;
+                [freq, freq*1.26, freq*1.5].forEach(function(f) {
+                    var osc = a.createOscillator(); var gain = a.createGain();
+                    osc.connect(gain); gain.connect(a.destination);
+                    osc.type = 'sine'; osc.frequency.setValueAtTime(f, t);
+                    gain.gain.setValueAtTime(0.12, t); gain.gain.exponentialRampToValueAtTime(0.001, t+dur);
+                    osc.start(t); osc.stop(t+dur+0.05);
+                });
+            } catch(e) {}
+        }
+
+        function playForceTheme() {
+            try {
+                var a = getAudio();
+                var t = a.currentTime;
+                // Simple "Force theme" motif
+                var melody = [[392,0.5],[440,0.5],[523,0.5],[494,0.25],[440,0.25],[523,0.8]];
+                var osc = a.createOscillator(); var gain = a.createGain();
+                osc.connect(gain); gain.connect(a.destination);
+                osc.type = 'sine'; gain.gain.setValueAtTime(0.2, t);
+                var at = t;
+                melody.forEach(function(n) {
+                    osc.frequency.setValueAtTime(n[0], at);
+                    gain.gain.setValueAtTime(0.2, at);
+                    gain.gain.setValueAtTime(0.05, at + n[1]*0.8);
+                    at += n[1] + 0.02;
+                });
+                gain.gain.exponentialRampToValueAtTime(0.001, at);
+                osc.start(t); osc.stop(at + 0.1);
+            } catch(e) {}
+        }
+
+        /* ---- TOAST ---- */
+        var toastTimer;
+        function toast(icon, msg, color) {
+            var el = document.getElementById('sw-toast');
+            var msgEl = document.getElementById('sw-toast-msg');
+            el.querySelector('.toast-icon').textContent = icon;
+            msgEl.textContent = msg;
+            el.style.borderColor = color || 'var(--cyan)';
+            el.style.color = color || 'var(--cyan)';
+            el.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(function() { el.classList.remove('show'); }, 3500);
+        }
+
+        /* ---- LIGHTSABER CURSOR TRAIL ---- */
+        var saberActive = false;
+        var saberColor = '#00c8ff';
+        var dots = [];
+        var MAX_DOTS = 18;
+
+        function createDot() {
+            var d = document.createElement('div');
+            d.className = 'saber-dot';
+            document.body.appendChild(d);
+            return d;
+        }
+        for (var i = 0; i < MAX_DOTS; i++) dots.push(createDot());
+
+        var mouseX = 0, mouseY = 0;
+        var positions = [];
+        document.addEventListener('mousemove', function(e) {
+            mouseX = e.clientX; mouseY = e.clientY;
+            positions.unshift({ x: mouseX, y: mouseY });
+            if (positions.length > MAX_DOTS) positions.pop();
+            if (saberActive) {
+                dots.forEach(function(d, i) {
+                    var p = positions[i] || positions[positions.length-1] || {x:0,y:0};
+                    var size = Math.max(2, 10 - i * 0.4);
+                    var alpha = (1 - i/MAX_DOTS) * 0.9;
+                    d.style.cssText = 'left:' + (p.x - size/2) + 'px;top:' + (p.y - size/2) + 'px;width:' + size + 'px;height:' + size + 'px;background:' + saberColor + ';opacity:' + alpha + ';box-shadow:0 0 ' + (size*2) + 'px ' + saberColor + ';';
+                });
+            } else {
+                dots.forEach(function(d) { d.style.opacity = '0'; });
+            }
+        });
+
+        /* ---- CLICK BLASTER EFFECT ---- */
+        var clickSoundEnabled = true;
+        document.addEventListener('click', function(e) {
+            if (!clickSoundEnabled) return;
+            // Only fire on non-link clicks
+            if (e.target.tagName !== 'A' && e.target.tagName !== 'BUTTON' && e.target.tagName !== 'INPUT') {
+                playBlaster();
+                // Muzzle flash
+                var flash = document.createElement('div');
+                flash.style.cssText = 'position:fixed;left:' + (e.clientX-20) + 'px;top:' + (e.clientY-20) + 'px;width:40px;height:40px;border-radius:50%;background:radial-gradient(circle,rgba(255,200,0,0.9),transparent);pointer-events:none;z-index:999998;transition:transform 0.2s,opacity 0.2s;';
+                document.body.appendChild(flash);
+                requestAnimationFrame(function() {
+                    flash.style.transform = 'scale(2)';
+                    flash.style.opacity = '0';
+                    setTimeout(function() { flash.parentNode && flash.parentNode.removeChild(flash); }, 250);
+                });
+            }
+        });
+
+        /* ---- SECRET CODE ENGINE ---- */
+        var typedBuffer = '';
+        var CODES = {
+            'MAYTHEFORCE':   activateForce,
+            'IMPERIALMARCH': activateImperial,
+            'ALDERAAN':      activateAlderaan,
+            'GROGU':         activateGrogu,
+            'HELPME':        activateHelp,
+            'LIGHTSABER':    toggleSaber,
+            'R2D2':          activateR2D2,
+            'HOLOGRAM':      activateCrawl,
+            'CARBONITE':     activateCarbonite,
+            'ITSATRAP':      activateTrap,
+            'DEATHSTAR':     activateDeathStar,
+            'ORDERSIXTYSIX': activateOrder66,
+        };
+
+        document.addEventListener('keydown', function(e) {
+            // ESC closes crawl
+            if (e.key === 'Escape') {
+                document.getElementById('sw-crawl-overlay').classList.remove('active');
+                return;
+            }
+            if (e.key.length === 1) {
+                typedBuffer = (typedBuffer + e.key.toUpperCase()).slice(-20);
+                for (var code in CODES) {
+                    if (typedBuffer.endsWith(code)) {
+                        CODES[code]();
+                        typedBuffer = '';
+                        break;
+                    }
+                }
+            }
+        });
+
+        /* Search bar secret: type "CHEWIE" in the search box */
+        var searchInput = document.querySelector('.nav-search-form input[name="q"]');
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                if (this.value.toUpperCase() === 'CHEWIE') {
+                    activateChewie();
+                    this.value = '';
+                }
+            });
+        }
+
+        /* ---- EASTER EGG ACTIVATORS ---- */
+
+        // MAYTHEFORCE — lightsaber trail on + Force theme
+        function activateForce() {
+            saberActive = !saberActive;
+            saberColor = '#00c8ff';
+            if (saberActive) {
+                playLightsaber(true);
+                toast('⚡', 'LIGHTSABER ACTIVATED — May the Force be with you', '#00c8ff');
+            } else {
+                playLightsaber(false);
+                toast('💫', 'LIGHTSABER DEACTIVATED', '#6a88b8');
+            }
+        }
+
+        // LIGHTSABER — same but cycles colors
+        var saberColors = ['#00c8ff','#ff2020','#7700ff','#00ff88','#ffd700'];
+        var saberColorIdx = 0;
+        function toggleSaber() {
+            saberActive = true;
+            saberColorIdx = (saberColorIdx + 1) % saberColors.length;
+            saberColor = saberColors[saberColorIdx];
+            playLightsaber(true);
+            var names = ['BLUE (Jedi)','RED (Sith)','PURPLE (Mace Windu)','GREEN (Yoda)','YELLOW (Temple Guard)'];
+            toast('⚔️', 'LIGHTSABER: ' + names[saberColorIdx], saberColor);
+        }
+
+        // IMPERIALMARCH — Imperial red mode
+        function activateImperial() {
+            var body = document.body;
+            var overlay = document.getElementById('imperial-overlay');
+            if (body.classList.contains('imperial-mode')) {
+                body.classList.remove('imperial-mode');
+                overlay.classList.remove('active');
+                toast('✅', 'REBEL ALLIANCE MODE RESTORED', '#00c8ff');
+            } else {
+                body.classList.add('imperial-mode');
+                overlay.classList.add('active');
+                playImperialMarch();
+                toast('🔴', 'IMPERIAL MODE ENGAGED — This is the Empire now', '#ff2020');
+                setTimeout(function() {
+                    body.classList.remove('imperial-mode');
+                    overlay.classList.remove('active');
+                }, 12000);
+            }
+        }
+
+        // ALDERAAN — screen explosion
+        function activateAlderaan() {
+            playChord(80, 2);
+            toast('💥', 'ALDERAAN DESTROYED — Hope you\'re happy', '#ff8800');
+            var flash = document.getElementById('saber-flash');
+            flash.style.background = 'radial-gradient(ellipse at center, white 0%, orange 20%, red 50%, transparent 80%)';
+            flash.style.opacity = '1';
+            setTimeout(function() {
+                flash.style.transition = 'opacity 1.5s';
+                flash.style.opacity = '0';
+            }, 80);
+            // Shake
+            document.body.style.transition = 'transform 0.05s';
+            var count = 0;
+            var shaker = setInterval(function() {
+                var x = (Math.random()-0.5)*16;
+                var y = (Math.random()-0.5)*12;
+                document.body.style.transform = 'translate('+x+'px,'+y+'px)';
+                if (++count > 20) { clearInterval(shaker); document.body.style.transform = ''; }
+            }, 50);
+        }
+
+        // GROGU — baby yoda cursor + R2 sounds on hover
+        function activateGrogu() {
+            document.body.classList.toggle('grogu-mode');
+            if (document.body.classList.contains('grogu-mode')) {
+                playChord(523, 0.8);
+                toast('🐸', '"The Child" activated — This is the way', '#00ff88');
+            } else {
+                toast('👋', 'Grogu has returned to the Mandalorian', '#6a88b8');
+            }
+        }
+
+        // HELPME — Admiral Ackbar hologram list
+        function activateHelp() {
+            playR2D2();
+            toast('📡', 'IT\'S A TRAP! Secret codes detected in system', '#ffd700');
+            setTimeout(function() {
+                var msgs = [
+                    ['⚔️','LIGHTSABER — Cycle lightsaber colors'],
+                    ['🎵','IMPERIALMARCH — Toggle Imperial red mode'],
+                    ['💥','ALDERAAN — Feel the disturbance in the Force'],
+                    ['🐸','GROGU — Baby Yoda cursor mode'],
+                    ['📡','HOLOGRAM — Play the opening crawl'],
+                    ['❄️','CARBONITE — Han Solo freeze mode'],
+                    ['🔊','R2D2 — Activate R2 beeps on hover'],
+                    ['⚠️','ITSATRAP — You know what this does'],
+                    ['🌑','DEATHSTAR — Charge the superlaser'],
+                    ['🔴','ORDERSIXTYSIX — Execute... the protocol'],
+                    ['🐱','CHEWIE — Search bar easter egg'],
+                    ['🌟','MAYTHEFORCE — Activate Force mode'],
+                ];
+                var idx = 0;
+                var seq = setInterval(function() {
+                    if (idx >= msgs.length) { clearInterval(seq); return; }
+                    toast(msgs[idx][0], msgs[idx][1], '#ffd700');
+                    idx++;
+                }, 1200);
+            }, 500);
+        }
+
+        // R2D2 — beeps on every element hover
+        var r2Active = false;
+        function activateR2D2() {
+            r2Active = !r2Active;
+            if (r2Active) {
+                playR2D2();
+                toast('🤖', 'R2-D2 ONLINE — Beep boop bweeep', '#00c8ff');
+                document.addEventListener('mouseenter', r2Hover, true);
+            } else {
+                toast('😴', 'R2-D2 entering low-power mode', '#6a88b8');
+                document.removeEventListener('mouseenter', r2Hover, true);
+            }
+        }
+        var r2Throttle = 0;
+        function r2Hover() {
+            var now = Date.now();
+            if (now - r2Throttle > 600) { r2Throttle = now; playR2D2(); }
+        }
+
+        // HOLOGRAM — opening crawl
+        function activateCrawl() {
+            playForceTheme();
+            document.getElementById('sw-crawl-overlay').classList.add('active');
+            toast('📽️', 'OPENING CRAWL TRANSMISSION INCOMING...', '#ffd700');
+        }
+        document.getElementById('crawl-close').addEventListener('click', function() {
+            document.getElementById('sw-crawl-overlay').classList.remove('active');
+        });
+
+        // CARBONITE — freeze everything
+        function activateCarbonite() {
+            playChord(60, 3);
+            toast('❄️', '"I know." — HAN SOLO PROTOCOL ENGAGED', '#88ccff');
+            var body = document.body;
+            body.style.transition = 'filter 1s';
+            body.style.filter = 'grayscale(1) brightness(0.5) contrast(1.2)';
+            var carbonEl = document.createElement('div');
+            carbonEl.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:999990;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(80,120,160,0.07) 3px,rgba(80,120,160,0.07) 6px);opacity:0;transition:opacity 1s;';
+            document.body.appendChild(carbonEl);
+            setTimeout(function() { carbonEl.style.opacity = '1'; }, 100);
+            setTimeout(function() {
+                body.style.filter = '';
+                carbonEl.style.opacity = '0';
+                setTimeout(function() { carbonEl.parentNode && carbonEl.parentNode.removeChild(carbonEl); }, 1000);
+                toast('🔥', 'CARBONITE THAWED — "Someone who loves you."', '#ffd700');
+            }, 6000);
+        }
+
+        // ITSATRAP — Admiral Ackbar takeover
+        function activateTrap() {
+            playR2D2();
+            toast('⚠️', 'IT\'S A TRAP! — Admiral Ackbar, Mon Calamari Fleet', '#ff8800');
+            var ackbar = document.createElement('div');
+            ackbar.style.cssText = 'position:fixed;bottom:100px;right:40px;z-index:999999;font-family:Orbitron,sans-serif;font-size:48px;font-weight:900;color:#ff8800;text-shadow:0 0 20px rgba(255,136,0,0.8);pointer-events:none;animation:itsatrap 0.1s ease infinite alternate;';
+            ackbar.style.setProperty('--r', '0deg');
+            ackbar.textContent = "IT'S A TRAP!";
+            var style = document.createElement('style');
+            style.textContent = '@keyframes itsatrap{from{transform:rotate(-2deg) scale(1)}to{transform:rotate(2deg) scale(1.02)}}';
+            document.head.appendChild(style);
+            document.body.appendChild(ackbar);
+            setTimeout(function() {
+                ackbar.style.transition = 'opacity 1s';
+                ackbar.style.opacity = '0';
+                setTimeout(function() { ackbar.parentNode && ackbar.parentNode.removeChild(ackbar); }, 1000);
+            }, 3000);
+        }
+
+        // DEATHSTAR — charging superlaser beam
+        function activateDeathStar() {
+            playChord(55, 4);
+            toast('🌑', 'DEATH STAR SUPERLASER CHARGING... Stand by.', '#aaddff');
+            var charge = document.getElementById('deathstar-charge');
+            if (!charge) {
+                charge = document.createElement('div');
+                charge.id = 'deathstar-charge';
+                document.body.appendChild(charge);
+            }
+            charge.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(180,220,255,0.95) 0%,rgba(100,180,255,0.7) 30%,transparent 70%);pointer-events:none;z-index:999995;transition:transform 2s cubic-bezier(0.25,0.46,0.45,0.94),opacity 1s;opacity:1;';
+            setTimeout(function() { charge.style.transform = 'translate(-50%,-50%) scale(1)'; }, 50);
+            setTimeout(function() {
+                charge.style.opacity = '0';
+                charge.style.transform = 'translate(-50%,-50%) scale(4)';
+                setTimeout(function() { charge.style.cssText += 'transform:translate(-50%,-50%) scale(0);'; }, 1000);
+                toast('💥', 'SUPERLASER FIRED — Target: Yavin IV', '#aaddff');
+            }, 2500);
+        }
+
+        // ORDER 66 — red flash, everything goes dark
+        function activateOrder66() {
+            toast('🔴', 'EXECUTE ORDER 66 — The Jedi must be destroyed', '#ff0000');
+            var flash = document.getElementById('saber-flash');
+            flash.style.background = 'rgba(180,0,0,0.7)';
+            flash.style.opacity = '1';
+            flash.style.transition = 'opacity 0.1s';
+            playChord(40, 2);
+            var count = 0;
+            var flicker = setInterval(function() {
+                flash.style.opacity = count % 2 === 0 ? '0.7' : '0';
+                if (++count > 8) {
+                    clearInterval(flicker);
+                    flash.style.transition = 'opacity 2s';
+                    flash.style.opacity = '0';
+                }
+            }, 150);
+            // Drop all page elements briefly
+            document.querySelectorAll('main, aside, .intro-heading').forEach(function(el) {
+                el.style.transition = 'opacity 0.5s';
+                el.style.opacity = '0.1';
+                setTimeout(function() { el.style.opacity = ''; }, 2500);
+            });
+        }
+
+        // CHEWIE — Wookiee roar effect via search bar
+        function activateChewie() {
+            try {
+                var a = getAudio();
+                var t = a.currentTime;
+                // Wookiee roar: complex multi-osc growl
+                var roar = [[80,1.5],[120,1.2],[95,1.0],[70,0.8]];
+                roar.forEach(function(r, i) {
+                    var osc = a.createOscillator(); var gain = a.createGain();
+                    osc.connect(gain); gain.connect(a.destination);
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(r[0], t + i*0.05);
+                    osc.frequency.linearRampToValueAtTime(r[0]*2.2, t + 0.3);
+                    osc.frequency.linearRampToValueAtTime(r[0]*1.4, t + 0.7);
+                    osc.frequency.exponentialRampToValueAtTime(r[0]*0.5, t + 1.4);
+                    gain.gain.setValueAtTime(r[1]*0.08, t);
+                    gain.gain.linearRampToValueAtTime(r[1]*0.18, t + 0.2);
+                    gain.gain.exponentialRampToValueAtTime(0.001, t + 1.5);
+                    osc.start(t); osc.stop(t + 1.6);
+                });
+            } catch(e) {}
+            toast('🦁', 'RWAARRGH! — Chewie, we\'re home.', '#b08040');
+            document.body.style.transition = 'transform 0.1s';
+            var shake = 0;
+            var roarShake = setInterval(function() {
+                document.body.style.transform = 'translateX(' + ((Math.random()-0.5)*8) + 'px)';
+                if (++shake > 12) { clearInterval(roarShake); document.body.style.transform = ''; }
+            }, 80);
+        }
+
+        /* ---- KONAMI CODE → Opening Crawl ---- */
+        var konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+        var konamiPos = 0;
+        document.addEventListener('keydown', function(e) {
+            if (e.key === konami[konamiPos]) {
+                konamiPos++;
+                if (konamiPos === konami.length) {
+                    konamiPos = 0;
+                    activateCrawl();
+                    toast('🎮', 'KONAMI CODE ACCEPTED — Opening Crawl unlocked', '#ffd700');
+                }
+            } else { konamiPos = 0; }
+        });
+
+        /* ---- LOGO triple-click: R2D2 ---- */
+        var logoClicks = 0, logoTimer;
+        var logoEl = document.querySelector('.logo-mark');
+        if (logoEl) {
+            logoEl.style.cursor = 'pointer';
+            logoEl.addEventListener('click', function(e) {
+                e.stopPropagation();
+                logoClicks++;
+                clearTimeout(logoTimer);
+                logoTimer = setTimeout(function() { logoClicks = 0; }, 600);
+                if (logoClicks >= 3) {
+                    logoClicks = 0;
+                    playR2D2();
+                    toast('🤖', 'R2-D2: "Beep boop! Good morning, General."', '#00c8ff');
+                }
+            });
+        }
+
+        /* ---- TITLE double-click: Force theme ---- */
+        var titleEl = document.querySelector('.masthead-title');
+        if (titleEl) {
+            titleEl.style.cursor = 'pointer';
+            titleEl.addEventListener('dblclick', function(e) {
+                e.preventDefault();
+                playForceTheme();
+                toast('🌟', '"Do. Or do not. There is no try." — Yoda', '#ffd700');
+                titleEl.style.transition = 'text-shadow 0.3s';
+                titleEl.style.textShadow = '0 0 80px rgba(255,215,0,0.8), 0 0 200px rgba(255,215,0,0.4)';
+                setTimeout(function() { titleEl.style.textShadow = ''; }, 2000);
+            });
+        }
+
+        /* ---- LOGO hover: lightsaber hum (subtle) ---- */
+        var humActive = false;
+        var humOsc, humGain;
+        if (logoEl) {
+            logoEl.addEventListener('mouseenter', function() {
+                if (humActive) return; humActive = true;
+                try {
+                    var a = getAudio(); var t = a.currentTime;
+                    humOsc = a.createOscillator(); humGain = a.createGain();
+                    humOsc.connect(humGain); humGain.connect(a.destination);
+                    humOsc.type = 'sine'; humOsc.frequency.setValueAtTime(120, t);
+                    // Subtle wobble
+                    var lfo = a.createOscillator(); var lfoGain = a.createGain();
+                    lfo.connect(lfoGain); lfoGain.connect(humOsc.frequency);
+                    lfo.frequency.setValueAtTime(8, t); lfoGain.gain.setValueAtTime(4, t);
+                    humGain.gain.setValueAtTime(0.001, t);
+                    humGain.gain.linearRampToValueAtTime(0.08, t + 0.3);
+                    humOsc.start(t); lfo.start(t);
+                    humOsc._lfo = lfo;
+                } catch(e) {}
+            });
+            logoEl.addEventListener('mouseleave', function() {
+                humActive = false;
+                if (humOsc) {
+                    try {
+                        var t = humOsc.context.currentTime;
+                        humGain.gain.linearRampToValueAtTime(0.001, t + 0.3);
+                        humOsc.stop(t + 0.35);
+                        if (humOsc._lfo) humOsc._lfo.stop(t + 0.35);
+                    } catch(e) {}
+                    humOsc = null; humGain = null;
+                }
+            });
+        }
+
+        /* ---- TOPBAR "GALACTIC MEDICAL" click spam: Easter sequence ---- */
+        var topbarEl = document.querySelector('.topbar-left');
+        var topbarClicks = 0;
+        if (topbarEl) {
+            topbarEl.style.cursor = 'pointer';
+            topbarEl.addEventListener('click', function(e) {
+                e.stopPropagation();
+                topbarClicks++;
+                if (topbarClicks === 5) {
+                    topbarClicks = 0;
+                    playImperialMarch();
+                    toast('🎵', 'DUN DUN DUN... DA DA DUN... DA DA DUN', '#ff2020');
+                }
+            });
+        }
+
+        /* ---- STATS numbers: click for specific quotes ---- */
+        var quotes = [
+            '"120 sectors. All must be monitored." — Grand Moff Tarkin',
+            '"35 years of data. The Force grows stronger." — Palpatine',
+            '"Gold certification. As it should be." — Darth Vader',
+        ];
+        document.querySelectorAll('.mstat').forEach(function(el, i) {
+            el.style.cursor = 'pointer';
+            el.addEventListener('click', function(ev) {
+                ev.stopPropagation();
+                playBlaster();
+                toast('📊', quotes[i] || 'By the power of the Force...', '#ffd700');
+            });
+        });
+
+        /* ---- CONSOLE HINT ---- */
+        console.log('%c🌟 STAR WARS EASTER EGGS ONLINE 🌟', 'font-family:monospace;font-size:16px;color:#ffd700;background:#000;padding:8px 16px;');
+        console.log('%cSecret codes (type anywhere on page):', 'color:#00c8ff;font-size:12px;');
+        console.log('%cMAYTHEFORCE | LIGHTSABER | IMPERIALMARCH | ALDERAAN\nGROGU | R2D2 | HOLOGRAM | CARBONITE\nITSATRAP | DEATHSTAR | ORDERSIXTYSIX', 'color:#6a88b8;font-size:11px;font-family:monospace;');
+        console.log('%cKonami code also works ↑↑↓↓←→←→BA', 'color:#00ff88;font-size:11px;');
+
+    })();
+</script>
+</body>
+</html>

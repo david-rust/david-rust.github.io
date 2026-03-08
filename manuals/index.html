@@ -1,0 +1,1029 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Manuals — Kentucky Cancer Registry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&amp;display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #0e1419;
+      --ink-2:     #1b2530;
+      --ink-3:     #243040;
+      --steel:     #3d5166;
+      --mist:      #8da3b8;
+      --fog:       #c4d0dc;
+      --paper:     #f2ede6;
+      --paper-2:   #e8e2d9;
+      --paper-3:   #ddd6cb;
+      --amber:     #c87a2f;
+      --amber-lt:  #e09040;
+      --amber-dim: #8a5420;
+      --white:     #ffffff;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+      --r: 6px;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--steel);
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+    a { text-decoration: none; }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background: var(--ink); height: 36px;
+      display: flex; align-items: center; padding: 0 40px;
+      font-size: 11px; letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.3); justify-content: space-between;
+    }
+    .topbar a { color: rgba(255,255,255,0.35); transition: color 0.15s; }
+    .topbar a:hover { color: var(--amber-lt); }
+    .topbar-links { display: flex; gap: 24px; }
+
+    /* ── MASTHEAD ── */
+    .masthead { background: var(--ink); padding: 40px 40px 44px; }
+    .masthead-inner {
+      max-width: 1320px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr auto;
+      align-items: center; gap: 40px;
+    }
+    .masthead-wordmark {
+      font-family: var(--serif); font-size: 26px;
+      color: rgba(255,255,255,0.85); font-weight: 400; line-height: 1.1;
+    }
+    .masthead-wordmark span { color: var(--amber); }
+    .masthead-sub {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: rgba(255,255,255,0.3); margin-top: 4px;
+    }
+    .masthead-badge {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.28);
+      text-align: right; line-height: 1.6;
+    }
+    .masthead-badge strong {
+      display: block; font-family: var(--serif); font-size: 16px; font-weight: 400;
+      color: rgba(255,255,255,0.55); letter-spacing: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--paper); border-bottom: 1px solid var(--paper-3);
+      position: sticky; top: 0; z-index: 200;
+    }
+    .nav-inner {
+      max-width: 1320px; margin: 0 auto; padding: 0 40px;
+      display: flex; align-items: center; height: 48px; gap: 2px;
+    }
+    .nav-link {
+      display: flex; align-items: center; padding: 0 18px; height: 48px;
+      font-size: 12.5px; font-weight: 600; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--steel);
+      border-bottom: 2px solid transparent; transition: all 0.15s;
+    }
+    .nav-link:hover { color: var(--ink); }
+    .nav-link.active { color: var(--ink); border-bottom-color: var(--amber); }
+
+    /* ── RIBBON ── */
+    .ribbon { background: var(--ink-2); }
+    .ribbon-inner {
+      max-width: 1320px; margin: 0 auto; padding: 0 40px;
+      display: flex; align-items: center; height: 64px; gap: 16px;
+    }
+    .ribbon-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.22em;
+      text-transform: uppercase; color: rgba(255,255,255,0.25); white-space: nowrap; margin-right: 8px;
+    }
+    .ribbon-logos { display: flex; align-items: center; gap: 32px; }
+    .ribbon-logos a {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.22); transition: color 0.2s;
+    }
+    .ribbon-logos a:hover { color: rgba(255,255,255,0.55); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      background: var(--ink); padding: 56px 40px 60px;
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; top: -80px; right: -40px;
+      width: 520px; height: 520px;
+      background: radial-gradient(circle, rgba(200,122,47,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .page-hero-inner {
+      max-width: 1320px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1px 1fr;
+      gap: 64px; align-items: center;
+    }
+    .page-hero-rule { width: 1px; height: 100%; background: rgba(255,255,255,0.07); }
+    .hero-eyebrow {
+      font-size: 10.5px; font-weight: 600; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--amber); margin-bottom: 14px;
+    }
+    .page-hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(38px, 4.5vw, 62px);
+      font-weight: 400; color: white;
+      line-height: 0.95; letter-spacing: -0.02em; font-style: italic;
+    }
+    .page-hero-desc {
+      font-size: 15px; font-weight: 300;
+      color: rgba(255,255,255,0.42); line-height: 1.8; margin-top: 20px;
+    }
+
+    /* Hero stat row */
+    .hero-stats {
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .hero-stat {
+      display: flex; align-items: center; gap: 20px;
+      padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .hero-stat:last-child { border-bottom: none; }
+    .hero-stat-num {
+      font-family: var(--serif); font-size: 34px; font-weight: 400;
+      color: var(--amber); line-height: 1; min-width: 56px; text-align: right;
+    }
+    .hero-stat-label {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.5); line-height: 1.4;
+    }
+    .hero-stat-label span {
+      display: block; font-size: 11.5px; font-weight: 300;
+      letter-spacing: 0; text-transform: none;
+      color: rgba(255,255,255,0.28); margin-top: 3px;
+    }
+
+    /* ── PAGE BODY ── */
+    .page-wrap {
+      max-width: 1320px; margin: 0 auto;
+      padding: 72px 40px 80px;
+      display: grid; grid-template-columns: 1fr 340px; gap: 72px;
+    }
+
+    /* ── SHARED TYPOGRAPHY ── */
+    .eyebrow {
+      font-size: 10.5px; font-weight: 600; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--amber); margin-bottom: 10px;
+    }
+    .section-heading {
+      font-family: var(--serif); font-size: 26px; font-weight: 400;
+      color: var(--ink); letter-spacing: -0.01em; line-height: 1; margin-top: 6px;
+    }
+    .section-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--paper-3);
+    }
+    .section-link {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--amber);
+      display: flex; align-items: center; gap: 5px; transition: gap 0.15s;
+    }
+    .section-link:hover { gap: 9px; }
+
+    /* ── CURRENT MANUALS — FEATURED CARDS ── */
+    .current-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;
+    }
+
+    /* Big featured card for the primary manual */
+    .manual-card-featured {
+      grid-column: 1 / -1;
+      background: var(--ink-2);
+      border-radius: var(--r);
+      padding: 32px 36px;
+      display: flex; gap: 28px; align-items: flex-start;
+      position: relative; overflow: hidden;
+      transition: all 0.2s;
+    }
+    .manual-card-featured::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; bottom: 0; width: 3px;
+      background: var(--amber);
+    }
+    .manual-card-featured:hover {
+      background: var(--ink-3);
+    }
+    .feat-icon {
+      width: 56px; height: 56px; flex-shrink: 0;
+      background: rgba(200,122,47,0.15); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--amber);
+    }
+    .feat-body { flex: 1; }
+    .feat-tag {
+      font-size: 9.5px; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--amber); margin-bottom: 6px;
+    }
+    .feat-title {
+      font-family: var(--serif); font-size: 22px; font-weight: 400;
+      color: rgba(255,255,255,0.88); letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 8px;
+    }
+    .feat-desc {
+      font-size: 13.5px; font-weight: 300;
+      color: rgba(255,255,255,0.42); line-height: 1.7; margin-bottom: 20px;
+    }
+    .feat-meta {
+      display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+    }
+    .feat-meta-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.3);
+    }
+    .feat-meta-item svg { color: rgba(255,255,255,0.2); }
+    .feat-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--amber); color: white; padding: 10px 20px;
+      border-radius: 3px; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--amber-lt); transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.15); padding: 10px 20px;
+      border-radius: 3px; font-size: 12px; font-weight: 500;
+      letter-spacing: 0.04em; transition: all 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.35); color: white; }
+
+    /* Standard resource card (white) */
+    .resource-card {
+      background: white; border-radius: var(--r);
+      border: 1px solid var(--paper-3);
+      padding: 24px 26px;
+      display: flex; align-items: flex-start; gap: 18px;
+      transition: all 0.2s; position: relative; overflow: hidden;
+    }
+    .resource-card::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 0; height: 2px;
+      background: var(--amber); transform: scaleX(0);
+      transform-origin: left; transition: transform 0.3s ease;
+    }
+    .resource-card:hover {
+      box-shadow: 0 8px 32px rgba(14,20,25,0.09);
+      transform: translateY(-3px); border-color: var(--fog);
+    }
+    .resource-card:hover::after { transform: scaleX(1); }
+
+    .rc-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    }
+    .rc-icon.pdf { background: rgba(200,122,47,0.1); color: var(--amber); }
+    .rc-icon.web { background: rgba(61,81,102,0.1); color: var(--steel); }
+    .rc-icon.xls { background: rgba(34,139,34,0.1); color: #3a8a3a; }
+    .rc-icon.doc { background: rgba(42,86,153,0.1); color: #3a60a0; }
+
+    .rc-body { flex: 1; min-width: 0; }
+    .rc-tag {
+      font-size: 9.5px; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--amber); margin-bottom: 4px;
+    }
+    .rc-title {
+      font-family: var(--serif); font-size: 16px; font-weight: 400;
+      color: var(--ink); letter-spacing: -0.01em; line-height: 1.25; margin-bottom: 5px;
+    }
+    .rc-desc {
+      font-size: 12.5px; font-weight: 300; color: var(--mist);
+      line-height: 1.65; margin-bottom: 12px;
+    }
+    .rc-meta {
+      display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    }
+    .rc-badge {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--mist);
+      display: flex; align-items: center; gap: 5px;
+    }
+    .rc-link {
+      font-size: 11.5px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--amber);
+      display: flex; align-items: center; gap: 5px; transition: gap 0.15s;
+    }
+    .rc-link:hover { gap: 9px; }
+
+    /* Full-width resource row (simpler, for list items) */
+    .resource-row {
+      background: white; border-radius: var(--r);
+      border: 1px solid var(--paper-3);
+      padding: 16px 24px;
+      display: flex; align-items: center; gap: 16px;
+      transition: all 0.15s; margin-bottom: 8px;
+    }
+    .resource-row:last-child { margin-bottom: 0; }
+    .resource-row:hover {
+      border-color: var(--fog);
+      box-shadow: 0 4px 16px rgba(14,20,25,0.07);
+    }
+    .rr-icon {
+      width: 36px; height: 36px; flex-shrink: 0; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .rr-icon.pdf { background: rgba(200,122,47,0.1); color: var(--amber); }
+    .rr-icon.web { background: rgba(61,81,102,0.1); color: var(--steel); }
+    .rr-icon.xls { background: rgba(34,139,34,0.1); color: #3a8a3a; }
+    .rr-icon.doc { background: rgba(42,86,153,0.1); color: #3a60a0; }
+    .rr-body { flex: 1; min-width: 0; }
+    .rr-title {
+      font-size: 14px; font-weight: 400; color: var(--ink); line-height: 1.3;
+    }
+    .rr-meta {
+      font-size: 11.5px; font-weight: 300; color: var(--mist); margin-top: 2px;
+    }
+    .rr-action {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--amber);
+      display: flex; align-items: center; gap: 5px;
+      white-space: nowrap; flex-shrink: 0; transition: gap 0.15s;
+    }
+    .rr-action:hover { gap: 8px; }
+
+    /* ── ARCHIVE TABLE ── */
+    .archive-table {
+      width: 100%; border-collapse: collapse;
+      background: white; border-radius: var(--r);
+      overflow: hidden; border: 1px solid var(--paper-3);
+    }
+    .archive-table thead tr {
+      background: var(--ink);
+    }
+    .archive-table thead th {
+      padding: 12px 20px; text-align: left;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: rgba(255,255,255,0.5);
+    }
+    .archive-table tbody tr {
+      border-bottom: 1px solid var(--paper-2);
+      transition: background 0.15s;
+    }
+    .archive-table tbody tr:last-child { border-bottom: none; }
+    .archive-table tbody tr:hover { background: var(--paper); }
+    .archive-table td {
+      padding: 13px 20px; font-size: 13.5px; font-weight: 300; color: var(--steel);
+      vertical-align: middle;
+    }
+    .archive-table td:first-child {
+      font-family: var(--serif); font-size: 16px; font-weight: 400;
+      color: var(--ink); letter-spacing: -0.01em;
+    }
+    .archive-year-badge {
+      display: inline-block; background: var(--ink-2);
+      color: var(--amber); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.1em; padding: 3px 10px; border-radius: 3px;
+    }
+    .archive-link {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 11.5px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--amber); transition: gap 0.15s;
+    }
+    .archive-link:hover { gap: 9px; }
+
+    /* ── NOTICE ── */
+    .notice-block {
+      background: var(--ink-2); border-radius: var(--r);
+      padding: 24px 28px; display: flex; gap: 18px; align-items: flex-start;
+      margin-top: 16px;
+    }
+    .notice-icon {
+      width: 38px; height: 38px; flex-shrink: 0;
+      background: rgba(200,122,47,0.15); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--amber);
+    }
+    .notice-title {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--amber); margin-bottom: 6px;
+    }
+    .notice-text {
+      font-size: 13px; font-weight: 300;
+      color: rgba(255,255,255,0.42); line-height: 1.75;
+    }
+    .notice-text a { color: var(--amber-lt); transition: color 0.15s; }
+    .notice-text a:hover { color: var(--amber); }
+
+    /* ── SIDEBAR ── */
+    .side-card {
+      background: white; border-radius: var(--r);
+      border: 1px solid var(--paper-3); overflow: hidden; margin-bottom: 20px;
+    }
+    .side-card-head {
+      background: var(--ink); padding: 14px 22px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: rgba(255,255,255,0.55);
+    }
+    .side-card-head span { color: var(--amber); }
+
+    .side-nav-link {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 22px; font-size: 13.5px; color: var(--steel);
+      border-left: 2px solid transparent; transition: all 0.15s;
+    }
+    .side-nav-link:hover {
+      color: var(--ink); background: var(--paper); border-left-color: var(--amber);
+    }
+    .side-nav-link.active {
+      color: var(--ink); background: var(--paper);
+      border-left-color: var(--amber); font-weight: 500;
+    }
+    .side-nav-link.indent {
+      padding-left: 40px; font-size: 13px; color: var(--mist);
+    }
+    .side-nav-link.indent:hover { color: var(--steel); }
+    .side-nav-divider { height: 1px; background: var(--paper-2); margin: 4px 0; }
+
+    .side-info-block { padding: 18px 22px; }
+    .side-info-block + .side-info-block { border-top: 1px solid var(--paper-2); }
+    .side-info-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--mist); margin-bottom: 5px;
+    }
+    .side-info-val { font-size: 13.5px; font-weight: 300; color: var(--steel); line-height: 1.6; }
+    .side-info-val a { color: var(--amber); }
+    .side-info-val a:hover { color: var(--amber-lt); }
+    .side-info-val strong { font-weight: 500; color: var(--ink); }
+
+    .dark-card {
+      background: var(--ink-2); border-radius: var(--r);
+      padding: 24px; margin-bottom: 20px;
+    }
+    .dark-card-tag {
+      font-size: 9.5px; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--amber); margin-bottom: 10px;
+    }
+    .dark-card h3 {
+      font-family: var(--serif); font-size: 18px; font-weight: 400;
+      color: rgba(255,255,255,0.82); letter-spacing: -0.01em;
+      line-height: 1.25; margin-bottom: 12px;
+    }
+    .dark-card p {
+      font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.38);
+      line-height: 1.75; margin-bottom: 18px;
+    }
+    .dark-card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11.5px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: rgba(255,255,255,0.55); transition: color 0.15s, gap 0.15s;
+    }
+    .dark-card-link:hover { color: var(--amber-lt); gap: 10px; }
+
+    /* Recent updates in sidebar */
+    .update-list { list-style: none; }
+    .update-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 13px 22px; border-top: 1px solid var(--paper-2);
+    }
+    .update-dot {
+      width: 7px; height: 7px; background: var(--amber);
+      border-radius: 50%; margin-top: 7px; flex-shrink: 0;
+    }
+    .update-text { font-size: 13px; font-weight: 300; color: var(--steel); line-height: 1.6; }
+    .update-date {
+      font-size: 10.5px; font-weight: 600; letter-spacing: 0.1em;
+      color: var(--mist); text-transform: uppercase; margin-top: 3px;
+    }
+
+    /* ── FOOTER ── */
+    footer { background: var(--ink); }
+    .footer-upper {
+      max-width: 1320px; margin: 0 auto; padding: 64px 40px 48px;
+      display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 48px; border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-wordmark {
+      font-family: var(--serif); font-size: 22px;
+      color: rgba(255,255,255,0.75); font-weight: 400; margin-bottom: 14px;
+    }
+    .footer-wordmark span { color: var(--amber); }
+    .footer-desc {
+      font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.3); line-height: 1.75;
+    }
+    .footer-col-title {
+      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(255,255,255,0.3); font-weight: 600; margin-bottom: 16px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-link {
+      font-size: 13px; color: rgba(255,255,255,0.35); transition: color 0.15s; display: block;
+    }
+    .footer-link:hover { color: var(--amber-lt); }
+    .footer-lower {
+      max-width: 1320px; margin: 0 auto; padding: 20px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 11.5px; color: rgba(255,255,255,0.28);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .rise          { opacity: 0; animation: riseIn 0.7s ease forwards; }
+    .rise-1        { animation-delay: 0.05s; }
+    .rise-2        { animation-delay: 0.15s; }
+    .rise-3        { animation-delay: 0.25s; }
+    .rise-4        { animation-delay: 0.35s; }
+    .rise-5        { animation-delay: 0.45s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .page-hero-inner { grid-template-columns: 1fr; }
+      .page-hero-rule, .hero-stats { display: none; }
+      .page-wrap { grid-template-columns: 1fr; }
+      .current-grid { grid-template-columns: 1fr; }
+      .footer-upper { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <span>University of Kentucky • Markey Cancer Center</span>
+    <div class="topbar-links">
+      <a href="#">SEER Reporting</a>
+      <a href="#">Site Map</a>
+      <a href="contact/">Contact</a>
+    </div>
+  </div>
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="masthead-inner">
+      <div>
+        <div class="masthead-wordmark"><span>Kentucky</span> Cancer Registry</div>
+        <div class="masthead-sub">Statewide Cancer Surveillance Program</div>
+      </div>
+      <div class="masthead-badge">
+        Technical Resources<br>
+        <strong>KCR Manuals Online</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/about/" class="nav-link">About</a>
+      <a href="/reports" class="nav-link">Reports</a>
+      <a href="/data-requests.html" class="nav-link">Data Requests</a>
+      <a href="/statutes/" class="nav-link">Statutes</a>
+      <a href="/technical.html" class="nav-link active">Technical Resources</a>
+      <a href="/contact/" class="nav-link">Contact</a>
+    </div>
+  </nav>
+
+  <!-- PARTNER RIBBON -->
+  <div class="ribbon">
+    <div class="ribbon-inner">
+      <span class="ribbon-label">Partners &amp; Affiliates</span>
+      <div class="ribbon-logos">
+        <a href="#">NAACCR</a>
+        <a href="#">CDC NPCR</a>
+        <a href="#">NCI SEER</a>
+        <a href="#">CSTE</a>
+        <a href="#">UK Markey</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="rise rise-1">
+        <div class="hero-eyebrow">Technical Resources</div>
+        <h1>KCR Manuals<br>Online</h1>
+        <p class="page-hero-desc">Documentation for cancer abstractors, registry operators, and data analysts using the Kentucky Cancer Registry's CPDMS.net system. Includes the current Abstractor's Manual, operator guides, data dictionaries, and archived editions.</p>
+      </div>
+      <div class="page-hero-rule rise rise-2"></div>
+      <div class="hero-stats rise rise-3">
+        <div class="hero-stat">
+          <div class="hero-stat-num">2023</div>
+          <div class="hero-stat-label">
+            Current Edition
+            <span>Abstractor's Manual — updated February 2024</span>
+          </div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">7</div>
+          <div class="hero-stat-label">
+            Archived Editions
+            <span>Annual manuals available from 2009 onward</span>
+          </div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">6</div>
+          <div class="hero-stat-label">
+            Reference Documents
+            <span>Forms, data dictionaries, and guides</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE BODY -->
+  <div class="page-wrap">
+    <main>
+
+      <!-- CURRENT MANUALS -->
+      <section class="rise rise-1">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Current Edition</div>
+            <h2 class="section-heading">Active Manuals &amp; Guides</h2>
+          </div>
+        </div>
+
+        <div class="current-grid">
+
+          <!-- Primary: Abstractor's Manual (featured dark card) -->
+          <div class="manual-card-featured">
+            <div class="feat-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            </div>
+            <div class="feat-body">
+              <div class="feat-tag">Primary Reference — PDF &amp; Web Help</div>
+              <div class="feat-title">2023 Abstractor's Manual</div>
+              <div class="feat-desc">The complete data collection and coding reference for CPDMS.net. Describes every data item collected by KCR with precise coding instructions. Mandatory items are identified in UPPER CASE. Updated to reflect current NAACCR standards and SEER Program requirements.</div>
+              <div class="feat-meta" style="margin-bottom: 16px;">
+                <div class="feat-meta-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  Updated Feb 13, 2024
+                </div>
+                <div class="feat-meta-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path></svg>
+                  PDF Download
+                </div>
+                <div class="feat-meta-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"></path></svg>
+                  Web Help Available
+                </div>
+              </div>
+              <div class="feat-actions">
+                <a href="KCR 2023 Abstractor's Manual.pdf" class="btn-primary">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg>
+                  Download PDF
+                </a>
+                <a href="https://kcr-confluence.atlassian.net/wiki/spaces/KAM/overview" target="_blank" class="btn-ghost">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"></path></svg>
+                  Open Web Help
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- CPDMS Operator's Manual -->
+          <div class="resource-card">
+            <div class="rc-icon web">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"></path></svg>
+            </div>
+            <div class="rc-body">
+              <div class="rc-tag">Web Documentation</div>
+              <div class="rc-title">CPDMS.net Operator's Manual</div>
+              <div class="rc-desc">Step-by-step instructions for every function of the CPDMS.net registry software — setup, data entry, reporting, and administration.</div>
+              <div class="rc-meta">
+                <span class="rc-badge">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  Updated Feb 1, 2021
+                </span>
+                <a href="https://kcr-confluence.atlassian.net/wiki/spaces/KOM/overview" target="_blank" class="rc-link">
+                  Open Manual
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kentucky Registrars Wiki -->
+          <div class="resource-card">
+            <div class="rc-icon web">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"></path></svg>
+            </div>
+            <div class="rc-body">
+              <div class="rc-tag">Community Resource</div>
+              <div class="rc-title">Kentucky Registrars Wiki</div>
+              <div class="rc-desc">Collaborative knowledge base for Kentucky cancer registrars. Tips, best practices, coding guidance, and peer discussion maintained by the KCR community.</div>
+              <div class="rc-meta">
+                <a href="https://kcr-confluence.atlassian.net/wiki/spaces/kentuckyregistrarswiki/overview" target="_blank" class="rc-link">
+                  Open Wiki
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- REFERENCE DOCUMENTS -->
+      <section class="rise rise-2" style="margin-top: 56px;">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Downloads &amp; References</div>
+            <h2 class="section-heading">Reference Documents</h2>
+          </div>
+        </div>
+
+        <div class="resource-row">
+          <div class="rr-icon pdf">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+          </div>
+          <div class="rr-body">
+            <div class="rr-title">Resource Guide and Links</div>
+            <div class="rr-meta">PDF — Comprehensive listing of coding resources, external references, and approved links for cancer abstractors</div>
+          </div>
+          <a href="Resource Guides and Links.pdf" class="rr-action">
+            Download
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg>
+          </a>
+        </div>
+
+        <div class="resource-row">
+          <div class="rr-icon xls">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line></svg>
+          </div>
+          <div class="rr-body">
+            <div class="rr-title">KCR Standard Data Variables Over Time</div>
+            <div class="rr-meta">Excel — Reference dates and version history for KCR standard data variables — updated 2024</div>
+          </div>
+          <a href="Reference Dates 2024.xlsx" class="rr-action">
+            Download
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg>
+          </a>
+        </div>
+
+        <div class="resource-row">
+          <div class="rr-icon xls">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line></svg>
+          </div>
+          <div class="rr-body">
+            <div class="rr-title">CPDMS.net Abstract Form — 2018</div>
+            <div class="rr-meta">Excel — Printable abstract data entry form; mandatory items shown in bold. Most recent version for use with CPDMS.net.</div>
+          </div>
+          <a href="CPDMSnet Abstract Form 2018.xlsx" class="rr-action">
+            Download
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg>
+          </a>
+        </div>
+
+        <div class="resource-row">
+          <div class="rr-icon doc">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <div class="rr-body">
+            <div class="rr-title">NAACCR Output from Data Analysis for KCR Research</div>
+            <div class="rr-meta">Word Document — Special use guide for interpreting NAACCR output in KCR research contexts — updated July 2, 2014</div>
+          </div>
+          <a href="NAACCR Output Special Use.docx" class="rr-action">
+            Download
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg>
+          </a>
+        </div>
+
+        <div class="notice-block">
+          <div class="notice-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4M12 16h.01"></path></svg>
+          </div>
+          <div>
+            <div class="notice-title">Meaningful Use Reporting</div>
+            <p class="notice-text">Eligible physicians and providers subject to Meaningful Use reporting requirements should see the separate guidance pages: <a href="mu.html">Stage 2 Reporting</a> and <a href="mu3.html">Stage 3 Reporting</a>.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ARCHIVED MANUALS -->
+      <section class="rise rise-3" style="margin-top: 56px;">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Historical Editions</div>
+            <h2 class="section-heading">Archived Manuals</h2>
+          </div>
+        </div>
+
+        <p style="font-size:14px;font-weight:300;color:var(--mist);margin-bottom:20px;line-height:1.75;">
+          Prior-year editions of the Abstractor's Manual are retained for reference. Each reflects the NAACCR standards, SEER Program requirements, and CPDMS.net data items in effect for that reporting year.
+        </p>
+
+        <table class="archive-table">
+          <thead>
+            <tr>
+              <th>Edition</th>
+              <th>Year</th>
+              <th>Format</th>
+              <th>Notes</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2021 Abstractor's Manual</td>
+              <td><span class="archive-year-badge">2021</span></td>
+              <td>PDF</td>
+              <td>Includes tumor molecular test data reporting guidance</td>
+              <td><a href="2021%20Abstractor%20Manual.pdf" class="archive-link">Download <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></td>
+            </tr>
+            <tr>
+              <td>2018 Abstractor's Manual</td>
+              <td><span class="archive-year-badge">2018</span></td>
+              <td>PDF</td>
+              <td>For use with CPDMS.net; updated ambiguous terminology guidance</td>
+              <td><a href="2018%20Abstractor's%20Manual.pdf" class="archive-link">Download <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></td>
+            </tr>
+            <tr>
+              <td>2017 Abstractor's Manual</td>
+              <td><span class="archive-year-badge">2017</span></td>
+              <td>PDF</td>
+              <td>Updated casefinding and case reporting requirements</td>
+              <td><a href="2017%20Abstractor's%20Manual.pdf" class="archive-link">Download <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></td>
+            </tr>
+            <tr>
+              <td>2016 Abstractor's Manual</td>
+              <td><span class="archive-year-badge">2016</span></td>
+              <td>PDF</td>
+              <td>Revised multiple primary and histology coding rules</td>
+              <td><a href="2016_Abstractor's_Manual.pdf" class="archive-link">Download <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></td>
+            </tr>
+            <tr>
+              <td>2015 Abstractor's Manual</td>
+              <td><span class="archive-year-badge">2015</span></td>
+              <td>PDF</td>
+              <td>Updated hematopoietic and lymphoid malignancy coding</td>
+              <td><a href="2015_Abstractor's_Manual.pdf" class="archive-link">Download <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></td>
+            </tr>
+            <tr>
+              <td>2012 Abstractor's Manual</td>
+              <td><span class="archive-year-badge">2012</span></td>
+              <td>PDF</td>
+              <td>Includes 2010 hematopoietic malignancy coding rules</td>
+              <td><a href="2012_Abstractor's_Manual.pdf" class="archive-link">Download <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></td>
+            </tr>
+            <tr>
+              <td>2009 Abstractor's Manual</td>
+              <td><span class="archive-year-badge">2009</span></td>
+              <td>PDF</td>
+              <td>Pre-2010 hematopoietic coding; SEER Multiple Primary rules</td>
+              <td><a href="2009_Abstractor's_Manual.pdf" class="archive-link">Download <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside>
+
+      <!-- ON THIS PAGE -->
+      <div class="side-card rise rise-2">
+        <div class="side-card-head"><span>On</span> This Page</div>
+        <a href="#" class="side-nav-link active">Current Edition Manuals</a>
+        <a href="#" class="side-nav-link indent">2023 Abstractor's Manual</a>
+        <a href="#" class="side-nav-link indent">CPDMS.net Operator's Manual</a>
+        <a href="#" class="side-nav-link indent">Kentucky Registrars Wiki</a>
+        <div class="side-nav-divider"></div>
+        <a href="#" class="side-nav-link">Reference Documents</a>
+        <a href="#" class="side-nav-link indent">Resource Guide &amp; Links</a>
+        <a href="#" class="side-nav-link indent">Data Variables Reference</a>
+        <a href="#" class="side-nav-link indent">Abstract Form 2018</a>
+        <div class="side-nav-divider"></div>
+        <a href="#" class="side-nav-link">Archived Manuals (2009–2021)</a>
+      </div>
+
+      <!-- TECHNICAL RESOURCES NAV -->
+      <div class="side-card rise rise-3">
+        <div class="side-card-head">Technical <span>Resources</span></div>
+        <a href="technical.html" class="side-nav-link">Overview</a>
+        <div class="side-nav-divider"></div>
+        <a href="software.html" class="side-nav-link">Software</a>
+        <a href="intheabstract.html" class="side-nav-link">In the Abstract</a>
+        <a href="manuals.html" class="side-nav-link active">KCR Manuals Online</a>
+        <a href="support.html" class="side-nav-link">Tech Support / Updates</a>
+        <a href="training.html" class="side-nav-link">Training</a>
+        <div class="side-nav-divider"></div>
+        <a href="mu.html" class="side-nav-link">Meaningful Use Stage 2</a>
+        <a href="mu3.html" class="side-nav-link">Meaningful Use Stage 3</a>
+      </div>
+
+      <!-- QUICK REFERENCE -->
+      <div class="side-card rise rise-4">
+        <div class="side-card-head">Quick <span>Reference</span></div>
+        <div class="side-info-block">
+          <div class="side-info-label">Current Manual</div>
+          <div class="side-info-val"><strong>2023 Edition</strong><br>Updated February 13, 2024</div>
+        </div>
+        <div class="side-info-block">
+          <div class="side-info-label">Software Version</div>
+          <div class="side-info-val">CPDMS.net — <a href="support.html">Check for updates</a></div>
+        </div>
+        <div class="side-info-block">
+          <div class="side-info-label">Operator's Manual</div>
+          <div class="side-info-val">Last updated February 1, 2021</div>
+        </div>
+        <div class="side-info-block">
+          <div class="side-info-label">Questions?</div>
+          <div class="side-info-val"><a href="contact/">Contact a regional coordinator</a> for abstracting assistance.</div>
+        </div>
+      </div>
+
+      <!-- SUPPORT CTA -->
+      <div class="dark-card rise rise-5">
+        <div class="dark-card-tag">Technical Support</div>
+        <h3>Need Help with CPDMS.net?</h3>
+        <p>KCR regional coordinators are available to assist with software setup, data entry questions, and training for CPDMS.net users.</p>
+        <a href="support.html" class="dark-card-link">
+          Support &amp; Updates
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+        </a>
+      </div>
+
+      <!-- RECENT UPDATES -->
+      <div class="side-card rise rise-5">
+        <div class="side-card-head">Recent <span>Updates</span></div>
+        <ul class="update-list">
+          <li class="update-item">
+            <div class="update-dot"></div>
+            <div>
+              <div class="update-text">2023 Abstractor's Manual revised — NAACCR standard updates and clarifications</div>
+              <div class="update-date">Feb 2024</div>
+            </div>
+          </li>
+          <li class="update-item">
+            <div class="update-dot"></div>
+            <div>
+              <div class="update-text">Reference Dates spreadsheet updated to include 2024 standard data variable history</div>
+              <div class="update-date">2024</div>
+            </div>
+          </li>
+          <li class="update-item">
+            <div class="update-dot"></div>
+            <div>
+              <div class="update-text">CPDMS.net Operator's Manual updated for current software release</div>
+              <div class="update-date">Feb 2021</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-upper">
+      <div>
+        <div class="footer-wordmark"><span>Kentucky</span> Cancer Registry</div>
+        <p class="footer-desc">A statewide, population-based cancer surveillance program serving the Commonwealth of Kentucky since 1990. Affiliated with the University of Kentucky Markey Cancer Center.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Resources</div>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">Annual Reports</a></li>
+          <li><a href="#" class="footer-link">Data Requests</a></li>
+          <li><a href="#" class="footer-link">Technical Resources</a></li>
+          <li><a href="#" class="footer-link">Meaningful Use</a></li>
+          <li><a href="#" class="footer-link">Childhood Cancer</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">About</div>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">About KCR</a></li>
+          <li><a href="#" class="footer-link">Staff Directory</a></li>
+          <li><a href="#" class="footer-link">Statutes</a></li>
+          <li><a href="#" class="footer-link">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Partners</div>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">NAACCR</a></li>
+          <li><a href="#" class="footer-link">CDC / NPCR</a></li>
+          <li><a href="#" class="footer-link">NCI SEER Program</a></li>
+          <li><a href="#" class="footer-link">UK Markey Cancer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-lower">
+      <span>© 2025 University of Kentucky — Kentucky Cancer Registry. All rights reserved.</span>
+      <span>Last updated: September 4, 2025</span>
+    </div>
+  </footer>
+
+
+
+</body></html>
