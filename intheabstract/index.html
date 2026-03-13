@@ -4,200 +4,95 @@
   <title>In the Abstract — Kentucky Cancer Registry</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&amp;display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --ink:       #0e1419;
-      --ink-2:     #1b2530;
-      --ink-3:     #243040;
-      --steel:     #3d5166;
-      --mist:      #8da3b8;
-      --fog:       #c4d0dc;
-      --paper:     #f2ede6;
-      --paper-2:   #e8e2d9;
-      --paper-3:   #ddd6cb;
-      --amber:     #c87a2f;
-      --amber-lt:  #e09040;
-      --amber-dim: #8a5420;
-      --white:     #ffffff;
-      --serif: 'DM Serif Display', Georgia, serif;
-      --sans:  'DM Sans', system-ui, sans-serif;
-      --r: 6px;
-    }
-
-    body {
-      font-family: var(--sans);
-      background: var(--paper);
-      color: var(--steel);
-      font-weight: 300;
-      font-size: 16px;
-      line-height: 1.8;
-    }
-    a { text-decoration: none; }
-
-    /* ── TOPBAR ── */
-    .topbar {
-      background: var(--ink); height: 36px;
-      display: flex; align-items: center; padding: 0 40px;
-      font-size: 11px; letter-spacing: 0.06em;
-      color: rgba(255,255,255,0.3); justify-content: space-between;
-    }
-    .topbar a { color: rgba(255,255,255,0.35); transition: color 0.15s; }
-    .topbar a:hover { color: var(--amber-lt); }
-    .topbar-links { display: flex; gap: 24px; }
-
-    /* ── MASTHEAD ── */
-    .masthead { background: var(--ink); padding: 40px 40px 44px; }
-    .masthead-inner {
+  <link rel="stylesheet" href="/css/theme.css">
+  <style>.masthead { background: var(--ink); padding: 40px 40px 44px; }
+.masthead-inner {
       max-width: 1320px; margin: 0 auto;
       display: grid; grid-template-columns: 1fr auto;
       align-items: center; gap: 40px;
     }
-    .masthead-wordmark {
+.masthead-wordmark {
       font-family: var(--serif); font-size: 26px;
       color: rgba(255,255,255,0.85); font-weight: 400; line-height: 1.1;
     }
-    .masthead-wordmark span { color: var(--amber); }
-    .masthead-sub {
+.masthead-wordmark span { color: var(--amber); }
+.masthead-sub {
       font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
       text-transform: uppercase; color: rgba(255,255,255,0.3); margin-top: 4px;
     }
-    .masthead-badge {
+.masthead-badge {
       font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
       text-transform: uppercase; color: rgba(255,255,255,0.28);
       text-align: right; line-height: 1.6;
     }
-    .masthead-badge strong {
+.masthead-badge strong {
       display: block; font-family: var(--serif); font-size: 16px; font-weight: 400;
       color: rgba(255,255,255,0.55); letter-spacing: 0;
     }
-
-    /* ── NAV ── */
-    nav {
-      background: var(--paper); border-bottom: 1px solid var(--paper-3);
-      position: sticky; top: 0; z-index: 200;
-    }
-    .nav-inner {
-      max-width: 1320px; margin: 0 auto; padding: 0 40px;
-      display: flex; align-items: center; height: 48px; gap: 2px;
-    }
-    .nav-link {
-      display: flex; align-items: center; padding: 0 18px; height: 48px;
-      font-size: 12.5px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
-      color: var(--steel); border-bottom: 2px solid transparent; transition: all 0.15s;
-    }
-    .nav-link:hover { color: var(--ink); }
-    .nav-link.active { color: var(--ink); border-bottom-color: var(--amber); }
-
-    /* ── RIBBON ── */
-    .ribbon { background: var(--ink-2); }
-    .ribbon-inner {
-      max-width: 1320px; margin: 0 auto; padding: 0 40px;
-      display: flex; align-items: center; height: 64px; gap: 16px;
-    }
-    .ribbon-label {
-      font-size: 10px; font-weight: 600; letter-spacing: 0.22em;
-      text-transform: uppercase; color: rgba(255,255,255,0.25); white-space: nowrap; margin-right: 8px;
-    }
-    .ribbon-logos { display: flex; align-items: center; gap: 32px; }
-    .ribbon-logos a {
-      font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-      color: rgba(255,255,255,0.22); transition: color 0.2s;
-    }
-    .ribbon-logos a:hover { color: rgba(255,255,255,0.55); }
-
-    /* ── PAGE HERO ── */
-    .page-hero {
+.page-hero {
       background: var(--ink); padding: 56px 40px 60px;
       position: relative; overflow: hidden;
     }
-    .page-hero::before {
+.page-hero::before {
       content: ''; position: absolute; top: -60px; right: -60px;
       width: 500px; height: 500px;
       background: radial-gradient(circle, rgba(200,122,47,0.07) 0%, transparent 65%);
       pointer-events: none;
     }
-    /* Decorative large ampersand */
-    .page-hero::after {
+.page-hero::after {
       content: '"';
       font-family: var(--serif); font-size: 320px; font-style: italic;
       color: rgba(255,255,255,0.025);
       position: absolute; right: 80px; top: -40px;
       line-height: 1; pointer-events: none; user-select: none;
     }
-    .page-hero-inner {
+.page-hero-inner {
       max-width: 1320px; margin: 0 auto;
       display: grid; grid-template-columns: 1fr 1px 1fr;
       gap: 64px; align-items: center;
     }
-    .page-hero-rule { width: 1px; height: 100%; background: rgba(255,255,255,0.07); }
-    .hero-eyebrow {
+.page-hero-rule { width: 1px; height: 100%; background: rgba(255,255,255,0.07); }
+.hero-eyebrow {
       font-size: 10.5px; font-weight: 600; letter-spacing: 0.22em;
       text-transform: uppercase; color: var(--amber); margin-bottom: 14px;
     }
-    .page-hero h1 {
+.page-hero h1 {
       font-family: var(--serif);
       font-size: clamp(38px, 4.5vw, 62px);
       font-weight: 400; color: white;
       line-height: 0.95; letter-spacing: -0.02em; font-style: italic;
     }
-    .page-hero-desc {
+.page-hero-desc {
       font-size: 15px; font-weight: 300;
       color: rgba(255,255,255,0.42); line-height: 1.8; margin-top: 20px;
     }
-    .hero-stats { display: flex; flex-direction: column; gap: 0; }
-    .hero-stat {
+.hero-stats { display: flex; flex-direction: column; gap: 0; }
+.hero-stat {
       display: flex; align-items: center; gap: 20px;
       padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-    .hero-stat:last-child { border-bottom: none; }
-    .hero-stat-num {
+.hero-stat:last-child { border-bottom: none; }
+.hero-stat-num {
       font-family: var(--serif); font-size: 34px; font-weight: 400;
       color: var(--amber); line-height: 1; min-width: 64px; text-align: right;
     }
-    .hero-stat-label {
+.hero-stat-label {
       font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
       text-transform: uppercase; color: rgba(255,255,255,0.5); line-height: 1.4;
     }
-    .hero-stat-label span {
+.hero-stat-label span {
       display: block; font-size: 11.5px; font-weight: 300;
       letter-spacing: 0; text-transform: none;
       color: rgba(255,255,255,0.28); margin-top: 3px;
     }
-
-    /* ── PAGE BODY ── */
-    .page-wrap {
-      max-width: 1320px; margin: 0 auto;
-      padding: 72px 40px 80px;
-      display: grid; grid-template-columns: 1fr 340px; gap: 72px;
-    }
-
-    /* ── SHARED TYPOGRAPHY ── */
-    .eyebrow {
-      font-size: 10.5px; font-weight: 600; letter-spacing: 0.22em;
-      text-transform: uppercase; color: var(--amber); margin-bottom: 10px;
-    }
-    .section-heading {
-      font-family: var(--serif); font-size: 26px; font-weight: 400;
-      color: var(--ink); letter-spacing: -0.01em; line-height: 1; margin-top: 6px;
-    }
-    .section-header {
-      display: flex; align-items: flex-end; justify-content: space-between;
-      margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--paper-3);
-    }
-
-    /* ── CURRENT ISSUE — BIG FEATURED CARD ── */
-    .current-issue-card {
+.current-issue-card {
       background: var(--ink-2); border-radius: var(--r);
       display: grid; grid-template-columns: 200px 1fr;
       overflow: hidden; margin-bottom: 8px;
       transition: all 0.2s;
     }
-    .current-issue-card:hover { background: var(--ink-3); }
-
-    /* Faux magazine cover panel */
-    .issue-cover {
+.current-issue-card:hover { background: var(--ink-3); }
+.issue-cover {
       background: var(--ink);
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
@@ -205,7 +100,7 @@
       position: relative; overflow: hidden;
       border-right: 1px solid rgba(255,255,255,0.06);
     }
-    .issue-cover::before {
+.issue-cover::before {
       content: '';
       position: absolute; inset: 0;
       background: repeating-linear-gradient(
@@ -216,318 +111,218 @@
         transparent 12px
       );
     }
-    .cover-label {
+.cover-label {
       font-size: 9px; font-weight: 600; letter-spacing: 0.22em;
       text-transform: uppercase; color: var(--amber);
       margin-bottom: 14px; text-align: center; position: relative;
     }
-    .cover-title {
+.cover-title {
       font-family: var(--serif); font-size: 15px; font-style: italic;
       color: rgba(255,255,255,0.75); text-align: center;
       line-height: 1.25; position: relative;
     }
-    .cover-issue-num {
+.cover-issue-num {
       font-family: var(--serif); font-size: 42px; font-weight: 400;
       color: var(--amber); line-height: 1; margin: 10px 0 4px;
       position: relative;
     }
-    .cover-year {
+.cover-year {
       font-size: 11px; font-weight: 600; letter-spacing: 0.16em;
       text-transform: uppercase; color: rgba(255,255,255,0.3);
       position: relative;
     }
-    .cover-kcr-mark {
+.cover-kcr-mark {
       position: absolute; bottom: 14px; left: 0; right: 0;
       text-align: center; font-size: 9px; font-weight: 600;
       letter-spacing: 0.18em; text-transform: uppercase;
       color: rgba(255,255,255,0.15);
     }
-
-    .issue-body {
+.issue-body {
       padding: 32px 36px;
       display: flex; flex-direction: column; justify-content: center;
     }
-    .issue-body-tag {
+.issue-body-tag {
       font-size: 9.5px; font-weight: 600; letter-spacing: 0.2em;
       text-transform: uppercase; color: var(--amber); margin-bottom: 8px;
     }
-    .issue-body-title {
+.issue-body-title {
       font-family: var(--serif); font-size: 24px; font-weight: 400;
       color: rgba(255,255,255,0.88); letter-spacing: -0.01em;
       line-height: 1.2; margin-bottom: 10px;
     }
-    .issue-body-desc {
+.issue-body-desc {
       font-size: 13.5px; font-weight: 300;
       color: rgba(255,255,255,0.42); line-height: 1.75; margin-bottom: 22px;
     }
-    .issue-meta {
+.issue-meta {
       display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 22px;
     }
-    .issue-meta-item {
+.issue-meta-item {
       display: flex; align-items: center; gap: 6px;
       font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
       text-transform: uppercase; color: rgba(255,255,255,0.3);
     }
-    .issue-meta-item svg { color: rgba(255,255,255,0.2); }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--amber); color: white; padding: 11px 22px;
-      border-radius: 3px; font-size: 12px; font-weight: 600;
-      letter-spacing: 0.05em; text-transform: uppercase;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .btn-primary:hover { background: var(--amber-lt); transform: translateY(-1px); }
-
-    /* ── RECENT ISSUES MINI-GRID ── */
-    .recent-grid {
+.issue-meta-item svg { color: rgba(255,255,255,0.2); }
+.recent-grid {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
       margin-top: 16px;
     }
-    .recent-card {
+.recent-card {
       background: white; border-radius: var(--r);
       border: 1px solid var(--paper-3);
       padding: 20px 22px;
       display: flex; flex-direction: column;
       transition: all 0.2s; position: relative; overflow: hidden;
     }
-    .recent-card::after {
+.recent-card::after {
       content: ''; position: absolute;
       bottom: 0; left: 0; right: 0; height: 2px;
       background: var(--amber); transform: scaleX(0);
       transform-origin: left; transition: transform 0.3s ease;
     }
-    .recent-card:hover {
+.recent-card:hover {
       box-shadow: 0 8px 28px rgba(14,20,25,0.09);
       transform: translateY(-3px); border-color: var(--fog);
     }
-    .recent-card:hover::after { transform: scaleX(1); }
-    .recent-card-label {
+.recent-card:hover::after { transform: scaleX(1); }
+.recent-card-label {
       font-size: 9.5px; font-weight: 600; letter-spacing: 0.18em;
       text-transform: uppercase; color: var(--amber); margin-bottom: 5px;
     }
-    .recent-card-date {
+.recent-card-date {
       font-family: var(--serif); font-size: 17px; font-weight: 400;
       color: var(--ink); letter-spacing: -0.01em; line-height: 1.2;
       flex: 1; margin-bottom: 14px;
     }
-    .recent-card-link {
+.recent-card-link {
       display: inline-flex; align-items: center; gap: 5px;
       font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
       text-transform: uppercase; color: var(--amber); transition: gap 0.15s;
     }
-    .recent-card-link:hover { gap: 9px; }
-
-    /* ── YEAR FILTER TABS ── */
-    .year-filter {
+.recent-card-link:hover { gap: 9px; }
+.year-filter {
       display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px;
     }
-    .year-tab {
+.year-tab {
       padding: 5px 14px; border-radius: 3px; cursor: pointer;
       font-size: 11.5px; font-weight: 600; letter-spacing: 0.06em;
       text-transform: uppercase; transition: all 0.15s;
       border: 1px solid var(--paper-3); background: white; color: var(--steel);
       user-select: none;
     }
-    .year-tab:hover { border-color: var(--fog); color: var(--ink); }
-    .year-tab.active {
+.year-tab:hover { border-color: var(--fog); color: var(--ink); }
+.year-tab.active {
       background: var(--amber); border-color: var(--amber); color: white;
     }
-
-    /* ── ARCHIVE YEAR GROUPS ── */
-    .archive-year-block { margin-bottom: 8px; }
-    .archive-year-block.hidden { display: none; }
-
-    .year-group-header {
+.archive-year-block { margin-bottom: 8px; }
+.archive-year-block.hidden { display: none; }
+.year-group-header {
       display: flex; align-items: center; gap: 16px;
       padding: 12px 0 10px; cursor: pointer; user-select: none;
     }
-    .year-group-header:hover .year-group-label { color: var(--ink); }
-
-    .year-group-num {
+.year-group-header:hover .year-group-label { color: var(--ink); }
+.year-group-num {
       font-family: var(--serif); font-size: 26px; font-weight: 400;
       color: var(--amber); line-height: 1; min-width: 52px;
     }
-    .year-group-label {
+.year-group-label {
       font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
       text-transform: uppercase; color: var(--mist); transition: color 0.15s;
     }
-    .year-group-count {
+.year-group-count {
       margin-left: auto;
       font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
       text-transform: uppercase; color: var(--mist);
     }
-    .year-group-toggle {
+.year-group-toggle {
       color: var(--mist); transition: transform 0.2s;
     }
-    .archive-year-block.open .year-group-toggle { transform: rotate(180deg); }
-
-    .year-group-issues {
+.archive-year-block.open .year-group-toggle { transform: rotate(180deg); }
+.year-group-issues {
       display: none;
       border-top: 1px solid var(--paper-3);
       padding: 8px 0 16px;
     }
-    .archive-year-block.open .year-group-issues { display: block; }
-
-    .issue-row {
+.archive-year-block.open .year-group-issues { display: block; }
+.issue-row {
       display: flex; align-items: center; gap: 14px;
       padding: 9px 0;
       border-bottom: 1px solid var(--paper-2);
       transition: background 0.12s;
     }
-    .issue-row:last-child { border-bottom: none; }
-
-    .issue-row-icon {
+.issue-row:last-child { border-bottom: none; }
+.issue-row-icon {
       width: 30px; height: 30px; flex-shrink: 0;
       background: rgba(200,122,47,0.1); border-radius: 5px;
       display: flex; align-items: center; justify-content: center;
       color: var(--amber);
     }
-    .issue-row-date {
+.issue-row-date {
       flex: 1;
       font-size: 14px; font-weight: 400; color: var(--ink);
     }
-    .issue-row-date span {
+.issue-row-date span {
       display: block; font-size: 11.5px; font-weight: 300;
       color: var(--mist); margin-top: 1px;
     }
-    .issue-row-dl {
+.issue-row-dl {
       display: inline-flex; align-items: center; gap: 5px;
       font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
       text-transform: uppercase; color: var(--amber);
       transition: gap 0.12s; flex-shrink: 0;
     }
-    .issue-row-dl:hover { gap: 8px; }
-
-    /* divider between year blocks */
-    .year-divider {
+.issue-row-dl:hover { gap: 8px; }
+.year-divider {
       height: 1px; background: var(--paper-3); margin: 2px 0;
     }
-
-    /* ── SIDEBAR ── */
-    .side-card {
-      background: white; border-radius: var(--r);
-      border: 1px solid var(--paper-3); overflow: hidden; margin-bottom: 20px;
-    }
-    .side-card-head {
-      background: var(--ink); padding: 14px 22px;
-      font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
-      text-transform: uppercase; color: rgba(255,255,255,0.55);
-    }
-    .side-card-head span { color: var(--amber); }
-    .side-nav-link {
-      display: flex; align-items: center; gap: 10px;
-      padding: 10px 22px; font-size: 13.5px; color: var(--steel);
-      border-left: 2px solid transparent; transition: all 0.15s;
-    }
-    .side-nav-link:hover { color: var(--ink); background: var(--paper); border-left-color: var(--amber); }
-    .side-nav-link.active { color: var(--ink); background: var(--paper); border-left-color: var(--amber); font-weight: 500; }
-    .side-nav-link.indent { padding-left: 40px; font-size: 13px; color: var(--mist); }
-    .side-nav-link.indent:hover { color: var(--steel); }
-    .side-nav-divider { height: 1px; background: var(--paper-2); margin: 4px 0; }
-
-    .side-info-block { padding: 18px 22px; }
-    .side-info-block + .side-info-block { border-top: 1px solid var(--paper-2); }
-    .side-info-label {
+.side-nav-divider { height: 1px; background: var(--paper-2); margin: 4px 0; }
+.side-info-block { padding: 18px 22px; }
+.side-info-block + .side-info-block { border-top: 1px solid var(--paper-2); }
+.side-info-label {
       font-size: 10px; font-weight: 600; letter-spacing: 0.18em;
       text-transform: uppercase; color: var(--mist); margin-bottom: 5px;
     }
-    .side-info-val {
+.side-info-val {
       font-size: 13.5px; font-weight: 300; color: var(--steel); line-height: 1.6;
     }
-    .side-info-val a { color: var(--amber); }
-    .side-info-val a:hover { color: var(--amber-lt); }
-    .side-info-val strong { font-weight: 500; color: var(--ink); }
-
-    .dark-card {
-      background: var(--ink-2); border-radius: var(--r); padding: 24px; margin-bottom: 20px;
-    }
-    .dark-card-tag {
+.side-info-val a { color: var(--amber); }
+.side-info-val a:hover { color: var(--amber-lt); }
+.side-info-val strong { font-weight: 500; color: var(--ink); }
+.dark-card-tag {
       font-size: 9.5px; font-weight: 600; letter-spacing: 0.2em;
       text-transform: uppercase; color: var(--amber); margin-bottom: 10px;
     }
-    .dark-card h3 {
-      font-family: var(--serif); font-size: 18px; font-weight: 400;
-      color: rgba(255,255,255,0.82); letter-spacing: -0.01em; line-height: 1.25; margin-bottom: 12px;
-    }
-    .dark-card p {
-      font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.38);
-      line-height: 1.75; margin-bottom: 18px;
-    }
-    .dark-card-link {
+.dark-card-link {
       display: inline-flex; align-items: center; gap: 6px;
       font-size: 11.5px; font-weight: 600; letter-spacing: 0.08em;
       text-transform: uppercase; color: rgba(255,255,255,0.55); transition: color 0.15s, gap 0.15s;
     }
-    .dark-card-link:hover { color: var(--amber-lt); gap: 10px; }
-
-    /* Issue count summary in sidebar */
-    .issue-count-grid {
+.dark-card-link:hover { color: var(--amber-lt); gap: 10px; }
+.issue-count-grid {
       display: grid; grid-template-columns: 1fr 1fr;
     }
-    .issue-count-cell {
+.issue-count-cell {
       padding: 14px 22px; text-align: center;
       border-right: 1px solid var(--paper-2);
       border-bottom: 1px solid var(--paper-2);
     }
-    .issue-count-cell:nth-child(2n) { border-right: none; }
-    .issue-count-cell:nth-last-child(-n+2) { border-bottom: none; }
-    .icc-num {
+.issue-count-cell:nth-child(2n) { border-right: none; }
+.issue-count-cell:nth-last-child(-n+2) { border-bottom: none; }
+.icc-num {
       font-family: var(--serif); font-size: 28px; font-weight: 400;
       color: var(--amber); line-height: 1;
     }
-    .icc-label {
+.icc-label {
       font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
       text-transform: uppercase; color: var(--mist); margin-top: 4px;
     }
-
-    /* ── FOOTER ── */
-    footer { background: var(--ink); }
-    .footer-upper {
-      max-width: 1320px; margin: 0 auto; padding: 64px 40px 48px;
-      display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr;
-      gap: 48px; border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .footer-wordmark {
-      font-family: var(--serif); font-size: 22px; color: rgba(255,255,255,0.75); font-weight: 400; margin-bottom: 14px;
-    }
-    .footer-wordmark span { color: var(--amber); }
-    .footer-desc { font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.3); line-height: 1.75; }
-    .footer-col-title {
-      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
-      color: rgba(255,255,255,0.3); font-weight: 600; margin-bottom: 16px;
-    }
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-link { font-size: 13px; color: rgba(255,255,255,0.35); transition: color 0.15s; display: block; }
-    .footer-link:hover { color: var(--amber-lt); }
-    .footer-lower {
-      max-width: 1320px; margin: 0 auto; padding: 20px 40px;
-      display: flex; align-items: center; justify-content: space-between;
-      font-size: 11.5px; color: rgba(255,255,255,0.28);
-    }
-
-    /* ── ANIMATIONS ── */
-    @keyframes riseIn {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .rise          { opacity: 0; animation: riseIn 0.7s ease forwards; }
-    .rise-1        { animation-delay: 0.05s; }
-    .rise-2        { animation-delay: 0.15s; }
-    .rise-3        { animation-delay: 0.25s; }
-    .rise-4        { animation-delay: 0.35s; }
-    .rise-5        { animation-delay: 0.45s; }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 960px) {
-      .page-hero-inner { grid-template-columns: 1fr; }
-      .page-hero-rule, .hero-stats { display: none; }
-      .current-issue-card { grid-template-columns: 1fr; }
-      .issue-cover { display: none; }
-      .page-wrap { grid-template-columns: 1fr; }
-      .recent-grid { grid-template-columns: 1fr 1fr; }
-      .footer-upper { grid-template-columns: 1fr 1fr; }
-    }
-  </style>
+@media (max-width: 960px) {.page-hero-inner { grid-template-columns: 1fr; }
+  .page-hero-rule, .hero-stats { display: none; }
+  .current-issue-card { grid-template-columns: 1fr; }
+  .issue-cover { display: none; }
+  .recent-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
 </head>
 <body>
 
