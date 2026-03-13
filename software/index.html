@@ -4,28 +4,9 @@
 <title>Technical Resources � Kentucky Cancer Registry</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&amp;display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-:root{
-  --ink:#0e1419;--ink-2:#1b2530;--ink-3:#243040;
-  --steel:#3d5166;--mist:#8da3b8;--fog:#c4d0dc;
-  --paper:#f2ede6;--paper-2:#e8e2d9;--paper-3:#ddd6cb;
-  --amber:#c87a2f;--amber-lt:#e09040;--amber-dim:#8a5420;
-  --white:#ffffff;
-  --serif:'DM Serif Display',Georgia,serif;
-  --sans:'DM Sans',system-ui,sans-serif;
-  --r:6px;
-}
-body{font-family:var(--sans);background:var(--paper);color:var(--steel);font-weight:300;line-height:1.8;overflow-x:hidden;}
-a{text-decoration:none;color:inherit;}
-
-/* TOPBAR */
-.topbar{background:var(--ink);height:36px;display:flex;align-items:center;padding:0 40px;}
-.topbar-inner{max-width:1320px;margin:0 auto;width:100%;display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.06em;color:rgba(255,255,255,.3);}
-.topbar-inner a{color:rgba(255,255,255,.35);transition:color .15s;}
+  <link rel="stylesheet" href="/css/theme.css">
+<style>.topbar-inner a{color:rgba(255,255,255,.35);transition:color .15s;}
 .topbar-inner a:hover{color:var(--amber-lt);}
-
-/* MASTHEAD */
 .masthead{background:var(--ink);padding:52px 40px 56px;position:relative;overflow:hidden;}
 .masthead::before{content:'';position:absolute;right:-60px;top:-60px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(200,122,47,.06) 0%,transparent 70%);pointer-events:none;}
 .masthead::after{content:'';position:absolute;left:0;bottom:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(200,122,47,.3) 40%,rgba(200,122,47,.3) 60%,transparent);}
@@ -34,39 +15,16 @@ a{text-decoration:none;color:inherit;}
 .breadcrumb a{color:rgba(255,255,255,.28);transition:color .15s;}
 .breadcrumb a:hover{color:var(--amber);}
 .breadcrumb .sep{color:rgba(255,255,255,.12);}
-.eyebrow{font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin-bottom:14px;}
 .masthead h1{font-family:var(--serif);font-size:clamp(38px,4.5vw,62px);font-weight:400;color:var(--white);line-height:.95;letter-spacing:-.02em;margin-bottom:18px;}
 .masthead h1 em{font-style:italic;color:var(--amber-lt);}
 .masthead-sub{font-size:15px;color:rgba(255,255,255,.4);font-weight:300;max-width:540px;line-height:1.7;margin-bottom:32px;}
-
-/* Jump nav pills */
 .jump-nav{display:flex;flex-wrap:wrap;gap:8px;}
 .jump-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:3px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.45);transition:all .2s;}
 .jump-pill:hover{background:rgba(200,122,47,.12);border-color:rgba(200,122,47,.35);color:var(--amber-lt);}
 .jump-pill svg{stroke:currentColor;fill:none;stroke-width:2;width:12px;height:12px;}
-
-/* NAV */
-nav{background:var(--paper);border-bottom:1px solid var(--paper-3);position:sticky;top:0;z-index:200;}
-.nav-inner{max-width:1320px;margin:0 auto;padding:0 40px;display:flex;align-items:center;}
-.nav-logo{font-family:var(--serif);font-size:17px;font-weight:400;color:var(--ink);margin-right:32px;white-space:nowrap;}
-.nav-logo span{color:var(--amber);}
-.nav-link{display:flex;align-items:center;padding:0 16px;height:48px;font-size:12.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--steel);border-bottom:2px solid transparent;transition:all .15s;}
-.nav-link:hover{color:var(--ink);}
-.nav-link.active{color:var(--ink);border-bottom-color:var(--amber);}
-
-/* PAGE LAYOUT */
-.page-wrap{max-width:1320px;margin:0 auto;padding:64px 40px 80px;display:grid;grid-template-columns:1fr 300px;gap:64px;}
-
-/* SECTION STYLES */
 .section{margin-bottom:64px;scroll-margin-top:72px;}
-.section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--paper-3);}
 .section-eyebrow{font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin-bottom:8px;}
-.section-heading{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--ink);letter-spacing:-.01em;line-height:1;}
-.section-link{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);display:flex;align-items:center;gap:5px;transition:gap .15s;white-space:nowrap;}
-.section-link:hover{gap:9px;}
 .section-link svg{stroke:currentColor;fill:none;stroke-width:2;width:12px;height:12px;}
-
-/* SOFTWARE CARDS */
 .software-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 .sw-card{background:white;border-radius:var(--r);border:1px solid var(--paper-3);padding:28px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden;transition:all .2s;}
 .sw-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
@@ -79,8 +37,6 @@ nav{background:var(--paper);border-bottom:1px solid var(--paper-3);position:stic
 .sw-link{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);display:flex;align-items:center;gap:5px;transition:gap .15s;}
 .sw-card:hover .sw-link{gap:9px;}
 .sw-link svg{stroke:currentColor;fill:none;stroke-width:2;width:11px;height:11px;}
-
-/* SUPPORT CARDS */
 .support-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px;}
 .sup-card{background:white;border-radius:var(--r);border:1px solid var(--paper-3);padding:22px;transition:all .2s;position:relative;overflow:hidden;}
 .sup-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
@@ -94,8 +50,6 @@ nav{background:var(--paper);border-bottom:1px solid var(--paper-3);position:stic
 .sup-card-link{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin-top:12px;transition:gap .15s;}
 .sup-card:hover .sup-card-link{gap:9px;}
 .sup-card-link svg{stroke:currentColor;fill:none;stroke-width:2;width:11px;height:11px;}
-
-/* MANUALS LIST */
 .manual-list{display:flex;flex-direction:column;gap:10px;}
 .manual-item{background:white;border-radius:var(--r);border:1px solid var(--paper-3);display:flex;align-items:center;gap:16px;padding:16px 20px;transition:all .15s;}
 .manual-item:hover{border-color:var(--fog);box-shadow:0 4px 16px rgba(14,20,25,.07);transform:translateX(3px);}
@@ -109,8 +63,6 @@ nav{background:var(--paper);border-bottom:1px solid var(--paper-3);position:stic
 .manual-meta{font-size:12px;color:var(--mist);}
 .manual-arrow{color:var(--amber);flex-shrink:0;}
 .manual-arrow svg{stroke:currentColor;fill:none;stroke-width:2;width:14px;height:14px;}
-
-/* NEWSLETTER */
 .newsletter-featured{background:var(--ink-2);border-radius:var(--r);padding:28px;display:flex;align-items:center;gap:24px;margin-bottom:20px;position:relative;overflow:hidden;}
 .newsletter-featured::before{content:'';position:absolute;right:-40px;top:-40px;width:160px;height:160px;border-radius:50%;background:rgba(200,122,47,.06);}
 .newsletter-icon{width:56px;height:56px;background:rgba(200,122,47,.15);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
@@ -121,13 +73,10 @@ nav{background:var(--paper);border-bottom:1px solid var(--paper-3);position:stic
 .newsletter-btn{display:inline-flex;align-items:center;gap:7px;background:var(--amber);color:white;padding:9px 18px;border-radius:3px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:background .2s;flex-shrink:0;margin-left:auto;}
 .newsletter-btn:hover{background:var(--amber-lt);}
 .newsletter-btn svg{stroke:currentColor;fill:none;stroke-width:2;width:12px;height:12px;}
-
 .issue-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
 .issue-item{background:white;border-radius:var(--r);border:1px solid var(--paper-3);padding:12px 16px;display:flex;align-items:center;gap:10px;transition:all .15s;font-size:13.5px;color:var(--steel);}
 .issue-item:hover{border-color:var(--amber);color:var(--ink);background:var(--paper);}
 .issue-item svg{stroke:var(--amber);fill:none;stroke-width:1.5;width:14px;height:14px;flex-shrink:0;}
-
-/* TRAINING */
 .training-session-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:32px;}
 .ts-card{background:white;border-radius:var(--r);border:1px solid var(--paper-3);padding:20px;transition:all .2s;position:relative;overflow:hidden;}
 .ts-card::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amber);transform:scaleY(0);transform-origin:bottom;transition:transform .25s;}
@@ -142,8 +91,6 @@ nav{background:var(--paper);border-bottom:1px solid var(--paper-3);position:stic
 .ts-contact{background:var(--paper-2);border-radius:var(--r);border:1px solid var(--paper-3);padding:16px 20px;font-size:13.5px;color:var(--steel);display:flex;align-items:center;gap:12px;}
 .ts-contact svg{stroke:var(--amber);fill:none;stroke-width:1.5;width:16px;height:16px;flex-shrink:0;}
 .ts-contact a{color:var(--amber);font-weight:500;}
-
-/* NAACCR WEBINARS */
 .webinar-year-group{margin-bottom:28px;}
 .webinar-year-label{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--paper-3);}
 .webinar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
@@ -152,8 +99,6 @@ nav{background:var(--paper);border-bottom:1px solid var(--paper-3);position:stic
 .webinar-item svg{stroke:var(--amber);fill:none;stroke-width:1.5;width:12px;height:12px;flex-shrink:0;}
 .webinar-month{font-weight:500;color:var(--ink);white-space:nowrap;}
 .webinar-topic{font-size:12px;color:var(--mist);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-
-/* WIKI DARK CARD */
 .wiki-card{background:var(--ink-2);border-radius:var(--r);padding:28px 32px;display:flex;align-items:center;gap:28px;margin-bottom:32px;position:relative;overflow:hidden;}
 .wiki-card::before{content:'';position:absolute;right:-60px;bottom:-60px;width:200px;height:200px;border-radius:50%;background:rgba(200,122,47,.05);}
 .wiki-icon{width:56px;height:56px;background:rgba(200,122,47,.12);border:1px solid rgba(200,122,47,.2);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
@@ -164,18 +109,12 @@ nav{background:var(--paper);border-bottom:1px solid var(--paper-3);position:stic
 .wiki-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.65);padding:10px 20px;border-radius:3px;font-size:12.5px;font-weight:600;letter-spacing:.06em;transition:all .2s;margin-left:auto;flex-shrink:0;white-space:nowrap;}
 .wiki-btn:hover{background:rgba(200,122,47,.15);border-color:rgba(200,122,47,.35);color:var(--amber-lt);}
 .wiki-btn svg{stroke:currentColor;fill:none;stroke-width:2;width:12px;height:12px;}
-
-/* SIDEBAR */
-.side-card{background:white;border-radius:var(--r);border:1px solid var(--paper-3);overflow:hidden;margin-bottom:20px;}
-.side-card-head{background:var(--ink);padding:14px 20px;font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);}
-.side-card-head span{color:var(--amber);}
 .side-toc{padding:8px 0;}
 .toc-link{display:flex;align-items:center;gap:10px;padding:9px 20px;font-size:13.5px;color:var(--steel);border-left:2px solid transparent;transition:all .15s;}
 .toc-link:hover{color:var(--ink);background:var(--paper);border-left-color:var(--amber);}
 .toc-link svg{stroke:var(--fog);fill:none;stroke-width:1.5;width:13px;height:13px;flex-shrink:0;transition:stroke .15s;}
 .toc-link:hover svg{stroke:var(--amber);}
 .toc-sep{border:none;border-top:1px solid var(--paper-2);margin:5px 0;}
-
 .mu-card{background:var(--ink-2);border-radius:var(--r);padding:22px;margin-bottom:20px;position:relative;overflow:hidden;}
 .mu-card::before{content:'';position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:var(--amber);border-radius:50%;opacity:.06;}
 .mu-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);font-weight:600;margin-bottom:8px;}
@@ -184,40 +123,17 @@ nav{background:var(--paper);border-bottom:1px solid var(--paper-3);position:stic
 .mu-link{display:flex;align-items:center;justify-content:space-between;padding:9px 13px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:4px;font-size:12.5px;color:rgba(255,255,255,.55);transition:all .15s;}
 .mu-link:hover{background:rgba(200,122,47,.1);border-color:rgba(200,122,47,.25);color:var(--amber-lt);}
 .mu-link svg{stroke:currentColor;fill:none;stroke-width:2;width:11px;height:11px;}
-
 .contact-card{background:var(--paper-2);border-radius:var(--r);border:1px solid var(--paper-3);padding:20px;}
 .contact-card-title{font-family:var(--serif);font-size:16px;color:var(--ink);margin-bottom:6px;}
 .contact-card-desc{font-size:13px;color:var(--steel);line-height:1.6;margin-bottom:14px;}
 .contact-card-btn{display:flex;align-items:center;justify-content:center;gap:7px;background:var(--ink);color:white;padding:10px 16px;border-radius:3px;font-size:12.5px;font-weight:600;letter-spacing:.04em;transition:background .2s;}
 .contact-card-btn:hover{background:var(--amber);}
 .contact-card-btn svg{stroke:currentColor;fill:none;stroke-width:2;width:13px;height:13px;}
-
-/* FOOTER */
-footer{background:var(--ink);}
-.footer-upper{max-width:1320px;margin:0 auto;padding:56px 40px 48px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;border-bottom:1px solid rgba(255,255,255,.06);}
-.footer-wordmark{font-family:var(--serif);font-size:22px;color:rgba(255,255,255,.75);font-weight:400;margin-bottom:14px;}
-.footer-wordmark span{color:var(--amber);}
-.footer-desc{font-size:13px;color:rgba(255,255,255,.28);line-height:1.7;}
-.footer-col-title{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.3);font-weight:600;margin-bottom:16px;}
-.footer-link{display:block;font-size:13px;color:rgba(255,255,255,.35);transition:color .15s;margin-bottom:10px;}
-.footer-link:hover{color:var(--amber-lt);}
-.footer-lower{max-width:1320px;margin:0 auto;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;font-size:11.5px;color:rgba(255,255,255,.28);}
-
-/* ANIMATIONS */
-@keyframes riseIn{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
-.rise{opacity:0;animation:riseIn .7s ease forwards;}
-.rise-1{animation-delay:.05s;}.rise-2{animation-delay:.15s;}.rise-3{animation-delay:.25s;}
-.rise-4{animation-delay:.35s;}.rise-5{animation-delay:.45s;}
-
-@media(max-width:960px){
-  .page-wrap{grid-template-columns:1fr;}
-  .software-grid,.support-grid,.training-session-grid,.webinar-grid,.issue-grid{grid-template-columns:1fr 1fr;}
-  .footer-upper{grid-template-columns:1fr 1fr;}
+@media(max-width:960px) {.software-grid,.support-grid,.training-session-grid,.webinar-grid,.issue-grid{grid-template-columns:1fr 1fr;}
   .wiki-card{flex-direction:column;}
   .wiki-btn{margin-left:0;}
 }
-@media(max-width:600px){
-  .software-grid,.support-grid,.webinar-grid,.issue-grid{grid-template-columns:1fr;}
+@media(max-width:600px) {.software-grid,.support-grid,.webinar-grid,.issue-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -286,7 +202,7 @@ footer{background:var(--ink);}
           <p class="sw-desc">Kentucky's web-based Cancer Patient Data Management System for electronic cancer case submission and management by reporting facilities.</p>
           <span class="sw-link">Launch CPDMS.net <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></span>
         </a>
-        <a href="/informatics/public-projects/cda-evaluator" class="sw-card">
+        <a href="https://www.kcr.uky.edu/informatics/public-projects/cda-evaluator" class="sw-card">
           <div class="sw-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg></div>
           <div class="sw-name">CDA Evaluator</div>
           <p class="sw-desc">A validation tool for testing Clinical Document Architecture (CDA) cancer reporting documents before submission to KCR under Meaningful Use requirements.</p>
@@ -311,7 +227,7 @@ footer{background:var(--ink);}
           <p class="sup-card-desc">Submit data files securely to KCR via the University of Kentucky's encrypted FES portal.</p>
           <span class="sup-card-link">Go to FES <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></span>
         </a>
-        <a href="/support/newfesguide.pdf" class="sup-card">
+        <a href="https://www.kcr.uky.edu/support/newfesguide.pdf" class="sup-card">
           <div class="sup-card-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></div>
           <div class="sup-card-label">PDF Guide</div>
           <div class="sup-card-title">FES Transfer Instructions</div>
@@ -335,7 +251,7 @@ footer{background:var(--ink);}
           <div class="section-eyebrow">Documentation</div>
           <h2 class="section-heading">KCR Manuals Online</h2>
         </div>
-        <a href="/manuals/archive.html" class="section-link">Archived Manuals <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
+        <a href="https://www.kcr.uky.edu/manuals/archive.html" class="section-link">Archived Manuals <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
       </div>
       <div class="manual-list">
         <a href="https://kcr-confluence.atlassian.net/wiki/spaces/KAM/overview" target="_blank" class="manual-item">
@@ -346,7 +262,7 @@ footer{background:var(--ink);}
           </div>
           <div class="manual-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></div>
         </a>
-        <a href="/manuals/KCR 2023 Abstractor's Manual.pdf" class="manual-item">
+        <a href="https://www.kcr.uky.edu/manuals/KCR 2023 Abstractor's Manual.pdf" class="manual-item">
           <div class="manual-badge pdf">PDF</div>
           <div class="manual-info">
             <div class="manual-name">2023 Abstractor's Manual</div>
@@ -362,7 +278,7 @@ footer{background:var(--ink);}
           </div>
           <div class="manual-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></div>
         </a>
-        <a href="/manuals/NAACCR Output Special Use.docx" class="manual-item">
+        <a href="https://www.kcr.uky.edu/manuals/NAACCR Output Special Use.docx" class="manual-item">
           <div class="manual-badge docx">DOC</div>
           <div class="manual-info">
             <div class="manual-name">NAACCR Output from Data Analysis for KCR Research</div>
@@ -370,7 +286,7 @@ footer{background:var(--ink);}
           </div>
           <div class="manual-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></div>
         </a>
-        <a href="/manuals/CPDMSnet Abstract Form 2018.xlsx" class="manual-item">
+        <a href="https://www.kcr.uky.edu/manuals/CPDMSnet Abstract Form 2018.xlsx" class="manual-item">
           <div class="manual-badge xlsx">XLS</div>
           <div class="manual-info">
             <div class="manual-name">CPDMS.net Abstract Form � 2018</div>
@@ -378,7 +294,7 @@ footer{background:var(--ink);}
           </div>
           <div class="manual-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></div>
         </a>
-        <a href="/manuals/Reference Dates 2024.xlsx" class="manual-item">
+        <a href="https://www.kcr.uky.edu/manuals/Reference Dates 2024.xlsx" class="manual-item">
           <div class="manual-badge xlsx">XLS</div>
           <div class="manual-info">
             <div class="manual-name">KCR Standard Data Variables Over Time</div>
@@ -386,7 +302,7 @@ footer{background:var(--ink);}
           </div>
           <div class="manual-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></div>
         </a>
-        <a href="/manuals/Resource Guides and Links.pdf" class="manual-item">
+        <a href="https://www.kcr.uky.edu/manuals/Resource Guides and Links.pdf" class="manual-item">
           <div class="manual-badge pdf">PDF</div>
           <div class="manual-info">
             <div class="manual-name">Resource Guide and Links</div>
@@ -412,26 +328,26 @@ footer{background:var(--ink);}
           <div class="newsletter-title">In the Abstract � August 2024</div>
           <div class="newsletter-meta">KCR's quarterly newsletter for cancer registrars and reporting facilities</div>
         </div>
-        <a href="/intheabstract/2024.August.pdf" class="newsletter-btn">Download PDF <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></a>
+        <a href="https://www.kcr.uky.edu/intheabstract/2024.August.pdf" class="newsletter-btn">Download PDF <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></a>
       </div>
 
       <div style="font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);margin-bottom:12px;">Back Issues</div>
       <div class="issue-grid">
-        <a href="/intheabstract/2024.July.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>July 2024</a>
-        <a href="/intheabstract/2024.June.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>June 2024</a>
-        <a href="/intheabstract/KCR Newsletter Spring 2021.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>Spring 2021</a>
-        <a href="/intheabstract/KCR Newsletter Winter 2021.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>Winter 2021</a>
-        <a href="/intheabstract/KCR Newsletter Summer 2020.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>July 2020</a>
-        <a href="/intheabstract/KCR Newsletter March 2020.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>March 2020</a>
-        <a href="/intheabstract/KCR Newsletter December 2019.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>January 2020</a>
-        <a href="/intheabstract/KCR Newsletter September 2019.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>September 2019</a>
-        <a href="/intheabstract/KCR Newsletter June 2019.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>June 2019</a>
-        <a href="/intheabstract/KCR Newsletter March 2019.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>March 2019</a>
-        <a href="/intheabstract/KCR newsletter November 2018.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>November 2018</a>
+        <a href="https://www.kcr.uky.edu/intheabstract/2024.July.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>July 2024</a>
+        <a href="https://www.kcr.uky.edu/intheabstract/2024.June.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>June 2024</a>
+        <a href="https://www.kcr.uky.edu/intheabstract/KCR Newsletter Spring 2021.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>Spring 2021</a>
+        <a href="https://www.kcr.uky.edu/intheabstract/KCR Newsletter Winter 2021.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>Winter 2021</a>
+        <a href="https://www.kcr.uky.edu/intheabstract/KCR Newsletter Summer 2020.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>July 2020</a>
+        <a href="https://www.kcr.uky.edu/intheabstract/KCR Newsletter March 2020.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>March 2020</a>
+        <a href="https://www.kcr.uky.edu/intheabstract/KCR Newsletter December 2019.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>January 2020</a>
+        <a href="https://www.kcr.uky.edu/intheabstract/KCR Newsletter September 2019.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>September 2019</a>
+        <a href="https://www.kcr.uky.edu/intheabstract/KCR Newsletter June 2019.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>June 2019</a>
+        <a href="https://www.kcr.uky.edu/intheabstract/KCR Newsletter March 2019.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>March 2019</a>
+        <a href="https://www.kcr.uky.edu/intheabstract/KCR newsletter November 2018.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>November 2018</a>
         <a href="/intheabstract/July 2018 newsletter.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>July 2018</a>
-        <a href="/intheabstract/KCR March 2018 Newsletter.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>March 2018</a>
+        <a href="https://www.kcr.uky.edu/intheabstract/KCR March 2018 Newsletter.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>March 2018</a>
         <a href="/intheabstract/In The Abstract Dec 2017.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>December 2017</a>
-        <a href="/intheabstract/KCR Newsletter July 2017.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>July 2017</a>
+        <a href="https://www.kcr.uky.edu/intheabstract/KCR Newsletter July 2017.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>July 2017</a>
         <a href="/intheabstract/Newsletter.Dec2016.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>December 2016</a>
         <a href="/intheabstract/July 2016.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>July 2016</a>
         <a href="/intheabstract/Jan 2016.pdf" class="issue-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>January 2016</a>
@@ -471,7 +387,7 @@ footer{background:var(--ink);}
           <div class="ts-title">New Abstractor Training</div>
           <div class="ts-links">
             <a href="/training/newabstractortraining/Abstractor Training Slides.zip" class="ts-link"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Training Slides</a>
-            <a href="/training/cpdms_for_new_users.mp4" class="ts-link"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>CPDMS for New Hires (video)</a>
+            <a href="https://www.kcr.uky.edu/training/cpdms_for_new_users.mp4" class="ts-link"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>CPDMS for New Hires (video)</a>
           </div>
         </div>
         <div class="ts-card">
@@ -485,10 +401,10 @@ footer{background:var(--ink);}
           <div class="ts-season">Spring 2024</div>
           <div class="ts-title">Spring Training 2024</div>
           <div class="ts-links">
-            <a href="/training/spring24/Spring2024.zip" class="ts-link"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Handouts &amp; Documents</a>
-            <a href="/training/spring24/V24 Updates.mp4" class="ts-link"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>V24 Updates (video)</a>
-            <a href="/training/spring24/Coding Grade for Benign Brain Tumors.mp4" class="ts-link"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>Benign Brain Tumors (video)</a>
-            <a href="/training/spring24/Bladder Cancer.mp4" class="ts-link"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>Bladder Cancer (video)</a>
+            <a href="https://www.kcr.uky.edu/training/spring24/Spring2024.zip" class="ts-link"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Handouts &amp; Documents</a>
+            <a href="https://www.kcr.uky.edu/training/spring24/V24 Updates.mp4" class="ts-link"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>V24 Updates (video)</a>
+            <a href="https://www.kcr.uky.edu/training/spring24/Coding Grade for Benign Brain Tumors.mp4" class="ts-link"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>Benign Brain Tumors (video)</a>
+            <a href="https://www.kcr.uky.edu/training/spring24/Bladder Cancer.mp4" class="ts-link"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>Bladder Cancer (video)</a>
           </div>
         </div>
         <div class="ts-card">
@@ -533,51 +449,51 @@ footer{background:var(--ink);}
       <div class="webinar-year-group">
         <div class="webinar-year-label">2025</div>
         <div class="webinar-grid">
-          <a href="/training/files/september_2025.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">September 2025</div><div class="webinar-topic">Coding Pitfalls 2025</div></div></a>
-          <a href="/training/files/august_2025.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">August 2025</div><div class="webinar-topic">Solid Tumor Rules 2025</div></div></a>
-          <a href="/training/files/July 2025 - Leveraging Technology to Improve Efficiency in Hospital Based Cancer Registries.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">July 2025</div><div class="webinar-topic">Leveraging Technology</div></div></a>
-          <a href="/training/files/June 2025 - Uterus 2025.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">June 2025</div><div class="webinar-topic">Uterus</div></div></a>
-          <a href="/training/files/Prostate May 2025.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">May 2025</div><div class="webinar-topic">Prostate</div></div></a>
-          <a href="/training/files/April 2025 Treatment.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">April 2025</div><div class="webinar-topic">Treatment</div></div></a>
-          <a href="/training/files/March 2025 - Boot Camp 2025.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">March 2025</div><div class="webinar-topic">Boot Camp</div></div></a>
-          <a href="/training/files/February 2025 - Hematopoietic 2024_2025 Part 2.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">February 2025</div><div class="webinar-topic">Hematopoietic Pt. 2</div></div></a>
-          <a href="/training/files/January 2025 - Hematopoietic 2024_2025 Part 1.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">January 2025</div><div class="webinar-topic">Hematopoietic Pt. 1</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/september_2025.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">September 2025</div><div class="webinar-topic">Coding Pitfalls 2025</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/august_2025.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">August 2025</div><div class="webinar-topic">Solid Tumor Rules 2025</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/July 2025 - Leveraging Technology to Improve Efficiency in Hospital Based Cancer Registries.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">July 2025</div><div class="webinar-topic">Leveraging Technology</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/June 2025 - Uterus 2025.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">June 2025</div><div class="webinar-topic">Uterus</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/Prostate May 2025.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">May 2025</div><div class="webinar-topic">Prostate</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/April 2025 Treatment.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">April 2025</div><div class="webinar-topic">Treatment</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/March 2025 - Boot Camp 2025.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">March 2025</div><div class="webinar-topic">Boot Camp</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/February 2025 - Hematopoietic 2024_2025 Part 2.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">February 2025</div><div class="webinar-topic">Hematopoietic Pt. 2</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/January 2025 - Hematopoietic 2024_2025 Part 1.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">January 2025</div><div class="webinar-topic">Hematopoietic Pt. 1</div></div></a>
         </div>
       </div>
 
       <div class="webinar-year-group">
         <div class="webinar-year-label">2024</div>
         <div class="webinar-grid">
-          <a href="/training/files/December 2024 - Unusual Sites.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">December 2024</div><div class="webinar-topic">Unusual Sites</div></div></a>
-          <a href="/training/files/November 2024 - Bladder 2024.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">November 2024</div><div class="webinar-topic">Bladder</div></div></a>
-          <a href="/training/files/October 2024 - Larynx &amp; Base of Tongue.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2HTML5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">October 2024</div><div class="webinar-topic">Larynx &amp; Base of Tongue</div></div></a>
-          <a href="/training/files/September 2024 - Coding Pitfalls 2024.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">September 2024</div><div class="webinar-topic">Coding Pitfalls</div></div></a>
-          <a href="/training/files/August 2024 -CNS 2024.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">August 2024</div><div class="webinar-topic">CNS</div></div></a>
-          <a href="/training/files/July 2024 - Life in a CoC Accredited Facility.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">July 2024</div><div class="webinar-topic">Life in a CoC Facility</div></div></a>
-          <a href="/training/files/June 2024 - Thyroid 2024.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">June 2024</div><div class="webinar-topic">Thyroid</div></div></a>
-          <a href="/training/files/NAACCR Webinar - Ovary 2024.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">May 2024</div><div class="webinar-topic">Ovary</div></div></a>
-          <a href="/training/files/NAACCR Webinar - Boot Camp 2 - April 2024.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">April 2024</div><div class="webinar-topic">Boot Camp 2</div></div></a>
-          <a href="/training/files/NAACCR Webinar - Boot Camp 1 - March 2024.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">March 2024</div><div class="webinar-topic">Boot Camp 1</div></div></a>
-          <a href="/training/files/NAACCR Webinar - Pancreas - February 2024.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">February 2024</div><div class="webinar-topic">Pancreas</div></div></a>
-          <a href="/training/files/NAACCR Webinar - Liver and Bile Duct - January 2024.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">January 2024</div><div class="webinar-topic">Liver &amp; Bile Duct</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/December 2024 - Unusual Sites.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">December 2024</div><div class="webinar-topic">Unusual Sites</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/November 2024 - Bladder 2024.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">November 2024</div><div class="webinar-topic">Bladder</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/October 2024 - Larynx &amp; Base of Tongue.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2HTML5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">October 2024</div><div class="webinar-topic">Larynx &amp; Base of Tongue</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/September 2024 - Coding Pitfalls 2024.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">September 2024</div><div class="webinar-topic">Coding Pitfalls</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/August 2024 -CNS 2024.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">August 2024</div><div class="webinar-topic">CNS</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/July 2024 - Life in a CoC Accredited Facility.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">July 2024</div><div class="webinar-topic">Life in a CoC Facility</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/June 2024 - Thyroid 2024.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">June 2024</div><div class="webinar-topic">Thyroid</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Ovary 2024.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">May 2024</div><div class="webinar-topic">Ovary</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Boot Camp 2 - April 2024.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">April 2024</div><div class="webinar-topic">Boot Camp 2</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Boot Camp 1 - March 2024.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">March 2024</div><div class="webinar-topic">Boot Camp 1</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Pancreas - February 2024.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">February 2024</div><div class="webinar-topic">Pancreas</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Liver and Bile Duct - January 2024.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">January 2024</div><div class="webinar-topic">Liver &amp; Bile Duct</div></div></a>
         </div>
       </div>
 
       <div class="webinar-year-group">
         <div class="webinar-year-label">2023</div>
         <div class="webinar-grid">
-          <a href="/training/files/NAACCR Webinar - Radiology and Radiation - December 2023.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">December 2023</div><div class="webinar-topic">Radiology &amp; Radiation</div></div></a>
-          <a href="/training/files/NAACCR Webinar - Lung Part 2 - November 2023.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">November 2023</div><div class="webinar-topic">Lung Part 2</div></div></a>
-          <a href="/training/files/NAACCR Webinar - Lung Part 1 - October 2023.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">October 2023</div><div class="webinar-topic">Lung Part 1</div></div></a>
-          <a href="/training/files/NAACCR Webinar - September 2023 - Pitfalls.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">September 2023</div><div class="webinar-topic">Pitfalls</div></div></a>
-          <a href="/training/files/NAACCR Webinar - August 2023 - Melanoma.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">August 2023</div><div class="webinar-topic">Melanoma</div></div></a>
-          <a href="/training/files/NAACCR Webinar - July 2023 - IT for Cancer Registies.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">July 2023</div><div class="webinar-topic">IT for Cancer Registries</div></div></a>
-          <a href="/training/files/NAACCR Webinar - June 2023 - Lower GI Part 2.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">June 2023</div><div class="webinar-topic">Lower GI Part 2</div></div></a>
-          <a href="/training/files/NAACCR Webinar - May 2023 - Lower GI Part 1.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">May 2023</div><div class="webinar-topic">Lower GI Part 1</div></div></a>
-          <a href="/training/files/NAACCR Webinar - April 2023 - Prostate.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">April 2023</div><div class="webinar-topic">Prostate</div></div></a>
-          <a href="/training/files/NAACCR Webinar - March 2023 - Boot Camp.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">March 2023</div><div class="webinar-topic">Boot Camp</div></div></a>
-          <a href="/training/files/NAACCR Webinar - February 2023 - Data Item Relationship.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">February 2023</div><div class="webinar-topic">Data Item Relationship</div></div></a>
-          <a href="/training/files/NAACCR Webinar - January 2023 - Head and Neck.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">January 2023</div><div class="webinar-topic">Head &amp; Neck</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Radiology and Radiation - December 2023.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">December 2023</div><div class="webinar-topic">Radiology &amp; Radiation</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Lung Part 2 - November 2023.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">November 2023</div><div class="webinar-topic">Lung Part 2</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Lung Part 1 - October 2023.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">October 2023</div><div class="webinar-topic">Lung Part 1</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - September 2023 - Pitfalls.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">September 2023</div><div class="webinar-topic">Pitfalls</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - August 2023 - Melanoma.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">August 2023</div><div class="webinar-topic">Melanoma</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - July 2023 - IT for Cancer Registies.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">July 2023</div><div class="webinar-topic">IT for Cancer Registries</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - June 2023 - Lower GI Part 2.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">June 2023</div><div class="webinar-topic">Lower GI Part 2</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - May 2023 - Lower GI Part 1.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">May 2023</div><div class="webinar-topic">Lower GI Part 1</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - April 2023 - Prostate.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">April 2023</div><div class="webinar-topic">Prostate</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - March 2023 - Boot Camp.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">March 2023</div><div class="webinar-topic">Boot Camp</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - February 2023 - Data Item Relationship.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">February 2023</div><div class="webinar-topic">Data Item Relationship</div></div></a>
+          <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - January 2023 - Head and Neck.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">January 2023</div><div class="webinar-topic">Head &amp; Neck</div></div></a>
         </div>
       </div>
 
@@ -590,48 +506,48 @@ footer{background:var(--ink);}
           <div class="webinar-year-group" style="margin-bottom:0;">
             <div class="webinar-year-label">2022</div>
             <div class="webinar-grid">
-              <a href="/training/files/NAACCR Webinar - December 2022 - Esophagus.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">December 2022</div><div class="webinar-topic">Esophagus</div></div></a>
-              <a href="/training/files/NAACCR Webinar - November 2022 - Breast Part 2.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">November 2022</div><div class="webinar-topic">Breast Part 2</div></div></a>
-              <a href="/training/files/NAACCR Webinar - October 2022 - Breast Part 1.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">October 2022</div><div class="webinar-topic">Breast Part 1</div></div></a>
-              <a href="/training/files/NAACCR Webinar - September 2022 - Coding Pitfalls.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">September 2022</div><div class="webinar-topic">Coding Pitfalls</div></div></a>
-              <a href="/training/files/NAACCR Webinar - Back to the Future CoC July 2022.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">July 2022</div><div class="webinar-topic">Back to the Future CoC</div></div></a>
-              <a href="/training/files/NAACCR Webinar - CNS June 2022.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">June 2022</div><div class="webinar-topic">CNS</div></div></a>
-              <a href="/training/files/NAACCR Webinar - Colon May 2022.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">May 2022</div><div class="webinar-topic">Colon</div></div></a>
-              <a href="/training/files/NAACCR Webinar - Hematopoietic and Lymphocytic Neoplasms April 2022.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">April 2022</div><div class="webinar-topic">Hematopoietic</div></div></a>
-              <a href="/training/files/NAACCR Webinar - Boot Camp March 2022.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">March 2022</div><div class="webinar-topic">Boot Camp</div></div></a>
-              <a href="/training/files/NAACCR Webinar - Data Item Relationships February 2022.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">February 2022</div><div class="webinar-topic">Data Item Relationships</div></div></a>
-              <a href="/training/files/NAACCR Webinar - Lung Janurary 2022.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">January 2022</div><div class="webinar-topic">Lung</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - December 2022 - Esophagus.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">December 2022</div><div class="webinar-topic">Esophagus</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - November 2022 - Breast Part 2.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">November 2022</div><div class="webinar-topic">Breast Part 2</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - October 2022 - Breast Part 1.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">October 2022</div><div class="webinar-topic">Breast Part 1</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - September 2022 - Coding Pitfalls.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">September 2022</div><div class="webinar-topic">Coding Pitfalls</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Back to the Future CoC July 2022.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">July 2022</div><div class="webinar-topic">Back to the Future CoC</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - CNS June 2022.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">June 2022</div><div class="webinar-topic">CNS</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Colon May 2022.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">May 2022</div><div class="webinar-topic">Colon</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Hematopoietic and Lymphocytic Neoplasms April 2022.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">April 2022</div><div class="webinar-topic">Hematopoietic</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Boot Camp March 2022.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">March 2022</div><div class="webinar-topic">Boot Camp</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Data Item Relationships February 2022.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">February 2022</div><div class="webinar-topic">Data Item Relationships</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Lung Janurary 2022.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">January 2022</div><div class="webinar-topic">Lung</div></div></a>
             </div>
           </div>
           <div class="webinar-year-group" style="margin-bottom:0;">
             <div class="webinar-year-label">2021</div>
             <div class="webinar-grid">
-              <a href="/training/files/NAACCR Webinar - Treatment December 2021.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">December 2021</div><div class="webinar-topic">Treatment</div></div></a>
-              <a href="/training/files/NAACCR Webinar - Bladder November 2021.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">November 2021</div><div class="webinar-topic">Bladder</div></div></a>
-              <a href="/training/files/NAACCR Webinar - Uterus October 2021.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">October 2021</div><div class="webinar-topic">Uterus</div></div></a>
-              <a href="/training/files/NAACCR Webinar - Coding Pitfalls September 2021.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">September 2021</div><div class="webinar-topic">Coding Pitfalls</div></div></a>
-              <a href="/training/files/NAACCR Webinar - Breast August 2021.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">August 2021</div><div class="webinar-topic">Breast</div></div></a>
-              <a href="/training/files/NAACCR Webinar - CoC Accreditation July 2021.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">July 2021</div><div class="webinar-topic">CoC Accreditation</div></div></a>
-              <a href="/training/files/NAACCR Webinar - Kidney June 2021.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">June 2021</div><div class="webinar-topic">Kidney</div></div></a>
-              <a href="/training/files/NAACCR Webinar - Pancreas May 2021.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">May 2021</div><div class="webinar-topic">Pancreas</div></div></a>
-              <a href="/training/files/NAACCR Webinar - Larynx April 2021.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">April 2021</div><div class="webinar-topic">Larynx</div></div></a>
-              <a href="/training/files/NAACCR Webinar - Boot Camp March 2021.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">March 2021</div><div class="webinar-topic">Boot Camp</div></div></a>
-              <a href="/training/files/NAACCR Webinar - Lymphoma February 2021.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">February 2021</div><div class="webinar-topic">Lymphoma</div></div></a>
-              <a href="/training/files/NAACCR Webinar - Treatment January 2021.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">January 2021</div><div class="webinar-topic">Treatment</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Treatment December 2021.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">December 2021</div><div class="webinar-topic">Treatment</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Bladder November 2021.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">November 2021</div><div class="webinar-topic">Bladder</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Uterus October 2021.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">October 2021</div><div class="webinar-topic">Uterus</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Coding Pitfalls September 2021.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">September 2021</div><div class="webinar-topic">Coding Pitfalls</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Breast August 2021.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">August 2021</div><div class="webinar-topic">Breast</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - CoC Accreditation July 2021.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">July 2021</div><div class="webinar-topic">CoC Accreditation</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Kidney June 2021.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">June 2021</div><div class="webinar-topic">Kidney</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Pancreas May 2021.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">May 2021</div><div class="webinar-topic">Pancreas</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Larynx April 2021.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">April 2021</div><div class="webinar-topic">Larynx</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Boot Camp March 2021.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">March 2021</div><div class="webinar-topic">Boot Camp</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Lymphoma February 2021.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">February 2021</div><div class="webinar-topic">Lymphoma</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Treatment January 2021.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">January 2021</div><div class="webinar-topic">Treatment</div></div></a>
             </div>
           </div>
           <div class="webinar-year-group" style="margin-bottom:0;">
             <div class="webinar-year-label">2014�2020</div>
             <div class="webinar-grid">
-              <a href="/training/files/NAACCR Webinar - Thyroid December 2020.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">Dec 2020</div><div class="webinar-topic">Thyroid</div></div></a>
-              <a href="/training/files/NAACCR Webinar - Lung November 2020.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">Nov 2020</div><div class="webinar-topic">Lung</div></div></a>
-              <a href="/training/files/NAACCR Webinar - Prostate October 2020.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">Oct 2020</div><div class="webinar-topic">Prostate</div></div></a>
-              <a href="/training/files/NAACCR Webinar - Coding Pitfalls September 2020.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">Sep 2020</div><div class="webinar-topic">Coding Pitfalls</div></div></a>
-              <a href="/training/files/NAACCR Webinar - Boot Camp March 2020.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">Mar 2020</div><div class="webinar-topic">Boot Camp</div></div></a>
-              <a href="/training/files/NAACCR Webinar - Melanoma April 2020.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">Apr 2020</div><div class="webinar-topic">Melanoma</div></div></a>
-              <a href="/training/files/NAACCR Breast Webinar.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">Oct 2019</div><div class="webinar-topic">Breast</div></div></a>
-              <a href="/training/files/Boot Camp.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">Mar 2014</div><div class="webinar-topic">Boot Camp</div></div></a>
-              <a href="/training/files/Treatment.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">Feb 2014</div><div class="webinar-topic">Treatment</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Thyroid December 2020.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">Dec 2020</div><div class="webinar-topic">Thyroid</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Lung November 2020.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">Nov 2020</div><div class="webinar-topic">Lung</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Prostate October 2020.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">Oct 2020</div><div class="webinar-topic">Prostate</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Coding Pitfalls September 2020.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">Sep 2020</div><div class="webinar-topic">Coding Pitfalls</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Boot Camp March 2020.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">Mar 2020</div><div class="webinar-topic">Boot Camp</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Webinar - Melanoma April 2020.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">Apr 2020</div><div class="webinar-topic">Melanoma</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/NAACCR Breast Webinar.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">Oct 2019</div><div class="webinar-topic">Breast</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/Boot Camp.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">Mar 2014</div><div class="webinar-topic">Boot Camp</div></div></a>
+              <a href="https://www.kcr.uky.edu/training/files/Treatment.zip" class="webinar-item"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><div><div class="webinar-month">Feb 2014</div><div class="webinar-topic">Treatment</div></div></a>
             </div>
           </div>
         </div>
@@ -678,8 +594,8 @@ footer{background:var(--ink);}
       <div class="mu-label">For Physicians &amp; Providers</div>
       <div class="mu-title">Meaningful Use Reporting</div>
       <div class="mu-links">
-        <a href="/mu.html" class="mu-link"><span>Stage 2 � Physicians</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
-        <a href="/mu3.html" class="mu-link"><span>Stage 3 � Eligible Providers</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
+        <a href="https://www.kcr.uky.edu/mu.html" class="mu-link"><span>Stage 2 � Physicians</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
+        <a href="https://www.kcr.uky.edu/mu3.html" class="mu-link"><span>Stage 3 � Eligible Providers</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
       </div>
     </div>
 

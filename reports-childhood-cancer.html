@@ -6,180 +6,72 @@
 <title>Reports: Childhood Cancer — Kentucky Cancer Registry</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --ink:       #0e1419;
-    --ink-2:     #1b2530;
-    --ink-3:     #243040;
-    --steel:     #3d5166;
-    --mist:      #8da3b8;
-    --fog:       #c4d0dc;
-    --paper:     #f2ede6;
-    --paper-2:   #e8e2d9;
-    --paper-3:   #ddd6cb;
-    --amber:     #c87a2f;
-    --amber-lt:  #e09040;
-    --amber-dim: #8a5420;
-    --white:     #ffffff;
-    --serif: 'DM Serif Display', Georgia, serif;
-    --sans:  'DM Sans', system-ui, sans-serif;
-    --r: 6px;
-  }
-  body { font-family: var(--sans); background: var(--paper); color: var(--steel); font-weight: 300; line-height: 1.8; }
-  a { text-decoration: none; }
-
-  /* Topbar */
-  .topbar { background: var(--ink); height: 36px; display: flex; align-items: center; padding: 0 40px; font-size: 11px; letter-spacing: 0.06em; color: rgba(255,255,255,0.3); }
-  .topbar-inner { max-width: 1320px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; }
-  .topbar a { color: rgba(255,255,255,0.35); transition: color 0.15s; }
-  .topbar a:hover { color: var(--amber-lt); }
-
-  /* Masthead */
-  .masthead { background: var(--ink); padding: 48px 40px 52px; }
-  .masthead-inner { max-width: 1320px; margin: 0 auto; }
-  .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 20px; }
-  .breadcrumb a { color: rgba(255,255,255,0.28); transition: color 0.15s; }
-  .breadcrumb a:hover { color: var(--amber); }
-  .breadcrumb .sep { color: rgba(255,255,255,0.12); }
-  .masthead-kicker { font-size: 10.5px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); margin-bottom: 16px; }
-  .masthead h1 { font-family: var(--serif); font-size: clamp(36px, 4.5vw, 58px); font-weight: 400; color: var(--white); line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 20px; }
-  .masthead h1 em { font-style: italic; }
-  .masthead-meta { display: flex; gap: 32px; align-items: center; }
-  .meta-pill { display: flex; align-items: center; gap: 7px; font-size: 11.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
-  .meta-pill svg { width: 13px; height: 13px; stroke: var(--amber); fill: none; stroke-width: 2; }
-
-  /* Nav */
-  nav { background: var(--paper); border-bottom: 1px solid var(--paper-3); position: sticky; top: 0; z-index: 200; }
-  .nav-inner { max-width: 1320px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; }
-  .nav-link { display: flex; align-items: center; padding: 0 18px; height: 48px; font-family: var(--sans); font-size: 12.5px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--steel); border-bottom: 2px solid transparent; transition: all 0.15s; }
-  .nav-link:hover { color: var(--ink); }
-  .nav-link.active { color: var(--ink); border-bottom-color: var(--amber); }
-  .nav-logo { font-family: var(--serif); font-size: 17px; font-weight: 400; color: var(--ink); margin-right: 32px; white-space: nowrap; }
-  .nav-logo span { color: var(--amber); }
-
-  /* Ribbon */
-  .ribbon { background: var(--ink-2); }
-  .ribbon-inner { max-width: 1320px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; height: 56px; gap: 16px; }
-  .ribbon-label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.22); white-space: nowrap; }
-  .ribbon-divider { width: 1px; height: 24px; background: rgba(255,255,255,0.08); }
-  .ribbon-partner { font-size: 11.5px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: rgba(255,255,255,0.22); transition: color 0.2s; }
-  .ribbon-partner:hover { color: rgba(255,255,255,0.55); }
-  .ribbon-partners { display: flex; gap: 32px; align-items: center; }
-
-  /* Body */
-  .page-wrap { max-width: 1320px; margin: 0 auto; padding: 72px 40px 80px; display: grid; grid-template-columns: 1fr 340px; gap: 72px; }
-
-  /* Typography helpers */
-  .eyebrow { font-size: 10.5px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); margin-bottom: 10px; }
-  .section-heading { font-family: var(--serif); font-size: 26px; font-weight: 400; color: var(--ink); letter-spacing: -0.01em; line-height: 1.1; margin-top: 6px; }
-  .section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--paper-3); }
-  .section-link { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); display: flex; align-items: center; gap: 5px; transition: gap 0.15s; }
-  .section-link:hover { gap: 9px; }
-  body p { font-size: 16px; color: var(--steel); line-height: 1.8; }
-
-  /* Featured report card */
-  .featured-report { background: white; border-radius: var(--r); border: 1px solid var(--paper-3); overflow: hidden; margin-bottom: 40px; display: grid; grid-template-columns: 280px 1fr; }
-  .featured-report-cover { background: var(--ink); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 32px; gap: 12px; }
-  .report-cover-graphic { width: 140px; height: 180px; background: var(--ink-2); border-radius: 4px; border: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column; padding: 16px; position: relative; overflow: hidden; }
-  .report-cover-graphic::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--amber); }
-  .rcg-kicker { font-size: 7.5px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--amber); margin-bottom: 8px; }
-  .rcg-title { font-family: var(--serif); font-size: 13px; color: rgba(255,255,255,0.8); line-height: 1.3; }
-  .rcg-year { font-family: var(--serif); font-size: 28px; color: rgba(255,255,255,0.2); position: absolute; bottom: 14px; right: 12px; }
-  .featured-report-cover p { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.28); text-align: center; }
-  .featured-report-info { padding: 40px; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
-  .featured-report-info .eyebrow { margin-bottom: 0; }
-  .featured-report-info h2 { font-family: var(--serif); font-size: 28px; font-weight: 400; color: var(--ink); letter-spacing: -0.01em; line-height: 1.15; }
-  .featured-report-info p { font-size: 15px; color: var(--steel); line-height: 1.75; }
-  .report-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
-  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--amber); color: white; padding: 12px 24px; border-radius: 3px; font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; transition: background 0.2s, transform 0.15s; }
-  .btn-primary:hover { background: var(--amber-lt); transform: translateY(-1px); }
-  .btn-outline { display: inline-flex; align-items: center; gap: 7px; background: transparent; color: var(--steel); border: 1px solid var(--paper-3); padding: 11px 20px; border-radius: 3px; font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.15s; }
-  .btn-outline:hover { border-color: var(--amber); color: var(--amber); }
-  .report-meta-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-  .tag { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 3px; background: var(--paper-2); color: var(--mist); }
-  .tag.amber { background: rgba(200,122,47,0.12); color: var(--amber); }
-
-  /* Report list card */
-  .report-list { display: flex; flex-direction: column; gap: 1px; background: var(--paper-3); border-radius: var(--r); overflow: hidden; margin-bottom: 40px; }
-  .report-row { background: white; padding: 20px 24px; display: flex; align-items: center; gap: 20px; transition: background 0.15s; }
-  .report-row:hover { background: var(--paper); }
-  .report-row-year { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--amber); min-width: 64px; }
-  .report-row-info { flex: 1; }
-  .report-row-info h4 { font-family: var(--serif); font-size: 16px; font-weight: 400; color: var(--ink); margin-bottom: 3px; }
-  .report-row-info p { font-size: 13px; color: var(--mist); line-height: 1.5; }
-  .report-row-actions { display: flex; gap: 8px; }
-  .icon-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel); padding: 7px 14px; border-radius: 3px; border: 1px solid var(--paper-3); background: white; transition: all 0.15s; }
-  .icon-btn:hover { border-color: var(--amber); color: var(--amber); }
-  .icon-btn svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; }
-
-  /* Stat highlight row */
-  .stat-strip { background: var(--ink); border-radius: var(--r); padding: 32px 40px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 40px; }
-  .stat-item { text-align: center; }
-  .stat-item .num { font-family: var(--serif); font-size: 38px; font-weight: 400; color: var(--white); line-height: 1; }
-  .stat-item .num span { color: var(--amber); }
-  .stat-item .lbl { font-size: 10.5px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.32); margin-top: 6px; }
-
-  /* Cancer type cards */
-  .cancer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 40px; }
-  .cancer-card { background: white; border-radius: var(--r); padding: 22px; border: 1px solid var(--paper-3); position: relative; overflow: hidden; transition: all 0.2s; }
-  .cancer-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--amber); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
-  .cancer-card:hover { box-shadow: 0 12px 40px rgba(14,20,25,0.10); transform: translateY(-3px); border-color: var(--fog); }
-  .cancer-card:hover::after { transform: scaleX(1); }
-  .cancer-rank { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mist); margin-bottom: 8px; }
-  .cancer-card h4 { font-family: var(--serif); font-size: 18px; font-weight: 400; color: var(--ink); margin-bottom: 6px; }
-  .cancer-pct { font-family: var(--serif); font-size: 32px; font-weight: 400; color: var(--amber); margin-bottom: 4px; }
-  .cancer-desc { font-size: 13px; color: var(--mist); line-height: 1.6; }
-
-  /* Sidebar */
-  .side-card { background: white; border-radius: var(--r); border: 1px solid var(--paper-3); overflow: hidden; margin-bottom: 20px; }
-  .side-card-head { background: var(--ink); padding: 16px 22px; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
-  .side-card-head span { color: var(--amber); }
-  .side-card-body { padding: 20px 22px; }
-  .side-nav-link { display: flex; align-items: center; gap: 10px; padding: 9px 22px; font-size: 13.5px; color: var(--steel); border-left: 2px solid transparent; transition: all 0.15s; }
-  .side-nav-link:hover { color: var(--ink); background: var(--paper); border-left-color: var(--amber); }
-  .side-nav-link.active { color: var(--ink); background: var(--paper); border-left-color: var(--amber); }
-  .side-nav-link.indent { padding-left: 40px; font-size: 13px; color: var(--mist); }
-  .side-nav-link.indent:hover { color: var(--steel); }
-  .dark-card { background: var(--ink-2); border-radius: var(--r); padding: 24px; margin-bottom: 20px; }
-  .dark-card .eyebrow { font-size: 10px; color: var(--amber); }
-  .dark-card h3 { font-family: var(--serif); font-size: 19px; color: rgba(255,255,255,0.85); margin: 10px 0 10px; line-height: 1.2; }
-  .dark-card p { font-size: 13.5px; color: rgba(255,255,255,0.38); line-height: 1.7; }
-  .btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.18); padding: 10px 20px; border-radius: 3px; font-family: var(--sans); font-size: 13px; font-weight: 500; letter-spacing: 0.04em; transition: all 0.2s; margin-top: 12px; width: 100%; justify-content: center; }
-  .btn-ghost:hover { border-color: rgba(255,255,255,0.4); color: white; }
-  .small-fact { display: flex; justify-content: space-between; align-items: baseline; padding: 9px 0; border-bottom: 1px solid var(--paper-2); font-size: 13px; }
-  .small-fact:last-child { border-bottom: none; }
-  .small-fact .lbl { color: var(--mist); }
-  .small-fact .val { font-weight: 500; color: var(--ink); }
-
-  /* Footer */
-  footer { background: var(--ink); }
-  .footer-upper { max-width: 1320px; margin: 0 auto; padding: 56px 40px 48px; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; }
-  .footer-wordmark { font-family: var(--serif); font-size: 22px; color: rgba(255,255,255,0.75); font-weight: 400; margin-bottom: 14px; }
-  .footer-wordmark span { color: var(--amber); }
-  .footer-desc { font-size: 13px; color: rgba(255,255,255,0.28); line-height: 1.7; }
-  .footer-col-title { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.3); font-weight: 600; margin-bottom: 16px; }
-  .footer-link { display: block; font-size: 13px; color: rgba(255,255,255,0.35); transition: color 0.15s; margin-bottom: 10px; }
-  .footer-link:hover { color: var(--amber-lt); }
-  .footer-lower { padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; font-size: 11.5px; color: rgba(255,255,255,0.28); border-top: 1px solid rgba(255,255,255,0.06); }
-
-  /* Animations */
-  @keyframes riseIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-  .rise   { opacity: 0; animation: riseIn 0.7s ease forwards; }
-  .rise-1 { animation-delay: 0.05s; }
-  .rise-2 { animation-delay: 0.15s; }
-  .rise-3 { animation-delay: 0.25s; }
-  .rise-4 { animation-delay: 0.35s; }
-  .rise-5 { animation-delay: 0.45s; }
-
-  @media (max-width: 960px) {
-    .page-wrap { grid-template-columns: 1fr; }
-    .featured-report { grid-template-columns: 1fr; }
-    .featured-report-cover { display: none; }
-    .stat-strip { grid-template-columns: 1fr 1fr; }
-    .cancer-grid { grid-template-columns: 1fr; }
-    .footer-upper { grid-template-columns: 1fr 1fr; }
-  }
+  <link rel="stylesheet" href="/css/theme.css">
+<style>.masthead { background: var(--ink); padding: 48px 40px 52px; }
+.masthead-inner { max-width: 1320px; margin: 0 auto; }
+.breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 20px; }
+.breadcrumb a { color: rgba(255,255,255,0.28); transition: color 0.15s; }
+.breadcrumb a:hover { color: var(--amber); }
+.breadcrumb .sep { color: rgba(255,255,255,0.12); }
+.masthead-kicker { font-size: 10.5px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); margin-bottom: 16px; }
+.masthead h1 { font-family: var(--serif); font-size: clamp(36px, 4.5vw, 58px); font-weight: 400; color: var(--white); line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 20px; }
+.masthead h1 em { font-style: italic; }
+.masthead-meta { display: flex; gap: 32px; align-items: center; }
+.meta-pill { display: flex; align-items: center; gap: 7px; font-size: 11.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+.meta-pill svg { width: 13px; height: 13px; stroke: var(--amber); fill: none; stroke-width: 2; }
+body p { font-size: 16px; color: var(--steel); line-height: 1.8; }
+.featured-report { background: white; border-radius: var(--r); border: 1px solid var(--paper-3); overflow: hidden; margin-bottom: 40px; display: grid; grid-template-columns: 280px 1fr; }
+.featured-report-cover { background: var(--ink); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 32px; gap: 12px; }
+.report-cover-graphic { width: 140px; height: 180px; background: var(--ink-2); border-radius: 4px; border: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column; padding: 16px; position: relative; overflow: hidden; }
+.report-cover-graphic::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--amber); }
+.rcg-kicker { font-size: 7.5px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--amber); margin-bottom: 8px; }
+.rcg-title { font-family: var(--serif); font-size: 13px; color: rgba(255,255,255,0.8); line-height: 1.3; }
+.rcg-year { font-family: var(--serif); font-size: 28px; color: rgba(255,255,255,0.2); position: absolute; bottom: 14px; right: 12px; }
+.featured-report-cover p { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.28); text-align: center; }
+.featured-report-info { padding: 40px; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+.featured-report-info .eyebrow { margin-bottom: 0; }
+.featured-report-info h2 { font-family: var(--serif); font-size: 28px; font-weight: 400; color: var(--ink); letter-spacing: -0.01em; line-height: 1.15; }
+.featured-report-info p { font-size: 15px; color: var(--steel); line-height: 1.75; }
+.report-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.btn-outline { display: inline-flex; align-items: center; gap: 7px; background: transparent; color: var(--steel); border: 1px solid var(--paper-3); padding: 11px 20px; border-radius: 3px; font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.15s; }
+.btn-outline:hover { border-color: var(--amber); color: var(--amber); }
+.report-meta-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.tag { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 3px; background: var(--paper-2); color: var(--mist); }
+.tag.amber { background: rgba(200,122,47,0.12); color: var(--amber); }
+.report-list { display: flex; flex-direction: column; gap: 1px; background: var(--paper-3); border-radius: var(--r); overflow: hidden; margin-bottom: 40px; }
+.report-row { background: white; padding: 20px 24px; display: flex; align-items: center; gap: 20px; transition: background 0.15s; }
+.report-row:hover { background: var(--paper); }
+.report-row-year { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--amber); min-width: 64px; }
+.report-row-info { flex: 1; }
+.report-row-info h4 { font-family: var(--serif); font-size: 16px; font-weight: 400; color: var(--ink); margin-bottom: 3px; }
+.report-row-info p { font-size: 13px; color: var(--mist); line-height: 1.5; }
+.report-row-actions { display: flex; gap: 8px; }
+.icon-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel); padding: 7px 14px; border-radius: 3px; border: 1px solid var(--paper-3); background: white; transition: all 0.15s; }
+.icon-btn:hover { border-color: var(--amber); color: var(--amber); }
+.icon-btn svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; }
+.stat-strip { background: var(--ink); border-radius: var(--r); padding: 32px 40px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 40px; }
+.stat-item { text-align: center; }
+.stat-item .num { font-family: var(--serif); font-size: 38px; font-weight: 400; color: var(--white); line-height: 1; }
+.stat-item .num span { color: var(--amber); }
+.stat-item .lbl { font-size: 10.5px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.32); margin-top: 6px; }
+.cancer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 40px; }
+.cancer-card { background: white; border-radius: var(--r); padding: 22px; border: 1px solid var(--paper-3); position: relative; overflow: hidden; transition: all 0.2s; }
+.cancer-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--amber); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
+.cancer-card:hover { box-shadow: 0 12px 40px rgba(14,20,25,0.10); transform: translateY(-3px); border-color: var(--fog); }
+.cancer-card:hover::after { transform: scaleX(1); }
+.cancer-rank { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mist); margin-bottom: 8px; }
+.cancer-card h4 { font-family: var(--serif); font-size: 18px; font-weight: 400; color: var(--ink); margin-bottom: 6px; }
+.cancer-pct { font-family: var(--serif); font-size: 32px; font-weight: 400; color: var(--amber); margin-bottom: 4px; }
+.cancer-desc { font-size: 13px; color: var(--mist); line-height: 1.6; }
+.small-fact { display: flex; justify-content: space-between; align-items: baseline; padding: 9px 0; border-bottom: 1px solid var(--paper-2); font-size: 13px; }
+.small-fact:last-child { border-bottom: none; }
+.small-fact .lbl { color: var(--mist); }
+.small-fact .val { font-weight: 500; color: var(--ink); }
+@media (max-width: 960px) {.featured-report { grid-template-columns: 1fr; }
+  .featured-report-cover { display: none; }
+  .stat-strip { grid-template-columns: 1fr 1fr; }
+  .cancer-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
