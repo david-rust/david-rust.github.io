@@ -181,6 +181,43 @@ footer { background: var(--ink); color: rgba(255,255,255,0.28); }
 .footer-lower a { color: rgba(255,255,255,0.25); transition: color 0.15s; }
 .footer-lower a:hover { color: var(--amber); }
 
+/* ─── KCR BLUE THEME ─────────────────────────────────────── */
+/*
+ * Activated by setting data-theme="kcr-blue" on <html>.
+ * Overrides all --amber accent tokens → KCR royal blue.
+ * Replaces warm paper backgrounds with cool blue-white.
+ */
+html[data-theme="kcr-blue"] {
+  --ink:       #08152b;
+  --ink-2:     #0f2244;
+  --ink-3:     #1a3366;
+  --steel:     #2a4f9e;
+  --mist:      #6b8ec7;
+  --fog:       #b0c4e8;
+  --paper:     #f0f4fc;
+  --paper-2:   #e4ecf8;
+  --paper-3:   #ccd8f0;
+  --amber:     #1e4799;
+  --amber-lt:  #2d5dba;
+  --amber-dim: #12306e;
+}
+
+/* ─── THEME TOGGLE BUTTON ─────────────────────────────────── */
+#kcr-theme-btn {
+  position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+  width: 46px; height: 46px; border-radius: 50%;
+  background: var(--paper-2); border: 2px solid var(--paper-3);
+  color: var(--steel); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.18); transition: all 0.2s;
+  padding: 0;
+}
+#kcr-theme-btn:hover {
+  background: var(--amber); color: white; border-color: var(--amber);
+  transform: scale(1.1);
+}
+#kcr-theme-btn svg { display: block; }
+
 /* ─── ANIMATIONS ─────────────────────────────────────────── */
 @keyframes riseIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 .rise   { opacity: 0; animation: riseIn 0.7s ease forwards; }
