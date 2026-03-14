@@ -330,6 +330,34 @@
 @media (max-width: 960px) {.masthead { grid-template-columns: 1fr; }
   .masthead-right, .masthead-rule { display: none; }
 }
+/* ── Blue theme: map & masthead gradient overrides ── */
+html[data-theme="kcr-blue"] .masthead-bg {
+  background:
+    radial-gradient(ellipse 70% 100% at 100% 50%, rgba(30,71,153,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 20% 0%, rgba(15,34,68,0.7) 0%, transparent 70%);
+}
+html[data-theme="kcr-blue"] .masthead-rule {
+  background: linear-gradient(to bottom, transparent, rgba(30,71,153,0.4) 30%, rgba(45,93,186,0.4) 70%, transparent);
+}
+html[data-theme="kcr-blue"] .logo-mark {
+  border-color: rgba(30,71,153,0.5);
+}
+html[data-theme="kcr-blue"] .masthead-right {
+  background: #0a1628;
+}
+html[data-theme="kcr-blue"] .map-top-header {
+  background: linear-gradient(to bottom,
+    rgba(8,21,43,0.96) 0%,
+    rgba(8,21,43,0.88) 75%,
+    rgba(8,21,43,0.0) 100%);
+}
+html[data-theme="kcr-blue"] .map-overlay-bar {
+  background: linear-gradient(to top, rgba(8,21,43,0.88) 0%, transparent 100%);
+}
+html[data-theme="kcr-blue"] .choro-map-wrap,
+html[data-theme="kcr-blue"] .map-viewer {
+  background: #0a1628;
+}
 </style>
 </head>
 <body>

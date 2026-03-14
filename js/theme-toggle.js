@@ -34,7 +34,7 @@
       if (!logo.dataset.orig) {
         logo.dataset.orig = logo.innerHTML;
       }
-      logo.innerHTML = '<img src="/images/kcr-logo.png" alt="Kentucky Cancer Registry" style="height:34px;display:block;">';
+      logo.innerHTML = '<img src="/images/kcr-log.png" alt="Kentucky Cancer Registry" style="height:34px;display:block;">';
       logo.style.display = 'flex';
       logo.style.alignItems = 'center';
     } else {
