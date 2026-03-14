@@ -26,23 +26,39 @@
     }
   }
 
-  function updateLogo(theme) {
-    var logo = document.querySelector('a.nav-logo');
-    if (!logo) return;
+  /* Logo filter: white for blue theme, warm amber-white for default */
+  function logoFilter(theme) {
+    return theme === BLUE
+      ? 'brightness(0) invert(1)'
+      : 'brightness(0) invert(1) sepia(0.4) saturate(3) hue-rotate(5deg)';
+  }
 
-    if (theme === BLUE) {
-      if (!logo.dataset.orig) {
-        logo.dataset.orig = logo.innerHTML;
+  function updateLogo(theme) {
+    var filter = logoFilter(theme);
+
+    /* ── Nav bar logo ── */
+    var navLogo = document.querySelector('a.nav-logo');
+    if (navLogo) {
+      if (!navLogo.dataset.orig) navLogo.dataset.orig = navLogo.innerHTML;
+      navLogo.innerHTML = '<img src="/images/kcr-logo.png" alt="Kentucky Cancer Registry" '
+        + 'style="height:38px;display:block;filter:' + filter + ';">';
+      navLogo.style.display = 'flex';
+      navLogo.style.alignItems = 'center';
+    }
+
+    /* ── Masthead logo area ── */
+    var mastLogo = document.querySelector('.masthead-logo-area');
+    if (mastLogo) {
+      if (!mastLogo.dataset.orig) {
+        mastLogo.dataset.orig = mastLogo.innerHTML;
+        mastLogo.dataset.origStyle = mastLogo.getAttribute('style') || '';
       }
-      logo.innerHTML = '<img src="/images/kcr-log.png" alt="Kentucky Cancer Registry" style="height:34px;display:block;">';
-      logo.style.display = 'flex';
-      logo.style.alignItems = 'center';
-    } else {
-      if (logo.dataset.orig) {
-        logo.innerHTML = logo.dataset.orig;
-        logo.style.display = '';
-        logo.style.alignItems = '';
-      }
+      /* Match the rendered width of the masthead title */
+      var titleEl = document.querySelector('.masthead-title');
+      var logoWidth = titleEl ? titleEl.getBoundingClientRect().width * 0.5 : 160;
+      mastLogo.setAttribute('style', 'display:block;margin-bottom:48px;');
+      mastLogo.innerHTML = '<img src="/images/kcr-logo.png" alt="Kentucky Cancer Registry" '
+        + 'style="width:' + Math.round(logoWidth) + 'px;height:auto;display:block;filter:' + filter + ';">';
     }
   }
 
@@ -68,6 +84,9 @@
     var theme = getTheme();
     updateButton(btn, theme);
     updateLogo(theme);
+
+    /* Re-measure logo width when the window is resized */
+    window.addEventListener('resize', function () { updateLogo(getTheme()); });
 
     btn.addEventListener('click', function () {
       var next = getTheme() === BLUE ? 'default' : BLUE;

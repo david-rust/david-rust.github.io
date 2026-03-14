@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 210" role="img" aria-label="Kentucky Cancer Registry">
+  <title>Kentucky Cancer Registry</title>
+
+  <!-- Kentucky state silhouette -->
+  <path fill="#1a3785" d="
+    M 18,30
+    C 32,20 52,13 78,8
+    C 106,3 136,1 165,4
+    C 194,6 224,10 252,15
+    L 278,19
+    C 298,23 318,29 338,36
+    L 350,43
+    L 354,57
+    L 352,72
+    L 350,85
+    L 348,97
+    L 345,108
+    L 341,114
+    L 330,116
+    L 320,111
+    L 314,117
+    L 321,127
+    L 318,136
+    L 305,141
+    L 278,144
+    L 248,146
+    L 218,146
+    L 188,146
+    L 158,145
+    L 128,143
+    L 100,140
+    L 76,135
+    L 55,130
+    L 40,124
+    L 30,120
+    L 22,126
+    L 14,132
+    L 9,126
+    L 8,105
+    L 8,78
+    L 10,54
+    L 13,38
+    Z
+  "/>
+
+  <!-- KENTUCKY -->
+  <text
+    x="200" y="180"
+    text-anchor="middle"
+    font-family="'Arial Black', 'Franklin Gothic Heavy', 'Impact', sans-serif"
+    font-size="62"
+    font-weight="900"
+    fill="#1a3785"
+    letter-spacing="2"
+  >KENTUCKY</text>
+
+  <!-- CANCER REGISTRY -->
+  <text
+    x="200" y="206"
+    text-anchor="middle"
+    font-family="'Arial Black', 'Franklin Gothic Heavy', 'Impact', sans-serif"
+    font-size="27"
+    font-weight="700"
+    fill="#1a3785"
+    letter-spacing="3"
+  >CANCER REGISTRY</text>
+</svg>
