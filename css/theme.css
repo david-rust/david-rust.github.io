@@ -188,6 +188,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.28); }
  * Replaces warm paper backgrounds with cool blue-white.
  */
 html[data-theme="kcr-blue"] {
+  /* ── Core palette ── */
   --ink:       #08152b;
   --ink-2:     #0f2244;
   --ink-3:     #1a3366;
@@ -197,13 +198,88 @@ html[data-theme="kcr-blue"] {
   --paper:     #f0f4fc;
   --paper-2:   #e4ecf8;
   --paper-3:   #ccd8f0;
+  /* ── Primary: KCR blue (replaces amber) ── */
   --amber:     #1e4799;
-  --amber-lt:  #2d5dba;
+  --amber-lt:  #2d65c8;
   --amber-dim: #12306e;
+  /* ── Secondary: glacier blue (bright, high-contrast) ── */
+  --silver:    #3db8d8;
+  --silver-lt: #6ed0e8;
+  --silver-dim: #2090ae;
+  /* ── Tertiary: Kentucky gold ── */
+  --gold:      #c9a84c;
+  --gold-lt:   #dfc06a;
+  --gold-dim:  #9e7e2e;
 }
 
-/* ─── THEME TOGGLE BUTTON ─────────────────────────────────── */
-#kcr-theme-btn {
+/* ── Navigation: royal blue bar, white links, gold active ── */
+html[data-theme="kcr-blue"] nav {
+  background: #1e4799;
+  border-bottom: 2px solid rgba(201,168,76,0.5);
+}
+html[data-theme="kcr-blue"] .nav-logo              { color: white; }
+html[data-theme="kcr-blue"] .nav-link              { color: rgba(255,255,255,0.72); }
+html[data-theme="kcr-blue"] .nav-link:hover        { color: white; }
+html[data-theme="kcr-blue"] .nav-link.active       { color: var(--gold); border-bottom-color: var(--gold); }
+html[data-theme="kcr-blue"] .nav-search-form input {
+  background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.18); color: white;
+}
+html[data-theme="kcr-blue"] .nav-search-form input:focus   { border-color: var(--gold); background: rgba(255,255,255,0.15); }
+html[data-theme="kcr-blue"] .nav-search-form button        { background: var(--gold); border-color: var(--gold); color: #08152b; }
+html[data-theme="kcr-blue"] .nav-search-form button:hover  { background: var(--gold-lt); border-color: var(--gold-lt); }
+
+/* ── Topbar ── */
+html[data-theme="kcr-blue"] .topbar               { border-bottom: 1px solid rgba(201,168,76,0.2); }
+html[data-theme="kcr-blue"] .topbar a:hover        { color: var(--gold-lt); }
+html[data-theme="kcr-blue"] .topbar-right a:hover  { color: var(--gold-lt); }
+
+/* ── Primary CTA button → Kentucky gold ── */
+html[data-theme="kcr-blue"] .btn-primary           { background: var(--gold); color: #08152b; }
+html[data-theme="kcr-blue"] .btn-primary:hover     { background: var(--gold-lt); }
+
+/* ── Ghost button → glacier blue border ── */
+html[data-theme="kcr-blue"] .btn-ghost             { border-color: var(--silver); color: var(--silver-lt); }
+html[data-theme="kcr-blue"] .btn-ghost:hover       { border-color: var(--silver-lt); color: white; }
+
+/* ── Masthead: stat numbers gold, title italic glacier blue ── */
+html[data-theme="kcr-blue"] .masthead-title em     { color: var(--silver-lt); }
+html[data-theme="kcr-blue"] .mstat-num span        { color: var(--gold); }
+html[data-theme="kcr-blue"] .mstat                 { border-right: 1px solid rgba(201,168,76,0.2); }
+html[data-theme="kcr-blue"] .map-ky-rate strong    { color: var(--silver-lt); }
+html[data-theme="kcr-blue"] .mast-choro-link       { color: var(--silver); }
+html[data-theme="kcr-blue"] .mast-choro-link:hover { color: var(--silver-lt); }
+
+/* ── Eyebrows & labels → gold ── */
+html[data-theme="kcr-blue"] .eyebrow               { color: var(--gold); }
+html[data-theme="kcr-blue"] .dark-card .eyebrow    { color: var(--gold); }
+html[data-theme="kcr-blue"] .side-card-head-text span { color: var(--gold); }
+html[data-theme="kcr-blue"] .side-card-head span   { color: var(--gold); }
+
+/* ── Section links → glacier blue (secondary actions) ── */
+html[data-theme="kcr-blue"] .section-link          { color: var(--silver); }
+html[data-theme="kcr-blue"] .section-header        { border-bottom-color: var(--silver-dim); }
+
+/* ── Side nav → gold active accent ── */
+html[data-theme="kcr-blue"] .side-nav-link:hover   { border-left-color: var(--gold); }
+html[data-theme="kcr-blue"] .side-nav-link.active  { border-left-color: var(--gold); }
+html[data-theme="kcr-blue"] .side-nav-link:hover .ico { color: var(--gold); }
+html[data-theme="kcr-blue"] .side-nav-sep          { border-top-color: var(--silver-dim); }
+
+/* ── Cards ── */
+html[data-theme="kcr-blue"] .side-card             { border-color: var(--silver-dim); }
+html[data-theme="kcr-blue"] .side-card-head        { background: var(--ink-3); border-bottom: 1px solid var(--silver-dim); }
+html[data-theme="kcr-blue"] .dark-card::before     { background: var(--silver); }
+
+/* ── Ribbon ── */
+html[data-theme="kcr-blue"] .ribbon-divider        { background: rgba(201,168,76,0.3); }
+
+/* ── Footer → gold accents ── */
+html[data-theme="kcr-blue"] .footer-wordmark span  { color: var(--gold); }
+html[data-theme="kcr-blue"] .footer-link:hover     { color: var(--gold-lt); }
+html[data-theme="kcr-blue"] .footer-lower a:hover  { color: var(--gold); }
+
+/* ─── THEME PALETTE BUTTON ────────────────────────────────── */
+#kcr-palette-btn {
   position: fixed; bottom: 24px; right: 24px; z-index: 9999;
   width: 46px; height: 46px; border-radius: 50%;
   background: var(--paper-2); border: 2px solid var(--paper-3);
@@ -212,11 +288,66 @@ html[data-theme="kcr-blue"] {
   box-shadow: 0 2px 14px rgba(0,0,0,0.18); transition: all 0.2s;
   padding: 0;
 }
-#kcr-theme-btn:hover {
+#kcr-palette-btn:hover {
   background: var(--amber); color: white; border-color: var(--amber);
   transform: scale(1.1);
 }
-#kcr-theme-btn svg { display: block; }
+#kcr-palette-btn svg { display: block; }
+
+/* ─── THEME PALETTE PANEL ─────────────────────────────────── */
+#kcr-palette-panel {
+  position: fixed; bottom: 80px; right: 24px; z-index: 9998;
+  width: 210px;
+  background: var(--paper); border: 1px solid var(--paper-3);
+  border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+  display: none; flex-direction: column; overflow: hidden;
+  font-family: var(--sans);
+}
+#kcr-palette-panel.open { display: flex; }
+.tcp-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 11px 14px 10px; border-bottom: 1px solid var(--paper-3);
+  background: var(--paper-2);
+}
+.tcp-head-title {
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--steel);
+}
+.tcp-close {
+  background: none; border: none; color: var(--mist); cursor: pointer;
+  font-size: 13px; padding: 0; line-height: 1; font-family: var(--sans);
+}
+.tcp-close:hover { color: var(--ink); }
+.tcp-mode {
+  display: flex; gap: 6px; padding: 10px 12px;
+  border-bottom: 1px solid var(--paper-3);
+}
+.tcp-preset {
+  flex: 1; padding: 6px 4px; border-radius: 4px; cursor: pointer;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.07em;
+  text-transform: uppercase; border: 1px solid var(--paper-3);
+  background: var(--paper-2); color: var(--steel); transition: all 0.15s;
+  font-family: var(--sans);
+}
+.tcp-preset:hover { background: var(--paper-3); color: var(--ink); }
+.tcp-preset.active { background: var(--amber); color: white; border-color: var(--amber); }
+.tcp-colors {
+  padding: 12px 14px; display: flex; flex-direction: column; gap: 10px;
+}
+.tcp-row { display: flex; align-items: center; gap: 10px; }
+.tcp-label { font-size: 12px; color: var(--steel); flex: 1; font-weight: 500; }
+.tcp-row input[type="color"] {
+  width: 36px; height: 24px; border: 1px solid var(--paper-3);
+  border-radius: 4px; padding: 2px; cursor: pointer; background: none;
+}
+.tcp-reset {
+  margin: 0 12px 12px; padding: 7px 10px; border-radius: 4px; cursor: pointer;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.07em;
+  text-transform: uppercase; border: 1px solid var(--paper-3);
+  background: transparent; color: var(--mist); transition: all 0.15s;
+  font-family: var(--sans);
+}
+.tcp-reset:hover { color: var(--ink); border-color: var(--steel); }
 
 /* ─── ANIMATIONS ─────────────────────────────────────────── */
 @keyframes riseIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
