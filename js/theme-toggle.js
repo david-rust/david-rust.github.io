@@ -194,7 +194,7 @@
       }
       var logoWidth = measureTitle();
       var accentColor = getComputedStyle(document.documentElement)
-        .getPropertyValue('--amber-lt').trim() || '#e09040';
+        .getPropertyValue('--silver-lt').trim() || '#e09040';
       mastLogo.setAttribute('style', 'display:block;margin-bottom:40px;');
       getMastheadSvg(function(svgEl) {
         if (svgEl) {
@@ -282,7 +282,6 @@
         var newTheme = this.getAttribute('data-theme');
         localStorage.setItem(KEY_THEME, newTheme);
         applyTheme(newTheme);
-        updateLogo(newTheme);
         panel.querySelectorAll('.tcp-preset').forEach(function (b) { b.classList.remove('active'); });
         this.classList.add('active');
         var c = getSavedColors(newTheme);
@@ -290,6 +289,7 @@
         document.getElementById('tcp-secondary').value = c.secondary;
         document.getElementById('tcp-tertiary').value  = c.tertiary;
         applyColors(c);
+        updateLogo(newTheme);
       });
     });
 
