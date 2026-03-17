@@ -11,7 +11,7 @@
 
   /* Default accent colors for each base theme */
   var DEFAULTS = {
-    'default':  { primary: '#c87a2f', secondary: '#8da3b8', tertiary: '#c87a2f' },
+    'default':  { primary: '#c87a2f', secondary: '#c87a2f', tertiary: '#c87a2f' },
     'kcr-blue': { primary: '#1e4799', secondary: '#3db8d8', tertiary: '#c9a84c' }
   };
 
@@ -105,38 +105,106 @@
   applyTheme(_t);
   applyColors(getSavedColors(_t));
 
-  /* ── Logo swap ── */
+  /* ── Logo helpers ── */
   function navLogoFilter(theme) {
     return theme === BLUE ? 'brightness(0) invert(1)' : 'brightness(0) invert(1) sepia(0.5) saturate(4) hue-rotate(2deg)';
   }
-  function mastheadLogoFilter() {
-    return 'brightness(0) invert(1)'; /* always white — masthead is always dark */
+
+  /* Cache for KCRLogoBlack3.svg DOM */
+  var _svgCache = null;
+  function getMastheadSvg(callback) {
+    if (_svgCache) { callback(_svgCache); return; }
+    fetch('/images/KCRLogoBlack3.svg')
+      .then(function(r) { return r.text(); })
+      .then(function(text) {
+        _svgCache = new DOMParser().parseFromString(text, 'image/svg+xml').documentElement;
+        callback(_svgCache);
+      })
+      .catch(function() { callback(null); });
+  }
+
+  /* Build an inline SVG: CANCER REGISTRY paths → amber, everything else → white */
+  function buildMastheadSvg(svgEl, accentColor, width) {
+    var clone = svgEl.cloneNode(true);
+    clone.setAttribute('width', width + 'px');
+    clone.removeAttribute('height');
+    clone.style.cssText = 'display:block;overflow:visible;position:absolute;left:-9999px;top:-9999px;';
+
+    /* Temporarily attach to DOM so getBBox() works */
+    document.body.appendChild(clone);
+
+    clone.querySelectorAll('path').forEach(function(p) {
+      /* path2 is the frontmost full-height composite shape — keep transparent
+         so it doesn't paint over the letter paths behind it */
+      if (p.id === 'path2') { p.style.fill = 'none'; return; }
+      try {
+        var bb = p.getBBox();
+        /* 3D shadow/extrusion layers span full height (h > 400) — hide them
+           so they don't create outlines around state, KENTUCKY, or CANCER REGISTRY */
+        if (bb.height > 400) {
+          p.style.fill = 'none';
+        /* CANCER REGISTRY letters: y ≈ 431, height ≈ 51–54 */
+        } else if (bb.y > 420 && bb.height < 100) {
+          p.style.fill = accentColor;
+        } else {
+          p.style.fill = '#ffffff';
+        }
+      } catch(e) {
+        p.style.fill = '#ffffff';
+      }
+    });
+
+    document.body.removeChild(clone);
+    clone.style.cssText = 'display:block;overflow:visible;';
+    return clone;
+  }
+
+  function measureTitle() {
+    var titleEl = document.querySelector('.masthead-title');
+    if (!titleEl) return 280;
+    var cs = getComputedStyle(titleEl);
+    var probe = document.createElement('span');
+    probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;'
+      + 'font-family:' + cs.fontFamily + ';font-size:' + cs.fontSize + ';'
+      + 'font-weight:' + cs.fontWeight + ';letter-spacing:' + cs.letterSpacing + ';';
+    probe.textContent = 'Tracking Cancer';
+    document.body.appendChild(probe);
+    var w = probe.offsetWidth;
+    document.body.removeChild(probe);
+    return w;
   }
 
   function updateLogo(theme) {
-    /* Nav logo */
+    /* Nav logo — img with filter */
     var navLogo = document.querySelector('a.nav-logo');
     if (navLogo) {
       if (!navLogo.dataset.orig) navLogo.dataset.orig = navLogo.innerHTML;
-      navLogo.innerHTML = '<img src="/images/kcr-logo.png" alt="Kentucky Cancer Registry" '
+      navLogo.innerHTML = '<img src="/images/KCRLogoBlack.svg" alt="Kentucky Cancer Registry" '
         + 'style="height:36px;display:block;filter:' + navLogoFilter(theme) + ';">';
       navLogo.style.display = 'flex';
       navLogo.style.alignItems = 'center';
     }
 
-    /* Masthead logo — always white, above headline */
+    /* Masthead logo — inline SVG with colored text paths */
     var mastLogo = document.querySelector('.masthead-logo-area');
     if (mastLogo) {
       if (!mastLogo.dataset.orig) {
         mastLogo.dataset.orig = mastLogo.innerHTML;
         mastLogo.dataset.origStyle = mastLogo.getAttribute('style') || '';
       }
-      var titleEl = document.querySelector('.masthead-title');
-      var logoWidth = titleEl ? Math.round(titleEl.getBoundingClientRect().width * 0.5) : 160;
+      var logoWidth = measureTitle();
+      var accentColor = getComputedStyle(document.documentElement)
+        .getPropertyValue('--silver-lt').trim() || '#e09040';
       mastLogo.setAttribute('style', 'display:block;margin-bottom:40px;');
-      mastLogo.innerHTML = '<img src="/images/kcr-logo.png" alt="Kentucky Cancer Registry" '
-        + 'style="width:' + logoWidth + 'px;max-width:280px;height:auto;display:block;'
-        + 'filter:' + mastheadLogoFilter() + ';opacity:0.92;">';
+      getMastheadSvg(function(svgEl) {
+        if (svgEl) {
+          mastLogo.innerHTML = '';
+          mastLogo.appendChild(buildMastheadSvg(svgEl, accentColor, logoWidth));
+        } else {
+          mastLogo.innerHTML = '<img src="/images/KCRLogoBlack.svg" alt="Kentucky Cancer Registry" '
+            + 'style="width:' + logoWidth + 'px;height:auto;display:block;filter:brightness(0) invert(1);">';
+        }
+      });
     }
 
     /* Footer logo — subtle white watermark */
@@ -144,7 +212,7 @@
     if (footerWordmark && !footerWordmark.previousElementSibling?.classList.contains('footer-logo-img')) {
       var fImg = document.createElement('img');
       fImg.className = 'footer-logo-img';
-      fImg.src = '/images/kcr-logo.png';
+      fImg.src = '/images/KCRLogoBlack.svg';
       fImg.alt = 'Kentucky Cancer Registry';
       fImg.style.cssText = 'height:44px;width:auto;display:block;margin-bottom:18px;opacity:0.55;filter:brightness(0) invert(1);';
       footerWordmark.parentElement.insertBefore(fImg, footerWordmark);
@@ -214,7 +282,6 @@
         var newTheme = this.getAttribute('data-theme');
         localStorage.setItem(KEY_THEME, newTheme);
         applyTheme(newTheme);
-        updateLogo(newTheme);
         panel.querySelectorAll('.tcp-preset').forEach(function (b) { b.classList.remove('active'); });
         this.classList.add('active');
         var c = getSavedColors(newTheme);
@@ -222,6 +289,7 @@
         document.getElementById('tcp-secondary').value = c.secondary;
         document.getElementById('tcp-tertiary').value  = c.tertiary;
         applyColors(c);
+        updateLogo(newTheme);
       });
     });
 
@@ -234,6 +302,7 @@
       };
       applyColors(c);
       saveColors(getTheme(), c);
+      updateLogo(getTheme());
     }
     ['tcp-primary', 'tcp-secondary', 'tcp-tertiary'].forEach(function (id) {
       document.getElementById(id).addEventListener('input', onColorChange);
