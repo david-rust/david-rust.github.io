@@ -139,14 +139,15 @@
       if (p.id === 'path2') { p.style.fill = 'none'; return; }
       try {
         var bb = p.getBBox();
-        /* CANCER REGISTRY letters: y ≈ 431, height ≈ 51–54 */
-        if (bb.y > 420 && bb.height < 100) {
-          p.style.fill = accentColor;
-        } else {
+        /* KENTUCKY letters: y ≈ 318–320, height ≈ 85–89 */
+        if (bb.y >= 315 && bb.y <= 325 && bb.height >= 80 && bb.height <= 95) {
           p.style.fill = '#ffffff';
+        } else {
+          /* CANCER REGISTRY letters, shadow/extrusion layers, state shape → amber */
+          p.style.fill = accentColor;
         }
       } catch(e) {
-        p.style.fill = '#ffffff';
+        p.style.fill = accentColor;
       }
     });
 
