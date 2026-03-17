@@ -110,11 +110,11 @@
     return theme === BLUE ? 'brightness(0) invert(1)' : 'brightness(0) invert(1) sepia(0.5) saturate(4) hue-rotate(2deg)';
   }
 
-  /* Cache for KCRLogoBlack2.svg DOM */
+  /* Cache for KCRLogoBlack3.svg DOM */
   var _svgCache = null;
   function getMastheadSvg(callback) {
     if (_svgCache) { callback(_svgCache); return; }
-    fetch('/images/KCRLogoBlack2.svg')
+    fetch('/images/KCRLogoBlack3.svg')
       .then(function(r) { return r.text(); })
       .then(function(text) {
         _svgCache = new DOMParser().parseFromString(text, 'image/svg+xml').documentElement;
@@ -123,38 +123,32 @@
       .catch(function() { callback(null); });
   }
 
-  /* Build an inline SVG with colored text paths and white state shape */
+  /* Build an inline SVG: CANCER REGISTRY paths → amber, everything else → white */
   function buildMastheadSvg(svgEl, accentColor, width) {
     var clone = svgEl.cloneNode(true);
     clone.setAttribute('width', width + 'px');
     clone.removeAttribute('height');
-    clone.style.cssText = 'display:block;overflow:visible;';
+    clone.style.cssText = 'display:block;overflow:visible;position:absolute;left:-9999px;top:-9999px;';
 
-    /* Color the vector text paths in #g2 */
-    var g2 = clone.querySelector('#g2');
-    if (g2) {
-      g2.querySelectorAll('path').forEach(function(p) { p.style.fill = accentColor; });
-    }
+    /* Temporarily attach to DOM so getBBox() works */
+    document.body.appendChild(clone);
 
-    /* Make the embedded state-shape PNG white via SVG feColorMatrix */
-    var img1 = clone.querySelector('#image1');
-    if (img1) {
-      var defs = clone.querySelector('defs');
-      if (!defs) {
-        defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-        clone.insertBefore(defs, clone.firstChild);
+    clone.querySelectorAll('path').forEach(function(p) {
+      try {
+        var bb = p.getBBox();
+        /* CANCER REGISTRY letters: y ≈ 431, height ≈ 51–54 */
+        if (bb.y > 420 && bb.height < 100) {
+          p.style.fill = accentColor;
+        } else {
+          p.style.fill = '#ffffff';
+        }
+      } catch(e) {
+        p.style.fill = '#ffffff';
       }
-      var oldF = defs.querySelector('#kcr-to-white');
-      if (oldF) oldF.parentNode.removeChild(oldF);
-      var filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
-      filter.setAttribute('id', 'kcr-to-white');
-      var fm = document.createElementNS('http://www.w3.org/2000/svg', 'feColorMatrix');
-      fm.setAttribute('type', 'matrix');
-      fm.setAttribute('values', '-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0');
-      filter.appendChild(fm);
-      defs.appendChild(filter);
-      img1.setAttribute('filter', 'url(#kcr-to-white)');
-    }
+    });
+
+    document.body.removeChild(clone);
+    clone.style.cssText = 'display:block;overflow:visible;';
     return clone;
   }
 
