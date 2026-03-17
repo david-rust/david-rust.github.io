@@ -105,16 +105,76 @@
   applyTheme(_t);
   applyColors(getSavedColors(_t));
 
-  /* ── Logo swap ── */
+  /* ── Logo helpers ── */
   function navLogoFilter(theme) {
     return theme === BLUE ? 'brightness(0) invert(1)' : 'brightness(0) invert(1) sepia(0.5) saturate(4) hue-rotate(2deg)';
   }
-  function mastheadLogoFilter() {
-    return 'brightness(0) invert(1)'; /* always white — masthead is always dark */
+
+  /* Cache for KCRLogoBlack2.svg DOM */
+  var _svgCache = null;
+  function getMastheadSvg(callback) {
+    if (_svgCache) { callback(_svgCache); return; }
+    fetch('/images/KCRLogoBlack2.svg')
+      .then(function(r) { return r.text(); })
+      .then(function(text) {
+        _svgCache = new DOMParser().parseFromString(text, 'image/svg+xml').documentElement;
+        callback(_svgCache);
+      })
+      .catch(function() { callback(null); });
+  }
+
+  /* Build an inline SVG with colored text paths and white state shape */
+  function buildMastheadSvg(svgEl, accentColor, width) {
+    var clone = svgEl.cloneNode(true);
+    clone.setAttribute('width', width + 'px');
+    clone.removeAttribute('height');
+    clone.style.cssText = 'display:block;overflow:visible;';
+
+    /* Color the vector text paths in #g2 */
+    var g2 = clone.querySelector('#g2');
+    if (g2) {
+      g2.querySelectorAll('path').forEach(function(p) { p.style.fill = accentColor; });
+    }
+
+    /* Make the embedded state-shape PNG white via SVG feColorMatrix */
+    var img1 = clone.querySelector('#image1');
+    if (img1) {
+      var defs = clone.querySelector('defs');
+      if (!defs) {
+        defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+        clone.insertBefore(defs, clone.firstChild);
+      }
+      var oldF = defs.querySelector('#kcr-to-white');
+      if (oldF) oldF.parentNode.removeChild(oldF);
+      var filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
+      filter.setAttribute('id', 'kcr-to-white');
+      var fm = document.createElementNS('http://www.w3.org/2000/svg', 'feColorMatrix');
+      fm.setAttribute('type', 'matrix');
+      fm.setAttribute('values', '-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0');
+      filter.appendChild(fm);
+      defs.appendChild(filter);
+      img1.setAttribute('filter', 'url(#kcr-to-white)');
+    }
+    return clone;
+  }
+
+  function measureTitle() {
+    var titleEl = document.querySelector('.masthead-title');
+    if (!titleEl) return 280;
+    var cs = getComputedStyle(titleEl);
+    var probe = document.createElement('span');
+    probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;'
+      + 'font-family:' + cs.fontFamily + ';font-size:' + cs.fontSize + ';'
+      + 'font-weight:' + cs.fontWeight + ';letter-spacing:' + cs.letterSpacing + ';';
+    probe.textContent = 'Tracking Cancer';
+    document.body.appendChild(probe);
+    var w = probe.offsetWidth;
+    document.body.removeChild(probe);
+    return w;
   }
 
   function updateLogo(theme) {
-    /* Nav logo */
+    /* Nav logo — img with filter */
     var navLogo = document.querySelector('a.nav-logo');
     if (navLogo) {
       if (!navLogo.dataset.orig) navLogo.dataset.orig = navLogo.innerHTML;
@@ -124,30 +184,26 @@
       navLogo.style.alignItems = 'center';
     }
 
-    /* Masthead logo — width matches the "Tracking Cancer" headline */
+    /* Masthead logo — inline SVG with colored text paths */
     var mastLogo = document.querySelector('.masthead-logo-area');
     if (mastLogo) {
       if (!mastLogo.dataset.orig) {
         mastLogo.dataset.orig = mastLogo.innerHTML;
         mastLogo.dataset.origStyle = mastLogo.getAttribute('style') || '';
       }
-      var titleEl = document.querySelector('.masthead-title');
-      var logoWidth = 280;
-      if (titleEl) {
-        var cs = getComputedStyle(titleEl);
-        var probe = document.createElement('span');
-        probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;'
-          + 'font-family:' + cs.fontFamily + ';font-size:' + cs.fontSize + ';'
-          + 'font-weight:' + cs.fontWeight + ';letter-spacing:' + cs.letterSpacing + ';';
-        probe.textContent = 'Tracking Cancer';
-        document.body.appendChild(probe);
-        logoWidth = probe.offsetWidth;
-        document.body.removeChild(probe);
-      }
+      var logoWidth = measureTitle();
+      var accentColor = getComputedStyle(document.documentElement)
+        .getPropertyValue('--amber-lt').trim() || '#e09040';
       mastLogo.setAttribute('style', 'display:block;margin-bottom:40px;');
-      mastLogo.innerHTML = '<img src="/images/KCRLogoBlack.svg" alt="Kentucky Cancer Registry" '
-        + 'style="width:' + logoWidth + 'px;height:auto;display:block;'
-        + 'filter:brightness(0) invert(1);opacity:0.92;">';
+      getMastheadSvg(function(svgEl) {
+        if (svgEl) {
+          mastLogo.innerHTML = '';
+          mastLogo.appendChild(buildMastheadSvg(svgEl, accentColor, logoWidth));
+        } else {
+          mastLogo.innerHTML = '<img src="/images/KCRLogoBlack.svg" alt="Kentucky Cancer Registry" '
+            + 'style="width:' + logoWidth + 'px;height:auto;display:block;filter:brightness(0) invert(1);">';
+        }
+      });
     }
 
     /* Footer logo — subtle white watermark */
