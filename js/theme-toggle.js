@@ -139,18 +139,14 @@
       if (p.id === 'path2') { p.style.fill = 'none'; return; }
       try {
         var bb = p.getBBox();
-        /* State shape (path34): y ≈ 33, height ≈ 244 — upper silhouette */
-        /* KENTUCKY letters: y ≈ 318–320, height ≈ 85–89 */
-        var isStateShape = (p.id === 'path34');
-        var isKentucky   = (bb.y >= 315 && bb.y <= 325 && bb.height >= 80 && bb.height <= 95);
-        if (isStateShape || isKentucky) {
-          p.style.fill = '#ffffff';
-        } else {
-          /* 3D extrusion/shadow layers + CANCER REGISTRY → amber */
+        /* Only CANCER REGISTRY letters get amber: y ≈ 431, height ≈ 51–54 */
+        if (bb.y > 420 && bb.height < 100) {
           p.style.fill = accentColor;
+        } else {
+          p.style.fill = '#ffffff';
         }
       } catch(e) {
-        p.style.fill = accentColor;
+        p.style.fill = '#ffffff';
       }
     });
 
