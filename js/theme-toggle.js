@@ -139,8 +139,12 @@
       if (p.id === 'path2') { p.style.fill = 'none'; return; }
       try {
         var bb = p.getBBox();
-        /* Only CANCER REGISTRY letters get amber: y ≈ 431, height ≈ 51–54 */
-        if (bb.y > 420 && bb.height < 100) {
+        /* 3D shadow/extrusion layers span full height (h > 400) — hide them
+           so they don't create outlines around state, KENTUCKY, or CANCER REGISTRY */
+        if (bb.height > 400) {
+          p.style.fill = 'none';
+        /* CANCER REGISTRY letters: y ≈ 431, height ≈ 51–54 */
+        } else if (bb.y > 420 && bb.height < 100) {
           p.style.fill = accentColor;
         } else {
           p.style.fill = '#ffffff';
