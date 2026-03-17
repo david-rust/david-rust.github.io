@@ -132,7 +132,7 @@
         mastLogo.dataset.origStyle = mastLogo.getAttribute('style') || '';
       }
       var titleEl = document.querySelector('.masthead-title');
-      var logoWidth = titleEl ? Math.round(titleEl.getBoundingClientRect().width) : 280;
+      var logoWidth = titleEl ? Math.min(Math.round(titleEl.getBoundingClientRect().width), 360) : 280;
       mastLogo.setAttribute('style', 'display:block;margin-bottom:40px;');
       mastLogo.innerHTML = '<img src="/images/KCRLogoBlack.svg" alt="Kentucky Cancer Registry" '
         + 'style="width:' + logoWidth + 'px;height:auto;display:block;'
