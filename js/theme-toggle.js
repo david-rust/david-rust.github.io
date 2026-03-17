@@ -132,7 +132,18 @@
         mastLogo.dataset.origStyle = mastLogo.getAttribute('style') || '';
       }
       var titleEl = document.querySelector('.masthead-title');
-      var logoWidth = titleEl ? Math.min(Math.round(titleEl.getBoundingClientRect().width), 360) : 280;
+      var logoWidth = 280;
+      if (titleEl) {
+        var cs = getComputedStyle(titleEl);
+        var probe = document.createElement('span');
+        probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;'
+          + 'font-family:' + cs.fontFamily + ';font-size:' + cs.fontSize + ';'
+          + 'font-weight:' + cs.fontWeight + ';letter-spacing:' + cs.letterSpacing + ';';
+        probe.textContent = 'Tracking Cancer';
+        document.body.appendChild(probe);
+        logoWidth = probe.offsetWidth;
+        document.body.removeChild(probe);
+      }
       mastLogo.setAttribute('style', 'display:block;margin-bottom:40px;');
       mastLogo.innerHTML = '<img src="/images/KCRLogoBlack.svg" alt="Kentucky Cancer Registry" '
         + 'style="width:' + logoWidth + 'px;height:auto;display:block;'
