@@ -124,19 +124,28 @@
       navLogo.style.alignItems = 'center';
     }
 
-    /* Masthead logo — always white, above headline */
+    /* Masthead logo — text lockup so "CANCER REGISTRY" can match accent color */
     var mastLogo = document.querySelector('.masthead-logo-area');
     if (mastLogo) {
       if (!mastLogo.dataset.orig) {
         mastLogo.dataset.orig = mastLogo.innerHTML;
         mastLogo.dataset.origStyle = mastLogo.getAttribute('style') || '';
       }
-      var titleEl = document.querySelector('.masthead-title');
-      var logoWidth = titleEl ? Math.round(titleEl.getBoundingClientRect().width * 0.5) : 160;
+      /* Compute accent color from the live CSS variable */
+      var accentColor = getComputedStyle(document.documentElement)
+        .getPropertyValue('--amber-lt').trim() || '#e09040';
       mastLogo.setAttribute('style', 'display:block;margin-bottom:40px;');
-      mastLogo.innerHTML = '<img src="/images/KCRLogoBlack.svg" alt="Kentucky Cancer Registry" '
-        + 'style="width:' + logoWidth + 'px;max-width:280px;height:auto;display:block;'
-        + 'filter:' + mastheadLogoFilter() + ';opacity:0.92;">';
+      mastLogo.innerHTML =
+        '<div style="display:flex;align-items:center;gap:14px;">'
+        + '<img src="/images/KCRLogoBlack.svg" alt="" aria-hidden="true" '
+        + 'style="height:52px;width:auto;display:block;filter:brightness(0) invert(1);opacity:0.92;">'
+        + '<div style="display:flex;flex-direction:column;gap:1px;line-height:1.1;">'
+        + '<span style="font-family:var(--sans);font-size:10.5px;font-weight:700;'
+        + 'letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.88);">KENTUCKY</span>'
+        + '<span style="font-family:var(--sans);font-size:10.5px;font-weight:700;'
+        + 'letter-spacing:0.22em;text-transform:uppercase;color:' + accentColor + ';">CANCER REGISTRY</span>'
+        + '</div>'
+        + '</div>';
     }
 
     /* Footer logo — subtle white watermark */
