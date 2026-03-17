@@ -139,11 +139,14 @@
       if (p.id === 'path2') { p.style.fill = 'none'; return; }
       try {
         var bb = p.getBBox();
+        /* State shape (path34): y ≈ 33, height ≈ 244 — upper silhouette */
         /* KENTUCKY letters: y ≈ 318–320, height ≈ 85–89 */
-        if (bb.y >= 315 && bb.y <= 325 && bb.height >= 80 && bb.height <= 95) {
+        var isStateShape = (p.id === 'path34');
+        var isKentucky   = (bb.y >= 315 && bb.y <= 325 && bb.height >= 80 && bb.height <= 95);
+        if (isStateShape || isKentucky) {
           p.style.fill = '#ffffff';
         } else {
-          /* CANCER REGISTRY letters, shadow/extrusion layers, state shape → amber */
+          /* 3D extrusion/shadow layers + CANCER REGISTRY → amber */
           p.style.fill = accentColor;
         }
       } catch(e) {
