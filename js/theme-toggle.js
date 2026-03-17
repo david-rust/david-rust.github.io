@@ -118,7 +118,7 @@
     var navLogo = document.querySelector('a.nav-logo');
     if (navLogo) {
       if (!navLogo.dataset.orig) navLogo.dataset.orig = navLogo.innerHTML;
-      navLogo.innerHTML = '<img src="/images/kcr-logo.png" alt="Kentucky Cancer Registry" '
+      navLogo.innerHTML = '<img src="/images/KCRLogoBlack.svg" alt="Kentucky Cancer Registry" '
         + 'style="height:36px;display:block;filter:' + navLogoFilter(theme) + ';">';
       navLogo.style.display = 'flex';
       navLogo.style.alignItems = 'center';
@@ -134,7 +134,7 @@
       var titleEl = document.querySelector('.masthead-title');
       var logoWidth = titleEl ? Math.round(titleEl.getBoundingClientRect().width * 0.5) : 160;
       mastLogo.setAttribute('style', 'display:block;margin-bottom:40px;');
-      mastLogo.innerHTML = '<img src="/images/kcr-logo.png" alt="Kentucky Cancer Registry" '
+      mastLogo.innerHTML = '<img src="/images/KCRLogoBlack.svg" alt="Kentucky Cancer Registry" '
         + 'style="width:' + logoWidth + 'px;max-width:280px;height:auto;display:block;'
         + 'filter:' + mastheadLogoFilter() + ';opacity:0.92;">';
     }
@@ -144,7 +144,7 @@
     if (footerWordmark && !footerWordmark.previousElementSibling?.classList.contains('footer-logo-img')) {
       var fImg = document.createElement('img');
       fImg.className = 'footer-logo-img';
-      fImg.src = '/images/kcr-logo.png';
+      fImg.src = '/images/KCRLogoBlack.svg';
       fImg.alt = 'Kentucky Cancer Registry';
       fImg.style.cssText = 'height:44px;width:auto;display:block;margin-bottom:18px;opacity:0.55;filter:brightness(0) invert(1);';
       footerWordmark.parentElement.insertBefore(fImg, footerWordmark);
