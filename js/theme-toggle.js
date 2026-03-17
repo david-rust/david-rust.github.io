@@ -134,6 +134,9 @@
     document.body.appendChild(clone);
 
     clone.querySelectorAll('path').forEach(function(p) {
+      /* path2 is the frontmost full-height composite shape — keep transparent
+         so it doesn't paint over the letter paths behind it */
+      if (p.id === 'path2') { p.style.fill = 'none'; return; }
       try {
         var bb = p.getBBox();
         /* CANCER REGISTRY letters: y ≈ 431, height ≈ 51–54 */
