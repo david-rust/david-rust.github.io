@@ -194,7 +194,7 @@
       }
       var logoWidth = measureTitle();
       var accentColor = getComputedStyle(document.documentElement)
-        .getPropertyValue('--silver').trim() || '#c87a2f';
+        .getPropertyValue('--amber-lt').trim() || '#e09040';
       mastLogo.setAttribute('style', 'display:block;margin-bottom:40px;');
       getMastheadSvg(function(svgEl) {
         if (svgEl) {
