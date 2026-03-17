@@ -11,7 +11,7 @@
 
   /* Default accent colors for each base theme */
   var DEFAULTS = {
-    'default':  { primary: '#c87a2f', secondary: '#8da3b8', tertiary: '#c87a2f' },
+    'default':  { primary: '#c87a2f', secondary: '#c87a2f', tertiary: '#c87a2f' },
     'kcr-blue': { primary: '#1e4799', secondary: '#3db8d8', tertiary: '#c9a84c' }
   };
 
@@ -194,7 +194,7 @@
       }
       var logoWidth = measureTitle();
       var accentColor = getComputedStyle(document.documentElement)
-        .getPropertyValue('--amber-lt').trim() || '#e09040';
+        .getPropertyValue('--silver').trim() || '#c87a2f';
       mastLogo.setAttribute('style', 'display:block;margin-bottom:40px;');
       getMastheadSvg(function(svgEl) {
         if (svgEl) {
@@ -302,6 +302,7 @@
       };
       applyColors(c);
       saveColors(getTheme(), c);
+      updateLogo(getTheme());
     }
     ['tcp-primary', 'tcp-secondary', 'tcp-tertiary'].forEach(function (id) {
       document.getElementById(id).addEventListener('input', onColorChange);
