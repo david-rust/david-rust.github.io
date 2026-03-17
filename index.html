@@ -330,6 +330,32 @@
 @media (max-width: 960px) {.masthead { grid-template-columns: 1fr; }
   .masthead-right, .masthead-rule { display: none; }
 }
+/* ── Blue theme: masthead & map overrides ── */
+html[data-theme="kcr-blue"] .masthead-bg {
+  background:
+    radial-gradient(ellipse 70% 90% at 30% 100%, rgba(30,71,153,0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 85% 15%, rgba(45,101,200,0.1) 0%, transparent 50%);
+}
+html[data-theme="kcr-blue"] .masthead-rule {
+  background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.38) 30%, rgba(201,168,76,0.38) 70%, transparent);
+}
+html[data-theme="kcr-blue"] .logo-mark    { border-color: rgba(201,168,76,0.55); }
+html[data-theme="kcr-blue"] .masthead-right { background: #08152b; }
+html[data-theme="kcr-blue"] .map-top-header {
+  background: linear-gradient(to bottom, rgba(8,21,43,0.96) 0%, rgba(8,21,43,0.88) 75%, rgba(8,21,43,0) 100%);
+}
+html[data-theme="kcr-blue"] .map-overlay-bar {
+  background: linear-gradient(to top, rgba(8,21,43,0.88) 0%, transparent 100%);
+}
+html[data-theme="kcr-blue"] .choro-map-wrap,
+html[data-theme="kcr-blue"] .map-viewer   { background: #08152b; }
+html[data-theme="kcr-blue"] .mast-choro-wrap {
+  background: linear-gradient(to bottom, #0f2244 0%, #08152b 50%, #08152b 100%);
+}
+html[data-theme="kcr-blue"] .choro-tooltip { border-color: rgba(201,168,76,0.5); }
+html[data-theme="kcr-blue"] .tip-val.highlight { color: var(--gold-lt); }
+html[data-theme="kcr-blue"] .map-eyebrow  { color: var(--gold); }
+html[data-theme="kcr-blue"] .mast-data-note { background: #0f2244; }
 </style>
 </head>
 <body>
@@ -865,7 +891,14 @@
 
     var STATE_AVG = 524.6;
     var TOPO_URL  = '/js/counties-10m.json';
-    var COLORS    = ['#f5efe6','#f0d9b5','#e8b97a','#d9904a','#c87a2f','#aa5a18','#843a0a','#561e00'];
+
+    var DEFAULT_COLORS = ['#f5efe6','#f0d9b5','#e8b97a','#d9904a','#c87a2f','#aa5a18','#843a0a','#561e00'];
+    var BLUE_COLORS    = ['#ccddf5','#99baea','#6697dc','#3e74cc','#2255b0','#153b8e','#0b266e','#061550'];
+
+    function getColors() {
+      return document.documentElement.getAttribute('data-theme') === 'kcr-blue'
+        ? BLUE_COLORS : DEFAULT_COLORS;
+    }
 
     var ranked = Object.keys(COUNTY_DATA).sort(function(a,b){
       return COUNTY_DATA[b].rate - COUNTY_DATA[a].rate;
@@ -873,9 +906,11 @@
     function getRank(fips){ return ranked.indexOf(fips) + 1; }
 
     var rates      = Object.values(COUNTY_DATA).map(function(d){ return d.rate; });
-    var colorScale = d3.scaleQuantile().domain(rates).range(COLORS);
+    var colorScale = d3.scaleQuantile().domain(rates).range(getColors());
 
     function buildLegend(container, vertical) {
+      var COLORS   = getColors();
+      colorScale.range(COLORS);
       var q        = colorScale.quantiles();
       var allBreaks = [d3.min(rates)].concat(q).concat([d3.max(rates)]);
 
@@ -954,7 +989,10 @@
               .attr('fill', function(f){
                 var fips = String(f.id).padStart(5, '0');
                 var d    = COUNTY_DATA[fips];
-                return d ? colorScale(d.rate) : '#1e2a32';
+                var noData = document.documentElement.getAttribute('data-theme') === 'kcr-blue' ? '#1a2d4a' : '#1e2a32';
+                if (!d) return noData;
+                colorScale.range(getColors());
+                return colorScale(d.rate);
               })
               .on('mousemove', function(event, f){
                 var fips = String(f.id).padStart(5, '0');
@@ -1068,6 +1106,15 @@
               TOPO_CACHE = topojson.feature(us, us.objects.counties).features
                       .filter(function(f){ return String(f.id).padStart(5,'0').startsWith('21'); });
               initMaps(TOPO_CACHE);
+
+              // Redraw maps whenever the theme attribute changes
+              new MutationObserver(function(mutations) {
+                mutations.forEach(function(m) {
+                  if (m.attributeName === 'data-theme') {
+                    initMaps(TOPO_CACHE);
+                  }
+                });
+              }).observe(document.documentElement, { attributes: true });
             })
             .catch(function(e){
               console.warn('KCR choropleth: TopoJSON failed to load', e);
@@ -1077,4 +1124,5 @@
 </script>
 
 
+<script src="/js/theme-toggle.js" defer></script>
 </body></html>
