@@ -242,7 +242,7 @@ html[data-theme="kcr-blue"] .btn-ghost             { border-color: var(--silver)
 html[data-theme="kcr-blue"] .btn-ghost:hover       { border-color: var(--silver-lt); color: white; }
 
 /* ── Masthead: stat numbers gold, title italic glacier blue ── */
-html[data-theme="kcr-blue"] .masthead-title em     { color: var(--silver-lt); }
+html[data-theme="kcr-blue"] .masthead-title em     { color: var(--amber); }
 html[data-theme="kcr-blue"] .mstat-num span        { color: var(--gold); }
 html[data-theme="kcr-blue"] .mstat                 { border-right: 1px solid rgba(201,168,76,0.2); }
 html[data-theme="kcr-blue"] .map-ky-rate strong    { color: var(--silver-lt); }
