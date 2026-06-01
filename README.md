@@ -707,6 +707,34 @@ Layout Standards:
 
 ------------------------------------------------------------------------
 
+## Local Development
+
+The site runs in a Docker container via nginx. No build step required.
+
+**Start:**
+```
+docker compose up -d
+```
+
+**Stop:**
+```
+docker compose down
+```
+
+The project directory is mounted as a live volume — edit any HTML, CSS, or JS file and refresh the browser to see changes instantly. Rebuilding the image (`--build`) is only needed if `Dockerfile` or `nginx.conf` changes.
+
+Site is served at **http://localhost:8080**.
+
+### Rollback
+
+`main` on GitHub is the stable baseline. To discard all local changes and return to it:
+
+```
+git reset --hard origin/main
+```
+
+------------------------------------------------------------------------
+
 ## Maintainer
 
 David Rust, MS\
