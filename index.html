@@ -1010,15 +1010,12 @@ html[data-theme="kcr-blue"] .mast-data-note { background: #0f2244; }
     }
 
     // Position legend immediately below where the header gradient fades out.
-    // The header's offsetHeight is its solid content area. The gradient fades
-    // over the bottom 25% of that height (per the 75% stop), so we subtract
-    // that fade distance to land right at the transparent point.
+    // Position the legend just below the header block (no gradient, so use full height + gap).
     function positionLegend() {
       var header = document.getElementById('mastMapHeader');
       var legend = document.getElementById('mastChoroLegend');
       if (!header || !legend) return;
-      var gradientFadeStart = header.offsetHeight * 0.75; // solid ends at 75%
-      legend.style.top = Math.round(gradientFadeStart) + 'px';
+      legend.style.top = Math.round(header.offsetHeight + 12) + 'px';
     }
 
     var TOPO_CACHE = null;
