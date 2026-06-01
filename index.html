@@ -8,10 +8,10 @@
   <style>.masthead { background: var(--ink); position: relative; overflow: hidden; min-height: calc(100vh - 36px); display: grid; grid-template-columns: 1fr 1fr; }
 .masthead-bg {
       position: absolute; inset: 0; pointer-events: none;
-      background: radial-gradient(ellipse 70% 100% at 100% 50%, rgba(200,122,47,0.06) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 60% at 20% 0%, rgba(61,81,102,0.5) 0%, transparent 70%);
+      background:
+        radial-gradient(ellipse 60% 60% at 20% 35%, rgba(61,81,102,0.28) 0%, transparent 70%);
     }
-.masthead-rule { position: absolute; left: 50%; top: 40px; bottom: 40px; width: 1px; background: linear-gradient(to bottom, transparent, rgba(200,122,47,0.3) 30%, rgba(200,122,47,0.3) 70%, transparent); }
+.masthead-rule { display: none; }
 .masthead-left { padding: 24px 56px 24px 40px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; text-align: center; position: relative; z-index: 1; }
 .masthead-logo-area { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
 .logo-mark { width: 42px; height: 42px; border: 1.5px solid rgba(200,122,47,0.5); border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -36,7 +36,7 @@
       flex: 1;
       position: relative;
       overflow: hidden;
-      background: #0d1821; /* deeper than --ink-2, feels like a continuation of the masthead */
+      background: transparent;
       min-height: 0;
       cursor: default;
     }
@@ -53,10 +53,7 @@
       left: 0;
       width: 100%;
       padding: 22px 24px 28px;
-      background: linear-gradient(to bottom,
-      rgba(14,20,25,0.96) 0%,
-      rgba(14,20,25,0.88) 75%,
-      rgba(14,20,25,0.0) 100%);
+      background: transparent;
       color: #f5f7fa;
       z-index: 10;
       pointer-events: none;
