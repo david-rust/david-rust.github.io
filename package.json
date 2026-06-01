@@ -1,0 +1,29 @@
+{
+  "name": "kcrwebsite",
+  "version": "1.0.0",
+  "description": "Redesign of the Kentucky Cancer Registry (KCR) website, built using a\r structured AI-assisted workflow and a custom design system.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/david-rust/KcrWebsite.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/david-rust/KcrWebsite/issues"
+  },
+  "homepage": "https://github.com/david-rust/KcrWebsite#readme",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.3",
+    "@playwright/test": "^1.60.0"
+  }
+}
