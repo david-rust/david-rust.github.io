@@ -56,6 +56,14 @@
 .team-item-info{flex:1;min-width:0;}
 .team-item-name{font-size:13px;font-weight:500;color:inherit;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .team-item-title{font-size:11px;color:var(--mist);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pub-list{display:flex;flex-direction:column;gap:0;margin-bottom:24px;}
+.pub-item{display:grid;grid-template-columns:56px 1fr;gap:20px;padding:20px 0;border-bottom:1px solid var(--paper-3);}
+.pub-item:first-child{border-top:1px solid var(--paper-3);}
+.pub-year{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--amber);padding-top:3px;text-align:right;}
+.pub-title{font-family:var(--serif);font-size:16px;font-weight:400;color:var(--ink);line-height:1.35;display:block;margin-bottom:6px;transition:color .15s;}
+.pub-title:hover{color:var(--amber);}
+.pub-meta{font-size:12px;color:var(--mist);margin-bottom:8px;line-height:1.5;}
+.pub-desc{font-size:13.5px;color:var(--steel);line-height:1.7;font-weight:300;}
 .btn-outline{display:inline-flex;align-items:center;gap:7px;background:transparent;color:var(--steel);border:1px solid var(--paper-3);padding:11px 20px;border-radius:3px;font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;transition:all .15s;width:100%;justify-content:center;margin-top:8px;}
 .btn-outline:hover{border-color:var(--amber);color:var(--amber);}
 @media(max-width:960px) {.mh-inner{grid-template-columns:1fr;}
@@ -151,6 +159,32 @@
         <span class="expertise-tag">Application Maintenance</span>
         <span class="expertise-tag">Cancer Informatics</span>
         <span class="expertise-tag">Testing & QA</span>
+      </div>
+    </div>
+
+    <div class="rise rise-4">
+      <div class="eyebrow">Selected Publications</div>
+      <h2 class="section-heading">Peer-Reviewed Work</h2>
+      <div class="pub-list">
+
+        <div class="pub-item">
+          <div class="pub-year">2023</div>
+          <div class="pub-body">
+            <a href="https://pubmed.ncbi.nlm.nih.gov/38113411/" target="_blank" class="pub-title">DeepPhe-CR: Natural Language Processing Software Services for Cancer Registrar Case Abstraction</a>
+            <div class="pub-meta">Hochheiser H, Finan S, Yuan Z, Durbin EB, Jeong JC, Hands I, Rust D, et al. &mdash; <em>JCO Clinical Cancer Informatics</em></div>
+            <div class="pub-desc">Presents NLP software services designed to assist cancer registrars in automating case abstraction from clinical pathology reports, reducing manual abstraction burden.</div>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-year">2019</div>
+          <div class="pub-body">
+            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9450101/" target="_blank" class="pub-title">Deep Transfer Learning Across Cancer Registries for Information Extraction from Pathology Reports</a>
+            <div class="pub-meta">Alawad M, Gao S, Qiu J, Schaefferkoetter N, Hinkle JD, Yoon HJ, Wu XC, Durbin EB, Jeong JC, Hands I, Rust D, et al. &mdash; <em>IEEE EMBS Int Conf Biomed Health Inform</em></div>
+            <div class="pub-desc">Investigates transfer learning with convolutional neural networks to facilitate cross-registry knowledge sharing for automated information extraction from cancer pathology reports.</div>
+          </div>
+        </div>
+
       </div>
     </div>
   </main>
