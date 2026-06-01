@@ -20,7 +20,7 @@ const PAGES = [
   { name: 'Staff - Clay',      path: '/staff/clay/' },
   { name: 'Staff - David',     path: '/staff/david/' },
   { name: 'Staff - Eric D',    path: '/staff/ericd/' },
-  { name: 'Staff - Evan',      path: '/staff/evan/' },
+  { name: 'Staff - Evan Yang', path: '/staff/evan/' },
   { name: 'Staff - Isaac',     path: '/staff/isaac/' },
   { name: 'Staff - JJacob',    path: '/staff/jjacob/' },
   { name: 'Staff - Roger',     path: '/staff/roger/' },
