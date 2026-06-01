@@ -5,7 +5,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/theme.css">
-  <style>.masthead { background: var(--ink); position: relative; overflow: hidden; min-height: calc(100vh - 36px); display: grid; grid-template-columns: 1fr 1fr; }
+  <style>.masthead { background: var(--ink); position: relative; overflow: hidden; min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }
 .masthead-bg {
       position: absolute; inset: 0; pointer-events: none;
       background:
@@ -329,26 +329,9 @@
 }
 /* ── Blue theme: masthead & map overrides ── */
 html[data-theme="kcr-blue"] .masthead-bg {
-  background:
-    radial-gradient(ellipse 70% 90% at 30% 100%, rgba(30,71,153,0.22) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 50% at 85% 15%, rgba(45,101,200,0.1) 0%, transparent 50%);
-}
-html[data-theme="kcr-blue"] .masthead-rule {
-  background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.38) 30%, rgba(201,168,76,0.38) 70%, transparent);
+  background: radial-gradient(ellipse 60% 60% at 20% 35%, rgba(30,71,153,0.3) 0%, transparent 70%);
 }
 html[data-theme="kcr-blue"] .logo-mark    { border-color: rgba(201,168,76,0.55); }
-html[data-theme="kcr-blue"] .masthead-right { background: #08152b; }
-html[data-theme="kcr-blue"] .map-top-header {
-  background: linear-gradient(to bottom, rgba(8,21,43,0.96) 0%, rgba(8,21,43,0.88) 75%, rgba(8,21,43,0) 100%);
-}
-html[data-theme="kcr-blue"] .map-overlay-bar {
-  background: linear-gradient(to top, rgba(8,21,43,0.88) 0%, transparent 100%);
-}
-html[data-theme="kcr-blue"] .choro-map-wrap,
-html[data-theme="kcr-blue"] .map-viewer   { background: #08152b; }
-html[data-theme="kcr-blue"] .mast-choro-wrap {
-  background: linear-gradient(to bottom, #0f2244 0%, #08152b 50%, #08152b 100%);
-}
 html[data-theme="kcr-blue"] .choro-tooltip { border-color: rgba(201,168,76,0.5); }
 html[data-theme="kcr-blue"] .tip-val.highlight { color: var(--gold-lt); }
 html[data-theme="kcr-blue"] .map-eyebrow  { color: var(--gold); }
@@ -357,15 +340,6 @@ html[data-theme="kcr-blue"] .mast-data-note { background: #0f2244; }
 </head>
 <body>
 
-<div class="topbar">
-  <div class="topbar-left">University of Kentucky  •  Markey Cancer Center  •  Est. 1990</div>
-  <div class="topbar-sep"></div>
-  <div class="topbar-right">
-    <a href="/staff">Staff Directory</a>
-    <a href="/contact.html">Contact</a>
-    <a href="https://kcr-confluence.atlassian.net/wiki/spaces/kentuckyregistrarswiki/overview" target="_blank">Registrars Wiki</a>
-  </div>
-</div>
 
 <div class="masthead">
   <div class="masthead-bg"></div>
