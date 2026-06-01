@@ -56,6 +56,14 @@
 .team-item-info{flex:1;min-width:0;}
 .team-item-name{font-size:13px;font-weight:500;color:inherit;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .team-item-title{font-size:11px;color:var(--mist);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pub-list{display:flex;flex-direction:column;gap:0;margin-bottom:24px;}
+.pub-item{display:grid;grid-template-columns:56px 1fr;gap:20px;padding:20px 0;border-bottom:1px solid var(--paper-3);}
+.pub-item:first-child{border-top:1px solid var(--paper-3);}
+.pub-year{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--amber);padding-top:3px;text-align:right;}
+.pub-title{font-family:var(--serif);font-size:16px;font-weight:400;color:var(--ink);line-height:1.35;display:block;margin-bottom:6px;transition:color .15s;}
+.pub-title:hover{color:var(--amber);}
+.pub-meta{font-size:12px;color:var(--mist);margin-bottom:8px;line-height:1.5;}
+.pub-desc{font-size:13.5px;color:var(--steel);line-height:1.7;font-weight:300;}
 .btn-outline{display:inline-flex;align-items:center;gap:7px;background:transparent;color:var(--steel);border:1px solid var(--paper-3);padding:11px 20px;border-radius:3px;font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;transition:all .15s;width:100%;justify-content:center;margin-top:8px;}
 .btn-outline:hover{border-color:var(--amber);color:var(--amber);}
 @media(max-width:960px) {.mh-inner{grid-template-columns:1fr;}
@@ -152,6 +160,54 @@
         <span class="expertise-tag">SEER / NPCR Programs</span>
         <span class="expertise-tag">Electronic Reporting</span>
       </div>
+    </div>
+
+    <div class="rise rise-4">
+      <div class="eyebrow">Selected Publications</div>
+      <h2 class="section-heading">Peer-Reviewed Work</h2>
+      <div class="pub-list">
+
+        <div class="pub-item">
+          <div class="pub-year">2024</div>
+          <div class="pub-body">
+            <a href="https://pubmed.ncbi.nlm.nih.gov/38194612/" target="_blank" class="pub-title">Population-Based Data Linkage Describing Patterns of Cancer Clinical Trial Enrollment Among Children and Adolescents</a>
+            <div class="pub-meta">Siegel DA, Durbin EB, et al. &mdash; <em>JCO Oncology Practice</em>, Vol. 20(5), pp. 631&ndash;642</div>
+            <div class="pub-desc">Examines patterns of pediatric cancer clinical trial enrollment using population-based data linkage between cancer registries and clinical trial databases.</div>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-year">2023</div>
+          <div class="pub-body">
+            <a href="https://pubmed.ncbi.nlm.nih.gov/38113411/" target="_blank" class="pub-title">DeepPhe-CR: Natural Language Processing Software Services for Cancer Registrar Case Abstraction</a>
+            <div class="pub-meta">Hochheiser H, Finan S, Yuan Z, Durbin EB, et al. &mdash; <em>JCO Clinical Cancer Informatics</em></div>
+            <div class="pub-desc">Presents NLP software services designed to assist cancer registrars in automating case abstraction from clinical pathology reports, reducing manual abstraction burden.</div>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-year">2021</div>
+          <div class="pub-body">
+            <a href="https://pubmed.ncbi.nlm.nih.gov/33619913/" target="_blank" class="pub-title">Real World Clinicopathologic Observations of Patients with Metastatic Solid Tumors Receiving Immune Checkpoint Inhibitor Therapy: Analysis from Kentucky Cancer Registry</a>
+            <div class="pub-meta">Jacob A, Wu J, Kolesar J, Durbin E, et al. &mdash; <em>Cancer Medicine</em></div>
+            <div class="pub-desc">Real-world analysis leveraging KCR data to characterize outcomes and clinicopathologic features of metastatic solid tumor patients treated with immune checkpoint inhibitors.</div>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-year">2019</div>
+          <div class="pub-body">
+            <a href="https://pubmed.ncbi.nlm.nih.gov/31095418/" target="_blank" class="pub-title">Identifying Smoking Status and Smoking Cessation Using a Data Linkage Between the Kentucky Cancer Registry and Health Claims Data</a>
+            <div class="pub-meta">Gallaway MS, Huang B, Chen Q, Tucker T, McDowell J, Durbin E, et al. &mdash; <em>JCO Clinical Cancer Informatics</em></div>
+            <div class="pub-desc">Demonstrates a data linkage methodology between KCR and health insurance claims to identify smoking status and cessation patterns among cancer patients.</div>
+          </div>
+        </div>
+
+      </div>
+      <a href="https://scholar.google.com/citations?user=aOl8JCYAAAAJ&hl=en" target="_blank" class="section-link" style="margin-top:20px;display:inline-flex;">
+        View Full Publication List
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:5px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
   </main>
 
