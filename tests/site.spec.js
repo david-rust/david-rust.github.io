@@ -16,6 +16,16 @@ const PAGES = [
   { name: 'Manuals',           path: '/manuals/' },
   { name: 'Software',          path: '/software/' },
   { name: 'In the Abstract',   path: '/intheabstract/' },
+  { name: 'Staff - Chaney',    path: '/staff/chaney/' },
+  { name: 'Staff - Clay',      path: '/staff/clay/' },
+  { name: 'Staff - David',     path: '/staff/david/' },
+  { name: 'Staff - Eric D',    path: '/staff/ericd/' },
+  { name: 'Staff - Evan',      path: '/staff/evan/' },
+  { name: 'Staff - Isaac',     path: '/staff/isaac/' },
+  { name: 'Staff - JJacob',    path: '/staff/jjacob/' },
+  { name: 'Staff - Roger',     path: '/staff/roger/' },
+  { name: 'Staff - Sgrimes',   path: '/staff/sgrimes/' },
+  { name: 'Staff - York',      path: '/staff/york/' },
 ];
 
 // ── Smoke tests: every page loads with HTTP 200 ────────────────────────────
