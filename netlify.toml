@@ -1,0 +1,77 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/contact"
+  to   = "/contact/"
+  status = 301
+
+[[redirects]]
+  from = "/about"
+  to   = "/about/"
+  status = 301
+
+[[redirects]]
+  from = "/research"
+  to   = "/research/"
+  status = 301
+
+[[redirects]]
+  from = "/resources"
+  to   = "/resources/"
+  status = 301
+
+[[redirects]]
+  from = "/reports"
+  to   = "/reports/"
+  status = 301
+
+[[redirects]]
+  from = "/staff"
+  to   = "/staff/"
+  status = 301
+
+[[redirects]]
+  from = "/statutes"
+  to   = "/statutes/"
+  status = 301
+
+[[redirects]]
+  from = "/support"
+  to   = "/support/"
+  status = 301
+
+[[redirects]]
+  from = "/training"
+  to   = "/training/"
+  status = 301
+
+[[redirects]]
+  from = "/manuals"
+  to   = "/manuals/"
+  status = 301
+
+[[redirects]]
+  from = "/software"
+  to   = "/software/"
+  status = 301
+
+[[redirects]]
+  from = "/intheabstract"
+  to   = "/intheabstract/"
+  status = 301
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "no-store, no-cache, must-revalidate"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "no-store, no-cache, must-revalidate"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "no-store, no-cache, must-revalidate"

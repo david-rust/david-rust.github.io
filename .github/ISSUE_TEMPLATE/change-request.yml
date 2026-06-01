@@ -1,0 +1,71 @@
+name: Website Change Request
+description: Request an update or change to the KCR website
+title: "[Change] "
+labels: ["change-request"]
+body:
+  - type: dropdown
+    id: page
+    attributes:
+      label: Which page needs updating?
+      options:
+        - Homepage
+        - About
+        - Contact
+        - Research / Data Requests
+        - Reports
+        - Resources
+        - Staff Directory
+        - Staff Profile - Eric Durbin
+        - Staff Profile - David Rust
+        - Staff Profile - Isaac Hands
+        - Staff Profile - Chaney Blu
+        - Staff Profile - Clay Campbell
+        - Staff Profile - Roger Chui
+        - Staff Profile - York Dobyns
+        - Staff Profile - Scott Grimes
+        - Staff Profile - Jason Jacob
+        - Staff Profile - Evan Yang
+        - Statutes
+        - Support
+        - Training
+        - Manuals
+        - Software
+        - In the Abstract
+        - Multiple pages / site-wide
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type of change
+      options:
+        - Update existing text or content
+        - Add new content
+        - Remove content
+        - Fix something broken
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What needs to change?
+      description: Describe the change as clearly as possible. Include exact text if relevant.
+      placeholder: "e.g. Update the phone number on the Contact page from (859) 218-0000 to (859) 218-1234"
+    validations:
+      required: true
+
+  - type: textarea
+    id: reason
+    attributes:
+      label: Why is this change needed?
+      description: Optional — helps us prioritize and understand context.
+      placeholder: "e.g. The number changed as of January 2026"
+
+  - type: textarea
+    id: attachments
+    attributes:
+      label: Any attachments or reference links?
+      description: Paste URLs, or describe any files you want to attach.
