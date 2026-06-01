@@ -340,6 +340,19 @@ html[data-theme="kcr-blue"] .footer-lower a:hover  { color: var(--gold); }
   width: 36px; height: 24px; border: 1px solid var(--paper-3);
   border-radius: 4px; padding: 2px; cursor: pointer; background: none;
 }
+
+/* ─── STAFF TEAM NAV ─────────────────────────────────────── */
+.team-nav-section { margin-bottom: 20px; }
+.team-nav-label { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--mist); margin-bottom: 12px; padding-left: 2px; }
+.team-nav { display: flex; flex-direction: column; gap: 1px; background: var(--paper-3); border-radius: var(--r); overflow: hidden; margin-bottom: 0; }
+.team-nav-item { background: white; display: flex; align-items: center; gap: 12px; padding: 12px 18px; font-size: 13.5px; color: var(--steel); transition: all .15s; text-decoration: none; }
+.team-nav-item:hover { background: var(--paper); color: var(--ink); }
+.team-nav-item.current { background: var(--paper); border-left: 2px solid var(--amber); color: var(--ink); padding-left: 16px; }
+.team-initials { width: 30px; height: 30px; background: var(--ink-2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: rgba(255,255,255,.5); flex-shrink: 0; }
+.team-nav-item.current .team-initials { background: var(--amber); color: white; }
+.team-item-info { flex: 1; min-width: 0; }
+.team-item-name { font-size: 13px; font-weight: 500; color: inherit; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.team-item-title { font-size: 11px; color: var(--mist); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .tcp-reset {
   margin: 0 12px 12px; padding: 7px 10px; border-radius: 4px; cursor: pointer;
   font-size: 10.5px; font-weight: 700; letter-spacing: 0.07em;
