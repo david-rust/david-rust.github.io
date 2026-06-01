@@ -672,38 +672,38 @@ When asking Claude to build new pages or sections, include these notes:
 
 Every page follows the same structure:
 
-1.  Topbar\
-2.  Masthead / Hero\
-3.  Sticky Navigation\
-4.  Partner Ribbon\
-5.  Page Body (2-column grid)\
-6.  Footer
+1.  Masthead / Hero
+2.  Sticky Navigation
+3.  Partner Ribbon
+4.  Page Body (2-column grid)
+5.  Footer
 
 Layout Standards:
 
--   Max width: 1320px\
--   Side padding: 40px\
--   Spacing rhythm: multiples of 8px\
--   Paper background for light pages (never pure white)\
--   Subtle hover lift on cards\
+-   Max width: 1320px
+-   Side padding: 40px
+-   Spacing rhythm: multiples of 8px
+-   Paper background for light pages (never pure white)
+-   Subtle hover lift on cards
 -   Predictable interaction timing
 
 ------------------------------------------------------------------------
 
 ## Pages Completed
 
--   Homepage
+-   Homepage (with live D3 choropleth map)
 -   About
 -   Research / Data Requests
 -   Technical Resources
 -   Reports (Childhood Cancer)
 -   Contact
--   Staff Directory
+-   Staff Directory (with individual profiles)
 -   Meaningful Use (Stage 2 & 3)
-
-## Pages Remaining
-
 -   Statutes
+
+### Staff Profiles
+
+Each staff member has a dedicated profile page with biography, areas of expertise, peer-reviewed publications (verified via PubMed), and news/press coverage where available.
 
 ------------------------------------------------------------------------
 
@@ -725,6 +725,16 @@ The project directory is mounted as a live volume — edit any HTML, CSS, or JS 
 
 Site is served at **http://localhost:8080**.
 
+### Running Tests
+
+The project uses Playwright for end-to-end testing (75 tests across all 23 pages). Docker must be running before executing tests.
+
+```
+npx playwright test
+```
+
+Tests cover: page load (HTTP 200), page titles, navigation links, homepage element checks, and WCAG 2.0 A/AA accessibility scans on every page via axe-core.
+
 ### Rollback
 
 `main` on GitHub is the stable baseline. To discard all local changes and return to it:
@@ -732,6 +742,25 @@ Site is served at **http://localhost:8080**.
 ```
 git reset --hard origin/main
 ```
+
+------------------------------------------------------------------------
+
+## Deployment
+
+The site auto-deploys to Netlify on every push to `main`. No manual steps required — push your changes and the live site updates within ~30 seconds.
+
+------------------------------------------------------------------------
+
+## Requesting Changes (Non-Coders)
+
+To request a content update, open a **Website Change Request** issue on GitHub:
+
+1.  Go to the repository Issues tab
+2.  Click **New Issue**
+3.  Select **Website Change Request**
+4.  Fill out the form — no coding knowledge needed
+
+A structured form will guide you through selecting the page, type of change, and description. Changes are reviewed, implemented, and deployed automatically.
 
 ------------------------------------------------------------------------
 
