@@ -64,6 +64,14 @@
 .pub-title:hover{color:var(--amber);}
 .pub-meta{font-size:12px;color:var(--mist);margin-bottom:8px;line-height:1.5;}
 .pub-desc{font-size:13.5px;color:var(--steel);line-height:1.7;font-weight:300;}
+.news-list{display:flex;flex-direction:column;gap:16px;margin-bottom:24px;}
+.news-item{display:grid;grid-template-columns:56px 1fr;gap:20px;padding:20px;background:white;border:1px solid var(--paper-3);border-radius:var(--r);transition:all .2s;}
+.news-item:hover{box-shadow:0 8px 24px rgba(14,20,25,.08);transform:translateY(-2px);border-color:var(--fog);}
+.news-year{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--amber);padding-top:3px;text-align:right;}
+.news-title{font-family:var(--serif);font-size:15px;font-weight:400;color:var(--ink);line-height:1.35;display:block;margin-bottom:5px;transition:color .15s;}
+.news-title:hover{color:var(--amber);}
+.news-source{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mist);margin-bottom:7px;}
+.news-desc{font-size:13px;color:var(--steel);line-height:1.65;font-weight:300;}
 .btn-outline{display:inline-flex;align-items:center;gap:7px;background:transparent;color:var(--steel);border:1px solid var(--paper-3);padding:11px 20px;border-radius:3px;font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;transition:all .15s;width:100%;justify-content:center;margin-top:8px;}
 .btn-outline:hover{border-color:var(--amber);color:var(--amber);}
 @media(max-width:960px) {.mh-inner{grid-template-columns:1fr;}
@@ -182,6 +190,23 @@
             <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9450101/" target="_blank" class="pub-title">Deep Transfer Learning Across Cancer Registries for Information Extraction from Pathology Reports</a>
             <div class="pub-meta">Alawad M, Gao S, Qiu J, Schaefferkoetter N, Hinkle JD, Yoon HJ, Wu XC, Durbin EB, Jeong JC, Hands I, Rust D, et al. &mdash; <em>IEEE EMBS Int Conf Biomed Health Inform</em></div>
             <div class="pub-desc">Investigates transfer learning with convolutional neural networks to facilitate cross-registry knowledge sharing for automated information extraction from cancer pathology reports.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="rise rise-5">
+      <div class="eyebrow">In the News</div>
+      <h2 class="section-heading">Coverage & Announcements</h2>
+      <div class="news-list">
+
+        <div class="news-item">
+          <div class="news-year">2014</div>
+          <div>
+            <a href="https://uknow.uky.edu/uk-healthcare/markey-cancer-center/lung-cancer-patients-may-benefit-innovative-informatics-project" target="_blank" class="news-title">Lung Cancer Patients May Benefit from Innovative Informatics Project</a>
+            <div class="news-source">UKNow &mdash; Jun 2014</div>
+            <div class="news-desc">Coverage of a KCR informatics project focused on improving lung cancer data collection and patient outcomes — a project David contributed to as part of the Cancer Informatics team.</div>
           </div>
         </div>
 
