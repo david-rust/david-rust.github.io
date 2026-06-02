@@ -403,11 +403,17 @@ html[data-theme="kcr-blue"] .footer-lower a:hover  { color: var(--gold); }
 
 /* ─── RESPONSIVE ─────────────────────────────────────────── */
 
-/* Overflow prevention */
-html { overflow-x: hidden; }
+/* Overflow prevention — html+body belt-and-suspenders for real devices */
+html, body { overflow-x: hidden; max-width: 100%; }
 
 /* Heading overflow safety */
 h1, h2, h3 { overflow-wrap: break-word; }
+
+/* Ribbon logos must wrap rather than overflow on narrow screens */
+.ribbon-logos { flex-wrap: wrap; }
+
+/* Theme picker: pull away from the edge on all screen sizes */
+#kcr-palette-btn { right: 16px; }
 
 /* Hamburger button — hidden on desktop */
 .nav-hamburger {
@@ -438,10 +444,12 @@ html[data-theme="kcr-blue"] .nav-hamburger { color: rgba(255,255,255,0.8); }
   .nav-hamburger { display: flex; }
   .nav-spacer { display: none; }
   .nav-search-form { display: none; }
+  nav { overflow: hidden; }
   .nav-inner {
     flex-wrap: wrap;
     padding: 0 16px;
     align-items: center;
+    max-width: 100%;
   }
   /* Show logo if present; push hamburger to far right */
   .nav-logo { flex: 1; min-width: 0; }
@@ -465,6 +473,9 @@ html[data-theme="kcr-blue"] .nav-hamburger { color: rgba(255,255,255,0.8); }
 }
 
 @media (max-width: 600px) {
+  /* ── Theme picker: clamp panel so it can't bleed off-screen ── */
+  #kcr-palette-panel { right: 16px; width: min(210px, calc(100vw - 32px)); }
+
   /* ── Ribbon ── */
   .ribbon-inner { height: auto; padding: 12px 16px; flex-wrap: wrap; gap: 10px; }
   .ribbon-label { display: none; }
