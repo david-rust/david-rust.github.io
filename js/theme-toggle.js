@@ -225,6 +225,47 @@
     var colors = getSavedColors(theme);
     updateLogo(theme);
 
+    /* ── Skip link ── */
+    var skipLink = document.createElement('a');
+    skipLink.href = '#main-content';
+    skipLink.className = 'skip-link';
+    skipLink.textContent = 'Skip to main content';
+    document.body.insertBefore(skipLink, document.body.firstChild);
+
+    /* ── Main content landmark id ── */
+    var mainEl = document.querySelector('main');
+    if (mainEl && !mainEl.id) mainEl.id = 'main-content';
+
+    /* ── ARIA: primary nav label ── */
+    var primaryNav = document.querySelector('nav');
+    if (primaryNav && !primaryNav.getAttribute('aria-label')) {
+      primaryNav.setAttribute('aria-label', 'Primary navigation');
+    }
+
+    /* ── ARIA: sidebar nav label ── */
+    var asideEl = document.querySelector('aside');
+    if (asideEl) {
+      var asideNav = asideEl.querySelector('.side-nav, .team-nav-section');
+      if (asideNav && !asideNav.getAttribute('aria-label')) {
+        asideNav.setAttribute('aria-label', 'Page sections');
+        asideNav.setAttribute('role', 'navigation');
+      }
+    }
+
+    /* ── Choropleth SVG accessibility ── */
+    ['mastChoroSvg', 'choroSvg'].forEach(function(id) {
+      var svg = document.getElementById(id);
+      if (!svg) return;
+      svg.setAttribute('role', 'img');
+      svg.setAttribute('aria-label', 'Interactive map of Kentucky cancer incidence rates by county');
+      var title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+      title.textContent = 'Kentucky Cancer Incidence Rates by County';
+      var desc = document.createElementNS('http://www.w3.org/2000/svg', 'desc');
+      desc.textContent = 'Age-adjusted cancer incidence rates for all sites, 2019–2023, shown by county. Data from the Kentucky Cancer Registry via cancer-rates.info.';
+      svg.insertBefore(desc, svg.firstChild);
+      svg.insertBefore(title, svg.firstChild);
+    });
+
     /* Floating toggle button */
     var btn = document.createElement('button');
     btn.id = 'kcr-palette-btn';
@@ -379,6 +420,23 @@
           navEl.classList.remove('nav-open');
           hamburger.setAttribute('aria-expanded', 'false');
           hamburger.innerHTML = '<svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="19" y2="6"/><line x1="3" y1="11" x2="19" y2="11"/><line x1="3" y1="16" x2="19" y2="16"/></svg>';
+        }
+      });
+
+      /* ── Escape key closes nav and palette panel ── */
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        if (navEl && navEl.classList.contains('nav-open')) {
+          navEl.classList.remove('nav-open');
+          hamburger.setAttribute('aria-expanded', 'false');
+          hamburger.innerHTML = '<svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="19" y2="6"/><line x1="3" y1="11" x2="19" y2="11"/><line x1="3" y1="16" x2="19" y2="16"/></svg>';
+          hamburger.focus();
+        }
+        var palettePanel = document.getElementById('kcr-palette-panel');
+        if (palettePanel && palettePanel.classList.contains('open')) {
+          palettePanel.classList.remove('open');
+          var paletteBtn = document.getElementById('kcr-palette-btn');
+          if (paletteBtn) paletteBtn.focus();
         }
       });
     }

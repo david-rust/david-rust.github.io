@@ -18,16 +18,16 @@
 .masthead-wordmark span { color: var(--amber); }
 .masthead-sub {
       font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
-      text-transform: uppercase; color: rgba(255,255,255,0.3); margin-top: 4px;
+      text-transform: uppercase; color:rgba(255,255,255,0.65); margin-top: 4px;
     }
 .masthead-badge {
       font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: uppercase; color: rgba(255,255,255,0.28);
+      text-transform: uppercase; color:rgba(255,255,255,0.65);
       text-align: right; line-height: 1.6;
     }
 .masthead-badge strong {
       display: block; font-family: var(--serif); font-size: 16px; font-weight: 400;
-      color: rgba(255,255,255,0.55); letter-spacing: 0;
+      color:rgba(255,255,255,0.88); letter-spacing: 0;
     }
 .page-hero {
       background: var(--ink); padding: 56px 40px 60px;
@@ -152,7 +152,7 @@
     }
 .issue-body-desc {
       font-size: 13.5px; font-weight: 300;
-      color: rgba(255,255,255,0.42); line-height: 1.75; margin-bottom: 22px;
+      color:rgba(255,255,255,0.72); line-height: 1.75; margin-bottom: 22px;
     }
 .issue-meta {
       display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 22px;
@@ -160,9 +160,9 @@
 .issue-meta-item {
       display: flex; align-items: center; gap: 6px;
       font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; color: rgba(255,255,255,0.3);
+      text-transform: uppercase; color:rgba(255,255,255,0.65);
     }
-.issue-meta-item svg { color: rgba(255,255,255,0.2); }
+.issue-meta-item svg { color:rgba(255,255,255,0.65); }
 .recent-grid {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
       margin-top: 16px;
@@ -187,7 +187,7 @@
 .recent-card:hover::after { transform: scaleX(1); }
 .recent-card-label {
       font-size: 9.5px; font-weight: 600; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--amber); margin-bottom: 5px;
+      text-transform: uppercase; color:var(--amber-dim); margin-bottom: 5px;
     }
 .recent-card-date {
       font-family: var(--serif); font-size: 17px; font-weight: 400;
@@ -197,7 +197,7 @@
 .recent-card-link {
       display: inline-flex; align-items: center; gap: 5px;
       font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--amber); transition: gap 0.15s;
+      text-transform: uppercase; color:var(--amber-dim); transition: gap 0.15s;
     }
 .recent-card-link:hover { gap: 9px; }
 .year-filter {
@@ -212,7 +212,7 @@
     }
 .year-tab:hover { border-color: var(--fog); color: var(--ink); }
 .year-tab.active {
-      background: var(--amber); border-color: var(--amber); color: white;
+      background: var(--amber); border-color:var(--amber-dim); color: var(--ink);
     }
 .archive-year-block { margin-bottom: 8px; }
 .archive-year-block.hidden { display: none; }
@@ -223,16 +223,16 @@
 .year-group-header:hover .year-group-label { color: var(--ink); }
 .year-group-num {
       font-family: var(--serif); font-size: 26px; font-weight: 400;
-      color: var(--amber); line-height: 1; min-width: 52px;
+      color: var(--amber-dim); line-height: 1; min-width: 52px;
     }
 .year-group-label {
       font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--mist); transition: color 0.15s;
+      text-transform: uppercase; color:var(--steel); transition: color 0.15s;
     }
 .year-group-count {
       margin-left: auto;
       font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--mist);
+      text-transform: uppercase; color: var(--steel);
     }
 .year-group-toggle {
       color: var(--mist); transition: transform 0.2s;
@@ -268,7 +268,7 @@
 .issue-row-dl {
       display: inline-flex; align-items: center; gap: 5px;
       font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--amber);
+      text-transform: uppercase; color:var(--amber-dim);
       transition: gap 0.12s; flex-shrink: 0;
     }
 .issue-row-dl:hover { gap: 8px; }
@@ -280,7 +280,7 @@
 .side-info-block + .side-info-block { border-top: 1px solid var(--paper-2); }
 .side-info-label {
       font-size: 10px; font-weight: 600; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--mist); margin-bottom: 5px;
+      text-transform: uppercase; color:var(--steel); margin-bottom: 5px;
     }
 .side-info-val {
       font-size: 13.5px; font-weight: 300; color: var(--steel); line-height: 1.6;
@@ -314,7 +314,7 @@
     }
 .icc-label {
       font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--mist); margin-top: 4px;
+      text-transform: uppercase; color:var(--steel); margin-top: 4px;
     }
 @media (max-width: 960px) {.page-hero-inner { grid-template-columns: 1fr; }
   .page-hero-rule, .hero-stats { display: none; }
@@ -367,13 +367,7 @@
   <div class="ribbon">
     <div class="ribbon-inner">
       <span class="ribbon-label">Partners &amp; Affiliates</span>
-      <div class="ribbon-logos">
-        <a href="#">NAACCR</a>
-        <a href="#">CDC NPCR</a>
-        <a href="#">NCI SEER</a>
-        <a href="#">CSTE</a>
-        <a href="#">UK Markey</a>
-      </div>
+      <div class="ribbon-partners"><span class="ribbon-partner">NAACCR</span><span class="ribbon-partner">CDC NPCR</span><span class="ribbon-partner">NCI SEER</span><span class="ribbon-partner">CSTE</span><span class="ribbon-partner">UK Markey</span></div>
     </div>
   </div>
 
@@ -540,7 +534,7 @@
             <div class="year-group-issues">
               <div class="issue-row">
                 <div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div>
-                <div class="issue-row-date">August 2024 <span>Current issue</span></div>
+                <div class="issue-row-date">August 2024 <span style="color:var(--steel)">Current issue</span></div>
                 <a href="2024.August.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a>
               </div>
               <div class="issue-row">

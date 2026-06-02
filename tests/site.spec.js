@@ -95,13 +95,14 @@ test.describe('Accessibility', () => {
   for (const { name, path } of PAGES) {
     test(`${name} has no critical a11y violations`, async ({ page }) => {
       await page.goto(path);
+      await page.waitForTimeout(800); // allow theme-toggle.js deferred scripts to fully execute
       const results = await new AxeBuilder({ page })
         .withTags(['wcag2a', 'wcag2aa'])
         .analyze();
-      const critical = results.violations.filter(v => v.impact === 'critical');
-      if (critical.length > 0) {
-        const summary = critical.map(v => `${v.id}: ${v.description}`).join('\n');
-        throw new Error(`Critical a11y violations on ${name}:\n${summary}`);
+      const serious = results.violations.filter(v => ['critical', 'serious'].includes(v.impact));
+      if (serious.length > 0) {
+        const summary = serious.map(v => `[${v.impact}] ${v.id}: ${v.description}\n  -> ${v.nodes[0]?.html?.slice(0,120) ?? ''}`).join('\n');
+        throw new Error(`WCAG violations on ${name}:\n${summary}`);
       }
     });
   }

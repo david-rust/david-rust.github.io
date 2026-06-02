@@ -19,15 +19,15 @@
 .process-step:last-child{border-bottom:none;padding-bottom:0;}
 .step-num{width:28px;height:28px;border-radius:50%;background:rgba(200,122,47,.18);border:1px solid rgba(200,122,47,.35);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--amber);flex-shrink:0;margin-top:2px;}
 .step-info h5{font-size:13px;font-weight:600;color:rgba(255,255,255,.75);margin-bottom:2px;}
-.step-info p{font-size:12px;color:rgba(255,255,255,.3);line-height:1.5;}
+.step-info p{font-size:12px;color:rgba(255,255,255,0.72);line-height:1.5;}
 .request-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:48px;}
 .rcard{background:white;border-radius:var(--r);padding:28px;border:1px solid var(--paper-3);position:relative;overflow:hidden;transition:all .2s;cursor:pointer;}
 .rcard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .3s ease;}
 .rcard:hover{box-shadow:0 12px 40px rgba(14,20,25,.1);transform:translateY(-3px);border-color:var(--fog);}
 .rcard:hover::after{transform:scaleX(1);}
-.rcard-badge{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:3px 9px;border-radius:3px;background:rgba(200,122,47,.1);color:var(--amber);margin-bottom:12px;}
+.rcard-badge{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:3px 9px;border-radius:3px;background:rgba(200,122,47,.1);color:var(--amber-dim);margin-bottom:12px;}
 .rcard h3{font-family:var(--serif);font-size:19px;font-weight:400;color:var(--ink);margin-bottom:8px;}
-.rcard p{font-size:14px;color:var(--mist);line-height:1.65;margin-bottom:14px;}
+.rcard p{font-size:14px;color:var(--steel);line-height:1.65;margin-bottom:14px;}
 .rcard .rcard-meta{display:flex;gap:12px;flex-wrap:wrap;}
 .rcard-chip{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;background:var(--paper-2);border-radius:3px;color:var(--steel);}
 .elig-block{background:white;border-radius:var(--r);border:1px solid var(--paper-3);padding:32px;margin-bottom:48px;}
@@ -48,21 +48,21 @@
 .pt-num{width:48px;height:48px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:18px;color:var(--amber);flex-shrink:0;border:2px solid var(--ink-2);}
 .pt-content{background:white;border-radius:var(--r);border:1px solid var(--paper-3);padding:22px 24px;margin-bottom:0;}
 .pt-content h4{font-family:var(--serif);font-size:17px;font-weight:400;color:var(--ink);margin-bottom:6px;}
-.pt-content p{font-size:14px;color:var(--mist);line-height:1.65;}
-.pt-time{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-top:8px;}
+.pt-content p{font-size:14px;color:var(--steel);line-height:1.65;}
+.pt-time{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-dim);margin-top:8px;}
 .fee-table{width:100%;border-collapse:collapse;margin-bottom:48px;background:white;border-radius:var(--r);overflow:hidden;border:1px solid var(--paper-3);}
 .fee-table thead tr{background:var(--ink);}
-.fee-table th{padding:14px 20px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);text-align:left;}
+.fee-table th{padding:14px 20px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.72);text-align:left;}
 .fee-table th:first-child{color:var(--amber);}
 .fee-table td{padding:14px 20px;font-size:14px;color:var(--steel);border-bottom:1px solid var(--paper-2);}
 .fee-table tr:last-child td{border-bottom:none;}
 .fee-table tr:hover td{background:var(--paper);}
 .fee-table td:first-child{font-weight:500;color:var(--ink);}
-.fee-table td.price{font-family:var(--serif);font-size:17px;color:var(--amber);}
+.fee-table td.price{font-family:var(--serif);font-size:17px;color:var(--amber-dim);}
 .req-doc-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--paper-2);font-size:13px;}
 .req-doc-row:last-child{border-bottom:none;}
 .doc-name{color:var(--ink);font-weight:400;}
-.doc-link{font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);display:flex;align-items:center;gap:4px;transition:gap .15s;}
+.doc-link{font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--amber-dim);display:flex;align-items:center;gap:4px;transition:gap .15s;}
 .doc-link:hover{gap:7px;}
 @media(max-width:960px) {.masthead-inner,.page-wrap{grid-template-columns:1fr;}
   .masthead-right,.request-grid,.elig-grid{grid-template-columns:1fr;}
@@ -394,8 +394,8 @@
       <div class="side-card-head">Research <span>Staff</span></div>
       <div class="side-card-body">
         <p style="font-size:13.5px;color:var(--steel);line-height:1.7;margin-bottom:14px;">Have questions before submitting? Our research team is happy to discuss your project and advise on the appropriate request type.</p>
-        <a href="/cdn-cgi/l/email-protection#3d565e4f10595c495c7d48564413585948" style="font-size:13px;font-weight:600;color:var(--amber);display:flex;align-items:center;gap:6px;transition:gap .15s;" onmouseover="this.style.gap='9px'" onmouseout="this.style.gap='6px'"><span class="__cf_email__" data-cfemail="076c64752a6366736647726c7e29626372">[email&#160;protected]</span> →</a>
-        <p style="font-size:13px;color:var(--mist);margin-top:6px;">(859) 257-1779 x110</p>
+        <a href="/cdn-cgi/l/email-protection#3d565e4f10595c495c7d48564413585948" style="font-size:13px;font-weight:600;color:var(--amber-dim);text-decoration:underline;display:flex;align-items:center;gap:6px;transition:gap .15s;" onmouseover="this.style.gap='9px'" onmouseout="this.style.gap='6px'"><span class="__cf_email__" data-cfemail="076c64752a6366736647726c7e29626372">[email&#160;protected]</span> →</a>
+        <p style="font-size:13px;color:var(--steel);margin-top:6px;">(859) 257-1779 x110</p>
       </div>
     </div>
 

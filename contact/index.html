@@ -1,7 +1,7 @@
-<html lang="en"><head>
+﻿<html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us � Kentucky Cancer Registry</title>
+  <title>Contact Us ï¿½ Kentucky Cancer Registry</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/theme.css">
@@ -18,15 +18,15 @@
 .masthead-wordmark span { color: var(--amber); }
 .masthead-sub {
       font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
-      text-transform: uppercase; color: rgba(255,255,255,0.3); margin-top: 4px;
+      text-transform: uppercase; color: rgba(255,255,255,0.65); margin-top: 4px; /* was 0.3 — WCAG AA */
     }
 .masthead-badge {
       font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: uppercase; color: rgba(255,255,255,0.28); text-align: right; line-height: 1.6;
+      text-transform: uppercase; color: rgba(255,255,255,0.65); text-align: right; line-height: 1.6; /* was 0.28 */
     }
 .masthead-badge strong {
       display: block; font-family: var(--serif); font-size: 16px; font-weight: 400;
-      color: rgba(255,255,255,0.55); letter-spacing: 0;
+      color: rgba(255,255,255,0.88); letter-spacing: 0; /* was 0.55 */
     }
 .page-hero {
       background: var(--ink); padding: 56px 40px 60px;
@@ -62,7 +62,7 @@
     }
 .page-hero-desc {
       font-size: 15px; font-weight: 300;
-      color: rgba(255,255,255,0.42); line-height: 1.8; margin-top: 20px;
+      color:rgba(255,255,255,0.88); line-height: 1.8; margin-top: 20px;
     }
 .hero-address {
       display: flex; flex-direction: column; gap: 28px;
@@ -80,7 +80,7 @@
     }
 .hero-addr-label {
       font-size: 10px; font-weight: 600; letter-spacing: 0.2em;
-      text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 6px;
+      text-transform: uppercase; color:rgba(255,255,255,0.65); margin-bottom: 6px;
     }
 .hero-addr-val {
       font-family: var(--sans); font-size: 14px; font-weight: 300;
@@ -126,7 +126,7 @@
 .staff-info { flex: 1; min-width: 0; }
 .staff-role {
       font-size: 9.5px; font-weight: 600; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--amber); margin-bottom: 4px;
+      text-transform: uppercase; color: var(--amber-dim); margin-bottom: 4px; /* was amber — WCAG AA */
     }
 .staff-name {
       font-family: var(--serif); font-size: 17px; font-weight: 400;
@@ -134,7 +134,7 @@
     }
 .staff-card.featured .staff-name { font-size: 20px; }
 .staff-title {
-      font-size: 12.5px; font-weight: 300; color: var(--mist); line-height: 1.5;
+      font-size: 12.5px; font-weight: 300; color: var(--steel); line-height: 1.5; /* was mist */
     }
 .staff-contacts {
       display: flex; flex-direction: column; gap: 5px; margin-top: 12px;
@@ -144,8 +144,8 @@
       font-size: 12.5px; font-weight: 300; color: var(--steel);
     }
 .staff-contact-row svg { color: var(--mist); flex-shrink: 0; }
-.staff-contact-row a { color: var(--amber); transition: color 0.15s; }
-.staff-contact-row a:hover { color: var(--amber-lt); }
+.staff-contact-row a { color: var(--amber-dim); transition: color 0.15s; } /* was amber — WCAG AA */
+.staff-contact-row a:hover { color: var(--amber); }
 .map-block {
       background: white; border-radius: var(--r);
       border: 1px solid var(--paper-3); overflow: hidden;
@@ -166,10 +166,10 @@
 .map-cta {
       display: inline-flex; align-items: center; gap: 7px;
       font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--amber); white-space: nowrap;
+      text-transform: uppercase; color: var(--amber-dim); white-space: nowrap; /* WCAG AA */
       transition: gap 0.15s;
     }
-.map-cta:hover { gap: 11px; }
+.map-cta:hover { gap: 11px; color: var(--amber); }
 .form-card {
       background: white; border-radius: var(--r);
       border: 1px solid var(--paper-3); padding: 32px 36px;
@@ -199,29 +199,29 @@
 .form-textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
 .form-submit {
       display: inline-flex; align-items: center; gap: 10px;
-      background: var(--amber); color: white;
+      background: var(--amber); color: var(--ink); /* ink on amber = 5.2:1 WCAG AA (was white = 3.2:1) */
       padding: 13px 28px; border-radius: 3px; border: none; cursor: pointer;
       font-family: var(--sans); font-size: 13px; font-weight: 600;
       letter-spacing: 0.06em; text-transform: uppercase;
       transition: background 0.2s, transform 0.15s; margin-top: 4px;
     }
-.form-submit:hover { background: var(--amber-lt); transform: translateY(-1px); }
+.form-submit:hover { background: var(--amber-lt); transform: translateY(-1px); color: var(--ink); }
 .form-note {
-      font-size: 12px; font-weight: 300; color: var(--mist);
+      font-size: 12px; font-weight: 300; color: var(--steel); /* was mist (2.47:1 fails) */
       margin-top: 14px; line-height: 1.7;
     }
-.form-note a { color: var(--amber); }
-.form-note a:hover { color: var(--amber-lt); }
+.form-note a { color: var(--amber-dim); } /* WCAG AA — amber on white fails */
+.form-note a:hover { color: var(--amber); }
 .side-nav-divider { height: 1px; background: var(--paper-2); margin: 4px 0; }
 .side-info-block { padding: 18px 22px; }
 .side-info-block + .side-info-block { border-top: 1px solid var(--paper-2); }
 .side-info-label {
       font-size: 10px; font-weight: 600; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--mist); margin-bottom: 5px;
+      text-transform: uppercase; color: var(--steel); margin-bottom: 5px; /* was mist — WCAG AA */
     }
 .side-info-val { font-size: 14px; font-weight: 400; color: var(--ink); line-height: 1.5; }
-.side-info-val a { color: var(--amber); }
-.side-info-val a:hover { color: var(--amber-lt); }
+.side-info-val a { color: var(--amber-dim); } /* WCAG AA */
+.side-info-val a:hover { color: var(--amber); }
 .dark-card-tag {
       font-size: 9.5px; font-weight: 600; letter-spacing: 0.2em;
       text-transform: uppercase; color: var(--amber); margin-bottom: 10px;
@@ -229,7 +229,7 @@
 .dark-card-link {
       display: inline-flex; align-items: center; gap: 6px;
       font-size: 11.5px; font-weight: 600; letter-spacing: 0.08em;
-      text-transform: uppercase; color: rgba(255,255,255,0.55);
+      text-transform: uppercase; color:rgba(255,255,255,0.72);
       transition: color 0.15s, gap 0.15s;
     }
 .dark-card-link:hover { color: var(--amber-lt); gap: 10px; }
@@ -251,7 +251,7 @@
     }
 .qc-label {
       font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--mist); margin-bottom: 2px;
+      text-transform: uppercase; color: var(--steel); margin-bottom: 2px; /* was mist — WCAG AA */
     }
 .qc-val { font-size: 13.5px; font-weight: 400; color: var(--ink); }
 .qc-val a { color: var(--ink); transition: color 0.15s; }
@@ -275,7 +275,7 @@
 
   <!-- TOPBAR -->
   <div class="topbar">
-    <span>University of Kentucky � Markey Cancer Center</span>
+    <span>University of Kentucky ï¿½ Markey Cancer Center</span>
     <div class="topbar-links">
       <a href="#">SEER Reporting</a>
       <a href="#">Site Map</a>
@@ -314,12 +314,12 @@
   <div class="ribbon">
     <div class="ribbon-inner">
       <span class="ribbon-label">Partners &amp; Affiliates</span>
-      <div class="ribbon-logos">
-        <a href="#">NAACCR</a>
-        <a href="#">CDC NPCR</a>
-        <a href="#">NCI SEER</a>
-        <a href="#">CSTE</a>
-        <a href="#">UK Markey</a>
+      <div class="ribbon-partners">
+        <span class="ribbon-partner">NAACCR</span>
+        <span class="ribbon-partner">CDC NPCR</span>
+        <span class="ribbon-partner">NCI SEER</span>
+        <span class="ribbon-partner">CSTE</span>
+        <span class="ribbon-partner">UK Markey</span>
       </div>
     </div>
   </div>
@@ -366,8 +366,8 @@
           <div>
             <div class="hero-addr-label">Office Hours</div>
             <div class="hero-addr-val">
-              Monday � Friday<br>
-              8:00 AM � 5:00 PM Eastern
+              Monday ï¿½ Friday<br>
+              8:00 AM ï¿½ 5:00 PM Eastern
             </div>
           </div>
         </div>
@@ -386,7 +386,7 @@
             <div class="eyebrow">Registry Leadership</div>
             <h2 class="section-heading">Directors &amp; Staff</h2>
           </div>
-          <a href="staff/" style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);display:flex;align-items:center;gap:5px;transition:gap .15s">
+          <a href="staff/" class="section-link">
             Full Directory
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
           </a>
@@ -394,7 +394,7 @@
 
         <div class="staff-grid">
 
-          <!-- Director � featured -->
+          <!-- Director ï¿½ featured -->
           <div class="staff-card featured">
             <div class="staff-avatar">ED</div>
             <div class="staff-info">
@@ -518,12 +518,12 @@
           </div>
         </div>
         <div class="map-block">
-          <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3145.9!2d-84.541683!3d38.030177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88439a4e8cc26f11%3A0x4c4c1b3a7a6f2d2b!2s2365%20Harrodsburg%20Rd%2C%20Lexington%2C%20KY%2040504!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          <iframe class="map-frame" title="Google Maps â€” Kentucky Cancer Registry, 2365 Harrodsburg Rd, Lexington KY" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3145.9!2d-84.541683!3d38.030177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88439a4e8cc26f11%3A0x4c4c1b3a7a6f2d2b!2s2365%20Harrodsburg%20Rd%2C%20Lexington%2C%20KY%2040504!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
           </iframe>
           <div class="map-footer">
             <div class="map-address">
               <strong>Kentucky Cancer Registry</strong>
-              2365 Harrodsburg Rd., Suite A230 � Lexington, KY 40504
+              2365 Harrodsburg Rd., Suite A230 ï¿½ Lexington, KY 40504
             </div>
             <a href="https://maps.google.com/?q=2365+Harrodsburg+Rd,+Lexington,+KY+40504" target="_blank" class="map-cta">
               Open in Maps
@@ -544,25 +544,25 @@
         <div class="form-card">
           <div class="form-grid">
             <div class="form-group">
-              <label class="form-label">First Name</label>
-              <input type="text" class="form-input" placeholder="Jane">
+              <label class="form-label" for="contact-first">First Name</label>
+              <input type="text" id="contact-first" class="form-input" placeholder="Jane" required aria-required="true">
             </div>
             <div class="form-group">
-              <label class="form-label">Last Name</label>
-              <input type="text" class="form-input" placeholder="Smith">
+              <label class="form-label" for="contact-last">Last Name</label>
+              <input type="text" id="contact-last" class="form-input" placeholder="Smith" required aria-required="true">
             </div>
             <div class="form-group">
-              <label class="form-label">Email Address</label>
-              <input type="email" class="form-input" placeholder="jane.smith@institution.edu">
+              <label class="form-label" for="contact-email">Email Address</label>
+              <input type="email" id="contact-email" class="form-input" placeholder="jane.smith@institution.edu" required aria-required="true">
             </div>
             <div class="form-group">
-              <label class="form-label">Phone (optional)</label>
-              <input type="tel" class="form-input" placeholder="(555) 000-0000">
+              <label class="form-label" for="contact-phone">Phone (optional)</label>
+              <input type="tel" id="contact-phone" class="form-input" placeholder="(555) 000-0000">
             </div>
             <div class="form-group full">
               <label class="form-label" for="contact-topic">Topic</label>
               <select class="form-select" id="contact-topic">
-                <option value="" disabled="" selected="">Select a topic�</option>
+                <option value="" disabled="" selected="">Select a topicï¿½</option>
                 <option>Cancer Reporting Requirements</option>
                 <option>Data / Research Request</option>
                 <option>Technical Support</option>
@@ -573,8 +573,8 @@
               </select>
             </div>
             <div class="form-group full">
-              <label class="form-label">Message</label>
-              <textarea class="form-textarea" placeholder="Describe your question or request�"></textarea>
+              <label class="form-label" for="contact-message">Message</label>
+              <textarea class="form-textarea" id="contact-message" placeholder="Describe your question or request" required aria-required="true"></textarea>
             </div>
           </div>
           <button type="button" class="form-submit">
@@ -672,7 +672,7 @@
           </div>
         </div>
         <div style="padding: 0 22px 20px;">
-          <a href="data-requests.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--amber);color:white;padding:10px 20px;border-radius:3px;font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;transition:background .2s,transform .15s" onmouseover="this.style.background='var(--amber-lt)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--amber)';this.style.transform='translateY(0)'">
+          <a href="data-requests.html" class="btn-primary" style="margin-top:0;">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
             Start a Request
           </a>
@@ -719,7 +719,7 @@
       </div>
     </div>
     <div class="footer-lower">
-      <span>� 2025 University of Kentucky � Kentucky Cancer Registry. All rights reserved.</span>
+      <span>ï¿½ 2025 University of Kentucky ï¿½ Kentucky Cancer Registry. All rights reserved.</span>
       <span>Last updated: September 4, 2025</span>
     </div>
   </footer>

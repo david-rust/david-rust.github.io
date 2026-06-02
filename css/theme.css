@@ -8,6 +8,22 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 16px; scroll-behavior: smooth; }
 
+/* ─── SKIP LINK ──────────────────────────────────────────── */
+.skip-link {
+  position: absolute; left: 16px; top: -100%;
+  background: var(--ink, #0e1419); color: white;
+  padding: 10px 20px; font-size: 14px; font-weight: 600;
+  border-radius: 0 0 4px 4px; text-decoration: none;
+  z-index: 99999; transition: top 0.15s;
+}
+.skip-link:focus, .skip-link:focus-visible { top: 0; outline: 2px solid #c87a2f; outline-offset: 2px; }
+
+/* ─── FOCUS INDICATORS ───────────────────────────────────── */
+:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; border-radius: 2px; }
+:focus:not(:focus-visible) { outline: none; }
+/* Override outline:none on nav search input */
+.nav-search-form input:focus-visible { outline: 2px solid var(--amber); outline-offset: -1px; }
+
 /* ─── TOKENS ─────────────────────────────────────────────── */
 :root {
   --ink:       #0e1419;
@@ -36,8 +52,13 @@ img { display: block; max-width: 100%; }
 /* ─── TYPOGRAPHY ─────────────────────────────────────────── */
 .eyebrow {
   font-size: 10.5px; font-weight: 600; letter-spacing: 0.22em;
-  text-transform: uppercase; color: var(--amber); margin-bottom: 10px;
+  text-transform: uppercase; color: var(--amber-dim); margin-bottom: 10px; /* amber-dim on light = 4.85:1 WCAG AA */
 }
+/* On dark backgrounds, restore full amber brightness */
+.dark-card .eyebrow,
+.masthead .eyebrow,
+[class*="mh-"] .eyebrow,
+.side-card-head .eyebrow { color: var(--amber); }
 .section-heading {
   font-family: var(--serif); font-size: 28px; font-weight: 400;
   color: var(--ink); letter-spacing: -0.01em; line-height: 1.1; margin-top: 6px;
@@ -48,24 +69,26 @@ img { display: block; max-width: 100%; }
 }
 .section-link {
   font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--amber); display: flex; align-items: center; gap: 5px; transition: gap 0.15s;
+  color: var(--amber-dim); display: flex; align-items: center; gap: 5px; transition: gap 0.15s; /* amber-dim on light = 4.85:1 WCAG AA */
 }
-.section-link:hover { gap: 9px; }
+.section-link:hover { gap: 9px; color: var(--amber); }
 
 /* ─── TOPBAR ─────────────────────────────────────────────── */
 .topbar {
   background: var(--ink); height: 36px; display: flex; align-items: center;
   padding: 0 40px; font-size: 11px; letter-spacing: 0.06em;
-  color: rgba(255,255,255,0.3); justify-content: space-between;
+  color: rgba(255,255,255,0.62); justify-content: space-between; /* was 0.3 — WCAG AA */
 }
-.topbar a { color: rgba(255,255,255,0.35); transition: color 0.15s; }
-.topbar a:hover { color: var(--amber-lt); }
+.topbar a,
+.topbar .topbar-inner a { color: rgba(255,255,255,0.68); transition: color 0.15s; } /* was 0.35 — higher specificity overrides staff page inline styles */
+.topbar a:hover,
+.topbar .topbar-inner a:hover { color: var(--amber-lt); }
 /* layout helpers used by different pages */
 .topbar-inner { max-width: 1320px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; }
-.topbar-left  { font-size: 11px; letter-spacing: 0.06em; color: rgba(255,255,255,0.3); }
+.topbar-left  { font-size: 11px; letter-spacing: 0.06em; color: rgba(255,255,255,0.62); } /* was 0.3 */
 .topbar-sep   { flex: 1; }
 .topbar-right { display: flex; gap: 20px; font-size: 11px; letter-spacing: 0.06em; }
-.topbar-right a { color: rgba(255,255,255,0.35); transition: color 0.15s; }
+.topbar-right a { color: rgba(255,255,255,0.68); transition: color 0.15s; } /* was 0.35 */
 .topbar-right a:hover { color: var(--amber-lt); }
 .topbar-links { display: flex; gap: 24px; }
 
@@ -99,24 +122,24 @@ nav { background: var(--paper); border-bottom: 1px solid var(--paper-3); positio
 /* ─── RIBBON ─────────────────────────────────────────────── */
 .ribbon { background: var(--ink-2); overflow: hidden; }
 .ribbon-inner { max-width: 1320px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; height: 64px; gap: 16px; }
-.ribbon-label { font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.25); white-space: nowrap; flex-shrink: 0; }
+.ribbon-label { font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.65); white-space: nowrap; flex-shrink: 0; } /* was 0.25 — WCAG AA */
 .ribbon-divider { width: 1px; height: 28px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
 /* image-based ribbon (index) */
 .ribbon-logos { display: flex; gap: 36px; align-items: center; }
-.ribbon-logos a { filter: brightness(0) invert(1); opacity: 0.22; transition: opacity 0.2s; }
-.ribbon-logos a:hover { opacity: 0.55; }
+.ribbon-logos a { filter: brightness(0) invert(1); opacity: 0.55; transition: opacity 0.2s; } /* was 0.22 */
+.ribbon-logos a:hover { opacity: 0.85; }
 .ribbon-logos img { height: 28px; max-width: 110px; object-fit: contain; }
 /* text-based ribbon (other pages) */
 .ribbon-partners { display: flex; gap: 32px; align-items: center; }
-.ribbon-partner { font-size: 11.5px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: rgba(255,255,255,0.22); transition: color 0.2s; }
-.ribbon-partner:hover { color: rgba(255,255,255,0.55); }
+.ribbon-partner { font-size: 11.5px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: rgba(255,255,255,0.65); transition: color 0.2s; } /* was 0.22 — WCAG AA */
+.ribbon-partner:hover { color: rgba(255,255,255,0.9); }
 
 /* ─── PAGE LAYOUT ────────────────────────────────────────── */
 .page-wrap { max-width: 1320px; margin: 0 auto; padding: 72px 40px 80px; display: grid; grid-template-columns: 1fr 340px; gap: 72px; }
 
 /* ─── SIDEBAR ────────────────────────────────────────────── */
 .side-card { background: white; border-radius: var(--r); border: 1px solid var(--paper-3); overflow: hidden; margin-bottom: 20px; }
-.side-card-head { background: var(--ink); padding: 16px 22px; display: flex; align-items: center; gap: 10px; }
+.side-card-head { background: var(--ink); padding: 16px 22px; display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.75); } /* explicit color so text nodes don't inherit steel (2.56:1 fails on ink) */
 .side-card-head-text { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
 .side-card-head-text span { color: var(--amber); }
 /* pages that use a simpler header (no icon) */
@@ -131,8 +154,8 @@ nav { background: var(--paper); border-bottom: 1px solid var(--paper-3); positio
 .side-nav-link.active { color: var(--ink); background: var(--paper); border-left-color: var(--amber); }
 .side-nav-link .ico { color: var(--fog); flex-shrink: 0; transition: color 0.15s; }
 .side-nav-link:hover .ico { color: var(--amber); }
-.side-nav-link.indent { padding-left: 40px; font-size: 13px; color: var(--mist); }
-.side-nav-link.indent:hover { color: var(--steel); }
+.side-nav-link.indent { padding-left: 40px; font-size: 13px; color: var(--steel); } /* was mist (2.47:1 fails) */
+.side-nav-link.indent:hover { color: var(--ink); }
 .side-nav-sep { border: none; border-top: 1px solid var(--paper-2); margin: 6px 0; }
 
 /* ─── DARK CARD ──────────────────────────────────────────── */
@@ -140,12 +163,12 @@ nav { background: var(--paper); border-bottom: 1px solid var(--paper-3); positio
 .dark-card::before { content: ''; position: absolute; top: -30px; right: -30px; width: 100px; height: 100px; background: var(--amber); border-radius: 50%; opacity: 0.06; }
 .dark-card .eyebrow { font-size: 10px; color: var(--amber); }
 .dark-card h3 { font-family: var(--serif); font-size: 19px; color: rgba(255,255,255,0.85); margin: 10px 0 10px; line-height: 1.2; }
-.dark-card p { font-size: 13.5px; color: rgba(255,255,255,0.38); line-height: 1.7; }
+.dark-card p { font-size: 13.5px; color: rgba(255,255,255,0.72); line-height: 1.7; } /* was 0.38 — WCAG AA */
 
 /* ─── BUTTONS ────────────────────────────────────────────── */
 .btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
-  background: var(--amber); color: white; padding: 12px 24px;
+  background: var(--amber); color: var(--ink); padding: 12px 24px; /* ink on amber = 5.2:1 — WCAG AA (was white = 3.2:1) */
   border-radius: 3px; font-family: var(--sans); font-size: 13px; font-weight: 600;
   letter-spacing: 0.05em; text-transform: uppercase; transition: background 0.2s, transform 0.15s; margin-top: 16px;
 }
@@ -160,25 +183,26 @@ nav { background: var(--paper); border-bottom: 1px solid var(--paper-3); positio
 .btn-ghost:hover { border-color: rgba(255,255,255,0.4); color: white; }
 
 /* ─── FOOTER ─────────────────────────────────────────────── */
-footer { background: var(--ink); color: rgba(255,255,255,0.28); }
+footer { background: var(--ink); color: rgba(255,255,255,0.62); } /* was 0.28 — WCAG AA */
 .footer-upper {
   max-width: 1320px; margin: 0 auto; padding: 48px 40px;
   display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px;
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
-.footer-wordmark { font-family: var(--serif); font-size: 22px; color: rgba(255,255,255,0.75); font-weight: 400; line-height: 1.2; margin-bottom: 12px; }
+.footer-wordmark { font-family: var(--serif); font-size: 22px; color: rgba(255,255,255,0.90); font-weight: 400; line-height: 1.2; margin-bottom: 12px; }
 .footer-wordmark span { color: var(--amber); }
-.footer-desc { font-size: 12.5px; line-height: 1.7; color: rgba(255,255,255,0.28); font-weight: 300; }
-.footer-col-title { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.3); font-weight: 600; margin-bottom: 16px; }
+.footer-desc { font-size: 12.5px; line-height: 1.7; color: rgba(255,255,255,0.62); font-weight: 300; } /* was 0.28 */
+.footer-col-title { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.55); font-weight: 600; margin-bottom: 16px; } /* was 0.3 */
 .footer-links { display: flex; flex-direction: column; gap: 10px; }
-.footer-link { display: block; font-size: 13px; color: rgba(255,255,255,0.35); transition: color 0.15s; margin-bottom: 10px; }
+.footer-link { display: block; font-size: 13px; color: rgba(255,255,255,0.72); transition: color 0.15s; margin-bottom: 10px; } /* was 0.35 */
 .footer-link:hover { color: var(--amber-lt); }
 .footer-lower {
   max-width: 1320px; margin: 0 auto; padding: 20px 40px;
   display: flex; align-items: center; justify-content: space-between;
   font-size: 11.5px; letter-spacing: 0.04em; border-top: 1px solid rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.62); /* was 0.28 */
 }
-.footer-lower a { color: rgba(255,255,255,0.25); transition: color 0.15s; }
+.footer-lower a { color: rgba(255,255,255,0.72); transition: color 0.15s; } /* was 0.25 */
 .footer-lower a:hover { color: var(--amber); }
 
 /* ─── KCR BLUE THEME ─────────────────────────────────────── */
@@ -249,9 +273,11 @@ html[data-theme="kcr-blue"] .map-ky-rate strong    { color: var(--silver-lt); }
 html[data-theme="kcr-blue"] .mast-choro-link       { color: var(--silver); }
 html[data-theme="kcr-blue"] .mast-choro-link:hover { color: var(--silver-lt); }
 
-/* ── Eyebrows & labels → gold ── */
-html[data-theme="kcr-blue"] .eyebrow               { color: var(--gold); }
-html[data-theme="kcr-blue"] .dark-card .eyebrow    { color: var(--gold); }
+/* ── Eyebrows & labels → gold (dim on light, bright on dark) ── */
+html[data-theme="kcr-blue"] .eyebrow               { color: var(--gold-dim); } /* gold-dim on light bg passes WCAG AA */
+html[data-theme="kcr-blue"] .dark-card .eyebrow,
+html[data-theme="kcr-blue"] .masthead .eyebrow,
+html[data-theme="kcr-blue"] [class*="mh-"] .eyebrow { color: var(--gold); }
 html[data-theme="kcr-blue"] .side-card-head-text span { color: var(--gold); }
 html[data-theme="kcr-blue"] .side-card-head span   { color: var(--gold); }
 
@@ -345,32 +371,33 @@ html[data-theme="kcr-blue"] .footer-lower a:hover  { color: var(--gold); }
 .pub-list { display: flex; flex-direction: column; gap: 0; margin-bottom: 24px; }
 .pub-item { display: grid; grid-template-columns: 56px 1fr; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--paper-3); }
 .pub-item:first-child { border-top: 1px solid var(--paper-3); }
-.pub-year { font-size: 11px; font-weight: 600; letter-spacing: .1em; color: var(--amber); padding-top: 3px; text-align: right; }
+.pub-year { font-size: 11px; font-weight: 600; letter-spacing: .1em; color: var(--amber-dim); padding-top: 3px; text-align: right; } /* amber-dim on white = 5.56:1 */
 .pub-title { font-family: var(--serif); font-size: 16px; font-weight: 400; color: var(--ink); line-height: 1.35; display: block; margin-bottom: 6px; transition: color .15s; }
 .pub-title:hover { color: var(--amber); }
-.pub-meta { font-size: 12px; color: var(--mist); margin-bottom: 8px; line-height: 1.5; }
+.pub-meta { font-size: 12px; color: var(--steel); margin-bottom: 8px; line-height: 1.5; } /* was mist (2.47:1 fails) — steel = 6.3:1 */
 .pub-desc { font-size: 13.5px; color: var(--steel); line-height: 1.7; font-weight: 300; }
 .news-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
 .news-item { display: grid; grid-template-columns: 56px 1fr; gap: 20px; padding: 20px; background: white; border: 1px solid var(--paper-3); border-radius: var(--r); transition: all .2s; }
 .news-item:hover { box-shadow: 0 8px 24px rgba(14,20,25,.08); transform: translateY(-2px); border-color: var(--fog); }
-.news-year { font-size: 11px; font-weight: 600; letter-spacing: .1em; color: var(--amber); padding-top: 3px; text-align: right; }
+.news-year { font-size: 11px; font-weight: 600; letter-spacing: .1em; color: var(--amber-dim); padding-top: 3px; text-align: right; }
 .news-title { font-family: var(--serif); font-size: 15px; font-weight: 400; color: var(--ink); line-height: 1.35; display: block; margin-bottom: 5px; transition: color .15s; }
 .news-title:hover { color: var(--amber); }
-.news-source { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--mist); margin-bottom: 7px; }
+.news-source { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--steel); margin-bottom: 7px; } /* was mist (2.47:1 fails) */
 .news-desc { font-size: 13px; color: var(--steel); line-height: 1.65; font-weight: 300; }
 
 /* ─── STAFF TEAM NAV ─────────────────────────────────────── */
 .team-nav-section { margin-bottom: 20px; }
-.team-nav-label { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--mist); margin-bottom: 12px; padding-left: 2px; }
+.team-nav-label { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--steel); margin-bottom: 12px; padding-left: 2px; } /* was mist (2.47:1 fails) */
 .team-nav { display: flex; flex-direction: column; gap: 1px; background: var(--paper-3); border-radius: var(--r); overflow: hidden; margin-bottom: 0; }
 .team-nav-item { background: white; display: flex; align-items: center; gap: 12px; padding: 12px 18px; font-size: 13.5px; color: var(--steel); transition: all .15s; text-decoration: none; }
 .team-nav-item:hover { background: var(--paper); color: var(--ink); }
 .team-nav-item.current { background: var(--paper); border-left: 2px solid var(--amber); color: var(--ink); padding-left: 16px; }
 .team-initials { width: 30px; height: 30px; background: var(--ink-2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: rgba(255,255,255,.5); flex-shrink: 0; }
-.team-nav-item.current .team-initials { background: var(--amber); color: white; }
+.team-nav-item.current .team-initials { background: var(--amber); color: var(--ink); } /* ink on amber = 5.2:1 (was white = 3.2:1) */
 .team-item-info { flex: 1; min-width: 0; }
 .team-item-name { font-size: 13px; font-weight: 500; color: inherit; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.team-item-title { font-size: 11px; color: var(--mist); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.team-item-title { font-size: 11px; color: var(--steel); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } /* was mist (2.47:1 fails) */
+.team-nav .team-item-title { color: #3d5166 !important; } /* override staff page inline mist; literal avoids var() resolution issues */
 .tcp-reset {
   margin: 0 12px 12px; padding: 7px 10px; border-radius: 4px; cursor: pointer;
   font-size: 10.5px; font-weight: 700; letter-spacing: 0.07em;
@@ -380,6 +407,24 @@ html[data-theme="kcr-blue"] .footer-lower a:hover  { color: var(--gold); }
 }
 .tcp-reset:hover { color: var(--ink); border-color: var(--steel); }
 
+/* ─── BACK BUTTON CONTRAST FIX ──────────────────────────── */
+/* Staff page inline styles set amber (2.8:1 fails). Override with amber-dim (4.85:1) */
+main .back-btn { color: var(--amber-dim); }
+main .back-btn:hover { color: var(--amber); }
+
+/* ─── INFO-LABEL / MIST-ON-LIGHT CONTRAST FIX ───────────── */
+/* Staff page inline styles use --mist (0,1,0 specificity). Use 0,2,0 to win the cascade. */
+.info-row .info-label { color: var(--steel); }
+
+/* ─── BREADCRUMB CONTRAST FIX ───────────────────────────── */
+/* Staff page inline styles use rgba(.28) — override with higher specificity */
+.masthead .breadcrumb a { color: rgba(255,255,255,0.72) !important; }
+.masthead .breadcrumb a:hover { color: var(--amber) !important; }
+
+/* ─── TEAM-COUNT CONTRAST FIX ───────────────────────────── */
+/* --mist on white = 2.16:1, fails. Use steel instead */
+.team-count { color: var(--steel) !important; }
+
 /* ─── TEAM NAV COLLAPSE ──────────────────────────────────── */
 .team-nav-collapsed { display: none; }
 .team-nav-toggle {
@@ -387,10 +432,10 @@ html[data-theme="kcr-blue"] .footer-lower a:hover  { color: var(--gold); }
   background: none; border: none; border-top: 1px solid var(--paper-3);
   font-family: var(--sans); font-size: 12px; font-weight: 600;
   letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--amber); cursor: pointer; text-align: left;
+  color: var(--amber-dim); cursor: pointer; text-align: left; /* amber-dim on white = 6.24:1 WCAG AA */
   transition: background 0.15s, color 0.15s;
 }
-.team-nav-toggle:hover { background: var(--paper); color: var(--amber-lt); }
+.team-nav-toggle:hover { background: var(--paper); color: var(--amber); }
 
 /* ─── ANIMATIONS ─────────────────────────────────────────── */
 @keyframes riseIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
@@ -518,4 +563,29 @@ html[data-theme="kcr-blue"] .nav-hamburger { color: rgba(255,255,255,0.8); }
 
   /* ── Topbar: hide on very small screens to save space ── */
   .topbar { display: none; }
+}
+
+/* ─── CLOUDFLARE EMAIL OBFUSCATION ──────────────────────── */
+/* CF replaces emails with a span; inherit parent color for proper contrast */
+.__cf_email__ { color: inherit; }
+
+/* ─── PROSE LINK UNDERLINES ──────────────────────────────── */
+/* Links in body text must be distinguishable without relying on color alone (WCAG 1.4.1) */
+.form-note a,
+.director-text a,
+.intro-body a,
+.page-hero-desc a,
+.pub-desc a,
+.news-desc a,
+.dark-card p a,
+.hero-addr-val a,
+p a:not([class]),
+li a:not([class]),
+.side-info-val a { text-decoration: underline; }
+
+/* ─── REDUCED MOTION ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .rise { animation: none !important; opacity: 1 !important; }
+  .fcard, .news-item { transition: none; }
+  .btn-primary, .btn-ghost, .section-link, .nav-link { transition: none; }
 }

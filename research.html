@@ -19,13 +19,13 @@
 .process-step:last-child{border-bottom:none;padding-bottom:0;}
 .step-num{width:28px;height:28px;border-radius:50%;background:rgba(200,122,47,.18);border:1px solid rgba(200,122,47,.35);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--amber);flex-shrink:0;margin-top:2px;}
 .step-info h5{font-size:13px;font-weight:600;color:rgba(255,255,255,.75);margin-bottom:2px;}
-.step-info p{font-size:12px;color:rgba(255,255,255,.3);line-height:1.5;}
+.step-info p{font-size:12px;color:rgba(255,255,255,0.72);line-height:1.5;}
 .request-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:48px;}
 .rcard{background:white;border-radius:var(--r);padding:28px;border:1px solid var(--paper-3);position:relative;overflow:hidden;transition:all .2s;cursor:pointer;}
 .rcard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .3s ease;}
 .rcard:hover{box-shadow:0 12px 40px rgba(14,20,25,.1);transform:translateY(-3px);border-color:var(--fog);}
 .rcard:hover::after{transform:scaleX(1);}
-.rcard-badge{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:3px 9px;border-radius:3px;background:rgba(200,122,47,.1);color:var(--amber);margin-bottom:12px;}
+.rcard-badge{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:3px 9px;border-radius:3px;background:rgba(200,122,47,.1);color:var(--amber-dim);margin-bottom:12px;}
 .rcard h3{font-family:var(--serif);font-size:19px;font-weight:400;color:var(--ink);margin-bottom:8px;}
 .rcard p{font-size:14px;color:var(--mist);line-height:1.65;margin-bottom:14px;}
 .rcard .rcard-meta{display:flex;gap:12px;flex-wrap:wrap;}
@@ -52,7 +52,7 @@
 .pt-time{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-top:8px;}
 .fee-table{width:100%;border-collapse:collapse;margin-bottom:48px;background:white;border-radius:var(--r);overflow:hidden;border:1px solid var(--paper-3);}
 .fee-table thead tr{background:var(--ink);}
-.fee-table th{padding:14px 20px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);text-align:left;}
+.fee-table th{padding:14px 20px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.72);text-align:left;}
 .fee-table th:first-child{color:var(--amber);}
 .fee-table td{padding:14px 20px;font-size:14px;color:var(--steel);border-bottom:1px solid var(--paper-2);}
 .fee-table tr:last-child td{border-bottom:none;}

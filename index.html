@@ -25,7 +25,7 @@
 .mstat { padding: 20px 0; text-align: center; }
 .mstat-num { font-family: var(--serif); font-size: 34px; color: var(--white); line-height: 1; }
 .mstat-num span { color: var(--amber); }
-.mstat-label { font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-top: 5px; }
+.mstat-label { font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color:rgba(255,255,255,0.65); margin-top: 5px; }
 .masthead-right {
       display: flex;
       flex-direction: column;
@@ -74,7 +74,7 @@
       letter-spacing: -0.01em;
       color: rgba(255,255,255,0.9);
     }
-.map-sub-line    { margin-top: 5px; font-size: 0.75rem; color: rgba(255,255,255,0.45); font-weight: 300; letter-spacing: 0.04em; }
+.map-sub-line    { margin-top: 5px; font-size: 0.75rem; color:rgba(255,255,255,0.72); font-weight: 300; letter-spacing: 0.04em; }
 .map-method-line { margin-top: 2px; font-size: 0.7rem; color: rgba(255,255,255,0.3); font-weight: 300; letter-spacing: 0.04em; }
 .map-ky-rate     {
       margin-top: 10px;
@@ -167,7 +167,7 @@
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
+      color:rgba(255,255,255,0.72);
     }
 .tip-val {
       font-size: 12px;
@@ -218,22 +218,22 @@
     }
 .mast-stat-cell:last-child { border-right: none; }
 .mast-panel-eyebrow {
-      font-size: 8.5px; font-weight: 700;
+      font-size: 10px; font-weight: 700; /* was 8.5px — increased for readability */
       letter-spacing: 0.16em; text-transform: uppercase;
-      color: rgba(255,255,255,0.28);
+      color: rgba(255,255,255,0.65); /* was 0.28 — WCAG AA */
       margin-bottom: 4px;
     }
 .mast-panel-name {
       font-family: var(--serif);
       font-size: 14px;
-      color: rgba(255,255,255,0.82);
+      color: rgba(255,255,255,0.90); /* was 0.82 */
       line-height: 1.2;
       min-height: 18px;
     }
 .mast-panel-label {
-      font-size: 8.5px; font-weight: 700;
+      font-size: 10px; font-weight: 700; /* was 8.5px */
       letter-spacing: 0.14em; text-transform: uppercase;
-      color: rgba(255,255,255,0.28);
+      color: rgba(255,255,255,0.65); /* was 0.28 — WCAG AA */
       margin-bottom: 3px;
     }
 .mast-panel-val {
@@ -245,8 +245,8 @@
 .mast-panel-val.above { color: #e86464; }
 .mast-panel-val.below { color: #6ec97a; }
 .mast-panel-sub {
-      font-size: 8.5px;
-      color: rgba(255,255,255,0.2);
+      font-size: 9px;
+      color: rgba(255,255,255,0.55); /* was 0.2 — WCAG AA */
       margin-top: 2px;
     }
 .intro-block { display: grid; grid-template-columns: 3px 1fr; gap: 28px; margin-bottom: 56px; }
@@ -266,7 +266,7 @@
 #choroSvg .county-path { stroke: rgba(255,255,255,0.18); stroke-width: 0.4px; cursor: pointer; transition: stroke 0.1s, stroke-width 0.1s, filter 0.1s; }
 #choroSvg .county-path:hover { stroke: rgba(255,255,255,0.9); stroke-width: 1.5px; filter: brightness(1.15); }
 #choroSvg .county-path.active { stroke: white; stroke-width: 2px; }
-.choro-legend { position: absolute; bottom: 14px; left: 14px; background: rgba(10,16,20,0.88); border-radius: 4px; padding: 10px 12px; font-size: 10px; color: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.07); }
+.choro-legend { position: absolute; bottom: 14px; left: 14px; background: rgba(10,16,20,0.88); border-radius: 4px; padding: 10px 12px; font-size: 10px; color:rgba(255,255,255,0.72); border: 1px solid rgba(255,255,255,0.07); }
 .legend-title { font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 7px; color: rgba(255,255,255,0.55); font-size: 9.5px; }
 .legend-swatches { display: flex; gap: 2px; }
 .legend-swatch { width: 24px; height: 10px; border-radius: 1px; }
@@ -275,12 +275,12 @@
 .choro-panel-head { margin-bottom: 16px; }
 .choro-panel-name { font-family: var(--serif); font-size: 20px; color: rgba(255,255,255,0.9); line-height: 1.2; margin-top: 6px; min-height: 28px; }
 .choro-panel-stat { padding: 12px 0; border-top: 1px solid rgba(255,255,255,0.06); }
-.choro-panel-label { font-size: 9.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 4px; }
+.choro-panel-label { font-size: 9.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-bottom: 4px; } /* was 0.28 — WCAG AA */
 .choro-panel-val { font-family: var(--serif); font-size: 28px; color: var(--amber-lt); line-height: 1; }
 .choro-panel-val.above { color: #e86464; }
 .choro-panel-val.below { color: #6ec97a; }
-.choro-panel-sub { font-size: 10px; color: rgba(255,255,255,0.28); margin-top: 3px; }
-.choro-source { margin-top: auto; padding-top: 16px; font-size: 10px; color: rgba(255,255,255,0.18); line-height: 1.7; }
+.choro-panel-sub { font-size: 10px; color: rgba(255,255,255,0.62); margin-top: 3px; } /* was 0.28 */
+.choro-source { margin-top: auto; padding-top: 16px; font-size: 10px; color: rgba(255,255,255,0.62); line-height: 1.7; } /* was 0.18 — WCAG AA */
 .choro-map-header { position: absolute; top: 20px; left: 20px; pointer-events: none; color: rgba(255,255,255,0.9); z-index: 10; }
 .choro-map-header h1 { margin: 0; font-size: 1.4rem; font-weight: 600; letter-spacing: -0.01em; color: #ffffff; }
 .choro-map-header .subtitle { margin: 4px 0 8px 0; font-size: 1.1rem; color: rgba(255,255,255,0.7); }
@@ -293,16 +293,16 @@
 .fcard:hover { box-shadow: 0 12px 40px rgba(14,20,25,0.10); transform: translateY(-3px); border-color: var(--fog); }
 .fcard:hover::after { transform: scaleX(1); }
 .fcard-icon { width: 40px; height: 40px; border-radius: 8px; background: var(--paper); display: flex; align-items: center; justify-content: center; color: var(--amber); }
-.fcard-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); }
+.fcard-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber-dim); } /* WCAG AA */
 .fcard h3 { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--ink); line-height: 1.2; letter-spacing: -0.01em; }
 .fcard p { font-size: 13.5px; line-height: 1.65; color: var(--steel); font-weight: 300; flex: 1; }
-.fcard-arrow { font-size: 13px; color: var(--amber); font-weight: 600; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px; margin-top: 4px; transition: gap 0.15s; }
+.fcard-arrow { font-size: 13px; color: var(--amber-dim); font-weight: 600; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px; margin-top: 4px; transition: gap 0.15s; } /* WCAG AA */
 .fcard:hover .fcard-arrow { gap: 10px; }
 .mu-card { background: var(--ink-2); border-radius: var(--r); padding: 24px; margin-bottom: 20px; position: relative; overflow: hidden; }
 .mu-card::before { content: ''; position: absolute; top: -30px; right: -30px; width: 100px; height: 100px; background: var(--amber); border-radius: 50%; opacity: 0.06; }
 .mu-card-tag { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); font-weight: 600; margin-bottom: 8px; }
 .mu-card h3 { font-family: var(--serif); font-size: 17px; color: rgba(255,255,255,0.85); font-weight: 400; line-height: 1.3; margin-bottom: 10px; }
-.mu-card p { font-size: 12.5px; color: rgba(255,255,255,0.38); line-height: 1.6; margin-bottom: 16px; }
+.mu-card p { font-size: 12.5px; color:rgba(255,255,255,0.72); line-height: 1.6; margin-bottom: 16px; }
 .mu-links { display: flex; flex-direction: column; gap: 8px; }
 .mu-link { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.07); border-radius: 4px; font-size: 12.5px; color: rgba(255,255,255,0.55); transition: all 0.15s; }
 .mu-link:hover { background: rgba(200,122,47,0.1); border-color: rgba(200,122,47,0.25); color: var(--amber-lt); }
@@ -317,12 +317,12 @@
 .director-photo img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center 15%; border-radius: 4px; display: block; }
 .director-photo-name { margin-top: 12px; text-align: center; }
 .director-photo-name strong { display: block; font-family: var(--serif); font-size: 15px; font-weight: 400; color: var(--ink); }
-.director-photo-name span { font-size: 10.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber); }
-.director-disclaimer { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mist); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.director-photo-name span { font-size: 10.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber-dim); } /* amber-dim on white = 6.24:1 WCAG AA */
+.director-disclaimer { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--steel); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; } /* was mist — WCAG AA */
 .director-disclaimer::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--fog); }
 .director-text { font-size: 16px; line-height: 1.85; color: var(--steel); font-weight: 300; margin-bottom: 14px; }
-.director-source { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--paper-3); font-size: 12px; color: var(--mist); display: flex; align-items: center; gap: 8px; }
-.director-source a { color: var(--amber); font-weight: 600; letter-spacing: 0.04em; transition: color 0.15s; }
+.director-source { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--paper-3); font-size: 12px; color: var(--steel); display: flex; align-items: center; gap: 8px; } /* was mist */
+.director-source a { color: var(--amber-dim); font-weight: 600; letter-spacing: 0.04em; transition: color 0.15s; } /* amber-dim on white WCAG AA */
 .director-source a:hover { color: var(--amber-lt); }
 @media (max-width: 960px) {
   .masthead { grid-template-columns: 1fr; }
@@ -548,7 +548,7 @@ html[data-theme="kcr-blue"] .mast-data-note { background: #0f2244; }
           </div>
           <div class="choro-panel" id="choroPanel">
             <div class="choro-panel-head">
-              <div class="eyebrow" style="color:rgba(255,255,255,0.4);font-size:10px;letter-spacing:.14em;">Hover a county</div>
+              <div class="eyebrow" style="color:rgba(255,255,255,0.72);font-size:10px;letter-spacing:.14em;">Hover a county</div>
               <div class="choro-panel-name" id="choroPanelName">—</div>
             </div>
             <div class="choro-panel-stat">

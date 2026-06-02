@@ -13,22 +13,22 @@
 .masthead::before{content:'';position:absolute;right:-100px;top:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(200,122,47,.06) 0%,transparent 70%);pointer-events:none;}
 .mh-inner{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:0;align-items:end;}
 .breadcrumb{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:20px;}
-.breadcrumb a{color:rgba(255,255,255,.28);transition:color .15s;}
+.breadcrumb a{color:rgba(255,255,255,0.72);transition:color .15s;}
 .breadcrumb a:hover{color:var(--amber);}
-.breadcrumb .sep{color:rgba(255,255,255,.12);}
+.breadcrumb .sep{color:rgba(255,255,255,0.72);}
 .mh-left{padding-bottom:48px;position:relative;z-index:1;}
 .mh-kicker{font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin-bottom:14px;}
 .mh-name{font-family:var(--serif);font-size:clamp(38px,4.5vw,60px);font-weight:400;color:var(--white);line-height:.95;letter-spacing:-.02em;margin-bottom:14px;}
 .mh-title{font-size:15px;color:rgba(255,255,255,.5);font-weight:300;line-height:1.6;margin-bottom:20px;}
 .mh-title strong{color:rgba(255,255,255,.75);font-weight:500;display:block;font-size:16px;margin-bottom:2px;}
 .mh-contact{display:flex;gap:20px;flex-wrap:wrap;}
-.mh-contact-item{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.3);}
+.mh-contact-item{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,0.65);}
 .mh-contact-item svg{stroke:var(--amber);fill:none;stroke-width:2;width:13px;height:13px;}
 .mh-right{position:relative;z-index:1;align-self:end;}
 .profile-avatar-wrap{width:300px;height:320px;margin:0 auto;position:relative;}
 .profile-avatar{width:100%;height:320px;background:var(--ink-2);border-radius:var(--r) var(--r) 0 0;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.06);border-bottom:none;}
 .profile-avatar::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 50% 110%,rgba(200,122,47,.15) 0%,transparent 70%);}
-.profile-initials{font-family:var(--serif);font-size:88px;font-weight:400;color:rgba(255,255,255,.12);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:0;letter-spacing:-.02em;}
+.profile-initials{font-family:var(--serif);font-size:88px;font-weight:400;color:rgba(255,255,255,0.72);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:0;letter-spacing:-.02em;}
 .profile-avatar-tag{position:absolute;bottom:14px;left:0;right:0;text-align:center;font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);z-index:2;}
 .bio-section{margin-bottom:48px;}
 .bio-section p{font-size:16px;color:var(--steel);line-height:1.8;font-weight:300;}
@@ -41,7 +41,7 @@
 .back-btn svg{stroke:currentColor;fill:none;stroke-width:2;width:13px;height:13px;transform:rotate(180deg);}
 .info-row{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--paper-2);font-size:13.5px;}
 .info-row:last-child{border-bottom:none;}
-.info-label{color:var(--mist);}
+.info-label{color:var(--steel);}
 .info-value{font-weight:500;color:var(--ink);text-align:right;font-size:13px;}
 .btn-outline{display:inline-flex;align-items:center;gap:7px;background:transparent;color:var(--steel);border:1px solid var(--paper-3);padding:11px 20px;border-radius:3px;font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;transition:all .15s;width:100%;justify-content:center;margin-top:8px;}
 .btn-outline:hover{border-color:var(--amber);color:var(--amber);}
@@ -55,7 +55,7 @@
       <div class="breadcrumb rise rise-1">
         <a href="/">Home</a><span class="sep">›</span>
         <a href="/staff/">Staff Directory</a><span class="sep">›</span>
-        <span style="color:rgba(255,255,255,.5);">Leslie Benningfield</span>
+        <span style="color:rgba(255,255,255,0.72);">Leslie Benningfield</span>
       </div>
       <div class="mh-kicker rise rise-1">Operations Team</div>
       <h1 class="mh-name rise rise-2">Leslie Benningfield, ODS</h1>

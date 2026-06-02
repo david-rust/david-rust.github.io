@@ -4,8 +4,8 @@
     {
       "name": "kcr-website",
       "runtimeExecutable": "docker",
-      "runtimeArgs": ["run", "--rm", "--name", "kcr-preview", "-p", "3000:80", "-v", "${workspaceFolder}:/usr/share/nginx/html:ro", "-v", "${workspaceFolder}/nginx.conf:/etc/nginx/conf.d/default.conf:ro", "nginx:alpine"],
-      "port": 3000
+      "runtimeArgs": ["run", "--rm", "--name", "kcr-preview", "-p", "3001:80", "-v", "${workspaceFolder}:/usr/share/nginx/html:ro", "-v", "${workspaceFolder}/nginx.conf:/etc/nginx/conf.d/default.conf:ro", "nginx:alpine"],
+      "port": 3001
     }
   ]
 }
