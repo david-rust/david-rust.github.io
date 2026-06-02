@@ -5,6 +5,9 @@
  * All settings persist in localStorage and apply before first paint.
  */
 (function () {
+  /* Remove no-js class immediately so JS-dependent UI isn't blocked */
+  document.documentElement.classList.remove('no-js');
+
   var KEY_THEME  = 'kcr-theme';
   var KEY_COLORS = 'kcr-colors';
   var BLUE       = 'kcr-blue';

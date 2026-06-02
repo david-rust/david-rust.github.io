@@ -583,6 +583,11 @@ p a:not([class]),
 li a:not([class]),
 .side-info-val a { text-decoration: underline; }
 
+/* ─── NOSCRIPT FALLBACK ──────────────────────────────────── */
+/* If JS is disabled the hamburger is never injected; show nav links at all sizes */
+.no-js .nav-inner .nav-link { display: flex !important; }
+.no-js .nav-hamburger { display: none !important; }
+
 /* ─── REDUCED MOTION ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .rise { animation: none !important; opacity: 1 !important; }
