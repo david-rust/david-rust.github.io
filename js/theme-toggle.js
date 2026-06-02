@@ -216,7 +216,7 @@
       var fImg = document.createElement('img');
       fImg.className = 'footer-logo-img';
       fImg.src = '/images/KCRLogoBlack.svg';
-      fImg.alt = 'Kentucky Cancer Registry';
+      fImg.alt = '';
       fImg.style.cssText = 'height:44px;width:auto;display:block;margin-bottom:18px;opacity:0.55;filter:brightness(0) invert(1);';
       footerWordmark.parentElement.insertBefore(fImg, footerWordmark);
     }
