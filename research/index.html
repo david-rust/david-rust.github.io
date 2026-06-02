@@ -18,7 +18,7 @@
 .process-step{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.05);}
 .process-step:last-child{border-bottom:none;padding-bottom:0;}
 .step-num{width:28px;height:28px;border-radius:50%;background:rgba(200,122,47,.18);border:1px solid rgba(200,122,47,.35);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--amber);flex-shrink:0;margin-top:2px;}
-.step-info h5{font-size:13px;font-weight:600;color:rgba(255,255,255,.75);margin-bottom:2px;}
+.step-info .step-label{font-size:13px;font-weight:600;color:rgba(255,255,255,.75);margin-bottom:2px;}
 .step-info p{font-size:12px;color:rgba(255,255,255,0.72);line-height:1.5;}
 .request-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:48px;}
 .rcard{background:white;border-radius:var(--r);padding:28px;border:1px solid var(--paper-3);position:relative;overflow:hidden;transition:all .2s;cursor:pointer;}
@@ -32,10 +32,10 @@
 .rcard-chip{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;background:var(--paper-2);border-radius:3px;color:var(--steel);}
 .elig-block{background:white;border-radius:var(--r);border:1px solid var(--paper-3);padding:32px;margin-bottom:48px;}
 .elig-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:20px;}
-.elig-col h4{font-family:var(--serif);font-size:17px;font-weight:400;color:var(--ink);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
-.elig-col h4 svg{width:16px;height:16px;stroke-width:2;flex-shrink:0;}
-.elig-col h4.yes svg{stroke:#3a7d44;}
-.elig-col h4.no svg{stroke:#b94040;}
+.elig-col h3{font-family:var(--serif);font-size:17px;font-weight:400;color:var(--ink);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.elig-col h3 svg{width:16px;height:16px;stroke-width:2;flex-shrink:0;}
+.elig-col h3.yes svg{stroke:#3a7d44;}
+.elig-col h3.no svg{stroke:#b94040;}
 .elig-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
 .elig-list li{font-size:14px;color:var(--steel);line-height:1.65;padding-left:16px;position:relative;}
 .elig-list li::before{content:'';position:absolute;left:0;top:10px;width:6px;height:6px;border-radius:50%;}
@@ -47,7 +47,7 @@
 .pt-step + .pt-step{margin-top:20px;}
 .pt-num{width:48px;height:48px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:18px;color:var(--amber);flex-shrink:0;border:2px solid var(--ink-2);}
 .pt-content{background:white;border-radius:var(--r);border:1px solid var(--paper-3);padding:22px 24px;margin-bottom:0;}
-.pt-content h4{font-family:var(--serif);font-size:17px;font-weight:400;color:var(--ink);margin-bottom:6px;}
+.pt-content h3{font-family:var(--serif);font-size:17px;font-weight:400;color:var(--ink);margin-bottom:6px;}
 .pt-content p{font-size:14px;color:var(--steel);line-height:1.65;}
 .pt-time{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-dim);margin-top:8px;}
 .fee-table{width:100%;border-collapse:collapse;margin-bottom:48px;background:white;border-radius:var(--r);overflow:hidden;border:1px solid var(--paper-3);}
@@ -82,6 +82,7 @@
 </head>
 <body>
 
+<header>
 <div class="topbar">
   <div class="topbar-inner">
     <span>Kentucky Cancer Registry — University of Kentucky Markey Cancer Center</span>
@@ -101,26 +102,27 @@
       <div class="process-steps">
         <div class="process-step">
           <div class="step-num">1</div>
-          <div class="step-info"><h5>Submit Application</h5><p>Complete and submit the data request form with project description</p></div>
+          <div class="step-info"><p class="step-label">Submit Application</p><p>Complete and submit the data request form with project description</p></div>
         </div>
         <div class="process-step">
           <div class="step-num">2</div>
-          <div class="step-info"><h5>KCR Review</h5><p>Staff reviews for feasibility, scope, and data availability</p></div>
+          <div class="step-info"><p class="step-label">KCR Review</p><p>Staff reviews for feasibility, scope, and data availability</p></div>
         </div>
         <div class="process-step">
           <div class="step-num">3</div>
-          <div class="step-info"><h5>IRB &amp; DUA</h5><p>Provide institutional approval and execute data use agreement</p></div>
+          <div class="step-info"><p class="step-label">IRB &amp; DUA</p><p>Provide institutional approval and execute data use agreement</p></div>
         </div>
         <div class="process-step">
           <div class="step-num">4</div>
-          <div class="step-info"><h5>Data Delivery</h5><p>Receive de-identified data extract via secure transfer</p></div>
+          <div class="step-info"><p class="step-label">Data Delivery</p><p>Receive de-identified data extract via secure transfer</p></div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<nav>
+</header>
+<nav aria-label="Primary navigation">
   <div class="nav-inner">
     <a href="/" class="nav-logo">Kentucky Cancer <span>Registry</span></a>
     <a href="/" class="nav-link">Home</a>
@@ -132,7 +134,7 @@
   </div>
 </nav>
 
-<div class="ribbon">
+<div class="ribbon" role="complementary" aria-label="Affiliated organizations">
   <div class="ribbon-inner">
     <span class="ribbon-label">Data governed by</span>
     <div class="ribbon-divider"></div>
@@ -211,7 +213,7 @@
         <p style="font-size:15px;color:var(--steel);margin-bottom:4px;">KCR data are available to qualified researchers and public health professionals whose projects meet scientific and ethical standards. Requests are evaluated on a case-by-case basis.</p>
         <div class="elig-grid">
           <div class="elig-col yes">
-            <h4 class="yes"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Eligible requestors</h4>
+            <h3 class="yes"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Eligible requestors</h3>
             <ul class="elig-list">
               <li>Academic researchers at accredited institutions</li>
               <li>State and local public health agencies</li>
@@ -222,7 +224,7 @@
             </ul>
           </div>
           <div class="elig-col no">
-            <h4 class="no"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Not eligible</h4>
+            <h3 class="no"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Not eligible</h3>
             <ul class="elig-list">
               <li>Commercial entities seeking data for marketing</li>
               <li>Insurance companies for underwriting purposes</li>
@@ -248,7 +250,7 @@
         <div class="pt-step">
           <div class="pt-num">1</div>
           <div class="pt-content">
-            <h4>Review data availability &amp; dictionary</h4>
+            <h3>Review data availability &amp; dictionary</h3>
             <p>Download and review the KCR data dictionary to confirm the variables you need are available. Note any special variables that may require additional review or restricted access.</p>
             <span class="pt-time">Pre-application</span>
           </div>
@@ -256,7 +258,7 @@
         <div class="pt-step">
           <div class="pt-num">2</div>
           <div class="pt-content">
-            <h4>Obtain IRB approval or exemption</h4>
+            <h3>Obtain IRB approval or exemption</h3>
             <p>Most patient-level data requests require IRB approval from your home institution. Aggregate-only requests may qualify for an IRB exemption. Include IRB documentation with your application.</p>
             <span class="pt-time">Before submission</span>
           </div>
@@ -264,7 +266,7 @@
         <div class="pt-step">
           <div class="pt-num">3</div>
           <div class="pt-content">
-            <h4>Submit the KCR data request application</h4>
+            <h3>Submit the KCR data request application</h3>
             <p>Complete the online application form, including the project abstract, specific aims, variable list, requested years of data, and any additional methodological notes. Applications are reviewed monthly.</p>
             <span class="pt-time">Submission</span>
           </div>
@@ -272,7 +274,7 @@
         <div class="pt-step">
           <div class="pt-num">4</div>
           <div class="pt-content">
-            <h4>KCR staff feasibility review</h4>
+            <h3>KCR staff feasibility review</h3>
             <p>KCR epidemiologists review your request for scientific merit, data feasibility, and completeness of documentation. You may be contacted for clarification or revisions.</p>
             <span class="pt-time">2–3 weeks</span>
           </div>
@@ -280,7 +282,7 @@
         <div class="pt-step">
           <div class="pt-num">5</div>
           <div class="pt-content">
-            <h4>Execute Data Use Agreement (DUA)</h4>
+            <h3>Execute Data Use Agreement (DUA)</h3>
             <p>Upon approval, your institution's authorized signatory must execute the KCR Data Use Agreement. This legally binding agreement governs how data may be used, stored, and shared.</p>
             <span class="pt-time">1–2 weeks</span>
           </div>
@@ -288,7 +290,7 @@
         <div class="pt-step">
           <div class="pt-num">6</div>
           <div class="pt-content">
-            <h4>Pay applicable fees &amp; receive data</h4>
+            <h3>Pay applicable fees &amp; receive data</h3>
             <p>Fees are invoiced upon DUA execution. Data are delivered via secure SFTP or encrypted media within the estimated timeframe. KCR staff are available to assist with interpretation.</p>
             <span class="pt-time">1–4 weeks after DUA</span>
           </div>
@@ -392,7 +394,7 @@
     <!-- Navigation -->
     <div class="side-card rise rise-3">
       <div class="side-card-head">On This <span>Page</span></div>
-      <nav style="padding:8px 0;">
+      <nav aria-label="On this page" style="padding:8px 0;">
         <a href="#" class="side-nav-link">Request Types</a>
         <a href="#" class="side-nav-link">Eligibility</a>
         <a href="#" class="side-nav-link">Application Process</a>

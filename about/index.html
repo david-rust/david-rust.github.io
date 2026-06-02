@@ -28,7 +28,7 @@
 .timeline-item { display: grid; grid-template-columns: 80px 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--paper-3); }
 .timeline-item:last-child { border-bottom: none; }
 .timeline-year { font-family: var(--serif); font-size: 22px; font-weight: 400; color:var(--amber-dim); line-height: 1; padding-top: 4px; }
-.timeline-content h4 { font-family: var(--serif); font-size: 18px; font-weight: 400; color: var(--ink); letter-spacing: -0.01em; margin-bottom: 6px; }
+.timeline-content h3 { font-family: var(--serif); font-size: 18px; font-weight: 400; color: var(--ink); letter-spacing: -0.01em; margin-bottom: 6px; }
 .timeline-content p { font-size: 15px; color: var(--steel); line-height: 1.75; }
 .accred-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
 .accred-card { background: white; border-radius: var(--r); padding: 24px; border: 1px solid var(--paper-3); position: relative; overflow: hidden; transition: all 0.2s; }
@@ -37,13 +37,13 @@
 .accred-card:hover::after { transform: scaleX(1); }
 .accred-icon { width: 36px; height: 36px; background: var(--paper-2); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
 .accred-icon svg { width: 18px; height: 18px; stroke: var(--amber); fill: none; stroke-width: 1.5; }
-.accred-card h4 { font-family: var(--serif); font-size: 17px; font-weight: 400; color: var(--ink); margin-bottom: 6px; }
+.accred-card h3 { font-family: var(--serif); font-size: 17px; font-weight: 400; color: var(--ink); margin-bottom: 6px; }
 .accred-card p { font-size: 14px; color: var(--steel); line-height: 1.7; }
 .team-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 24px; }
 .team-card { background: white; border-radius: var(--r); padding: 22px; border: 1px solid var(--paper-3); transition: all 0.2s; }
 .team-card:hover { box-shadow: 0 8px 28px rgba(14,20,25,0.08); transform: translateY(-2px); }
 .team-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--ink-2); margin-bottom: 14px; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 18px; color: var(--amber); }
-.team-card h4 { font-family: var(--serif); font-size: 16px; font-weight: 400; color: var(--ink); margin-bottom: 3px; }
+.team-card h3 { font-family: var(--serif); font-size: 16px; font-weight: 400; color: var(--ink); margin-bottom: 3px; }
 .team-card .team-title { font-size: 11.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color:var(--amber-dim); margin-bottom: 8px; }
 .team-card p { font-size: 13px; color: var(--steel); line-height: 1.6; }
 .fact-list { list-style: none; }
@@ -71,6 +71,7 @@
 <body>
 
 <!-- Topbar -->
+<header>
 <div class="topbar">
   <div class="topbar-inner">
     <span>Kentucky Cancer Registry — University of Kentucky Markey Cancer Center</span>
@@ -110,7 +111,8 @@
 </div>
 
 <!-- Nav -->
-<nav>
+</header>
+<nav aria-label="Primary navigation">
   <div class="nav-inner">
     <a href="/" class="nav-logo">Kentucky Cancer <span>Registry</span></a>
     <a href="/" class="nav-link">Home</a>
@@ -123,7 +125,7 @@
 </nav>
 
 <!-- Ribbon -->
-<div class="ribbon">
+<div class="ribbon" role="complementary" aria-label="Affiliated organizations">
   <div class="ribbon-inner">
     <span class="ribbon-label">Affiliated with</span>
     <div class="ribbon-divider"></div>
@@ -160,35 +162,35 @@
         <div class="timeline-item rise rise-1">
           <div class="timeline-year">1990</div>
           <div class="timeline-content">
-            <h4>Registry Established</h4>
+            <h3>Registry Established</h3>
             <p>The Kentucky Cancer Registry was established under KRS 214.556, creating a legal mandate for statewide cancer reporting by all hospitals, physicians, and other healthcare facilities in the Commonwealth.</p>
           </div>
         </div>
         <div class="timeline-item rise rise-2">
           <div class="timeline-year">1995</div>
           <div class="timeline-content">
-            <h4>CDC NPCR Funding Awarded</h4>
+            <h3>CDC NPCR Funding Awarded</h3>
             <p>KCR received its first federal funding from the Centers for Disease Control and Prevention's National Program of Cancer Registries, enabling expansion of data collection activities and improved reporting infrastructure.</p>
           </div>
         </div>
         <div class="timeline-item rise rise-3">
           <div class="timeline-year">2001</div>
           <div class="timeline-content">
-            <h4>NAACCR Gold Certification</h4>
+            <h3>NAACCR Gold Certification</h3>
             <p>KCR received its first NAACCR Gold Certification for meeting the highest standards of data quality, completeness, and timeliness — a distinction maintained continuously to the present day.</p>
           </div>
         </div>
         <div class="timeline-item rise rise-4">
           <div class="timeline-year">2010</div>
           <div class="timeline-content">
-            <h4>Electronic Pathology Reporting</h4>
+            <h3>Electronic Pathology Reporting</h3>
             <p>Implementation of electronic pathology reporting (ePath) improved case ascertainment and data timeliness substantially, placing Kentucky among early adopters of this technology nationally.</p>
           </div>
         </div>
         <div class="timeline-item rise rise-5">
           <div class="timeline-year">2022</div>
           <div class="timeline-content">
-            <h4>Next-Generation Data Platform</h4>
+            <h3>Next-Generation Data Platform</h3>
             <p>Launch of the modernized KCR data portal enabled enhanced public access to cancer statistics and improved interfaces for authorized research data requests, dramatically reducing turnaround time for analysts.</p>
           </div>
         </div>
@@ -208,28 +210,28 @@
           <div class="accred-icon">
             <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
-          <h4>NAACCR Gold Certification</h4>
+          <h3>NAACCR Gold Certification</h3>
           <p>KCR has maintained NAACCR Gold Certification every year since 2001, recognizing our data as meeting the highest standards for completeness, accuracy, and timeliness.</p>
         </div>
         <div class="accred-card rise rise-2">
           <div class="accred-icon">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
           </div>
-          <h4>CDC NPCR Grantee</h4>
+          <h3>CDC NPCR Grantee</h3>
           <p>As a grantee of the CDC's National Program of Cancer Registries since 1995, KCR meets federal standards for cancer surveillance and contributes data to national estimates.</p>
         </div>
         <div class="accred-card rise rise-3">
           <div class="accred-icon">
             <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          <h4>HIPAA-Compliant Data Practices</h4>
+          <h3>HIPAA-Compliant Data Practices</h3>
           <p>All KCR operations comply with HIPAA Privacy Rule provisions for public health activities, with rigorous protocols governing data security, access, and dissemination.</p>
         </div>
         <div class="accred-card rise rise-4">
           <div class="accred-icon">
             <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
           </div>
-          <h4>SEER Program Standards</h4>
+          <h3>SEER Program Standards</h3>
           <p>KCR data collection follows SEER program coding standards, ensuring compatibility with national databases and enabling Kentucky to participate in multi-state epidemiological research.</p>
         </div>
       </div>
@@ -247,19 +249,19 @@
       <div class="team-grid">
         <div class="team-card rise rise-1">
           <div class="team-avatar">DR</div>
-          <h4>Director, KCR</h4>
+          <h3>Director, KCR</h3>
           <div class="team-title">Leadership</div>
           <p>Oversees all registry operations, strategic planning, and statewide reporting requirements.</p>
         </div>
         <div class="team-card rise rise-2">
           <div class="team-avatar">DA</div>
-          <h4>Data Quality Manager</h4>
+          <h3>Data Quality Manager</h3>
           <div class="team-title">Operations</div>
           <p>Leads data auditing, compliance reviews, and facility education programs across the state.</p>
         </div>
         <div class="team-card rise rise-3">
           <div class="team-avatar">RE</div>
-          <h4>Research & Epidemiology</h4>
+          <h3>Research & Epidemiology</h3>
           <div class="team-title">Analysis</div>
           <p>Directs statistical analysis, surveillance reports, and responses to data requests.</p>
         </div>
@@ -299,7 +301,7 @@
     <!-- On This Page -->
     <div class="side-card rise rise-3">
       <div class="side-card-head">On this <span>page</span></div>
-      <nav style="padding: 8px 0;">
+      <nav aria-label="On this page" style="padding: 8px 0;">
         <a href="#" class="side-nav-link">Mission &amp; Overview</a>
         <a href="#" class="side-nav-link">Registry History</a>
         <a href="#" class="side-nav-link">Accreditation &amp; Standards</a>
@@ -310,7 +312,7 @@
     <!-- Related Links -->
     <div class="side-card rise rise-4">
       <div class="side-card-head"><span>Related</span> Links</div>
-      <nav style="padding: 8px 0;">
+      <nav aria-label="Related links" style="padding: 8px 0;">
         <a href="/statutes/" class="side-nav-link">Reporting Statutes</a>
         <a href="/resources/" class="side-nav-link">Technical Resources</a>
         <a href="/resources/" class="side-nav-link">Meaningful Use</a>

@@ -88,6 +88,7 @@ body p { font-size: 16px; color: var(--steel); line-height: 1.8; }
 <body>
 
 <!-- Topbar -->
+<header>
 <div class="topbar">
   <div class="topbar-inner">
     <span>Kentucky Cancer Registry — University of Kentucky Markey Cancer Center</span>
@@ -129,7 +130,8 @@ body p { font-size: 16px; color: var(--steel); line-height: 1.8; }
 </div>
 
 <!-- Nav -->
-<nav>
+</header>
+<nav aria-label="Primary navigation">
   <div class="nav-inner">
     <a href="/" class="nav-logo">Kentucky Cancer <span>Registry</span></a>
     <a href="/" class="nav-link">Home</a>
@@ -142,7 +144,7 @@ body p { font-size: 16px; color: var(--steel); line-height: 1.8; }
 </nav>
 
 <!-- Ribbon -->
-<div class="ribbon">
+<div class="ribbon" role="complementary" aria-label="Affiliated organizations">
   <div class="ribbon-inner">
     <span class="ribbon-label">Part of</span>
     <div class="ribbon-divider" style="width:1px;height:24px;background:rgba(255,255,255,0.08)"></div>
@@ -224,25 +226,25 @@ body p { font-size: 16px; color: var(--steel); line-height: 1.8; }
       <div class="cancer-grid">
         <div class="cancer-card rise rise-2">
           <div class="cancer-rank">Rank 1</div>
-          <h4>Leukemia</h4>
+          <h3>Leukemia</h3>
           <div class="cancer-pct">28%</div>
           <p class="cancer-desc">The most common childhood cancer, primarily acute lymphoblastic leukemia (ALL). Incidence peaks in children ages 2–5.</p>
         </div>
         <div class="cancer-card rise rise-3">
           <div class="cancer-rank">Rank 2</div>
-          <h4>Brain &amp; CNS Tumors</h4>
+          <h3>Brain &amp; CNS Tumors</h3>
           <div class="cancer-pct">22%</div>
           <p class="cancer-desc">The most common solid tumor in children, with highly variable prognosis depending on histological subtype and location.</p>
         </div>
         <div class="cancer-card rise rise-4">
           <div class="cancer-rank">Rank 3</div>
-          <h4>Lymphoma</h4>
+          <h3>Lymphoma</h3>
           <div class="cancer-pct">12%</div>
           <p class="cancer-desc">Includes both Hodgkin and non-Hodgkin lymphoma. Rates are higher in adolescents ages 15–19 than in younger children.</p>
         </div>
         <div class="cancer-card rise rise-5">
           <div class="cancer-rank">Rank 4</div>
-          <h4>Bone &amp; Soft Tissue</h4>
+          <h3>Bone &amp; Soft Tissue</h3>
           <div class="cancer-pct">9%</div>
           <p class="cancer-desc">Includes osteosarcoma, Ewing sarcoma, and rhabdomyosarcoma. Incidence peaks during adolescence due to rapid bone growth.</p>
         </div>
@@ -261,7 +263,7 @@ body p { font-size: 16px; color: var(--steel); line-height: 1.8; }
         <div class="report-row">
           <div class="report-row-year">2023</div>
           <div class="report-row-info">
-            <h4>Childhood Cancer in Kentucky, 2023</h4>
+            <h3>Childhood Cancer in Kentucky, 2023</h3>
             <p>Incidence data 1995–2020 · Includes trend analysis and county-level maps</p>
           </div>
           <div class="report-row-actions">
@@ -272,7 +274,7 @@ body p { font-size: 16px; color: var(--steel); line-height: 1.8; }
         <div class="report-row">
           <div class="report-row-year">2022</div>
           <div class="report-row-info">
-            <h4>Childhood Cancer in Kentucky, 2022</h4>
+            <h3>Childhood Cancer in Kentucky, 2022</h3>
             <p>Incidence data 1995–2019 · Special focus: rural vs. urban disparities</p>
           </div>
           <div class="report-row-actions">
@@ -283,7 +285,7 @@ body p { font-size: 16px; color: var(--steel); line-height: 1.8; }
         <div class="report-row">
           <div class="report-row-year">2021</div>
           <div class="report-row-info">
-            <h4>Childhood Cancer in Kentucky, 2021</h4>
+            <h3>Childhood Cancer in Kentucky, 2021</h3>
             <p>Incidence data 1995–2018 · Five-year survival rates by cancer type</p>
           </div>
           <div class="report-row-actions">
@@ -294,7 +296,7 @@ body p { font-size: 16px; color: var(--steel); line-height: 1.8; }
         <div class="report-row">
           <div class="report-row-year">2020</div>
           <div class="report-row-info">
-            <h4>Childhood Cancer in Kentucky, 2020</h4>
+            <h3>Childhood Cancer in Kentucky, 2020</h3>
             <p>Incidence data 1995–2017 · Age-adjusted rates by county and region</p>
           </div>
           <div class="report-row-actions">
@@ -305,7 +307,7 @@ body p { font-size: 16px; color: var(--steel); line-height: 1.8; }
         <div class="report-row">
           <div class="report-row-year">2019</div>
           <div class="report-row-info">
-            <h4>Childhood Cancer in Kentucky, 2019</h4>
+            <h3>Childhood Cancer in Kentucky, 2019</h3>
             <p>Incidence data 1995–2016 · Race and ethnicity analysis</p>
           </div>
           <div class="report-row-actions">
@@ -331,7 +333,7 @@ body p { font-size: 16px; color: var(--steel); line-height: 1.8; }
     <!-- Reports navigation -->
     <div class="side-card rise rise-1">
       <div class="side-card-head">Reports <span>Navigation</span></div>
-      <nav style="padding: 8px 0;">
+      <nav aria-label="Reports navigation" style="padding: 8px 0;">
         <a href="#" class="side-nav-link">Annual Reports</a>
         <a href="/reports-childhood-cancer.html" class="side-nav-link active">Childhood Cancer</a>
         <a href="#" class="side-nav-link indent">→ 2024 (Latest)</a>
