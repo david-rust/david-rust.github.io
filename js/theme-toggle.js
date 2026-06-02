@@ -321,5 +321,34 @@
 
     /* Re-measure logo on resize */
     window.addEventListener('resize', function () { updateLogo(getTheme()); });
+
+    /* ── Mobile hamburger menu ── */
+    var navInner = document.querySelector('.nav-inner');
+    if (navInner) {
+      var hamburger = document.createElement('button');
+      hamburger.className = 'nav-hamburger';
+      hamburger.setAttribute('aria-label', 'Toggle navigation');
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.innerHTML = '<svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="19" y2="6"/><line x1="3" y1="11" x2="19" y2="11"/><line x1="3" y1="16" x2="19" y2="16"/></svg>';
+      navInner.appendChild(hamburger);
+
+      var navEl = navInner.parentElement;
+      hamburger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var open = navEl.classList.toggle('nav-open');
+        hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        hamburger.innerHTML = open
+          ? '<svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="5" x2="17" y2="17"/><line x1="17" y1="5" x2="5" y2="17"/></svg>'
+          : '<svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="19" y2="6"/><line x1="3" y1="11" x2="19" y2="11"/><line x1="3" y1="16" x2="19" y2="16"/></svg>';
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!navEl.contains(e.target)) {
+          navEl.classList.remove('nav-open');
+          hamburger.setAttribute('aria-expanded', 'false');
+          hamburger.innerHTML = '<svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="19" y2="6"/><line x1="3" y1="11" x2="19" y2="11"/><line x1="3" y1="16" x2="19" y2="16"/></svg>';
+        }
+      });
+    }
   });
 }());

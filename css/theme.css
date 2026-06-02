@@ -390,10 +390,109 @@ html[data-theme="kcr-blue"] .footer-lower a:hover  { color: var(--gold); }
 .rise-5 { animation-delay: 0.45s; }
 
 /* ─── RESPONSIVE ─────────────────────────────────────────── */
+
+/* Overflow prevention */
+html { overflow-x: hidden; }
+
+/* Heading overflow safety */
+h1, h2, h3 { overflow-wrap: break-word; }
+
+/* Hamburger button — hidden on desktop */
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--steel);
+  padding: 0 8px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+html[data-theme="kcr-blue"] .nav-hamburger { color: rgba(255,255,255,0.8); }
+
 @media (max-width: 960px) {
   .page-wrap { grid-template-columns: 1fr; }
   .footer-upper { grid-template-columns: 1fr 1fr; }
   .topbar { padding: 0 20px; }
   .nav-inner { padding: 0 20px; }
   .ribbon-inner { padding: 0 20px; }
+}
+
+@media (max-width: 768px) {
+  /* ── Nav: hamburger mode ── */
+  .nav-hamburger { display: flex; }
+  .nav-spacer { display: none; }
+  .nav-search-form { display: none; }
+  .nav-inner {
+    flex-wrap: wrap;
+    padding: 0 16px;
+    align-items: center;
+  }
+  /* Show logo if present; push hamburger to far right */
+  .nav-logo { flex: 1; min-width: 0; }
+  /* Hide all nav-links on mobile */
+  .nav-inner .nav-link { display: none; }
+  /* Expand links below when nav is open */
+  nav.nav-open .nav-inner .nav-link {
+    display: flex;
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    border-bottom: 1px solid var(--paper-2);
+    border-bottom-width: 1px;
+    border-left: none;
+  }
+  nav.nav-open .nav-inner .nav-link.active {
+    border-bottom-color: var(--amber);
+    border-left: none;
+  }
+  html[data-theme="kcr-blue"] nav.nav-open .nav-inner .nav-link { border-bottom-color: rgba(255,255,255,0.12); }
+}
+
+@media (max-width: 600px) {
+  /* ── Ribbon ── */
+  .ribbon-inner { height: auto; padding: 12px 16px; flex-wrap: wrap; gap: 10px; }
+  .ribbon-label { display: none; }
+  .ribbon-divider { display: none; }
+  .ribbon-partners { flex-wrap: wrap; gap: 14px; }
+  .ribbon-logos { flex-wrap: wrap; gap: 18px; }
+
+  /* ── Footer ── */
+  .footer-upper { grid-template-columns: 1fr; gap: 32px; padding: 32px 20px; }
+  .footer-lower { flex-direction: column; gap: 8px; text-align: center; padding: 16px 20px; }
+
+  /* ── Page inner padding ── */
+  .page-wrap { padding: 40px 20px 60px; }
+
+  /* ── Section header: stack "See All" link below heading ── */
+  .section-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+
+  /* ── Feature grid: single column ── */
+  .feature-grid { grid-template-columns: 1fr !important; }
+
+  /* ── Staff masthead ── */
+  .mh-contact { flex-direction: column; gap: 10px; }
+  .mh-name { word-break: break-word; }
+  .mh-left { padding: 28px 20px 32px !important; }
+
+  /* ── Typography ── */
+  .eyebrow { font-size: 11px; }
+
+  /* ── Buttons: full-width on very small screens ── */
+  .contact-form .btn-primary { width: 100%; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  /* ── Footer: ensure single column at smallest sizes ── */
+  .footer-upper { grid-template-columns: 1fr; }
+  .footer-link { padding: 3px 0; }
+
+  /* ── Buttons: full-width ── */
+  .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+
+  /* ── Topbar: hide on very small screens to save space ── */
+  .topbar { display: none; }
 }
