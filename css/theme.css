@@ -416,6 +416,12 @@ main .back-btn:hover { color: var(--amber); }
 /* Staff page inline styles use --mist (0,1,0 specificity). Use 0,2,0 to win the cascade. */
 .info-row .info-label { color: var(--steel); }
 
+/* ─── BREADCRUMB NAV RESET ───────────────────────────────── */
+/* theme.css `nav` rule sets background:var(--paper) on ALL nav elements,
+   including the breadcrumb <nav> inside .masthead — reset it so the dark
+   masthead background shows through. */
+.masthead nav { background: transparent; border-bottom: none; position: static; top: auto; z-index: auto; }
+
 /* ─── BREADCRUMB CONTRAST FIX ───────────────────────────── */
 /* Staff page inline styles use rgba(.28) — override with higher specificity */
 .masthead .breadcrumb a { color: rgba(255,255,255,0.72) !important; }
