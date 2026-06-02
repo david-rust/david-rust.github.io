@@ -360,7 +360,7 @@ Used before every major section:
 
 ```css
 .eyebrow {
-  font-size: 10.5px; font-weight: 600;
+   font-size: 11px; font-weight: 600;
   letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--amber); margin-bottom: 10px;
 }
@@ -549,7 +549,7 @@ nav {
 footer { background: var(--ink); }
 
 .footer-col-title {
-  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+   font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
   color: rgba(255,255,255,0.3); font-weight: 600; margin-bottom: 16px;
 }
 .footer-link { font-size: 13px; color: rgba(255,255,255,0.35); transition: color 0.15s; }
