@@ -256,11 +256,18 @@
 .qc-val { font-size: 13.5px; font-weight: 400; color: var(--ink); }
 .qc-val a { color: var(--ink); transition: color 0.15s; }
 .qc-val a:hover { color: var(--amber); }
-@media (max-width: 960px) {.page-hero-inner { grid-template-columns: 1fr; }
+@media (max-width: 960px) {
+  .page-hero-inner { grid-template-columns: 1fr; }
   .page-hero-rule, .hero-address { display: none; }
   .staff-grid { grid-template-columns: 1fr; }
   .staff-card.featured { grid-column: 1; }
   .form-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .form-input, .form-select, .form-textarea { min-height: 44px; font-size: 16px; }
+  .form-submit { width: 100%; justify-content: center; }
+  .page-hero { padding: 36px 20px 40px; }
+  .masthead { padding: 28px 20px 32px; }
 }
 </style>
 </head>

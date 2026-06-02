@@ -322,6 +322,38 @@
     /* Re-measure logo on resize */
     window.addEventListener('resize', function () { updateLogo(getTheme()); });
 
+    /* ── Team nav collapse (show first 5 + current, hide rest behind toggle) ── */
+    document.querySelectorAll('.team-nav').forEach(function (nav) {
+      var items = Array.prototype.slice.call(nav.querySelectorAll('.team-nav-item'));
+      var SHOW = 5;
+      if (items.length <= SHOW) return;
+
+      var currentIdx = items.findIndex(function (el) { return el.classList.contains('current'); });
+      var alwaysVisible = new Set();
+      for (var i = 0; i < Math.min(SHOW, items.length); i++) alwaysVisible.add(i);
+      if (currentIdx >= 0) alwaysVisible.add(currentIdx);
+
+      var hidden = items.filter(function (_, i) { return !alwaysVisible.has(i); });
+      hidden.forEach(function (el) { el.classList.add('team-nav-collapsed'); });
+
+      var remaining = hidden.length;
+      var toggle = document.createElement('button');
+      toggle.className = 'team-nav-toggle';
+      toggle.textContent = 'Show ' + remaining + ' more…';
+      toggle.setAttribute('aria-expanded', 'false');
+      nav.appendChild(toggle);
+
+      var expanded = false;
+      toggle.addEventListener('click', function () {
+        expanded = !expanded;
+        hidden.forEach(function (el) {
+          el.classList.toggle('team-nav-collapsed', !expanded);
+        });
+        toggle.textContent = expanded ? 'Show less' : 'Show ' + remaining + ' more…';
+        toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      });
+    });
+
     /* ── Mobile hamburger menu ── */
     var navInner = document.querySelector('.nav-inner');
     if (navInner) {

@@ -380,6 +380,18 @@ html[data-theme="kcr-blue"] .footer-lower a:hover  { color: var(--gold); }
 }
 .tcp-reset:hover { color: var(--ink); border-color: var(--steel); }
 
+/* ─── TEAM NAV COLLAPSE ──────────────────────────────────── */
+.team-nav-collapsed { display: none; }
+.team-nav-toggle {
+  display: block; width: 100%; padding: 10px 18px;
+  background: none; border: none; border-top: 1px solid var(--paper-3);
+  font-family: var(--sans); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--amber); cursor: pointer; text-align: left;
+  transition: background 0.15s, color 0.15s;
+}
+.team-nav-toggle:hover { background: var(--paper); color: var(--amber-lt); }
+
 /* ─── ANIMATIONS ─────────────────────────────────────────── */
 @keyframes riseIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 .rise   { opacity: 0; animation: riseIn 0.7s ease forwards; }
