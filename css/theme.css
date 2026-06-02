@@ -594,3 +594,37 @@ li a:not([class]),
   .fcard, .news-item { transition: none; }
   .btn-primary, .btn-ghost, .section-link, .nav-link { transition: none; }
 }
+
+/* ─── PRINT STYLES ───────────────────────────────────────── */
+@media print {
+  /* Hide navigation chrome */
+  .topbar, nav, .ribbon, footer, #kcr-palette-btn, #kcr-palette-panel,
+  .skip-link, .nav-hamburger, .side-card-head-text span { display: none !important; }
+
+  /* Page setup */
+  body { font-family: Georgia, serif; background: white; color: #111; font-size: 11pt; line-height: 1.5; }
+  .page-wrap { display: block; padding: 0; max-width: 100%; }
+  main, aside { display: block; width: 100%; }
+
+  /* Masthead: print in black on white */
+  .masthead, .page-hero { background: white !important; color: #111 !important; padding: 0 0 12pt; border-bottom: 1pt solid #ccc; }
+  .masthead-title, .masthead h1, h1, h2, h3 { color: #111 !important; font-family: Georgia, serif; }
+  .eyebrow, .section-link { color: #555 !important; }
+
+  /* Staff profiles */
+  .mh-left { padding: 0; }
+  .mh-right, .mh-name { color: #111 !important; }
+  .profile-avatar { display: none; }
+
+  /* Suppress animations */
+  .rise { opacity: 1 !important; animation: none !important; }
+
+  /* Show full URLs for links */
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8pt; color: #666; }
+  a[href^="/"]::after { content: " (david-rust.github.io" attr(href) ")"; font-size: 8pt; color: #666; }
+  .nav-link::after, .btn-primary::after, .btn-ghost::after, .footer-link::after { content: none !important; }
+
+  /* Page breaks */
+  .pub-item, .news-item { page-break-inside: avoid; }
+  h2, h3 { page-break-after: avoid; }
+}
