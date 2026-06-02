@@ -122,7 +122,7 @@ nav { background: var(--paper); border-bottom: 1px solid var(--paper-3); positio
 /* ─── RIBBON ─────────────────────────────────────────────── */
 .ribbon { background: var(--ink-2); overflow: hidden; }
 .ribbon-inner { max-width: 1320px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; height: 64px; gap: 16px; }
-.ribbon-label { font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.65); white-space: nowrap; flex-shrink: 0; } /* was 0.25 — WCAG AA */
+.ribbon-label { font-size: 10.1px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.65); white-space: nowrap; flex-shrink: 0; } /* was 0.25 — WCAG AA */
 .ribbon-divider { width: 1px; height: 28px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
 /* image-based ribbon (index) */
 .ribbon-logos { display: flex; gap: 36px; align-items: center; }
@@ -161,7 +161,7 @@ nav { background: var(--paper); border-bottom: 1px solid var(--paper-3); positio
 /* ─── DARK CARD ──────────────────────────────────────────── */
 .dark-card { background: var(--ink-2); border-radius: var(--r); padding: 24px; margin-bottom: 20px; position: relative; overflow: hidden; }
 .dark-card::before { content: ''; position: absolute; top: -30px; right: -30px; width: 100px; height: 100px; background: var(--amber); border-radius: 50%; opacity: 0.06; }
-.dark-card .eyebrow { font-size: 10px; color: var(--amber); }
+.dark-card .eyebrow { font-size: 10.1px; color: var(--amber); }
 .dark-card h3 { font-family: var(--serif); font-size: 19px; color: rgba(255,255,255,0.85); margin: 10px 0 10px; line-height: 1.2; }
 .dark-card p { font-size: 13.5px; color: rgba(255,255,255,0.72); line-height: 1.7; } /* was 0.38 — WCAG AA */
 
@@ -192,7 +192,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.62); } /* was 0.28 �
 .footer-wordmark { font-family: var(--serif); font-size: 22px; color: rgba(255,255,255,0.90); font-weight: 400; line-height: 1.2; margin-bottom: 12px; }
 .footer-wordmark span { color: var(--amber); }
 .footer-desc { font-size: 12.5px; line-height: 1.7; color: rgba(255,255,255,0.62); font-weight: 300; } /* was 0.28 */
-.footer-col-title { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.55); font-weight: 600; margin-bottom: 16px; } /* was 0.3 */
+.footer-col-title { font-size: 10.1px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.55); font-weight: 600; margin-bottom: 16px; } /* was 0.3 */
 .footer-links { display: flex; flex-direction: column; gap: 10px; }
 .footer-link { display: block; font-size: 13px; color: rgba(255,255,255,0.72); transition: color 0.15s; margin-bottom: 10px; } /* was 0.35 */
 .footer-link:hover { color: var(--amber-lt); }
