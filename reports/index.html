@@ -9,10 +9,6 @@
   <link rel="stylesheet" href="/css/theme.css">
 <style>.masthead { background: var(--ink); padding: 48px 40px 52px; }
 .masthead-inner { max-width: 1320px; margin: 0 auto; }
-.breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 20px; }
-.breadcrumb a { color: rgba(255,255,255,0.28); transition: color 0.15s; }
-.breadcrumb a:hover { color: var(--amber); }
-.breadcrumb .sep { color:rgba(255,255,255,0.72); }
 .masthead-kicker {  font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); margin-bottom: 16px; }
 .masthead h1 { font-family: var(--serif); font-size: clamp(36px, 4.5vw, 58px); font-weight: 400; color: var(--white); line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 20px; }
 .masthead h1 em { font-style: italic; }
@@ -125,10 +121,17 @@ body p { font-size: 16px; color: var(--steel); line-height: 1.8; }
   <div class="nav-inner">
     <a href="/" class="nav-link">Home</a>
     <a href="/about/" class="nav-link">About</a>
-    <a href="/reports/" class="nav-link active">Reports</a>
+    <a href="https://www.cancer-rates.info/ky/" target="_blank" class="nav-link">Data &amp; Maps</a>
     <a href="/research/" class="nav-link">Research</a>
-    <a href="/resources" class="nav-link">Resources</a>
-    <a href="/contact/" class="nav-link">Contact</a>
+    <a href="/resources/" class="nav-link">Technical</a>
+    <a href="https://www.kcr.uky.edu/childhood-report" target="_blank" class="nav-link active">Reports</a>
+    <div class="nav-spacer"></div>
+    <form class="nav-search-form" action="https://www.google.com/cse" method="get">
+      <input type="hidden" name="cx" value="009441292369788699417:9icjohttrvo">
+      <input type="hidden" name="ie" value="UTF-8">
+      <input type="text" name="q" placeholder="Search the Registry…" aria-label="Search the Registry">
+      <button type="submit">Search</button>
+    </form>
   </div>
 </nav>
 

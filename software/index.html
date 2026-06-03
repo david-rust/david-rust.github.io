@@ -9,10 +9,6 @@
 .masthead::before{content:'';position:absolute;right:-60px;top:-60px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(200,122,47,.06) 0%,transparent 70%);pointer-events:none;}
 .masthead::after{content:'';position:absolute;left:0;bottom:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(200,122,47,.3) 40%,rgba(200,122,47,.3) 60%,transparent);}
 .masthead-inner{max-width:1320px;margin:0 auto;}
-.breadcrumb{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:20px;}
-.breadcrumb a{color:rgba(255,255,255,0.72);transition:color .15s;}
-.breadcrumb a:hover{color:var(--amber);}
-.breadcrumb .sep{color:rgba(255,255,255,0.72);}
 .masthead h1{font-family:var(--serif);font-size:clamp(38px,4.5vw,62px);font-weight:400;color:var(--white);line-height:.95;letter-spacing:-.02em;margin-bottom:18px;}
 .masthead h1 em{font-style:italic;color:var(--amber-lt);}
 .masthead-sub{font-size:15px;color:rgba(255,255,255,.45);font-weight:300;max-width:540px;line-height:1.7;margin-bottom:32px;}
@@ -176,10 +172,17 @@
   <div class="nav-inner">
     <a href="/" class="nav-link">Home</a>
     <a href="/about/" class="nav-link">About</a>
-    <a href="/reports/" class="nav-link">Reports</a>
+    <a href="https://www.cancer-rates.info/ky/" target="_blank" class="nav-link">Data &amp; Maps</a>
     <a href="/research/" class="nav-link">Research</a>
     <a href="/resources/" class="nav-link active">Technical</a>
-    <a href="/contact/" class="nav-link">Contact</a>
+    <a href="https://www.kcr.uky.edu/childhood-report" target="_blank" class="nav-link">Reports</a>
+    <div class="nav-spacer"></div>
+    <form class="nav-search-form" action="https://www.google.com/cse" method="get">
+      <input type="hidden" name="cx" value="009441292369788699417:9icjohttrvo">
+      <input type="hidden" name="ie" value="UTF-8">
+      <input type="text" name="q" placeholder="Search the Registry…" aria-label="Search the Registry">
+      <button type="submit">Search</button>
+    </form>
   </div>
 </nav>
 

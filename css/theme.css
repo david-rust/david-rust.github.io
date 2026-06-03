@@ -73,6 +73,12 @@ img { display: block; max-width: 100%; }
 }
 .section-link:hover { gap: 9px; color: var(--amber); }
 
+/* ─── BREADCRUMB ─────────────────────────────────────────── */
+.breadcrumb { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.72); margin-bottom: 20px; }
+.breadcrumb a { color: rgba(255,255,255,0.72); transition: color 0.15s; }
+.breadcrumb a:hover { color: var(--amber); }
+.breadcrumb .sep { color: rgba(255,255,255,0.72); }
+
 /* ─── NAV ────────────────────────────────────────────────── */
 nav { background: var(--paper); border-bottom: 1px solid var(--paper-3); position: sticky; top: 0; z-index: 200; }
 .nav-inner { max-width: 1320px; margin: 0 auto; padding: 0 40px; display: flex; align-items: stretch; }
