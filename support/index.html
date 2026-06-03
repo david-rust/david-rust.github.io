@@ -69,6 +69,8 @@
   .page-hero-rule,.hero-contact-list{display:none}
   .page-wrap,.footer-upper{grid-template-columns:1fr}
 }
+.btn-outline-secondary { display:inline-flex; align-items:center; gap:8px; background:transparent; color:var(--steel); border:1px solid var(--paper-3); padding:11px 22px; border-radius:3px; font-size:12px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; transition:all .15s; }
+.btn-outline-secondary:hover, .btn-outline-secondary:focus-visible { border-color:var(--fog); color:var(--ink); outline:2px solid var(--amber); outline-offset:2px; }
 </style>
   <meta name="description" content="Technical support for Kentucky Cancer Registry data reporters — file transfer assistance, CPDMS.net troubleshooting, and registry staff contact information.">
   <meta property="og:type" content="website">
@@ -299,7 +301,7 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
               Email Tech Support
             </a>
-            <a href="contact/" style="display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--steel);border:1px solid var(--paper-3);padding:11px 22px;border-radius:3px;font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;transition:all .15s;" onmouseover="this.style.borderColor='var(--fog)';this.style.color='var(--ink)'" onmouseout="this.style.borderColor='var(--paper-3)';this.style.color='var(--steel)'">
+            <a href="contact/" class="btn-outline-secondary">
               View Staff Directory
             </a>
           </div>
