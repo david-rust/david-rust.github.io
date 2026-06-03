@@ -444,4 +444,43 @@
       });
     }
   });
+
+  /* Label document/media links for screen readers.
+   * Appends a visually-hidden file-type hint to any link whose href
+   * points to a downloadable file, unless the link text already names
+   * the type. Runs after DOM is ready so it catches dynamically-rendered
+   * content too. */
+  document.addEventListener('DOMContentLoaded', function () {
+    var TYPE_MAP = {
+      pdf:  'PDF',
+      zip:  'ZIP',
+      docx: 'Word document',
+      doc:  'Word document',
+      xlsx: 'Excel spreadsheet',
+      xls:  'Excel spreadsheet',
+      pptx: 'PowerPoint',
+      ppt:  'PowerPoint',
+      mp4:  'video',
+      mp3:  'audio'
+    };
+
+    document.querySelectorAll('a[href]').forEach(function (link) {
+      var match = link.getAttribute('href').match(/\.([a-z0-9]+)(\?|#|$)/i);
+      if (!match) return;
+      var ext   = match[1].toLowerCase();
+      var label = TYPE_MAP[ext];
+      if (!label) return;
+      /* Skip if the link's visible text already mentions the type label or the
+         extension (including base form: docx→doc, xlsx→xls, pptx→ppt) */
+      var textUp = link.textContent.toUpperCase();
+      if (textUp.indexOf(label.toUpperCase()) !== -1) return;
+      if (textUp.indexOf(ext.toUpperCase()) !== -1) return;
+      var baseExt = ext.replace(/x$/, '');
+      if (baseExt !== ext && textUp.indexOf(baseExt.toUpperCase()) !== -1) return;
+      var hint = document.createElement('span');
+      hint.className = 'sr-only';
+      hint.textContent = ' (' + label + ')';
+      link.appendChild(hint);
+    });
+  });
 }());
