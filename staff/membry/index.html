@@ -7,9 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/theme.css">
-<style>.topbar-inner a{color:rgba(255,255,255,0.72);transition:color .15s;}
-.topbar-inner a:hover{color:var(--amber-lt);}
-.masthead{background:var(--ink);padding:48px 40px 0;position:relative;overflow:hidden;}
+<style>.masthead{background:var(--ink);padding:48px 40px 0;position:relative;overflow:hidden;}
 .masthead::before{content:'';position:absolute;right:-100px;top:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(200,122,47,.06) 0%,transparent 70%);pointer-events:none;}
 .mh-inner{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:0;align-items:end;}
 .breadcrumb{color:rgba(255,255,255,0.72);margin-bottom:20px;}
@@ -31,16 +29,15 @@
 .profile-avatar{width:100%;height:400px;background:var(--ink-2);border-radius:var(--r) var(--r) 0 0;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.06);border-bottom:none;}
 .profile-avatar::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 50% 110%,rgba(200,122,47,.15) 0%,transparent 70%);}
 .profile-initials{font-family:var(--serif);font-size:88px;font-weight:400;color:rgba(255,255,255,0.72);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:0;letter-spacing:-.02em;}
-.profile-avatar-tag{color:var(--amber-lt);z-index:2;}
 .bio-section{margin-bottom:48px;}
 .bio-section p{font-size:16px;color:var(--steel);line-height:1.8;font-weight:300;}
 .bio-section p+p{margin-top:16px;}
 .expertise-wrap{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:48px;}
 .expertise-tag{font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border-radius:3px;background:white;border:1px solid var(--paper-3);color:var(--steel);transition:all .15s;}
 .expertise-tag:hover{border-color:var(--amber);color:var(--amber);}
-.back-btn{color:var(--amber-dim);transition:gap .15s;margin-bottom:40px;}
-.back-btn:hover{gap:12px;}
-.back-btn svg{stroke:currentColor;fill:none;stroke-width:2;width:13px;height:13px;transform:rotate(180deg);}
+
+
+
 .info-row{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--paper-2);font-size:13.5px;}
 .info-row:last-child{border-bottom:none;}
 .info-label{color:var(--steel);}
@@ -76,16 +73,6 @@
 <body>
 
 <header>
-<div class="topbar">
-  <div class="topbar-inner">
-    <span>University of Kentucky &bull; Markey Cancer Center &bull; Est. 1990</span>
-    <div style="display:flex;gap:24px;">
-      <a href="/contact/">Contact</a>
-      <a href="https://kcr-confluence.atlassian.net/wiki/spaces/kentuckyregistrarswiki/overview" target="_blank">Registrars Wiki</a>
-    </div>
-  </div>
-</div>
-
 <div class="masthead">
   <div class="mh-inner">
     <div class="mh-left">
@@ -117,8 +104,7 @@
       <div class="profile-avatar-wrap">
         <div class="profile-avatar">
           <span class="profile-initials">ME</span>
-          <div class="profile-avatar-tag">KCR Staff</div>
-        </div>
+          </div>
       </div>
     </div>
   </div>
@@ -139,11 +125,6 @@
 
 <div class="page-wrap">
   <main>
-    <a href="/staff/" class="back-btn rise rise-1">
-      <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      Back to Staff Directory
-    </a>
-
     <div class="bio-section rise rise-2">
       <div class="eyebrow">Biography</div>
       <h2 class="section-heading">About Mitchell</h2>

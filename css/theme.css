@@ -73,25 +73,6 @@ img { display: block; max-width: 100%; }
 }
 .section-link:hover { gap: 9px; color: var(--amber); }
 
-/* ─── TOPBAR ─────────────────────────────────────────────── */
-.topbar {
-  background: var(--ink); height: 36px; display: flex; align-items: center;
-  padding: 0 40px; font-size: 11px; letter-spacing: 0.06em;
-  color: rgba(255,255,255,0.62); justify-content: space-between; /* was 0.3 — WCAG AA */
-}
-.topbar a,
-.topbar .topbar-inner a { color: rgba(255,255,255,0.68); transition: color 0.15s; } /* was 0.35 — higher specificity overrides staff page inline styles */
-.topbar a:hover,
-.topbar .topbar-inner a:hover { color: var(--amber-lt); }
-/* layout helpers used by different pages */
-.topbar-inner { max-width: 1320px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; }
-.topbar-left  { font-size: 11px; letter-spacing: 0.06em; color: rgba(255,255,255,0.62); } /* was 0.3 */
-.topbar-sep   { flex: 1; }
-.topbar-right { display: flex; gap: 20px; font-size: 11px; letter-spacing: 0.06em; }
-.topbar-right a { color: rgba(255,255,255,0.68); transition: color 0.15s; } /* was 0.35 */
-.topbar-right a:hover { color: var(--amber-lt); }
-.topbar-links { display: flex; gap: 24px; }
-
 /* ─── NAV ────────────────────────────────────────────────── */
 nav { background: var(--paper); border-bottom: 1px solid var(--paper-3); position: sticky; top: 0; z-index: 200; }
 .nav-inner { max-width: 1320px; margin: 0 auto; padding: 0 40px; display: flex; align-items: stretch; }
@@ -103,7 +84,7 @@ nav { background: var(--paper); border-bottom: 1px solid var(--paper-3); positio
 .nav-link:hover { color: var(--ink); }
 .nav-link.active { color: var(--ink); border-bottom-color: var(--amber); }
 .nav-logo { font-family: var(--serif); font-size: 17px; font-weight: 400; color: var(--ink); margin-right: 32px; white-space: nowrap; }
-.nav-logo span { color: var(--amber-dim); }
+.nav-logo span { color: var(--amber); }
 .nav-spacer { flex: 1; }
 .nav-search-form { display: flex; align-items: center; padding: 9px 0; }
 .nav-search-form input {
@@ -252,10 +233,6 @@ html[data-theme="kcr-blue"] .nav-search-form input:focus   { border-color: var(-
 html[data-theme="kcr-blue"] .nav-search-form button        { background: var(--gold); border-color: var(--gold); color: #08152b; }
 html[data-theme="kcr-blue"] .nav-search-form button:hover  { background: var(--gold-lt); border-color: var(--gold-lt); }
 
-/* ── Topbar ── */
-html[data-theme="kcr-blue"] .topbar               { border-bottom: 1px solid rgba(201,168,76,0.2); }
-html[data-theme="kcr-blue"] .topbar a:hover        { color: var(--gold-lt); }
-html[data-theme="kcr-blue"] .topbar-right a:hover  { color: var(--gold-lt); }
 
 /* ── Primary CTA button → Kentucky gold ── */
 html[data-theme="kcr-blue"] .btn-primary           { background: var(--gold); color: #08152b; }
@@ -485,7 +462,6 @@ html[data-theme="kcr-blue"] .nav-hamburger { color: rgba(255,255,255,0.8); }
 @media (max-width: 960px) {
   .page-wrap { grid-template-columns: 1fr; }
   .footer-upper { grid-template-columns: 1fr 1fr; }
-  .topbar { padding: 0 20px; }
   .nav-inner { padding: 0 20px; }
   .ribbon-inner { padding: 0 20px; }
 }
@@ -567,8 +543,6 @@ html[data-theme="kcr-blue"] .nav-hamburger { color: rgba(255,255,255,0.8); }
   /* ── Buttons: full-width ── */
   .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
 
-  /* ── Topbar: hide on very small screens to save space ── */
-  .topbar { display: none; }
 }
 
 /* ─── CLOUDFLARE EMAIL OBFUSCATION ──────────────────────── */
@@ -604,7 +578,7 @@ li a:not([class]),
 /* ─── PRINT STYLES ───────────────────────────────────────── */
 @media print {
   /* Hide navigation chrome */
-  .topbar, nav, .ribbon, footer, #kcr-palette-btn, #kcr-palette-panel,
+  nav, .ribbon, footer, #kcr-palette-btn, #kcr-palette-panel,
   .skip-link, .nav-hamburger, .side-card-head-text span { display: none !important; }
 
   /* Page setup */
