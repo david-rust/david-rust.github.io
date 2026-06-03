@@ -125,9 +125,9 @@
 .feat-meta-item {
       display: flex; align-items: center; gap: 6px;
       font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; color: rgba(255,255,255,0.3);
+      text-transform: uppercase; color: rgba(255,255,255,0.72);
     }
-.feat-meta-item svg { color: rgba(255,255,255,0.2); }
+.feat-meta-item svg { color: rgba(255,255,255,0.72); }
 .feat-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 .resource-card {
       background: white; border-radius: var(--r);
@@ -151,7 +151,7 @@
       width: 44px; height: 44px; flex-shrink: 0;
       border-radius: 8px; display: flex; align-items: center; justify-content: center;
     }
-.rc-icon.pdf { background: rgba(200,122,47,0.1); color: var(--amber); }
+.rc-icon.pdf { background: rgba(200,122,47,0.1); color: var(--amber-dim); }
 .rc-icon.web { background: rgba(61,81,102,0.1); color: var(--steel); }
 .rc-icon.xls { background: rgba(34,139,34,0.1); color: #3a8a3a; }
 .rc-icon.doc { background: rgba(42,86,153,0.1); color: #3a60a0; }
@@ -198,7 +198,7 @@
       width: 36px; height: 36px; flex-shrink: 0; border-radius: 6px;
       display: flex; align-items: center; justify-content: center;
     }
-.rr-icon.pdf { background: rgba(200,122,47,0.1); color: var(--amber); }
+.rr-icon.pdf { background: rgba(200,122,47,0.1); color: var(--amber-dim); }
 .rr-icon.web { background: rgba(61,81,102,0.1); color: var(--steel); }
 .rr-icon.xls { background: rgba(34,139,34,0.1); color: #3a8a3a; }
 .rr-icon.doc { background: rgba(42,86,153,0.1); color: #3a60a0; }
@@ -596,7 +596,7 @@
               <th>Year</th>
               <th>Format</th>
               <th>Notes</th>
-              <th></th>
+              <th scope="col"><span class="sr-only">Download</span></th>
             </tr>
           </thead>
           <tbody>

@@ -208,9 +208,9 @@
       font-size: 11.5px; font-weight: 600; letter-spacing: 0.06em;
       text-transform: uppercase; transition: all 0.15s;
       border: 1px solid var(--paper-3); background: white; color: var(--steel);
-      user-select: none;
+      user-select: none; font-family: var(--sans);
     }
-.year-tab:hover { border-color: var(--fog); color: var(--ink); }
+.year-tab:hover, .year-tab:focus-visible { border-color: var(--fog); color: var(--ink); outline: 2px solid var(--amber); outline-offset: 2px; }
 .year-tab.active {
       background: var(--amber); border-color:var(--amber-dim); color: var(--ink);
     }
@@ -219,6 +219,7 @@
 .year-group-header {
       display: flex; align-items: center; gap: 16px;
       padding: 12px 0 10px; cursor: pointer; user-select: none;
+      width: 100%; background: none; border: none; font-family: var(--sans); text-align: left;
     }
 .year-group-header:hover .year-group-label { color: var(--ink); }
 .year-group-num {
@@ -510,39 +511,39 @@
 
         <!-- Year filter tabs -->
         <div class="year-filter" id="yearFilter">
-          <div class="year-tab active" data-year="all" onclick="filterYear(this,'all')">All Years</div>
-          <div class="year-tab" data-year="2024" onclick="filterYear(this,'2024')">2024</div>
-          <div class="year-tab" data-year="2021" onclick="filterYear(this,'2021')">2021</div>
-          <div class="year-tab" data-year="2020" onclick="filterYear(this,'2020')">2020</div>
-          <div class="year-tab" data-year="2019" onclick="filterYear(this,'2019')">2019</div>
-          <div class="year-tab" data-year="2018" onclick="filterYear(this,'2018')">2018</div>
-          <div class="year-tab" data-year="2017" onclick="filterYear(this,'2017')">2017</div>
-          <div class="year-tab" data-year="2016" onclick="filterYear(this,'2016')">2016</div>
-          <div class="year-tab" data-year="2015" onclick="filterYear(this,'2015')">2015</div>
-          <div class="year-tab" data-year="2014" onclick="filterYear(this,'2014')">2014</div>
-          <div class="year-tab" data-year="2013" onclick="filterYear(this,'2013')">2013</div>
-          <div class="year-tab" data-year="2012" onclick="filterYear(this,'2012')">2012</div>
-          <div class="year-tab" data-year="2011" onclick="filterYear(this,'2011')">2011</div>
-          <div class="year-tab" data-year="2010" onclick="filterYear(this,'2010')">2010</div>
-          <div class="year-tab" data-year="2009" onclick="filterYear(this,'2009')">2009</div>
-          <div class="year-tab" data-year="2008" onclick="filterYear(this,'2008')">2008</div>
-          <div class="year-tab" data-year="2007" onclick="filterYear(this,'2007')">2007</div>
-          <div class="year-tab" data-year="2006" onclick="filterYear(this,'2006')">2006</div>
-          <div class="year-tab" data-year="2005" onclick="filterYear(this,'2005')">2005</div>
+          <button type="button" class="year-tab active" data-year="all" onclick="filterYear(this,'all')">All Years</button>
+          <button type="button" class="year-tab" data-year="2024" onclick="filterYear(this,'2024')">2024</button>
+          <button type="button" class="year-tab" data-year="2021" onclick="filterYear(this,'2021')">2021</button>
+          <button type="button" class="year-tab" data-year="2020" onclick="filterYear(this,'2020')">2020</button>
+          <button type="button" class="year-tab" data-year="2019" onclick="filterYear(this,'2019')">2019</button>
+          <button type="button" class="year-tab" data-year="2018" onclick="filterYear(this,'2018')">2018</button>
+          <button type="button" class="year-tab" data-year="2017" onclick="filterYear(this,'2017')">2017</button>
+          <button type="button" class="year-tab" data-year="2016" onclick="filterYear(this,'2016')">2016</button>
+          <button type="button" class="year-tab" data-year="2015" onclick="filterYear(this,'2015')">2015</button>
+          <button type="button" class="year-tab" data-year="2014" onclick="filterYear(this,'2014')">2014</button>
+          <button type="button" class="year-tab" data-year="2013" onclick="filterYear(this,'2013')">2013</button>
+          <button type="button" class="year-tab" data-year="2012" onclick="filterYear(this,'2012')">2012</button>
+          <button type="button" class="year-tab" data-year="2011" onclick="filterYear(this,'2011')">2011</button>
+          <button type="button" class="year-tab" data-year="2010" onclick="filterYear(this,'2010')">2010</button>
+          <button type="button" class="year-tab" data-year="2009" onclick="filterYear(this,'2009')">2009</button>
+          <button type="button" class="year-tab" data-year="2008" onclick="filterYear(this,'2008')">2008</button>
+          <button type="button" class="year-tab" data-year="2007" onclick="filterYear(this,'2007')">2007</button>
+          <button type="button" class="year-tab" data-year="2006" onclick="filterYear(this,'2006')">2006</button>
+          <button type="button" class="year-tab" data-year="2005" onclick="filterYear(this,'2005')">2005</button>
         </div>
 
         <div id="archiveList">
 
           <!-- 2024 -->
           <div class="archive-year-block open" data-year="2024">
-            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+            <button type="button" class="year-group-header" aria-expanded="true" onclick="toggleYear(this.parentElement)">
               <div class="year-group-num">2024</div>
               <div class="year-group-label">3 Issues</div>
               <div class="year-group-count"></div>
               <div class="year-group-toggle">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
               </div>
-            </div>
+            </button>
             <div class="year-group-issues">
               <div class="issue-row">
                 <div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div>
@@ -564,12 +565,12 @@
 
           <!-- 2021 -->
           <div class="archive-year-block" data-year="2021">
-            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+            <button type="button" class="year-group-header" aria-expanded="true" onclick="toggleYear(this.parentElement)">
               <div class="year-group-num">2021</div>
               <div class="year-group-label">2 Issues</div>
               <div class="year-group-count"></div>
               <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
-            </div>
+            </button>
             <div class="year-group-issues">
               <div class="issue-row">
                 <div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div>
@@ -586,12 +587,12 @@
 
           <!-- 2020 -->
           <div class="archive-year-block" data-year="2020">
-            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+            <button type="button" class="year-group-header" aria-expanded="true" onclick="toggleYear(this.parentElement)">
               <div class="year-group-num">2020</div>
               <div class="year-group-label">3 Issues</div>
               <div class="year-group-count"></div>
               <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
-            </div>
+            </button>
             <div class="year-group-issues">
               <div class="issue-row">
                 <div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div>
@@ -613,12 +614,12 @@
 
           <!-- 2019 -->
           <div class="archive-year-block" data-year="2019">
-            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+            <button type="button" class="year-group-header" aria-expanded="true" onclick="toggleYear(this.parentElement)">
               <div class="year-group-num">2019</div>
               <div class="year-group-label">4 Issues</div>
               <div class="year-group-count"></div>
               <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
-            </div>
+            </button>
             <div class="year-group-issues">
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">September 2019</div><a href="KCR Newsletter September 2019.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">June 2019</div><a href="KCR Newsletter June 2019.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
@@ -628,12 +629,12 @@
 
           <!-- 2018 -->
           <div class="archive-year-block" data-year="2018">
-            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+            <button type="button" class="year-group-header" aria-expanded="true" onclick="toggleYear(this.parentElement)">
               <div class="year-group-num">2018</div>
               <div class="year-group-label">3 Issues</div>
               <div class="year-group-count"></div>
               <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
-            </div>
+            </button>
             <div class="year-group-issues">
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">November 2018</div><a href="KCR newsletter November 2018.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">July 2018</div><a href="July 2018 newsletter.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
@@ -643,12 +644,12 @@
 
           <!-- 2017 -->
           <div class="archive-year-block" data-year="2017">
-            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+            <button type="button" class="year-group-header" aria-expanded="true" onclick="toggleYear(this.parentElement)">
               <div class="year-group-num">2017</div>
               <div class="year-group-label">2 Issues</div>
               <div class="year-group-count"></div>
               <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
-            </div>
+            </button>
             <div class="year-group-issues">
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">December 2017</div><a href="In The Abstract Dec 2017.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">July 2017</div><a href="KCR Newsletter July 2017.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
@@ -657,12 +658,12 @@
 
           <!-- 2016 -->
           <div class="archive-year-block" data-year="2016">
-            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+            <button type="button" class="year-group-header" aria-expanded="true" onclick="toggleYear(this.parentElement)">
               <div class="year-group-num">2016</div>
               <div class="year-group-label">3 Issues</div>
               <div class="year-group-count"></div>
               <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
-            </div>
+            </button>
             <div class="year-group-issues">
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">December 2016</div><a href="Newsletter.Dec2016.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">July 2016</div><a href="July 2016.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
@@ -672,12 +673,12 @@
 
           <!-- 2015 -->
           <div class="archive-year-block" data-year="2015">
-            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+            <button type="button" class="year-group-header" aria-expanded="true" onclick="toggleYear(this.parentElement)">
               <div class="year-group-num">2015</div>
               <div class="year-group-label">3 Issues</div>
               <div class="year-group-count"></div>
               <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
-            </div>
+            </button>
             <div class="year-group-issues">
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">October 2015</div><a href="Oct 2015.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">April 2015</div><a href="April 2015.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
@@ -687,12 +688,12 @@
 
           <!-- 2014 -->
           <div class="archive-year-block" data-year="2014">
-            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+            <button type="button" class="year-group-header" aria-expanded="true" onclick="toggleYear(this.parentElement)">
               <div class="year-group-num">2014</div>
               <div class="year-group-label">3 Issues</div>
               <div class="year-group-count"></div>
               <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
-            </div>
+            </button>
             <div class="year-group-issues">
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">October 2014</div><a href="Oct 2014.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">March 2014</div><a href="Mar 14 lg.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
@@ -701,12 +702,12 @@
 
           <!-- 2013 -->
           <div class="archive-year-block" data-year="2013">
-            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+            <button type="button" class="year-group-header" aria-expanded="true" onclick="toggleYear(this.parentElement)">
               <div class="year-group-num">2013</div>
               <div class="year-group-label">1 Issue</div>
               <div class="year-group-count"></div>
               <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
-            </div>
+            </button>
             <div class="year-group-issues">
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">October 2013</div><a href="Oct 2013.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
             </div>
@@ -714,12 +715,12 @@
 
           <!-- 2012 -->
           <div class="archive-year-block" data-year="2012">
-            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+            <button type="button" class="year-group-header" aria-expanded="true" onclick="toggleYear(this.parentElement)">
               <div class="year-group-num">2012</div>
               <div class="year-group-label">1 Issue</div>
               <div class="year-group-count"></div>
               <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
-            </div>
+            </button>
             <div class="year-group-issues">
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">October 2012</div><a href="Oct2012.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
             </div>
@@ -727,12 +728,12 @@
 
           <!-- 2011 -->
           <div class="archive-year-block" data-year="2011">
-            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+            <button type="button" class="year-group-header" aria-expanded="true" onclick="toggleYear(this.parentElement)">
               <div class="year-group-num">2011</div>
               <div class="year-group-label">4 Issues</div>
               <div class="year-group-count"></div>
               <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
-            </div>
+            </button>
             <div class="year-group-issues">
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">November 2011</div><a href="Nov 11.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">August 2011</div><a href="Aug 11.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
@@ -743,12 +744,12 @@
 
           <!-- 2010 -->
           <div class="archive-year-block" data-year="2010">
-            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+            <button type="button" class="year-group-header" aria-expanded="true" onclick="toggleYear(this.parentElement)">
               <div class="year-group-num">2010</div>
               <div class="year-group-label">3 Issues</div>
               <div class="year-group-count"></div>
               <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
-            </div>
+            </button>
             <div class="year-group-issues">
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">September 2010</div><a href="Sep10.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">June 2010</div><a href="Jun10.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
@@ -758,12 +759,12 @@
 
           <!-- 2009 -->
           <div class="archive-year-block" data-year="2009">
-            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+            <button type="button" class="year-group-header" aria-expanded="true" onclick="toggleYear(this.parentElement)">
               <div class="year-group-num">2009</div>
               <div class="year-group-label">4 Issues</div>
               <div class="year-group-count"></div>
               <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
-            </div>
+            </button>
             <div class="year-group-issues">
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">November 2009</div><a href="Nov09.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">August 2009</div><a href="Aug09.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
@@ -774,12 +775,12 @@
 
           <!-- 2008 -->
           <div class="archive-year-block" data-year="2008">
-            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+            <button type="button" class="year-group-header" aria-expanded="true" onclick="toggleYear(this.parentElement)">
               <div class="year-group-num">2008</div>
               <div class="year-group-label">4 Issues</div>
               <div class="year-group-count"></div>
               <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
-            </div>
+            </button>
             <div class="year-group-issues">
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">November 2008</div><a href="Nov08.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">August 2008</div><a href="Aug08.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
@@ -790,12 +791,12 @@
 
           <!-- 2007 -->
           <div class="archive-year-block" data-year="2007">
-            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+            <button type="button" class="year-group-header" aria-expanded="true" onclick="toggleYear(this.parentElement)">
               <div class="year-group-num">2007</div>
               <div class="year-group-label">4 Issues</div>
               <div class="year-group-count"></div>
               <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
-            </div>
+            </button>
             <div class="year-group-issues">
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">November 2007</div><a href="Nov07.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">August 2007</div><a href="Aug07.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
@@ -806,12 +807,12 @@
 
           <!-- 2006 -->
           <div class="archive-year-block" data-year="2006">
-            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+            <button type="button" class="year-group-header" aria-expanded="true" onclick="toggleYear(this.parentElement)">
               <div class="year-group-num">2006</div>
               <div class="year-group-label">4 Issues</div>
               <div class="year-group-count"></div>
               <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
-            </div>
+            </button>
             <div class="year-group-issues">
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">October 2006</div><a href="Oct06.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">July 2006</div><a href="july06.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
@@ -822,12 +823,12 @@
 
           <!-- 2005 -->
           <div class="archive-year-block" data-year="2005">
-            <div class="year-group-header" onclick="toggleYear(this.parentElement)">
+            <button type="button" class="year-group-header" aria-expanded="true" onclick="toggleYear(this.parentElement)">
               <div class="year-group-num">2005</div>
               <div class="year-group-label">4 Issues</div>
               <div class="year-group-count"></div>
               <div class="year-group-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg></div>
-            </div>
+            </button>
             <div class="year-group-issues">
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">October 2005</div><a href="oct05.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
               <div class="issue-row"><div class="issue-row-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div><div class="issue-row-date">August 2005</div><a href="aug05.pdf" class="issue-row-dl">Download <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg></a></div>
@@ -972,6 +973,8 @@
   <script>
     function toggleYear(block) {
       block.classList.toggle('open');
+      var btn = block.querySelector('.year-group-header');
+      if (btn) btn.setAttribute('aria-expanded', block.classList.contains('open'));
     }
 
     function filterYear(tab, year) {

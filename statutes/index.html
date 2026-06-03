@@ -138,7 +138,7 @@
       font-weight: 300;
       letter-spacing: 0;
       text-transform: none;
-      color: rgba(255,255,255,0.28);
+      color: rgba(255,255,255,0.72);
       margin-top: 4px;
     }
 .intro-block {
@@ -193,6 +193,7 @@
       align-items: stretch;
       cursor: pointer;
       user-select: none;
+      width: 100%; background: none; border: none; font-family: var(--sans); text-align: left; padding: 0;
     }
 .statute-badge {
       background: var(--ink-2);
@@ -235,7 +236,7 @@
       font-weight: 600;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--amber);
+      color: var(--amber-dim);
       margin-bottom: 5px;
     }
 .statute-name {
@@ -259,7 +260,7 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      color: var(--mist);
+      color: var(--steel);
       transition: all 0.2s;
     }
 .statute-card.open .statute-toggle {
@@ -297,7 +298,7 @@
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.1em;
-      color: var(--amber);
+      color: var(--amber-dim);
       text-transform: uppercase;
       min-width: 80px;
       margin-top: 2px;
@@ -404,7 +405,7 @@
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--amber);
+      color: var(--amber-dim);
       margin-top: 14px;
       transition: gap 0.15s;
     }
@@ -651,8 +652,8 @@
         </div>
 
         <!-- KRS 214.556 -->
-        <div class="statute-card open" onclick="toggleStatute(this)">
-          <div class="statute-header">
+        <div class="statute-card open">
+          <button type="button" class="statute-header" aria-expanded="true" onclick="toggleStatute(this.closest('.statute-card'))">
             <div class="statute-badge">
               <div class="statute-badge-label">KRS</div>
               <div class="statute-badge-num">214.556</div>
@@ -714,8 +715,8 @@
         </div>
 
         <!-- KRS 214.558 -->
-        <div class="statute-card" onclick="toggleStatute(this)">
-          <div class="statute-header">
+        <div class="statute-card">
+          <button type="button" class="statute-header" aria-expanded="false" onclick="toggleStatute(this.closest('.statute-card'))">
             <div class="statute-badge">
               <div class="statute-badge-label">KRS</div>
               <div class="statute-badge-num">214.558</div>
@@ -770,8 +771,8 @@
         </div>
 
         <!-- KRS 214.560 -->
-        <div class="statute-card" onclick="toggleStatute(this)">
-          <div class="statute-header">
+        <div class="statute-card">
+          <button type="button" class="statute-header" aria-expanded="false" onclick="toggleStatute(this.closest('.statute-card'))">
             <div class="statute-badge">
               <div class="statute-badge-label">KRS</div>
               <div class="statute-badge-num">214.560</div>
@@ -826,8 +827,8 @@
         </div>
 
         <!-- KRS 214.562 -->
-        <div class="statute-card" onclick="toggleStatute(this)">
-          <div class="statute-header">
+        <div class="statute-card">
+          <button type="button" class="statute-header" aria-expanded="false" onclick="toggleStatute(this.closest('.statute-card'))">
             <div class="statute-badge">
               <div class="statute-badge-label">KRS</div>
               <div class="statute-badge-num">214.562</div>
@@ -947,8 +948,8 @@
           </div>
         </div>
 
-        <div class="statute-card" onclick="toggleStatute(this)">
-          <div class="statute-header">
+        <div class="statute-card">
+          <button type="button" class="statute-header" aria-expanded="false" onclick="toggleStatute(this.closest('.statute-card'))">
             <div class="statute-badge">
               <div class="statute-badge-label">KRS</div>
               <div class="statute-badge-num">214.420</div>
@@ -984,8 +985,8 @@
           </div>
         </div>
 
-        <div class="statute-card" onclick="toggleStatute(this)">
-          <div class="statute-header">
+        <div class="statute-card">
+          <button type="button" class="statute-header" aria-expanded="false" onclick="toggleStatute(this.closest('.statute-card'))">
             <div class="statute-badge">
               <div class="statute-badge-label">KRS</div>
               <div class="statute-badge-num">61.878</div>
@@ -1145,9 +1146,9 @@
 
   <script>
     function toggleStatute(card) {
-      // Don't toggle when clicking links inside
-      if (event.target.closest('a, button')) return;
       card.classList.toggle('open');
+      var btn = card.querySelector('.statute-header');
+      if (btn) btn.setAttribute('aria-expanded', card.classList.contains('open'));
     }
   </script>
 

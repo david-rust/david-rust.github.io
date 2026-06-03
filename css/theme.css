@@ -103,7 +103,7 @@ nav { background: var(--paper); border-bottom: 1px solid var(--paper-3); positio
 .nav-link:hover { color: var(--ink); }
 .nav-link.active { color: var(--ink); border-bottom-color: var(--amber); }
 .nav-logo { font-family: var(--serif); font-size: 17px; font-weight: 400; color: var(--ink); margin-right: 32px; white-space: nowrap; }
-.nav-logo span { color: var(--amber); }
+.nav-logo span { color: var(--amber-dim); }
 .nav-spacer { flex: 1; }
 .nav-search-form { display: flex; align-items: center; padding: 9px 0; }
 .nav-search-form input {
