@@ -88,12 +88,12 @@
 .mast-choro-legend-box {
       position: absolute;
       left: 24px;
+      /* top set dynamically by positionLegend() */
       display: flex;
       flex-direction: column;
       gap: 4px;
       z-index: 11;
       pointer-events: none;
-      /* top set dynamically by positionLegend() */
     }
 .mast-choro-legend-box .legend-title {
       font-size: 11px;
@@ -1024,13 +1024,41 @@ html[data-theme="kcr-blue"] .mast-data-note { background: #0f2244; }
       if (legendEl) buildLegend(legendEl, opts.verticalLegend);
     }
 
-    // Position legend immediately below where the header gradient fades out.
-    // Position the legend just below the header block (no gradient, so use full height + gap).
     function positionLegend() {
-      var header = document.getElementById('mastMapHeader');
+      var wrap   = document.getElementById('mapStage');
       var legend = document.getElementById('mastChoroLegend');
-      if (!header || !legend) return;
-      legend.style.top = Math.round(header.offsetHeight + 12) + 'px';
+      if (!wrap || !legend) return;
+      var wBox  = wrap.getBoundingClientRect();
+      var paths = wrap.querySelectorAll('.county-path');
+      if (!paths.length) return;
+      var lW = legend.offsetWidth  || 120;
+      var lH = legend.offsetHeight || 140;
+      var left = 24;
+      // Find the bottom of the state counties
+      var maxY = -Infinity;
+      paths.forEach(function(p) {
+        var b = p.getBoundingClientRect();
+        var rel = b.bottom - wBox.top;
+        if (rel > maxY) maxY = rel;
+      });
+      // Scan upward from just above state bottom to find first county-free slot
+      var clearTop = null;
+      for (var top = maxY - lH - 8; top >= 0; top -= 4) {
+        var corners = [
+          [left,           top],
+          [left + lW,      top],
+          [left,           top + lH],
+          [left + lW,      top + lH],
+          [left + lW,      top + lH / 2],
+          [left + lW / 2,  top + lH]
+        ];
+        var ok = corners.every(function(pt) {
+          var el = document.elementFromPoint(wBox.left + pt[0], wBox.top + pt[1]);
+          return !el || !el.classList.contains('county-path');
+        });
+        if (ok) { clearTop = top; break; }
+      }
+      if (clearTop !== null) legend.style.top = Math.round(clearTop) + 'px';
     }
 
     var TOPO_CACHE = null;
@@ -1052,7 +1080,6 @@ html[data-theme="kcr-blue"] .mast-data-note { background: #0f2244; }
             valClass: 'mast-panel-val'
           }
         });
-        // Wait one frame for legend to render then position it
         requestAnimationFrame(positionLegend);
       }
 
