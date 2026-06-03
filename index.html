@@ -324,10 +324,12 @@
 .director-source { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--paper-3); font-size: 12px; color: var(--steel); display: flex; align-items: center; gap: 8px; } /* was mist */
 .director-source a { color: var(--amber-dim); font-weight: 600; letter-spacing: 0.04em; transition: color 0.15s; } /* amber-dim on white WCAG AA */
 .director-source a:hover { color: var(--amber-lt); }
+@media (max-width: 1280px) {
+  .mast-choro-legend-box { display: none; }
+}
 @media (max-width: 960px) {
   .masthead { grid-template-columns: 1fr; }
   .masthead-right, .masthead-rule { display: none; }
-  .mast-choro-legend-box { display: none; }
 }
 @media (max-width: 768px) {
   .choro-body { grid-template-columns: 1fr; }
@@ -1059,7 +1061,7 @@ html[data-theme="kcr-blue"] .mast-data-note { background: #0f2244; }
         });
         if (ok) { clearTop = top; break; }
       }
-      if (clearTop !== null) legend.style.top = Math.round(clearTop - 10) + 'px';
+      if (clearTop !== null) legend.style.top = Math.round(clearTop - 20) + 'px';
     }
 
     var TOPO_CACHE = null;
