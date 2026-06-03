@@ -327,6 +327,7 @@
 @media (max-width: 960px) {
   .masthead { grid-template-columns: 1fr; }
   .masthead-right, .masthead-rule { display: none; }
+  .mast-choro-legend-box { display: none; }
 }
 @media (max-width: 768px) {
   .choro-body { grid-template-columns: 1fr; }
@@ -1058,7 +1059,7 @@ html[data-theme="kcr-blue"] .mast-data-note { background: #0f2244; }
         });
         if (ok) { clearTop = top; break; }
       }
-      if (clearTop !== null) legend.style.top = Math.round(clearTop) + 'px';
+      if (clearTop !== null) legend.style.top = Math.round(clearTop - 10) + 'px';
     }
 
     var TOPO_CACHE = null;
