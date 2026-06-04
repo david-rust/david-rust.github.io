@@ -110,7 +110,11 @@ nav { background: var(--paper); border-bottom: 1px solid var(--paper-3); positio
    (::before/::after) to find the solid ink background, so it needs this
    declaration on a direct ancestor of the text elements. */
 .masthead-inner,
-.mh-inner { background-color: var(--ink); }
+.masthead-left,
+.masthead-right,
+.page-hero-inner,
+.mh-inner,
+.mh-left { background-color: var(--ink); }
 
 /* ─── RIBBON ─────────────────────────────────────────────── */
 .ribbon { background: var(--ink-2); overflow: hidden; }
