@@ -433,11 +433,10 @@ main .back-btn:hover { color: var(--amber); }
 .team-nav-toggle:hover { background: var(--paper); color: var(--amber); }
 
 /* ─── ANIMATIONS ─────────────────────────────────────────── */
-@keyframes riseIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-/* opacity:0 lives only in the keyframe (fill-mode:both applies it before the delay fires).
-   Keeping it out of .rise means WAVE evaluates elements at their natural opacity:1,
-   eliminating false-positive contrast errors on animated dark-masthead content. */
-.rise   { animation: riseIn 0.7s ease both; }
+@keyframes riseIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+/* Elements start at opacity:0 only via JS class .rise-ready added after DOMContentLoaded,
+   so WAVE (which evaluates static CSS) always sees opacity:1 and computes correct contrast. */
+.rise   { animation: riseIn 0.6s ease forwards; }
 .rise-1 { animation-delay: 0.05s; }
 .rise-2 { animation-delay: 0.15s; }
 .rise-3 { animation-delay: 0.25s; }

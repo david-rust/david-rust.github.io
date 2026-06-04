@@ -8,6 +8,14 @@
   /* Remove no-js class immediately so JS-dependent UI isn't blocked */
   document.documentElement.classList.remove('no-js');
 
+  /* Rise animation — set opacity:0 via JS so WAVE (static CSS evaluator) always
+     sees elements at their natural opacity:1 and computes correct contrast ratios. */
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.rise').forEach(function (el) {
+      el.style.opacity = '0';
+    });
+  });
+
   var KEY_THEME  = 'kcr-theme';
   var KEY_COLORS = 'kcr-colors';
   var BLUE       = 'kcr-blue';
