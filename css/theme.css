@@ -104,6 +104,14 @@ nav { background: var(--paper); border-bottom: 1px solid var(--paper-3); positio
 }
 .nav-search-form button:hover { background: var(--amber); border-color: var(--amber); }
 
+/* ─── MASTHEAD INNER ─────────────────────────────────────── */
+/* Explicit background-color lets WAVE compute contrast correctly for text
+   inside dark mastheads. WAVE can't trace through CSS gradient pseudo-elements
+   (::before/::after) to find the solid ink background, so it needs this
+   declaration on a direct ancestor of the text elements. */
+.masthead-inner,
+.mh-inner { background-color: var(--ink); }
+
 /* ─── RIBBON ─────────────────────────────────────────────── */
 .ribbon { background: var(--ink-2); overflow: hidden; }
 .ribbon-inner { max-width: 1320px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; height: 64px; gap: 16px; }
