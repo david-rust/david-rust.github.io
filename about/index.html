@@ -7,55 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/theme.css">
-<style>.masthead { background: var(--ink); padding: 48px 40px 56px; }
-.masthead-inner { max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; }
-.masthead-kicker {  font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); margin-bottom: 16px; }
-.masthead h1 { font-family: var(--serif); font-size: clamp(40px, 5vw, 66px); font-weight: 400; color: var(--white); line-height: 0.95; letter-spacing: -0.02em; }
-.masthead h1 em { font-style: italic; }
-.masthead-desc { color: rgba(255,255,255,0.5); font-size: 16px; line-height: 1.7; max-width: 380px; padding-top: 8px; }
-.masthead-right { border-left: 1px solid rgba(255,255,255,0.08); padding-left: 48px; display: flex; flex-direction: column; gap: 24px; }
-.stat-block { }
-.stat-num { font-family: var(--serif); font-size: 48px; font-weight: 400; color: var(--white); line-height: 1; letter-spacing: -0.02em; }
-.stat-num span { color: var(--amber); }
-.stat-label { font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color:rgba(255,255,255,0.65); margin-top: 4px; }
-.stat-divider { width: 100%; height: 1px; background: rgba(255,255,255,0.06); }
-.mission-block { background: var(--ink); border-radius: var(--r); padding: 48px; margin-bottom: 40px; position: relative; overflow: hidden; }
-.mission-block::before { content: ''; position: absolute; top: -60px; right: -60px; width: 240px; height: 240px; border-radius: 50%; background: radial-gradient(circle, rgba(200,122,47,0.12) 0%, transparent 70%); }
-.mission-block .eyebrow { color: var(--amber); }
-.mission-block .section-heading { color: var(--white); font-size: 32px; margin-bottom: 20px; }
-.mission-block p { color:rgba(255,255,255,0.72); font-size: 16px; line-height: 1.8; max-width: 640px; }
-.timeline { margin-top: 40px; }
-.timeline-item { display: grid; grid-template-columns: 80px 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--paper-3); }
-.timeline-item:last-child { border-bottom: none; }
-.timeline-year { font-family: var(--serif); font-size: 22px; font-weight: 400; color:var(--amber-dim); line-height: 1; padding-top: 4px; }
-.timeline-content h3 { font-family: var(--serif); font-size: 18px; font-weight: 400; color: var(--ink); letter-spacing: -0.01em; margin-bottom: 6px; }
-.timeline-content p { font-size: 15px; color: var(--steel); line-height: 1.75; }
-.accred-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
-.accred-card { background: white; border-radius: var(--r); padding: 24px; border: 1px solid var(--paper-3); position: relative; overflow: hidden; transition: all 0.2s; }
-.accred-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--amber); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
-.accred-card:hover { box-shadow: 0 12px 40px rgba(14,20,25,0.10); transform: translateY(-3px); border-color: var(--fog); }
-.accred-card:hover::after { transform: scaleX(1); }
-.accred-icon { width: 36px; height: 36px; background: var(--paper-2); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
-.accred-icon svg { width: 18px; height: 18px; stroke: var(--amber-dim); fill: none; stroke-width: 1.5; }
-.accred-card h3 { font-family: var(--serif); font-size: 17px; font-weight: 400; color: var(--ink); margin-bottom: 6px; }
-.accred-card p { font-size: 14px; color: var(--steel); line-height: 1.7; }
-.team-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 24px; }
-.team-card { background: white; border-radius: var(--r); padding: 22px; border: 1px solid var(--paper-3); transition: all 0.2s; }
-.team-card:hover { box-shadow: 0 8px 28px rgba(14,20,25,0.08); transform: translateY(-2px); }
-.team-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--ink-2); margin-bottom: 14px; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 18px; color: var(--amber-lt); }
-.team-card h3 { font-family: var(--serif); font-size: 16px; font-weight: 400; color: var(--ink); margin-bottom: 3px; }
-.team-card .team-title { font-size: 11.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color:var(--amber-dim); margin-bottom: 8px; }
-.team-card p { font-size: 13px; color: var(--steel); line-height: 1.6; }
-.fact-list { list-style: none; }
-.fact-list li { padding: 11px 0; border-bottom: 1px solid var(--paper-2); display: flex; justify-content: space-between; align-items: baseline; font-size: 13.5px; }
-.fact-list li:last-child { border-bottom: none; }
-.fact-label { color: var(--steel); }
-.fact-value { font-weight: 500; color: var(--ink); font-size: 13px; text-align: right; }
-@media (max-width: 960px) {.masthead-inner, .page-wrap { grid-template-columns: 1fr; }
-  .masthead-right { display: none; }
-  .accred-grid, .team-grid { grid-template-columns: 1fr; }
-}
-</style>
   <meta name="description" content="About the Kentucky Cancer Registry — our mission, history, and role as an NCI SEER and CDC NPCR program serving clinicians, researchers, and policymakers...">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Kentucky Cancer Registry">
@@ -68,7 +19,7 @@
   <meta name="twitter:description" content="About the Kentucky Cancer Registry — our mission, history, and role as an NCI SEER and CDC NPCR program serving clinicians, researchers, and policymakers...">
   <link rel="canonical" href="https://david-rust.github.io/about/">
 </head>
-<body>
+<body class="page-about">
 
 <header>
 <!-- Masthead -->
